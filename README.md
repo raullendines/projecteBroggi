@@ -12,9 +12,9 @@
 
 cd project-name
 
-npm install
-
 composer install
+
+npm install
 
 cp .env.example .env
 
