@@ -1,0 +1,14 @@
+.btn-float-afegir {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+/* @media (min-width: 992px) {
+    .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    flex-direction: row-reverse !important;
+}
+} */
+
