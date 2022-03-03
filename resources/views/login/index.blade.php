@@ -1,7 +1,7 @@
 @extends('plantilla.form')
 
 @section('titulo', 'Login')
-    <login-component></login-component>
-@section('contenido')
     
+@section('contents')
+    <login-component></login-component>
 @endsection
