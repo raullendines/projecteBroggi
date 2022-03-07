@@ -27,6 +27,7 @@ Vue.component(
     "navbar-component",
     require("./components/NavbarComponent.vue").default
 );
+Vue.component("callcard-component", require("./components/CallCardComponent.vue").default);
 Vue.component(
     "login-component",
     require("./components/LoginComponent.vue").default
