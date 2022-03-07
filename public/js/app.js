@@ -5290,69 +5290,9 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LoginComponent.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-function viewPassword() {
-  var password = document.getElementById("password");
-
-  if (password.type === "password") {
-    password.type = "text";
-  } else {
-    password.type = "password";
-  }
-}
-
-function validation() {
-  var password = document.getElementById("password").value;
-  var email = document.getElementById("email").value;
-
-  if (password.length >= 10) {
-    var mensaje = "Correcto";
-  } else {
-    var mensaje = "Error";
-  }
-
-  document.getElementById("feedback-password").innerHTML = mensaje;
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/resources/js/components/LoginComponent.vue: Unexpected keyword 'function'. (88:9)\n\n\u001b[0m \u001b[90m 86 |\u001b[39m   })\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 87 |\u001b[39m     methods(\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 88 |\u001b[39m          \u001b[36mfunction\u001b[39m viewPassword() {\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 89 |\u001b[39m         \u001b[36mvar\u001b[39m password \u001b[33m=\u001b[39m document\u001b[33m.\u001b[39mgetElementById(\u001b[32m\"password\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 90 |\u001b[39m             \u001b[36mif\u001b[39m (password\u001b[33m.\u001b[39mtype \u001b[33m===\u001b[39m \u001b[32m\"password\"\u001b[39m) \u001b[0m\n\u001b[0m \u001b[90m 91 |\u001b[39m             {\u001b[0m\n    at Parser._raise (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:476:17)\n    at Parser.raiseWithData (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:469:17)\n    at Parser.raise (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:430:17)\n    at Parser.checkReservedWord (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:13623:12)\n    at Parser.parseIdentifierName (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:13574:12)\n    at Parser.parseIdentifier (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:13544:23)\n    at Parser.parseBindingAtom (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:11491:17)\n    at Parser.parseMaybeDefault (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:11587:50)\n    at Parser.parseAssignableListItem (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:11567:23)\n    at Parser.parseBindingList (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:11529:24)\n    at Parser.parseFunctionParams (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:14904:24)\n    at Parser.parseMethod (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:13373:10)\n    at Parser.parseObjectMethod (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:13250:19)\n    at Parser.parseObjPropValue (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:13291:23)\n    at Parser.parsePropertyDefinition (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:13208:10)\n    at Parser.parseObjectLike (/Users/raullendines/.bitnami/stackman/machines/xampp/volumes/root/htdocs/projecteBroggi/node_modules/@babel/parser/lib/index.js:13099:21)");
 
 /***/ }),
 

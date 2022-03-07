@@ -27,7 +27,65 @@
 </template>
 
 <script>
-    function viewPassword() {
+
+
+export default {
+  data: () => ({
+    adminItems: [
+      {
+        name: "Gestion de expedientes",
+        url: "/expedients",
+        icon: "fas fa-file-alt",
+        style:
+          "background-color:#02AFC8; color:white; margin-right:10px; padding: 7.5px;",
+      },
+      {
+        name: "Mapa",
+        url: "/map",
+        icon: "fas fa-map-marker-alt",
+        style:
+          "background-color:#F2AB31; color:white; margin-right:10px; padding: 7.5px;",
+      },
+      {
+        name: "Grafico",
+        url: "/graph",
+        icon: "fas fa-chart-line",
+        style:
+          "background-color:#4FBF58; color:white; margin-right:10px; padding: 7.5px;",
+      },
+      {
+        name: "Salir",
+        url: "/logout",
+        icon: "fas fa-sign-out-alt",
+        style: "background-color:#C90175; color:white",
+      },
+    ],
+    operatorItems: [
+      {
+        name: "Salir",
+        url: "/logout",
+        icon: "fas fa-sign-out-alt",
+        style: "background-color:#C90175; color:white",
+      },
+    ],
+    supervisorItems: [
+      {
+        name: "Gestion de expedientes",
+        url: "/expedients",
+        icon: "fas fa-file-alt",
+        style:
+          "background-color:#02AFC8; color:white; margin-right:10px; padding: 7.5px;",
+      },
+      {
+        name: "Salir",
+        url: "/logout",
+        icon: "fas fa-sign-out-alt",
+        style: "background-color:#C90175; color:white",
+      },
+    ],
+  }),
+    methods(
+         function viewPassword() {
         var password = document.getElementById("password");
             if (password.type === "password") 
             {
@@ -50,9 +108,13 @@
         
         document.getElementById("feedback-password").innerHTML = mensaje;
     }
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
+    ),
+  mounted() {
+    console.log("Component mounted.");
+  },
+};
+
+
+   
+   
 </script>
