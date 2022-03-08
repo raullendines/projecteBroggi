@@ -11,3 +11,44 @@
     height: 100%;
     filter: opacity(0.5);
 }
+
+.interrogant {
+    position: absolute;
+    z-index: 1;
+}
+
+.fondoInterrogant {
+    position: absolute;
+}
+
+.ayuda {
+    position: fixed;
+    left: 92%;
+    top: 85%;
+}
+
+.over {
+    transform:             rotate( -180deg );
+        -moz-transform:    rotate( -180deg );
+        -ms-transform:     rotate( -180deg );
+        -o-transform:      rotate( -180deg );
+        -webkit-transform: rotate( -180deg );
+    transition:             transform 550ms ease;
+        -moz-transition:    -moz-transform 550ms ease;
+        -ms-transition:     -ms-transform 550ms ease;
+        -o-transition:      -o-transform 550ms ease;
+        -webkit-transition: -webkit-transform 550ms ease;
+}
+
+.out {
+    transform:             rotate( -360deg );
+        -moz-transform:    rotate( -360deg );
+        -ms-transform:     rotate( -360deg );
+        -o-transform:      rotate( -360deg );
+        -webkit-transform: rotate( -360deg );
+    transition:             transform 550ms ease;
+        -moz-transition:    -moz-transform 550ms ease;
+        -ms-transition:     -ms-transform 550ms ease;
+        -o-transition:      -o-transform 550ms ease;
+        -webkit-transition: -webkit-transform 550ms ease;
+}
