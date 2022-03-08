@@ -16,7 +16,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('plantilla.principal');
 });
-
-Route::get('/prova', function () {
-    return view('formPruebas');
-});
