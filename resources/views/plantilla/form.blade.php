@@ -20,13 +20,8 @@
 
 <body>
     <div id="app">
-        <navbar-component></navbar-component>
-        <div style="height: 90vh">
-        <div class="container-fluid body-background">
-            @yield('contents')
-        </div>
-        
-        </div>
+        <div class="container-fluid mt-2">
+            @yield('contents')</div>
     </div>
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
