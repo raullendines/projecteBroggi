@@ -5279,27 +5279,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
@@ -28402,61 +28381,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid mt-2" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("table", { staticClass: "table" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("#tel")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Data")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Estat")]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Mark")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "button" },
-                    },
-                    [_vm._v("Aceptar")]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@mdo")]),
-              ]),
+    return _c("div", { staticClass: "card mt-2" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("table", { staticClass: "table table-borderless" }, [
+          _c("tbody", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v("666444555")]),
               _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Jacob")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Thornton")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@fat")]),
-              ]),
+              _c("td", { staticClass: "text-center" }, [_vm._v("21 Ene 2022")]),
               _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
-                _vm._v(" "),
-                _c("td", { attrs: { colspan: "2" } }, [
-                  _vm._v("Larry the Bird"),
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@twitter")]),
-              ]),
+              _c("td", { staticClass: "text-end" }),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-end" }, [_vm._v("@mdo")]),
             ]),
           ]),
         ]),
