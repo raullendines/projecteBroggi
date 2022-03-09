@@ -60,6 +60,11 @@ class CartesTrucades extends Model
     {
         return $this->belongsTo(DadesPersonals::class, 'dades_personals_id');
     }
+
+    public function CartesTrucadesHasAgencies()
+    {
+        return $this->hasMany(CartesTrucadesHasAgencies::class, 'cartes_trucades_id');
+    }
 }
 
 
