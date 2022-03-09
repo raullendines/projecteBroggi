@@ -18,4 +18,9 @@ class Usuaris extends Model
     {
         return $this->belongsTo(Perfils::class, 'perfils_id');
     }
+
+    public function CartesTrucades()
+    {
+        return $this->hasMany(CartesTrucades::class, 'usuaris_id');
+    } 
 }

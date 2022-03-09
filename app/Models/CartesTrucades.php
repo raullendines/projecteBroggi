@@ -41,4 +41,25 @@ class CartesTrucades extends Model
         return $this->belongsTo(Municipis::class, 'municipi_id');
     }
 
+    public function Usuaris()
+    {
+        return $this->belongsTo(Usuaris::class, 'usuaris_id');
+    }
+
+    public function Expedients()
+    {
+        return $this->belongsTo(Expedients::class, 'expedients_id');
+    }
+
+    public function TipusLocalitzacions()
+    {
+        return $this->belongsTo(TipusLocalitzacions::class, 'tipus_localitzacions_id');
+    }
+
+    public function DadesPersonals()
+    {
+        return $this->belongsTo(DadesPersonals::class, 'dades_personals_id');
+    }
 }
+
+
