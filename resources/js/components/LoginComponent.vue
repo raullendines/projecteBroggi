@@ -2,7 +2,7 @@
     <div class="container border border-dark rounded bg-light">
         <div class="row justify-content-center m-4">
             <div class="col-md-4">
-                <img src="" alt="" />
+                <img src="" alt=""/>
             </div>
                 <div class="col-md-6 container">
                     <form needs-validation>
@@ -19,13 +19,13 @@
                         <div class="row align-items-center">
                             <div class="col-10">
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="password" placeholder="Contrassenya" oninput="validation()"/>
+                                    <input :type="tipo" class="form-control" id="password" placeholder="Contrassenya" oninput="validation()"/>
                                     <label for="password">Contrassenya</label>
                                     <div id="feedback-password"></div>
                                 </div>
                             </div>
                             <div class="col-2">
-                                <button class="btn rounded-pill" type="button" style="background-color: #00b0c8" onclick="viewPassword()"> <i class="fa fa-eye"></i> </button>
+                                <button @click="viewPassword" class="btn rounded-pill" type="button" style="background-color: #00b0c8" > <i class="fa fa-eye"></i> </button>
                             </div>
                             <div class="d-grid gap-2 col-12 mt-3">
                                 <button class="btn rounded-pill" type="button" style="background-color: #00b0c8">
@@ -42,13 +42,16 @@
 
 <script>
 export default {
+    data: () => ({
+        tipo: 'password'
+    }),
     methods: {
         viewPassword() {
-            var password = document.getElementById("password");
-            if (password.type === "password") {
-                password.type = "text";
+
+            if (this.tipo === "password") {
+                this.tipo = "text";
             } else {
-                password.type = "password";
+                this.tipo = "password";
             }
         },
         validation() {

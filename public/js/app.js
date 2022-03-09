@@ -5340,14 +5340,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      tipo: 'password'
+    };
+  },
   methods: {
     viewPassword: function viewPassword() {
-      var password = document.getElementById("password");
-
-      if (password.type === "password") {
-        password.type = "text";
+      if (this.tipo === "password") {
+        this.tipo = "text";
       } else {
-        password.type = "password";
+        this.tipo = "password";
       }
     },
     validation: function validation() {
@@ -28289,8 +28292,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container border border-dark rounded bg-light"},[_c('div',{staticClass:"row justify-content-center m-4"},[_c('div',{staticClass:"col-md-4"},[_c('img',{attrs:{"src":"","alt":""}})]),_vm._v(" "),_c('div',{staticClass:"col-md-6 container"},[_c('form',{attrs:{"needs-validation":""}},[_c('div',{staticClass:"row"},[_c('h1',[_vm._v("Login")]),_vm._v(" "),_c('div',{staticClass:"col-12"},[_c('div',{staticClass:"form-floating mb-3"},[_c('input',{staticClass:"form-control",attrs:{"type":"email","id":"email","placeholder":"Adreça electrònica","oninput":"validation()"}}),_vm._v(" "),_c('label',{attrs:{"for":"email"}},[_vm._v("Adreça electrònica")]),_vm._v(" "),_c('div',{attrs:{"id":"feedback-email"}})])])]),_vm._v(" "),_c('div',{staticClass:"row align-items-center"},[_c('div',{staticClass:"col-10"},[_c('div',{staticClass:"form-floating"},[_c('input',{staticClass:"form-control",attrs:{"type":"password","id":"password","placeholder":"Contrassenya","oninput":"validation()"}}),_vm._v(" "),_c('label',{attrs:{"for":"password"}},[_vm._v("Contrassenya")]),_vm._v(" "),_c('div',{attrs:{"id":"feedback-password"}})])]),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('button',{staticClass:"btn rounded-pill",staticStyle:{"background-color":"#00b0c8"},attrs:{"type":"button","onclick":"viewPassword()"}},[_c('i',{staticClass:"fa fa-eye"})])]),_vm._v(" "),_c('div',{staticClass:"d-grid gap-2 col-12 mt-3"},[_c('button',{staticClass:"btn rounded-pill",staticStyle:{"background-color":"#00b0c8"},attrs:{"type":"button"}},[_vm._v("\n                                Accedir\n                            ")])])])])])])])}]
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container border border-dark rounded bg-light"},[_c('div',{staticClass:"row justify-content-center m-4"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"col-md-6 container"},[_c('form',{attrs:{"needs-validation":""}},[_vm._m(1),_vm._v(" "),_c('div',{staticClass:"row align-items-center"},[_c('div',{staticClass:"col-10"},[_c('div',{staticClass:"form-floating"},[_c('input',{staticClass:"form-control",attrs:{"type":_vm.tipo,"id":"password","placeholder":"Contrassenya","oninput":"validation()"}}),_vm._v(" "),_c('label',{attrs:{"for":"password"}},[_vm._v("Contrassenya")]),_vm._v(" "),_c('div',{attrs:{"id":"feedback-password"}})])]),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('button',{staticClass:"btn rounded-pill",staticStyle:{"background-color":"#00b0c8"},attrs:{"type":"button"},on:{"click":_vm.viewPassword}},[_c('i',{staticClass:"fa fa-eye"})])]),_vm._v(" "),_vm._m(2)])])])])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"col-md-4"},[_c('img',{attrs:{"src":"","alt":""}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('h1',[_vm._v("Login")]),_vm._v(" "),_c('div',{staticClass:"col-12"},[_c('div',{staticClass:"form-floating mb-3"},[_c('input',{staticClass:"form-control",attrs:{"type":"email","id":"email","placeholder":"Adreça electrònica","oninput":"validation()"}}),_vm._v(" "),_c('label',{attrs:{"for":"email"}},[_vm._v("Adreça electrònica")]),_vm._v(" "),_c('div',{attrs:{"id":"feedback-email"}})])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"d-grid gap-2 col-12 mt-3"},[_c('button',{staticClass:"btn rounded-pill",staticStyle:{"background-color":"#00b0c8"},attrs:{"type":"button"}},[_vm._v("\n                                Accedir\n                            ")])])}]
 render._withStripped = true
 
 
