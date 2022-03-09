@@ -4,41 +4,37 @@
             <div class="col-md-4">
                 <img src="" alt="" />
             </div>
-            <div class="col-md-4">
-                <h1>Login</h1>
-                <form needs-validation>
-                    <div class="form-floating mb-3">
-                        <input
-                            type="email"
-                            class="form-control"
-                            id="email"
-                            placeholder="Adreça electrònica"
-                            oninput="validation()"
-                        />
-                        <label for="email">Adreça electrònica</label>
-                        <div id="feedback-email"></div>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="password"
-                            placeholder="Contrassenya"
-                            oninput="validation()"
-                        />
-                        <label for="password">Contrassenya</label>
-                        <div id="feedback-password"></div>
-                    </div>
-                    <div class="d-grid gap-2">
-                        <button
-                            class="btn rounded-pill"
-                            type="button"
-                            style="background-color: #00b0c8"
-                        >
-                            Accedir
-                        </button>
-                    </div>
-                </form>
+                <div class="col-md-6 container">
+                    <form needs-validation>
+                        <div class="row">
+                        <h1>Login</h1>
+                            <div class="col-12">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="email" placeholder="Adreça electrònica" oninput="validation()"/>
+                                    <label for="email">Adreça electrònica</label>
+                                    <div id="feedback-email"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-10">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="password" placeholder="Contrassenya" oninput="validation()"/>
+                                    <label for="password">Contrassenya</label>
+                                    <div id="feedback-password"></div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <button class="btn rounded-pill" type="button" style="background-color: #00b0c8" onclick="viewPassword()"> <i class="fa fa-eye"></i> </button>
+                            </div>
+                            <div class="d-grid gap-2 col-12 mt-3">
+                                <button class="btn rounded-pill" type="button" style="background-color: #00b0c8">
+                                    Accedir
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

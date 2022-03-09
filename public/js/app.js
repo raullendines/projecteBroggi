@@ -5339,10 +5339,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     viewPassword: function viewPassword() {
@@ -28274,38 +28270,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              ),
-            ]),
-          ]),
-        ]),
-      ]),
-    ])
-  },
-]
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container"},[_c('div',{staticClass:"row justify-content-center"},[_c('div',{staticClass:"col-md-8"},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-header"},[_vm._v("Example Component")]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_vm._v("\n                    I'm an example component.\n                ")])])])])])}]
 render._withStripped = true
-
 
 
 /***/ }),
@@ -28322,90 +28289,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "container border border-dark rounded bg-light" },
-      [
-        _c("div", { staticClass: "row justify-content-center m-4" }, [
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("img", { attrs: { src: "", alt: "" } }),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("h1", [_vm._v("Login")]),
-            _vm._v(" "),
-            _c("form", { attrs: { "needs-validation": "" } }, [
-              _c("div", { staticClass: "form-floating mb-3" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "email",
-                    id: "email",
-                    placeholder: "Adreça electrònica",
-                    oninput: "validation()",
-                  },
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "email" } }, [
-                  _vm._v("Adreça electrònica"),
-                ]),
-                _vm._v(" "),
-                _c("div", { attrs: { id: "feedback-email" } }),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-floating mb-3" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "password",
-                    id: "password",
-                    placeholder: "Contrassenya",
-                    oninput: "validation()",
-                  },
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "password" } }, [
-                  _vm._v("Contrassenya"),
-                ]),
-                _vm._v(" "),
-                _c("div", { attrs: { id: "feedback-password" } }),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "d-grid gap-2" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn rounded-pill",
-                    staticStyle: { "background-color": "#00b0c8" },
-                    attrs: { type: "button" },
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Accedir\n                    "
-                    ),
-                  ]
-                ),
-              ]),
-            ]),
-          ]),
-        ]),
-      ]
-    )
-  },
-]
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container border border-dark rounded bg-light"},[_c('div',{staticClass:"row justify-content-center m-4"},[_c('div',{staticClass:"col-md-4"},[_c('img',{attrs:{"src":"","alt":""}})]),_vm._v(" "),_c('div',{staticClass:"col-md-6 container"},[_c('form',{attrs:{"needs-validation":""}},[_c('div',{staticClass:"row"},[_c('h1',[_vm._v("Login")]),_vm._v(" "),_c('div',{staticClass:"col-12"},[_c('div',{staticClass:"form-floating mb-3"},[_c('input',{staticClass:"form-control",attrs:{"type":"email","id":"email","placeholder":"Adreça electrònica","oninput":"validation()"}}),_vm._v(" "),_c('label',{attrs:{"for":"email"}},[_vm._v("Adreça electrònica")]),_vm._v(" "),_c('div',{attrs:{"id":"feedback-email"}})])])]),_vm._v(" "),_c('div',{staticClass:"row align-items-center"},[_c('div',{staticClass:"col-10"},[_c('div',{staticClass:"form-floating"},[_c('input',{staticClass:"form-control",attrs:{"type":"password","id":"password","placeholder":"Contrassenya","oninput":"validation()"}}),_vm._v(" "),_c('label',{attrs:{"for":"password"}},[_vm._v("Contrassenya")]),_vm._v(" "),_c('div',{attrs:{"id":"feedback-password"}})])]),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('button',{staticClass:"btn rounded-pill",staticStyle:{"background-color":"#00b0c8"},attrs:{"type":"button","onclick":"viewPassword()"}},[_c('i',{staticClass:"fa fa-eye"})])]),_vm._v(" "),_c('div',{staticClass:"d-grid gap-2 col-12 mt-3"},[_c('button',{staticClass:"btn rounded-pill",staticStyle:{"background-color":"#00b0c8"},attrs:{"type":"button"}},[_vm._v("\n                                Accedir\n                            ")])])])])])])])}]
 render._withStripped = true
-
 
 
 /***/ }),
@@ -28422,75 +28308,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "nav",
-    {
-      staticClass:
-        "\n      navbar navbar-expand-lg navbar-light\n      bg-light\n      shadow\n      p-3\n      mb-5\n      rounded\n    ",
-    },
-    [
-      _c("div", { staticClass: "container-fluid" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", attrs: { id: "navbarNavDropdown" } },
-          [
-            _c(
-              "ul",
-              { staticClass: "navbar-nav d-flex flex-row" },
-              _vm._l(_vm.adminItems, function (item) {
-                return _c("li", { key: item.url, staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-sm nav-link active",
-                      style: item.style,
-                      attrs: {
-                        "aria-current": "page",
-                        href: item.url,
-                        role: "button",
-                      },
-                    },
-                    [
-                      _c("i", { class: item.icon }),
-                      _vm._v(
-                        "\n              " +
-                          _vm._s(item.name) +
-                          "\n            "
-                      ),
-                    ]
-                  ),
-                ])
-              }),
-              0
-            ),
-          ]
-        ),
-      ]),
-    ]
-  )
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-      _c("img", {
-        staticClass: "d-inline-block align-text-top ml-3",
-        attrs: { src: "", alt: "", width: "30", height: "24" },
-      }),
-      _vm._v("\n        Broggi"),
-    ])
-  },
-]
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('nav',{staticClass:"\n      navbar navbar-expand-lg navbar-light\n      bg-light\n      shadow\n      p-3\n      mb-5\n      rounded\n    "},[_c('div',{staticClass:"container-fluid"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"d-flex",attrs:{"id":"navbarNavDropdown"}},[_c('ul',{staticClass:"navbar-nav d-flex flex-row"},_vm._l((_vm.adminItems),function(item){return _c('li',{key:item.url,staticClass:"nav-item"},[_c('a',{staticClass:"btn btn-sm nav-link active",style:(item.style),attrs:{"aria-current":"page","href":item.url,"role":"button"}},[_c('i',{class:item.icon}),_vm._v("\n              "+_vm._s(item.name)+"\n            ")])])}),0)])])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('a',{staticClass:"navbar-brand",attrs:{"href":"#"}},[_c('img',{staticClass:"d-inline-block align-text-top ml-3",attrs:{"src":"","alt":"","width":"30","height":"24"}}),_vm._v("\n        Broggi")])}]
 render._withStripped = true
-
 
 
 /***/ }),
