@@ -23,4 +23,14 @@ class Municipis extends Model
     {
         return $this->hasMany(Agencies::class, 'municipis_id');
     }
+
+    public function CartesTrucadesTrucada()
+    {
+        return $this->hasMany(CartesTrucades::class, 'municipi_id_trucada');
+    } 
+
+    public function CartesTrucadesIncident()
+    {
+        return $this->hasMany(CartesTrucades::class, 'municipi_id');
+    } 
 }
