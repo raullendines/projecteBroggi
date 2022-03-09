@@ -18,4 +18,11 @@ class Incidents extends Model
     {
         return $this->belongsTo(TipusIncidents::class, 'classes_incidents_id');
     }
+
+    public function CartesTrucades()
+    {
+        return $this->hasMany(CartesTrucades::class, 'incidents_id');
+    }
+
+    
 }

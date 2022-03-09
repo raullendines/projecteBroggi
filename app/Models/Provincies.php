@@ -18,4 +18,9 @@ class Provincies extends Model
     {
         return $this->hasMany(Comarques::class, 'provincies_id');
     }
+
+    public function CartesTrucades()
+    {
+        return $this->hasMany(CartesTrucades::class, 'provincies_id');
+    }
 }
