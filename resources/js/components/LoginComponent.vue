@@ -46,9 +46,6 @@
 
 <script>
 export default {
-    data: () => ({
-      ret
-    }),
     methods: {
         viewPassword() {
             var password = document.getElementById("password");
