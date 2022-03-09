@@ -10,6 +10,6 @@ rotateColider.addEventListener( 'mouseover', function () {
 rotateColider.addEventListener( 'mouseout', function () {
 
     rotate.className = 'out fondoInterrogant';
-    window.setTimeout( function () { rotate.className = 'fondoInterrogant' }, 550 );
+    // window.setTimeout( function () { rotate.className = 'fondoInterrogant' }, 550 );
 
 }, false );
