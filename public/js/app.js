@@ -5262,6 +5262,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _FormComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormComponent.vue */ "./resources/js/components/FormComponent.vue");
 //
 //
 //
@@ -5299,7 +5300,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    FormComponent: _FormComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       calls: [{
@@ -28489,7 +28497,11 @@ var render = function () {
                             "button",
                             {
                               staticClass: "btn btn-outline-secondary",
-                              attrs: { type: "button" },
+                              attrs: {
+                                type: "button",
+                                "data-bs-toggle": "modal",
+                                "data-bs-target": "#modalForm",
+                              },
                             },
                             [_vm._v("Aceptar")]
                           ),
@@ -28639,333 +28651,344 @@ var staticRenderFns = [
         },
       },
       [
-        _c("div", { staticClass: "modal-dialog modal-xl" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _c("div", { staticClass: "modal-body" }, [
-              _c("form", { attrs: { action: "" } }, [
-                _c("div", { staticClass: "row mb-5" }, [
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-label",
-                        attrs: { for: "procedenciaInput" },
-                      },
-                      [_vm._v("Procedencia")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "procedenciaInput",
-                        "aria-describedby": "procedenciaInput",
-                        placeholder: "Escriu aquí",
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-text",
-                        attrs: { id: "procedenciaInput" },
-                      },
-                      [_vm._v("* Nacionalitat")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-label",
-                        attrs: { for: "municipioInput" },
-                      },
-                      [_vm._v("Municipi")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "municipioInput",
-                        "aria-describedby": "municipioInput",
-                        placeholder: "Escriu aquí",
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-text",
-                        attrs: { id: "municipioInput" },
-                      },
-                      [_vm._v("* Ciutat de l'incident")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-label",
-                        attrs: { for: "direccionInput" },
-                      },
-                      [_vm._v("Direcció")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "direccionInput",
-                        "aria-describedby": "direccionInput",
-                        placeholder: "Escriu aquí",
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-text",
-                        attrs: { id: "direccionInput" },
-                      },
-                      [_vm._v("* Direcció postal de l'incident")]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row mb-5" }, [
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-label",
-                        attrs: { for: "antecedentsSelect" },
-                      },
-                      [_vm._v("Antecedents")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        staticClass: "form-select",
-                        attrs: {
-                          id: "antecedentsSelect",
-                          name: "antecedentsSelect",
-                          "aria-label": "selectAntecedentes",
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { selected: "" } }, [
-                          _vm._v("Selecciona una opció"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "0" } }, [_vm._v("Si")]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "1" } }, [_vm._v("No")]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-text",
-                        attrs: { id: "antecedentsSelect" },
-                      },
-                      [_vm._v("* Trucades anteriors")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-label",
-                        attrs: { for: "phoneInput" },
-                      },
-                      [_vm._v("Telèfon")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group" }, [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-xl modal-dialog-centered" },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", { attrs: { action: "" } }, [
+                  _c("div", { staticClass: "row mb-5" }, [
+                    _c("div", { staticClass: "col" }, [
                       _c(
-                        "span",
+                        "label",
                         {
-                          staticClass: "input-group-text",
-                          attrs: { id: "phoneInput" },
+                          staticClass: "form-label",
+                          attrs: { for: "procedenciaInput" },
                         },
-                        [_vm._v("+34")]
+                        [_vm._v("Procedencia")]
                       ),
                       _vm._v(" "),
                       _c("input", {
                         staticClass: "form-control",
                         attrs: {
-                          type: "tel",
-                          name: "phoneInput",
+                          type: "text",
+                          id: "procedenciaInput",
+                          "aria-describedby": "procedenciaInput",
                           placeholder: "Escriu aquí",
-                          id: "phoneInput",
-                          "aria-describedby": "phoneInput",
                         },
                       }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "procedenciaInput" },
+                        },
+                        [_vm._v("* Nacionalitat")]
+                      ),
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-text",
-                        attrs: { id: "antecedentsSelect" },
-                      },
-                      [_vm._v("* Número de telèfon")]
-                    ),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "municipioInput" },
+                        },
+                        [_vm._v("Municipi")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "municipioInput",
+                          "aria-describedby": "municipioInput",
+                          placeholder: "Escriu aquí",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "municipioInput" },
+                        },
+                        [_vm._v("* Ciutat de l'incident")]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "direccionInput" },
+                        },
+                        [_vm._v("Direcció")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "direccionInput",
+                          "aria-describedby": "direccionInput",
+                          placeholder: "Escriu aquí",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "direccionInput" },
+                        },
+                        [_vm._v("* Direcció postal de l'incident")]
+                      ),
+                    ]),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-label",
-                        attrs: { for: "genereSelect" },
-                      },
-                      [_vm._v("Gènere")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        staticClass: "form-select",
-                        attrs: {
-                          id: "genereSelect",
-                          name: "genereSelect",
-                          "aria-label": "genereSelect",
+                  _c("div", { staticClass: "row mb-5" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "antecedentsSelect" },
                         },
-                      },
-                      [
-                        _c("option", { attrs: { selected: "" } }, [
-                          _vm._v("Selecciona una opció"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Home" } }, [
-                          _vm._v("Home"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Dona" } }, [
-                          _vm._v("Dona"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Altres" } }, [
-                          _vm._v("Altres"),
-                        ]),
-                      ]
-                    ),
+                        [_vm._v("Antecedents")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          staticClass: "form-select",
+                          attrs: {
+                            id: "antecedentsSelect",
+                            name: "antecedentsSelect",
+                            "aria-label": "selectAntecedentes",
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { selected: "" } }, [
+                            _vm._v("Selecciona una opció"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "0" } }, [
+                            _vm._v("Si"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "1" } }, [
+                            _vm._v("No"),
+                          ]),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "antecedentsSelect" },
+                        },
+                        [_vm._v("* Trucades anteriors")]
+                      ),
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-text",
-                        attrs: { id: "genereSelect" },
-                      },
-                      [_vm._v("* Gènere amb el que s'identifica")]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row mb-5" }, [
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-label",
-                        attrs: { for: "notaComunaInput" },
-                      },
-                      [_vm._v("Nota comuna")]
-                    ),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "phoneInput" },
+                        },
+                        [_vm._v("Telèfon")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group" }, [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "input-group-text",
+                            attrs: { id: "phoneInput" },
+                          },
+                          [_vm._v("+34")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "tel",
+                            name: "phoneInput",
+                            placeholder: "Escriu aquí",
+                            id: "phoneInput",
+                            "aria-describedby": "phoneInput",
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "antecedentsSelect" },
+                        },
+                        [_vm._v("* Número de telèfon")]
+                      ),
+                    ]),
                     _vm._v(" "),
-                    _c("textarea", {
-                      staticClass: "form-control",
-                      staticStyle: { height: "100px" },
-                      attrs: {
-                        placeholder: "Escriu aquí",
-                        id: "notaComunaInput",
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-text",
-                        attrs: { id: "genereSelect" },
-                      },
-                      [_vm._v("* Altres anotacions d'interés")]
-                    ),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "genereSelect" },
+                        },
+                        [_vm._v("Gènere")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          staticClass: "form-select",
+                          attrs: {
+                            id: "genereSelect",
+                            name: "genereSelect",
+                            "aria-label": "genereSelect",
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { selected: "" } }, [
+                            _vm._v("Selecciona una opció"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Home" } }, [
+                            _vm._v("Home"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Dona" } }, [
+                            _vm._v("Dona"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Altres" } }, [
+                            _vm._v("Altres"),
+                          ]),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "genereSelect" },
+                        },
+                        [_vm._v("* Gènere amb el que s'identifica")]
+                      ),
+                    ]),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-label",
-                        attrs: { for: "vipSelect" },
-                      },
-                      [_vm._v("VIP")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        staticClass: "form-select",
-                        attrs: {
-                          id: "vipSelect",
-                          name: "vipSelect",
-                          "aria-label": "vipSelect",
+                  _c("div", { staticClass: "row mb-5" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "notaComunaInput" },
                         },
-                      },
-                      [
-                        _c("option", { attrs: { selected: "" } }, [
-                          _vm._v("Selecciona una opció"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "vip1" } }, [
-                          _vm._v("VIP-1"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "vip2" } }, [
-                          _vm._v("VIP-2"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "vip3" } }, [
-                          _vm._v("VIP-3"),
-                        ]),
-                      ]
-                    ),
+                        [_vm._v("Nota comuna")]
+                      ),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        staticClass: "form-control",
+                        staticStyle: { height: "100px" },
+                        attrs: {
+                          placeholder: "Escriu aquí",
+                          id: "notaComunaInput",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "genereSelect" },
+                        },
+                        [_vm._v("* Altres anotacions d'interés")]
+                      ),
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-text", attrs: { id: "vipSelect" } },
-                      [_vm._v("* VIP predefinits")]
-                    ),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "vipSelect" },
+                        },
+                        [_vm._v("VIP")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          staticClass: "form-select",
+                          attrs: {
+                            id: "vipSelect",
+                            name: "vipSelect",
+                            "aria-label": "vipSelect",
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { selected: "" } }, [
+                            _vm._v("Selecciona una opció"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "vip1" } }, [
+                            _vm._v("VIP-1"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "vip2" } }, [
+                            _vm._v("VIP-2"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "vip3" } }, [
+                            _vm._v("VIP-3"),
+                          ]),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "vipSelect" },
+                        },
+                        [_vm._v("* VIP predefinits")]
+                      ),
+                    ]),
                   ]),
                 ]),
               ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-footer" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-secondary",
-                  attrs: { type: "button", "data-bs-dismiss": "modal" },
-                },
-                [_vm._v("Close")]
-              ),
               _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "btn btn-primary", attrs: { type: "button" } },
-                [_vm._v("Save changes")]
-              ),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-bs-dismiss": "modal" },
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "button" } },
+                  [_vm._v("Save changes")]
+                ),
+              ]),
             ]),
-          ]),
-        ]),
+          ]
+        ),
       ]
     )
   },
