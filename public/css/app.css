@@ -7,6 +7,12 @@
   border-color: #f90173 !important;
 }
 
+.btn-secondary {
+  color: #fff !important;
+  background-color: #4dc058 !important;
+  border-color: #4dc058 !important;
+}
+
 .btn-outline-primary {
   color: #2c3e50;
   border-color: #f90173 !important;
