@@ -28531,7 +28531,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "table",
-      { staticClass: "table m-auto", staticStyle: { width: "80%" } },
+      { staticClass: "table m-auto mt-3", staticStyle: { width: "80%" } },
       [
         _c("thead", [
           _c("tr", [

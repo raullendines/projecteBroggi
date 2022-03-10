@@ -1,6 +1,6 @@
 <template>
 <main>
-    <table class="table m-auto" style="width:80%">
+    <table class="table m-auto mt-3" style="width:80%">
   <thead>
     <tr>
       <th class="col-5" >Número tel.</th>
