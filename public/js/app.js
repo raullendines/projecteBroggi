@@ -5279,9 +5279,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {
+      calls: [{
+        tel: "666444545",
+        date: "21 Ene 2022",
+        status: "Active"
+      }, {
+        tel: "666444555",
+        date: "21 Ene 2022",
+        status: "Pending"
+      }, {
+        tel: "666444535",
+        date: "21 Ene 2022",
+        status: "Declined"
+      }],
+      status: [{
+        active: "fa fa-check-circle fa-lg",
+        style: "color: #4dc058;"
+      }, {
+        pending: "fas fa-clock fa-lg",
+        style: "color: #f1ab31;"
+      }, {
+        declined: "fa fa-times-circle fa-lg",
+        style: "color: #c90175;"
+      }]
+    };
   },
   mounted: function mounted() {
     console.log("Component mounted.");
@@ -28374,30 +28418,107 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "main",
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._l(_vm.calls, function (call) {
+        return _c(
+          "div",
+          {
+            key: call.tel,
+            staticClass: "card mt-3 m-auto",
+            staticStyle: { width: "80%" },
+          },
+          [
+            _c("div", { staticClass: "card-body" }, [
+              _c("table", { staticClass: "table table-borderless mb-0" }, [
+                _c("tbody", [
+                  _c("tr", [
+                    _c(
+                      "th",
+                      { staticClass: "align-middle", attrs: { scope: "row" } },
+                      [_vm._v(_vm._s(call.tel))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center align-middle" }, [
+                      _vm._v(_vm._s(call.date)),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-end" }, [
+                      call.status === "Declined" || call.status === "Active"
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-outline-secondary",
+                              attrs: { type: "button", disabled: "" },
+                            },
+                            [_vm._v("Aceptar")]
+                          )
+                        : _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-outline-secondary",
+                              attrs: { type: "button" },
+                            },
+                            [_vm._v("Aceptar")]
+                          ),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-end align-middle" }, [
+                      call.status === "Active"
+                        ? _c("i", {
+                            class: _vm.status[0].active,
+                            style: _vm.status[0].style,
+                          })
+                        : call.status === "Pending"
+                        ? _c("i", {
+                            class: _vm.status[1].pending,
+                            style: _vm.status[1].style,
+                          })
+                        : call.status === "Declined"
+                        ? _c("i", {
+                            class: _vm.status[2].declined,
+                            style: _vm.status[2].style,
+                          })
+                        : _vm._e(),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]
+        )
+      }),
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card mt-2" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("table", { staticClass: "table table-borderless" }, [
-          _c("tbody", [
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v("666444555")]),
-              _vm._v(" "),
-              _c("td", { staticClass: "text-center" }, [_vm._v("21 Ene 2022")]),
-              _vm._v(" "),
-              _c("td", { staticClass: "text-end" }),
-              _vm._v(" "),
-              _c("td", { staticClass: "text-end" }, [_vm._v("@mdo")]),
+    return _c(
+      "table",
+      { staticClass: "table m-auto", staticStyle: { width: "80%" } },
+      [
+        _c("thead", [
+          _c("tr", [
+            _c("th", { staticClass: "col-5" }, [_vm._v("Número tel.")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "col" }, [_vm._v("Data")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "col" }),
+            _vm._v(" "),
+            _c("th", { staticClass: "col text-end align-middle" }, [
+              _vm._v("Estat"),
             ]),
           ]),
         ]),
-      ]),
-    ])
+      ]
+    )
   },
 ]
 render._withStripped = true
