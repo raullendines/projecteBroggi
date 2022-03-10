@@ -9,7 +9,7 @@
     "
   >
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/projecteBroggi/public/">
         <img
           src="images/broggi_logo.png"
           alt="logo broggi"
