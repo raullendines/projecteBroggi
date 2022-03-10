@@ -27,7 +27,7 @@
         </div>
 
         </div>
-        <a href="" id="rotateColider" class="ayuda"><img class="interrogant" width="100px" src="{{ asset('images/interrogant.png') }}" alt=""><img class="fondoInterrogant" id="rotate" width="100px" src="{{ asset('images/fonsInterrogant.png') }}" alt=""></a>
+        <a href="" id="rotateColider" class="ayuda"><img class="interrogant" width="100px" src="{{ asset('images/interrogant.png') }}" alt=""><img class="out fondoInterrogant" id="rotate" width="100px" src="{{ asset('images/fonsInterrogant.png') }}" alt=""></a>
     </div>
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
