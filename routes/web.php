@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login.index');
 });
+
+Route::get('/trucades', function () {
+    return view('callCard.callCard');
+});
