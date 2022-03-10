@@ -21,15 +21,17 @@
 <body>
     <div id="app">
         <navbar-component></navbar-component>
-        <div style="height: 90vh">
+        <div style="height: 75vh">
         <div class="container-fluid body-background">
             @yield('contents')
         </div>
-        
+
         </div>
+        <a href="" id="rotateColider" class="ayuda"><img class="interrogant" width="100px" src="{{ asset('images/interrogant.png') }}" alt=""><img class="fondoInterrogant" id="rotate" width="100px" src="{{ asset('images/fonsInterrogant.png') }}" alt=""></a>
     </div>
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/rotate.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </html>
