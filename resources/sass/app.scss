@@ -1,3 +1,31 @@
+.btn-primary {
+    color: #fff !important;
+    background-color: #f90173 !important;
+    border-color: #f90173 !important;
+}
+
+.btn-outline-primary {
+    color: #2c3e50;
+    border-color: #f90173 !important;
+}
+
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #f90173 !important;
+    border-color: #f90173 !important;
+}
+
+.btn-outline-secondary {
+    color: #2c3e50;
+    border-color: #4dc058 !important;
+}
+
+.btn-outline-secondary:hover {
+    color: #fff !important;
+    background-color: #4dc058 !important;
+    border-color: #4dc058 !important;
+}
+
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
 
