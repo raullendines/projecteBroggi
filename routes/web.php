@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsuarisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('plantilla.principal');
 });
+
+Route::get('/database', function () {
+    return view('database.database');
+});
+
+Route::get('/trucades', function () {
+    return view('callCard.callCard');
+});
+
+Route::get('/login', [UsuarisController::class, 'showLogin']);
+Route::get('/sui', [UsuarisController::class, 'login'])->name('login'); 
