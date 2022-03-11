@@ -5,21 +5,18 @@
       bg-light
       shadow
       p-3
-      mb-5
       rounded
     "
   >
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/projecteBroggi/public/">
         <img
-          src=""
-          alt=""
-          width="30"
-          height="24"
+          src="images/broggi_logo.png"
+          alt="logo broggi"
           class="d-inline-block align-text-top ml-3"
+          style="width: 7em;"
         />
-        Broggi</a
-      >
+        </a>
 
       <div class="d-flex" id="navbarNavDropdown">
         <ul class="navbar-nav d-flex flex-row"> <!--  v-if="isAdmin" -->
@@ -77,7 +74,14 @@ export default {
   data: () => ({
     adminItems: [
       {
-        name: "Gestion de expedientes",
+        name: "Carta de trucades",
+        url: "/projecteBroggi/public/trucades",
+        icon: "fas fa-headset",
+        style:
+          "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;",
+      },
+      {
+        name: "Gestió d'espedients",
         url: "/expedients",
         icon: "fas fa-file-alt",
         style:
@@ -91,22 +95,22 @@ export default {
           "background-color:#F2AB31; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
-        name: "Grafico",
+        name: "Gráfic",
         url: "/graph",
         icon: "fas fa-chart-line",
         style:
           "background-color:#4FBF58; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
-        name: "Salir",
+        name: "Sortir",
         url: "/logout",
         icon: "fas fa-sign-out-alt",
-        style: "background-color:#C90175; color:white",
+        style: "background-color:#FF005D; color:white",
       },
     ],
     operatorItems: [
       {
-        name: "Salir",
+        name: "Sortir",
         url: "/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#C90175; color:white",
@@ -114,14 +118,14 @@ export default {
     ],
     supervisorItems: [
       {
-        name: "Gestion de expedientes",
+        name: "Gestió d'espedients",
         url: "/expedients",
         icon: "fas fa-file-alt",
         style:
           "background-color:#02AFC8; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
-        name: "Salir",
+        name: "Sortir",
         url: "/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#C90175; color:white",
