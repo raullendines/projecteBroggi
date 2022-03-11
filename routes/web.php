@@ -26,4 +26,5 @@ Route::get('/trucades', function () {
     return view('callCard.callCard');
 });
 
-Route::get('/login', [UsuarisController::class, 'showLogin'])->name('login');
+Route::get('/login', [UsuarisController::class, 'showLogin']);
+Route::get('/sui', [UsuarisController::class, 'login'])->name('login'); 

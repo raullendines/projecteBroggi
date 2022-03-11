@@ -4,13 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuaris;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarisController extends Controller
 {
 
     public function showLogin()
     {
+       /*  $user = new Usuaris();
+
+        $user->correu = '1@g.com';
+        $user->nom = '1';
+        $user->cognoms = '1 1';
+        $user->contrasenya = \bcrypt('1');
+        $user->actiu = true;
+        $user->rols_id = 1;
+
+        $user->save(); */
+
         return view('login.index');
+    }
+
+    public function login(Request $request){
+        $mail = $request->input('email');
+        $contrasenya = $request->input('password');
+
+        $user = Usuaris::where('correu', $mail)->first();
+
+        var_dump($mail, $contrasenya, $user);
+
+        if ($user != null && Hash::check($contrasenya, $user->password)) {
+            Auth::login($user);
+             $response = redirect('/');
+        }
+        else{
+            $request->session()->flash('error', 'Usuari o contrasenya incorrectes');
+/*             $response = redirect('/login')->withInput();
+ */        }
+
+/*           return $response;
+ */     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
 
     /**
