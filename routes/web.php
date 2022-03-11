@@ -30,3 +30,7 @@ Route::get('/trucades', function () {
     return view('callCard.callCard');
 });
 
+Route::get('/expedients', function () {
+    return view('callManagement.callManagement');
+});
+

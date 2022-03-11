@@ -5,6 +5,5 @@
 @section('contents')
 
 <callcard-component></callcard-component>
-<form-component></form-component>
 
 @endsection
