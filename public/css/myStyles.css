@@ -5,11 +5,10 @@
 }
 
 .body-background {
-    background-image: url("../images/broggi_bg.png");
+    background-image: url("../images/broggi_bg_filter.png");
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;
-    filter: opacity(0.5);
 }
 
 .interrogant {

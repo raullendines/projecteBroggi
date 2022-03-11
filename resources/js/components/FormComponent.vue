@@ -1,6 +1,6 @@
 <template>
 <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="modalFormLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
             <form action="">
@@ -70,8 +70,8 @@
             </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Penjar</button>
+        <button type="button" class="btn btn-secondary">Guardar i penjar</button>
       </div>
     </div>
   </div>

@@ -21,6 +21,12 @@ Route::get('/login', function () {
     return view('login.index');
 });
 
+
 Route::get('/database', function () {
     return view('database.database');
 });
+
+Route::get('/trucades', function () {
+    return view('callCard.callCard');
+});
+
