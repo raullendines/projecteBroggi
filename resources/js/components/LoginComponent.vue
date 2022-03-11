@@ -10,7 +10,7 @@
                         <h1>Login</h1>
                             <div class="col-12">
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="email" placeholder="Adreça electrònica" oninput="validation()"/>
+                                    <input type="email" class="form-control" id="email" placeholder="Adreça electrònica" oninput="validation()" v-model=/>
                                     <label for="email">Adreça electrònica</label>
 <!--                                     <div id="feedback-email"></div>-->
                                  </div>

@@ -7,11 +7,18 @@ use Illuminate\Http\Request;
 
 class UsuarisController extends Controller
 {
+
+    public function showLogin()
+    {
+        return view('login.index');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         //
