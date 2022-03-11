@@ -36,7 +36,7 @@ Vue.component(
     require("./components/CallCardComponent.vue").default
 );
 Vue.component(
-    "callManagement-component",
+    "callmanagement-component",
     require("./components/CallManagementComponent.vue").default
 );
 

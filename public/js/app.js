@@ -5303,6 +5303,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5322,6 +5323,10 @@ __webpack_require__.r(__webpack_exports__);
         tel: "666444535",
         date: "21 Ene 2022",
         status: "Declined"
+      }, {
+        tel: "666444435",
+        date: "21 Ene 2022",
+        status: "Call"
       }],
       status: [{
         active: "fa fa-check-circle fa-lg",
@@ -5332,6 +5337,9 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         declined: "fa fa-times-circle fa-lg",
         style: "color: #c90175;"
+      }, {
+        inCall: "fas fa-phone fa-lg",
+        style: "color: #02afc8;"
       }]
     };
   },
@@ -5353,6 +5361,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _FormComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormComponent.vue */ "./resources/js/components/FormComponent.vue");
 //
 //
 //
@@ -5369,9 +5378,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    FormComponent: _FormComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      calls: [{
+        tel: "666444545",
+        date: "21 Ene 2022",
+        time: "12:30:40",
+        status: "Active"
+      }, {
+        tel: "666444535",
+        date: "21 Ene 2022",
+        time: "12:30:40",
+        status: "Declined"
+      }],
+      status: [{
+        active: "fa fa-check-circle fa-lg",
+        style: "color: #4dc058;"
+      }, {
+        declined: "fa fa-times-circle fa-lg",
+        style: "color: #c90175;"
+      }]
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
   }
 });
 
@@ -5679,7 +5735,7 @@ Vue.component("example-component", (__webpack_require__(/*! ./components/Example
 Vue.component("navbar-component", (__webpack_require__(/*! ./components/NavbarComponent.vue */ "./resources/js/components/NavbarComponent.vue")["default"]));
 Vue.component("form-component", (__webpack_require__(/*! ./components/FormComponent.vue */ "./resources/js/components/FormComponent.vue")["default"]));
 Vue.component("callcard-component", (__webpack_require__(/*! ./components/CallCardComponent.vue */ "./resources/js/components/CallCardComponent.vue")["default"]));
-Vue.component("callManagement-component", (__webpack_require__(/*! ./components/CallManagementComponent.vue */ "./resources/js/components/CallManagementComponent.vue")["default"]));
+Vue.component("callmanagement-component", (__webpack_require__(/*! ./components/CallManagementComponent.vue */ "./resources/js/components/CallManagementComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -28592,7 +28648,9 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-end" }, [
-                      call.status === "Declined" || call.status === "Active"
+                      call.status === "Declined" ||
+                      call.status === "Active" ||
+                      call.status === "Call"
                         ? _c(
                             "button",
                             {
@@ -28631,6 +28689,11 @@ var render = function () {
                             class: _vm.status[2].declined,
                             style: _vm.status[2].style,
                           })
+                        : call.status === "Call"
+                        ? _c("i", {
+                            class: _vm.status[3].inCall,
+                            style: _vm.status[3].style,
+                          })
                         : _vm._e(),
                     ]),
                   ]),
@@ -28640,6 +28703,8 @@ var render = function () {
           ]
         )
       }),
+      _vm._v(" "),
+      _c("form-component"),
     ],
     2
   )
@@ -28692,29 +28757,122 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "main",
+    [
+      _c("h2", { staticClass: "text-center mt-3" }, [
+        _vm._v("Gestió d'expedients"),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._l(_vm.calls, function (call) {
+        return _c(
+          "div",
+          {
+            key: call.tel,
+            staticClass: "card mt-3 m-auto",
+            staticStyle: { width: "80%" },
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "card-body",
+                style:
+                  call.status === "Active"
+                    ? "background-color : #99FFA2;"
+                    : "background-color : #FFDA99;",
+              },
+              [
+                _c("table", { staticClass: "table table-borderless mb-0" }, [
+                  _c("tbody", [
+                    _c("tr", [
+                      _c(
+                        "th",
+                        {
+                          staticClass: "align-middle col-3",
+                          attrs: { scope: "row" },
+                        },
+                        [_vm._v(_vm._s(call.tel))]
+                      ),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "align-middle col-3" }, [
+                        _vm._v(_vm._s(call.date)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "align-middle col-2" }, [
+                        _vm._v(_vm._s(call.time)),
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(1, true),
+                    ]),
+                  ]),
+                ]),
+              ]
+            ),
+          ]
+        )
+      }),
+      _vm._v(" "),
+      _c("form-component"),
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
+    return _c(
+      "table",
+      { staticClass: "table m-auto mt-3", staticStyle: { width: "80%" } },
+      [
+        _c("thead", [
+          _c("tr", [
+            _c("th", { staticClass: "col-4" }, [_vm._v("Número tel.")]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              ),
-            ]),
+            _c("th", { staticClass: "col" }, [_vm._v("Data")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "col" }, [_vm._v("Temps")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "col text-end align-middle" }),
           ]),
         ]),
-      ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-end col-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-info",
+          attrs: {
+            type: "button",
+            "data-bs-toggle": "modal",
+            "data-bs-target": "#modalForm",
+          },
+        },
+        [_vm._v("Ver")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-info",
+          attrs: {
+            type: "button",
+            "data-bs-toggle": "modal",
+            "data-bs-target": "#modalForm",
+          },
+        },
+        [_vm._v("Modificar")]
+      ),
     ])
   },
 ]
