@@ -70,6 +70,7 @@
             </form>
       </div>
       <div class="modal-footer">
+        <p>{{formattedElapsedTime}}</p>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Penjar</button>
         <button type="button" class="btn btn-secondary">Guardar i penjar</button>
       </div>
@@ -80,8 +81,33 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        data(){
+            return{
+                elapsedTime:0,
+                timer: undefined
+            };
+        },
+        computed: {
+            formattedElapsedTime() {
+                const date = new Date(null);
+                date.setSeconds(this.elapsedTime / 1000);
+                const utc = date.toUTCString();
+                return utc.substr(utc.indexOf(":") - 2, 8);
+            }
+        },
+        methods: {
+            start() {
+                this.timer = setInterval(() => {
+                    this.elapsedTime += 1000;
+                }, 1000);
+                    },
+            stop() {
+                clearInterval(this.timer);
+                    }
+        },
+            mounted() {
+                console.log('Component mounted.')
+            }
     }
+
 </script>
