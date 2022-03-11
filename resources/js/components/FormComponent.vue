@@ -70,7 +70,7 @@
             </form>
       </div>
       <div class="modal-footer d-flex justify-content-between">
-        <p class="">{{formattedElapsedTime}}</p>
+        <p class="">Temps de trucada: {{formattedElapsedTime}}</p>
         <div>
             <button type="button" class="btn btn-primary" @click="stop" data-bs-dismiss="modal">Penjar</button>
             <button type="button" class="btn btn-secondary" @click="stop">Guardar i penjar</button>

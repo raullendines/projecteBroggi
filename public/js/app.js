@@ -29012,7 +29012,11 @@ var render = function () {
               "div",
               { staticClass: "modal-footer d-flex justify-content-between" },
               [
-                _c("p", {}, [_vm._v(_vm._s(_vm.formattedElapsedTime))]),
+                _c("p", {}, [
+                  _vm._v(
+                    "Temps de trucada: " + _vm._s(_vm.formattedElapsedTime)
+                  ),
+                ]),
                 _vm._v(" "),
                 _c("div", [
                   _c(
