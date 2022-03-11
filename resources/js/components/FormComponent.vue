@@ -69,10 +69,12 @@
                     </div>
             </form>
       </div>
-      <div class="modal-footer">
-        <p>{{formattedElapsedTime}}</p>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Penjar</button>
-        <button type="button" class="btn btn-secondary">Guardar i penjar</button>
+      <div class="modal-footer d-flex justify-content-between">
+        <p class="">{{formattedElapsedTime}}</p>
+        <div>
+            <button type="button" class="btn btn-primary" @click="stop" data-bs-dismiss="modal">Penjar</button>
+            <button type="button" class="btn btn-secondary" @click="stop">Guardar i penjar</button>
+        </div>
       </div>
     </div>
   </div>
@@ -103,9 +105,14 @@
                     },
             stop() {
                 clearInterval(this.timer);
+                this.elapsedTime = 0;
                     }
         },
             mounted() {
+                this.$root.$on('CallCardComponent', () => {
+            // your code goes here
+            this.start()
+            })
                 console.log('Component mounted.')
             }
     }

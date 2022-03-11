@@ -20,7 +20,7 @@
       <td class="text-center align-middle">{{call.date}}</td>
       <td class="text-end">
           <button type="button" class="btn btn-outline-secondary" v-if="call.status === 'Declined' || call.status === 'Active' || call.status === 'Call'" disabled>Aceptar</button>
-          <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalForm" v-else>Aceptar</button>
+          <button type="button" @click="start" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalForm" v-else>Aceptar</button>
       </td>
       <td class="text-end align-middle">
           <i v-if="call.status === 'Active'" :class="status[0].active" :style="status[0].style"></i>
@@ -81,6 +81,11 @@ export default {
             },
         ],
     }),
+    methods:{
+        start(){
+            this.$root.$emit('CallCardComponent')
+        }
+    },
   mounted() {
     console.log("Component mounted.");
   },
