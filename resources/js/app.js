@@ -35,6 +35,10 @@ Vue.component(
     "callcard-component",
     require("./components/CallCardComponent.vue").default
 );
+Vue.component(
+    "callmanagement-component",
+    require("./components/CallManagementComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

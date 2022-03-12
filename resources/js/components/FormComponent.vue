@@ -69,9 +69,12 @@
                     </div>
             </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Penjar</button>
-        <button type="button" class="btn btn-secondary">Guardar i penjar</button>
+      <div class="modal-footer d-flex justify-content-between">
+        <p class="">Temps de trucada: {{formattedElapsedTime}}</p>
+        <div>
+            <button type="button" class="btn btn-primary" @click="stop" data-bs-dismiss="modal">Penjar</button>
+            <button type="button" class="btn btn-secondary" @click="stop">Guardar i penjar</button>
+        </div>
       </div>
     </div>
   </div>
@@ -80,8 +83,38 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        data(){
+            return{
+                elapsedTime:0,
+                timer: undefined
+            };
+        },
+        computed: {
+            formattedElapsedTime() {
+                const date = new Date(null);
+                date.setSeconds(this.elapsedTime / 1000);
+                const utc = date.toUTCString();
+                return utc.substr(utc.indexOf(":") - 2, 8);
+            }
+        },
+        methods: {
+            start() {
+                this.timer = setInterval(() => {
+                    this.elapsedTime += 1000;
+                }, 1000);
+                    },
+            stop() {
+                clearInterval(this.timer);
+                this.elapsedTime = 0;
+                    }
+        },
+            mounted() {
+                this.$root.$on('CallCardComponent', () => {
+            // your code goes here
+            this.start()
+            })
+                console.log('Component mounted.')
+            }
     }
+
 </script>
