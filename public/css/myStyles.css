@@ -48,3 +48,7 @@
         -o-transition:      -o-transform 550ms ease;
         -webkit-transition: -webkit-transform 550ms ease;
 }
+
+vermell{
+    color: red;
+}

@@ -6,12 +6,12 @@
             <form action="">
                     <div class="row mb-5">
                         <div class="col">
-                            <label for="procedenciaInput" class="form-label">Procedencia</label>
+                            <label for="procedenciaInput" class="form-label"><vermell>*</vermell>Procedencia</label>
                             <input type="text" class="form-control" id="procedenciaInput" aria-describedby="procedenciaInput" placeholder="Escriu aquí">
                             <div id="procedenciaInput" class="form-text">* Nacionalitat</div>
                         </div>
                         <div class="col">
-                            <label for="municipioInput" class="form-label">Municipi</label>
+                            <label for="municipioInput" class="form-label"><vermell>*</vermell>Municipi</label>
                             <input type="text" class="form-control" id="municipioInput" aria-describedby="municipioInput" placeholder="Escriu aquí">
                             <div id="municipioInput" class="form-text">* Ciutat de l'incident</div>
                         </div>
