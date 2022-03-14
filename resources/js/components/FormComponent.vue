@@ -1,35 +1,87 @@
 <template>
 <div class="modal fade" id="modalForm" tabindex="-1" data-bs-backdrop="static" aria-labelledby="modalFormLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-body">
             <form action="">
-                    <div class="row mb-5">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label for="localitzacio" class="form-label"><vermell>*</vermell>Localització</label>
+                            <select v-model="localitzacio" id="localitzacio" name="localitzacio" class="form-select" aria-label="localitzacio">
+                                <option selected value="">Selecciona una opció</option>
+                                <option value="Catalunya">Catalunya</option>
+                                <option value="Altres">Altres</option>
+                            </select>
+                            <div id="localitzacio" class="form-text">* Comunitat autònoma de l'incident</div>
+                        </div>
+                    </div>
+                    <!-- IF -->
+                    <div v-if="localitzacio === 'Catalunya'" class="row mb-4">
                         <div class="col">
                             <label for="procedenciaInput" class="form-label"><vermell>*</vermell>Procedencia</label>
                             <input type="text" class="form-control" id="procedenciaInput" aria-describedby="procedenciaInput" placeholder="Escriu aquí">
                             <div id="procedenciaInput" class="form-text">* Nacionalitat</div>
                         </div>
                         <div class="col">
+                            <label for="comarca" class="form-label"><vermell>*</vermell>Comarca</label>
+                            <select id="comarca" name="comarca" class="form-select" aria-label="comarca">
+                                <option selected value="">Selecciona una opció</option>
+                                <option value="comarca1">Comarca 1</option>
+                                <option value="Altres">Altres</option>
+                            </select>
+                            <div id="comarca" class="form-text">* Comunitat autònoma de l'incident</div>
+                        </div>
+                        <div class="col">
+                            <label for="provincia" class="form-label"><vermell>*</vermell>Provincia</label>
+                            <select id="provincia" name="provincia" class="form-select" aria-label="provincia">
+                                <option selected value="">Selecciona una opció</option>
+                                <option value="provincia1">Provincia 1</option>
+                                <option value="Altres">Altres</option>
+                            </select>
+                            <div id="provincia" class="form-text">* Provincia de l'incident</div>
+                        </div>
+                        <div class="col">
                             <label for="municipioInput" class="form-label"><vermell>*</vermell>Municipi</label>
                             <input type="text" class="form-control" id="municipioInput" aria-describedby="municipioInput" placeholder="Escriu aquí">
                             <div id="municipioInput" class="form-text">* Ciutat de l'incident</div>
                         </div>
+                    </div>
+                    <!-- ELSE -->
+                    <div v-else class="row mb-4">
+                        <div class="col">
+                            <label for="procedenciaInput" class="form-label"><vermell>*</vermell>Procedencia</label>
+                            <input type="text" class="form-control" id="procedenciaInput" aria-describedby="procedenciaInput" placeholder="Escriu aquí">
+                            <div id="procedenciaInput" class="form-text">* Nacionalitat</div>
+                        </div>
+                        <div class="col">
+                            <label for="provincia" class="form-label"><vermell>*</vermell> Provincia</label>
+                            <select id="provincia" name="provincia" class="form-select" aria-label="provincia">
+                                <option selected value="">Selecciona una opció</option>
+                                <option value="provincia1">Provincia 1</option>
+                                <option value="Altres">Altres</option>
+                            </select>
+                            <div id="provincia" class="form-text">* Provincia de l'incident</div>
+                        </div>
+                        <div class="col">
+                            <label for="municipioInput" class="form-label">Municipi</label>
+                            <input type="text" class="form-control" id="municipioInput" aria-describedby="municipioInput" placeholder="Escriu aquí">
+                            <div id="municipioInput" class="form-text">* Ciutat de l'incident</div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
                         <div class="col">
                             <label for="direccionInput" class="form-label">Direcció</label>
                             <input type="text" class="form-control" id="direccionInput" aria-describedby="direccionInput" placeholder="Escriu aquí">
                             <div id="direccionInput" class="form-text">* Direcció postal de l'incident</div>
                         </div>
                     </div>
-                    <div class="row mb-5">
+
+                    <div class="row mb-4">
                         <div class="col">
-                            <label for="antecedentsSelect" class="form-label">Antecedents</label>
-                            <select id="antecedentsSelect" name="antecedentsSelect" class="form-select" aria-label="selectAntecedentes">
-                                <option selected>Selecciona una opció</option>
-                                <option value="0">Si</option>
-                                <option value="1">No</option>
-                            </select>
-                            <div id="antecedentsSelect" class="form-text">* Trucades anteriors</div>
+                            <label class="form-label" for="antecedents">Antecedents del telèfon</label>
+                            <textarea class="form-control" placeholder="Escriu aquí" id="antecedents" style="height: 60px"></textarea>
+                            <div id="antecedents" class="form-text">* Text amb informació rellevant del trucant</div>
                         </div>
                         <div class="col">
                             <label for="phoneInput" class="form-label">Telèfon</label>
@@ -50,11 +102,11 @@
                             <div id="genereSelect" class="form-text">* Gènere amb el que s'identifica</div>
                         </div>
                     </div>
-                    <div class="row mb-5">
+                    <div class="row">
                         <div class="col">
                             <label class="form-label" for="notaComunaInput">Nota comuna</label>
                             <textarea class="form-control" placeholder="Escriu aquí" id="notaComunaInput" style="height: 100px"></textarea>
-                            <div id="genereSelect" class="form-text">* Altres anotacions d'interés</div>
+                            <div id="notaComunaInput" class="form-text">* Altres anotacions d'interés</div>
                         </div>
                         <div class="col">
                                 <label for="vipSelect" class="form-label">VIP</label>
@@ -86,7 +138,8 @@
         data(){
             return{
                 elapsedTime:0,
-                timer: undefined
+                timer: undefined,
+                localitzacio: ''
             };
         },
         computed: {
