@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\EstatsExpedients;
 use Illuminate\Http\Request;
 
-class EstatsEpedientsController extends Controller
+class EstatsExpedientsController extends Controller
 {
     /**
      * Display a listing of the resource.

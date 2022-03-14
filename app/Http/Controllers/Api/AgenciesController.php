@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Agencies;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\AgenciesResource;
 
 class AgenciesController extends Controller
 {
@@ -15,7 +16,9 @@ class AgenciesController extends Controller
      */
     public function index()
     {
-        //
+        $agencies = Agencies::all();
+
+        return AgenciesResource::collection($agencies);
     }
 
     /**
