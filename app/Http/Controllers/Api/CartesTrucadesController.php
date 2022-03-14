@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-
-
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CartesTrucadesResource;
 use App\Models\CartesTrucades;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\AgenciesResource;
 
-class CartesTrucades extends Controller
+class CartesTrucadesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +16,9 @@ class CartesTrucades extends Controller
      */
     public function index()
     {
-        //
+        $callcards = CartesTrucades::all();
+
+        return CartesTrucadesResource::collection($callcards);
     }
 
     /**

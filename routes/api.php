@@ -2,17 +2,20 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UsuarisController;
+use App\Http\Controllers\ComarquesController;
 use App\Http\Controllers\Api\AgenciesController;
-use App\Models\CartesTrucades;
-use App\Models\CartesTrucadesHasAgencies;
-use App\Models\Comarques;
-use App\Models\DadesPersonals;
-use App\Models\EstatsAgencies;
-use App\Models\EstatsExpedients;
-use App\Models\Incidents;
-use App\Models\Municipis;
-use App\Models\TipusIncidents;
-use App\Models\Usuaris;
+use App\Http\Controllers\Api\IncidentsController;
+use App\Http\Controllers\Api\MunicipisController;
+use App\Http\Controllers\Api\ExpedientsController;
+use App\Http\Controllers\Api\ProvinciesController;
+use App\Http\Controllers\Api\CartesTrucadesController;
+use App\Http\Controllers\Api\DadesPersonalsController;
+use App\Http\Controllers\Api\EstatsAgenciesController;
+use App\Http\Controllers\Api\TipusIncidentsController;
+use App\Http\Controllers\Api\EstatsExpedientsController;
+use App\Http\Controllers\Api\CartesTrucadesHasAgenciesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,15 +33,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('agencies', AgenciesController::class);
-Route::apiResource('call_cards', CartesTrucadesHasAgencies::class);
-Route::apiResource('callCards2', CartesTrucades::class);
-Route::apiResource('comarques', Comarques::class);
-Route::apiResource('dades', DadesPersonals::class);
-Route::apiResource('agencies_status', EstatsAgencies::class);
-Route::apiResource('expedients_status', EstatsExpedients::class);
-Route::apiResource('expedients', Expedients::class);
-Route::apiResource('incidents', Incidents::class);
-Route::apiResource('municipis', Municipis::class);
-Route::apiResource('provincies', Provincies::class);
-Route::apiResource('incidents_types', TipusIncidents::class);
-Route::apiResource('usuaris', Usuaris::class);
+Route::apiResource('call_cards', CartesTrucadesHasAgenciesController::class);
+Route::apiResource('callCards2', CartesTrucadesController::class);
+Route::apiResource('comarques', ComarquesController::class);
+Route::apiResource('dades', DadesPersonalsController::class);
+Route::apiResource('agencies_status', EstatsAgenciesController::class);
+Route::apiResource('expedients_status', EstatsExpedientsController::class);
+Route::apiResource('expedients', ExpedientsController::class);
+Route::apiResource('incidents', IncidentsController::class);
+Route::apiResource('municipis', MunicipisController::class);
+Route::apiResource('provincies', ProvinciesController::class);
+Route::apiResource('incidents_types', TipusIncidentsController::class);
+Route::apiResource('usuaris', UsuarisController::class);
