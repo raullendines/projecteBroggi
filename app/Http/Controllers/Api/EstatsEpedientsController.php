@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\EstatsExpedients;
 use Illuminate\Http\Request;
 
-class EstatsExpedientsController extends Controller
+class EstatsEpedientsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +14,6 @@ class EstatsExpedientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -45,17 +36,6 @@ class EstatsExpedientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(EstatsExpedients $estatsExpedients)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\EstatsExpedients  $estatsExpedients
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(EstatsExpedients $estatsExpedients)
     {
         //
     }

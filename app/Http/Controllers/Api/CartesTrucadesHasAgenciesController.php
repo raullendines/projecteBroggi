@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\CartesTrucadesHasAgencies;
 use Illuminate\Http\Request;
 
@@ -13,16 +14,6 @@ class CartesTrucadesHasAgenciesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -45,17 +36,6 @@ class CartesTrucadesHasAgenciesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(CartesTrucadesHasAgencies $cartesTrucadesHasAgencies)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CartesTrucadesHasAgencies  $cartesTrucadesHasAgencies
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CartesTrucadesHasAgencies $cartesTrucadesHasAgencies)
     {
         //
     }

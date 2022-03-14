@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Agencies;
+use App\Http\Controllers\Controller;
+use App\Models\EstatsAgencies;
 use Illuminate\Http\Request;
 
-class AgenciesController extends Controller
+class EstatsAgenciesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +14,6 @@ class AgenciesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -41,21 +32,10 @@ class AgenciesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Agencies  $agencies
+     * @param  \App\Models\EstatsAgencies  $estatsAgencies
      * @return \Illuminate\Http\Response
      */
-    public function show(Agencies $agencies)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Agencies  $agencies
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Agencies $agencies)
+    public function show(EstatsAgencies $estatsAgencies)
     {
         //
     }
@@ -64,10 +44,10 @@ class AgenciesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Agencies  $agencies
+     * @param  \App\Models\EstatsAgencies  $estatsAgencies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Agencies $agencies)
+    public function update(Request $request, EstatsAgencies $estatsAgencies)
     {
         //
     }
@@ -75,10 +55,10 @@ class AgenciesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Agencies  $agencies
+     * @param  \App\Models\EstatsAgencies  $estatsAgencies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agencies $agencies)
+    public function destroy(EstatsAgencies $estatsAgencies)
     {
         //
     }

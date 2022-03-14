@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Perfils;
+use App\Http\Controllers\Controller;
+use App\Models\TipusIncidents;
 use Illuminate\Http\Request;
 
-class PerfilsController extends Controller
+class TipusIncidentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +14,6 @@ class PerfilsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -41,21 +32,10 @@ class PerfilsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Perfils  $perfils
+     * @param  \App\Models\TipusIncidents  $tipusIncidents
      * @return \Illuminate\Http\Response
      */
-    public function show(Perfils $perfils)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Perfils  $perfils
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Perfils $perfils)
+    public function show(TipusIncidents $tipusIncidents)
     {
         //
     }
@@ -64,10 +44,10 @@ class PerfilsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Perfils  $perfils
+     * @param  \App\Models\TipusIncidents  $tipusIncidents
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perfils $perfils)
+    public function update(Request $request, TipusIncidents $tipusIncidents)
     {
         //
     }
@@ -75,10 +55,10 @@ class PerfilsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Perfils  $perfils
+     * @param  \App\Models\TipusIncidents  $tipusIncidents
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perfils $perfils)
+    public function destroy(TipusIncidents $tipusIncidents)
     {
         //
     }

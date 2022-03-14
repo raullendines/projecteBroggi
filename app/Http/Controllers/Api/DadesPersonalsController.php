@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\DadesPersonals;
 use Illuminate\Http\Request;
 
@@ -13,16 +14,6 @@ class DadesPersonalsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -45,17 +36,6 @@ class DadesPersonalsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(DadesPersonals $dadesPersonals)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\DadesPersonals  $dadesPersonals
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(DadesPersonals $dadesPersonals)
     {
         //
     }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Expedients;
+use App\Http\Controllers\Controller;
+use App\Models\Incidents;
 use Illuminate\Http\Request;
 
-class ExpedientsController extends Controller
+class IncidentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +14,6 @@ class ExpedientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -41,21 +32,10 @@ class ExpedientsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Expedients  $expedients
+     * @param  \App\Models\Incidents  $incidents
      * @return \Illuminate\Http\Response
      */
-    public function show(Expedients $expedients)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Expedients  $expedients
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Expedients $expedients)
+    public function show(Incidents $incidents)
     {
         //
     }
@@ -64,10 +44,10 @@ class ExpedientsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Expedients  $expedients
+     * @param  \App\Models\Incidents  $incidents
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expedients $expedients)
+    public function update(Request $request, Incidents $incidents)
     {
         //
     }
@@ -75,10 +55,10 @@ class ExpedientsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Expedients  $expedients
+     * @param  \App\Models\Incidents  $incidents
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expedients $expedients)
+    public function destroy(Incidents $incidents)
     {
         //
     }

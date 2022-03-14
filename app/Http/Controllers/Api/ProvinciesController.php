@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Incidents;
+use App\Http\Controllers\Controller;
+use App\Models\Provincies;
 use Illuminate\Http\Request;
 
-class IncidentsController extends Controller
+class ProvinciesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +14,6 @@ class IncidentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -41,21 +32,10 @@ class IncidentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Incidents  $incidents
+     * @param  \App\Models\Provincies  $provincies
      * @return \Illuminate\Http\Response
      */
-    public function show(Incidents $incidents)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Incidents  $incidents
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Incidents $incidents)
+    public function show(Provincies $provincies)
     {
         //
     }
@@ -64,10 +44,10 @@ class IncidentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Incidents  $incidents
+     * @param  \App\Models\Provincies  $provincies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Incidents $incidents)
+    public function update(Request $request, Provincies $provincies)
     {
         //
     }
@@ -75,10 +55,10 @@ class IncidentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Incidents  $incidents
+     * @param  \App\Models\Provincies  $provincies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Incidents $incidents)
+    public function destroy(Provincies $provincies)
     {
         //
     }
