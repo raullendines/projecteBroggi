@@ -13,11 +13,20 @@
   border-color: #4dc058 !important;
 }
 
+.btn-outline-info {
+  color: black !important;
+  background-color: white !important;
+  border-color: #ced4da !important;
+}
+
+.btn-outline-info:hover {
+  color: #fff !important;
+  background-color: #00b0c8 !important;
+  border-color: #00b0c8 !important;
 .btn-info {
   color: #fff !important;
   background-color: #02afc8 !important;
-  border-color: #02afc8 !important;
-}
+  border-color: #02afc8 !important;}
 
 .btn-outline-primary {
   color: #95a5a6;
