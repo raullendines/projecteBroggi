@@ -28,7 +28,7 @@
                                 <input type="password" class="form-control" name="password" id="password" placeholder="Contrassenya"/>
                                 <label for="password">Contrassenya</label>
                             </div>
-                                <button  class="btn input-group-text col-1" type="button" style="background-color: #00b0c8" onclick="viewPassword()"> <i class="fa fa-eye"></i> </button>
+                                <button  class="btn input-group-text col-1 btn-outline-info" type="button" onclick="viewPassword()"> <i class="fa fa-eye"></i> </button>
                         </div>
 
                         <div class="d-grid gap-2 col-12 mt-3">
