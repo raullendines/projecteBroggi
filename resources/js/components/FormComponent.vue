@@ -54,7 +54,7 @@
                             <div id="procedenciaInput" class="form-text">* Nacionalitat</div>
                         </div>
                         <div class="col">
-                            <label for="provincia" class="form-label"><vermell>*</vermell> Provincia</label>
+                            <label for="provincia" class="form-label"><vermell>*</vermell>Provincia</label>
                             <select id="provincia" name="provincia" class="form-select" aria-label="provincia">
                                 <option selected value="">Selecciona una opció</option>
                                 <option value="provincia1">Provincia 1</option>
@@ -71,9 +71,16 @@
 
                     <div class="row mb-4">
                         <div class="col">
-                            <label for="direccionInput" class="form-label">Direcció</label>
-                            <input type="text" class="form-control" id="direccionInput" aria-describedby="direccionInput" placeholder="Escriu aquí">
-                            <div id="direccionInput" class="form-text">* Direcció postal de l'incident</div>
+                            <label for="tipusLoc" class="form-label"><vermell>*</vermell>Tipus de localització</label>
+                            <select id="tipusLoc" v-model="tipusLocalitzacio" name="tipusLoc" class="form-select" aria-label="tipusLoc">
+                                <option selected value="">Selecciona una opció</option>
+                                <option value="carrer">Carrer</option>
+                                <option value="puntSingular">Punt Singular</option>
+                                <option value="carretera">Carretera</option>
+                                <option value="entitatPoblacio">Entitat població</option>
+                                <option value="provincia">Provincia</option>
+                            </select>
+                            <div id="provincia" class="form-text">* Provincia de l'incident</div>
                         </div>
                     </div>
 
@@ -139,7 +146,8 @@
             return{
                 elapsedTime:0,
                 timer: undefined,
-                localitzacio: ''
+                localitzacio: '',
+                tipusLocalitzacio: ''
             };
         },
         computed: {
