@@ -82,7 +82,7 @@ export default {
       },
       {
         name: "Gestió d'espedients",
-        url: "/expedients",
+        url: "/projecteBroggi/public/expedients",
         icon: "fas fa-file-alt",
         style:
           "background-color:#02AFC8; color:white; margin-right:10px; padding: 7.5px;",
