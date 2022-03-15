@@ -82,21 +82,97 @@
                             <div id="municipioInput" class="form-text">* Ciutat de l'incident</div>
                         </div>
                     </div>
-
-                    <div v-if="tipusLocalitzacio === carrer" class="row mb-4">
-                        <div class="col">
-                            <label for="tipusVia" class="form-label"><vermell>*</vermell>Tipus de via</label>
-                            <select id="tipusVia" name="tipusVia" class="form-select" aria-label="tipusVia">
-                                <option selected value="carrer">Carrer</option>
-                                <option value="avinguda">Avinguda</option>
-                                <option value="bulevar">Bulevar</option>
-                                <option value="carrerPeatonal">Carrer peatonal</option>
-                                <option value="cami">Camí</option>
-                            </select>
-                            <div id="tipusVia" class="form-text">* Tipus de via de la direcció</div>
+                        <div v-if="tipusLocalitzacio === 'carrer'">
+                            <div class="row mb-4">
+                            <div class="col">
+                                <label for="tipusVia" class="form-label"><vermell>*</vermell>Tipus de via</label>
+                                <select id="tipusVia" name="tipusVia" class="form-select" aria-label="tipusVia">
+                                    <option selected value="carrer">Carrer</option>
+                                    <option value="avinguda">Avinguda</option>
+                                    <option value="bulevar">Bulevar</option>
+                                    <option value="carrerPeatonal">Carrer peatonal</option>
+                                    <option value="cami">Camí</option>
+                                </select>
+                                <div id="tipusVia" class="form-text">* Tipus de via de la direcció</div>
+                            </div>
+                            <div class="col">
+                                <label for="nomVia" class="form-label"><vermell>*</vermell>Nom</label>
+                                <input type="text" class="form-control" name="nomVia" id="nomVia" aria-describedby="nomVia" placeholder="Escriu aquí">
+                                <div id="nomVia" class="form-text">* Nom de la via</div>
+                            </div>
+                            <div class="col">
+                                <label for="numVia" class="form-label"><vermell>*</vermell>Número</label>
+                                <input type="number" class="form-control" name="numVia" id="numVia" aria-describedby="numVia" placeholder="Escriu aquí">
+                                <div id="numVia" class="form-text">* Número de la via</div>
+                            </div>
                         </div>
-                        <div class="col">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label for="escala" class="form-label">Escala</label>
+                                <input type="text" class="form-control" name="escala" id="escala" aria-describedby="escala" placeholder="Escriu aquí">
+                                <div id="escala" class="form-text">* Escala ubicada</div>
+                            </div>
+                            <div class="col">
+                                <label for="pis" class="form-label">Pis</label>
+                                <input type="number" class="form-control" name="pis" id="pis" aria-describedby="pis" placeholder="Escriu aquí">
+                                <div id="pis" class="form-text">* Pis incident</div>
+                            </div>
+                            <div class="col">
+                                <label for="porta" class="form-label">Porta</label>
+                                <input type="number" class="form-control" name="porta" id="porta" aria-describedby="porta" placeholder="Escriu aquí">
+                                <div id="porta" class="form-text">* Porta incident</div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                            <label class="form-label" for="referenciesLoc">Altres referències de la localització</label>
+                            <textarea class="form-control" placeholder="Escriu aquí" name="referenciesLoc" id="referenciesLoc" style="height: 50px"></textarea>
+                            <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div v-if="tipusLocalitzacio === 'carretera'">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label for="nomCarretera" class="form-label">Nom</label>
+                                <input type="text" class="form-control" name="nomCarretera" id="nomCarretera" aria-describedby="nomCarretera" placeholder="Escriu aquí">
+                                <div id="nomCarretera" class="form-text">* Nom de la carretera on hi ha l'incident</div>
+                            </div>
+                            <div class="col">
+                                <label for="puntKilometric" class="form-label">Punt Kilomètric</label>
+                                <input type="number" class="form-control" name="puntKilometric" id="puntKilometric" aria-describedby="puntKilometric" placeholder="Escriu aquí">
+                                <div id="puntKilometric" class="form-text">* Punt kilomètric de la carretera on hi ha l'incident</div>
+                            </div>
+                            <div class="col">
+                                <label for="sentitCarretera" class="form-label">Sentit</label>
+                                <input type="text" class="form-control" name="sentitCarretera" id="sentitCarretera" aria-describedby="sentitCarretera" placeholder="Escriu aquí">
+                                <div id="sentitCarretera" class="form-text">* Sentit de la carretera on hi ha l'incident</div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                            <label class="form-label" for="referenciesLoc">Altres referències de la localització</label>
+                            <textarea class="form-control" placeholder="Escriu aquí" name="referenciesLoc" id="referenciesLoc" style="height: 50px"></textarea>
+                            <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="tipusLocalitzacio === 'puntSingular'">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label for="nomPunt" class="form-label"><vermell>*</vermell>Nom</label>
+                                <input type="text" class="form-control" name="nomPunt" id="nomPunt" aria-describedby="nomPunt" placeholder="Escriu aquí">
+                                <div id="nomPunt" class="form-text">* Nom del punt singular on hi ha l'incident</div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                            <label class="form-label" for="referenciesLoc">Altres referències de la localització</label>
+                            <textarea class="form-control" placeholder="Escriu aquí" name="referenciesLoc" id="referenciesLoc" style="height: 50px"></textarea>
+                            <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
+                            </div>
                         </div>
                     </div>
 
