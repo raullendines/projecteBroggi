@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\PerfilsResources;
 use App\Models\Perfils;
 use Illuminate\Http\Request;
 
@@ -16,17 +18,7 @@ class PerfilsController extends Controller
     {
         $profiles = Perfils::all();
 
-        return view('plantilla.principal', compact('profiles'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return PerfilsResources::collection($profiles);
     }
 
     /**
@@ -46,20 +38,10 @@ class PerfilsController extends Controller
      * @param  \App\Models\Perfils  $perfils
      * @return \Illuminate\Http\Response
      */
-    public function show(Perfils $perfils)
+    public function show(Perfils $perfil)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Perfils  $perfils
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Perfils $perfils)
-    {
-        //
+        $perfils = Perfils::find($perfil);
+        return new PerfilsResources($perfils);
     }
 
     /**
