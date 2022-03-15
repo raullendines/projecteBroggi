@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ExpedientsResource;
 use App\Models\Expedients;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class ExpedientsController extends Controller
      */
     public function index()
     {
-        //
+        $expedients = Expedients::all();
+
+        return ExpedientsResource::collection($expedients);
     }
 
     /**

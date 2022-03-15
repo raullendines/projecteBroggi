@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EstatsExpedientsResource;
 use App\Models\EstatsExpedients;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class EstatsExpedientsController extends Controller
      */
     public function index()
     {
-        //
+        $estatsExpedients = EstatsExpedients::all();
+
+        return EstatsExpedientsResource::collection($estatsExpedients);
     }
 
     /**

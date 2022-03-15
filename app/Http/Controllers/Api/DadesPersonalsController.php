@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DadesPersonalsResource;
 use App\Models\DadesPersonals;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class DadesPersonalsController extends Controller
      */
     public function index()
     {
-        //
+        $dades = DadesPersonals::all();
+
+        return DadesPersonalsResource::collection($dades);
     }
 
     /**
