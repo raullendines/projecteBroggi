@@ -46,6 +46,20 @@
                             <div id="municipioInput" class="form-text">* Ciutat de l'incident</div>
                         </div>
                     </div>
+                    <div v-if="localitzacio === 'Catalunya'" class="row mb-4">
+                        <div class="col">
+                            <label for="tipusLoc" class="form-label"><vermell>*</vermell>Tipus de localització</label>
+                            <select id="tipusLoc" v-model="tipusLocalitzacio" name="tipusLoc" class="form-select" aria-label="tipusLoc">
+                                <option selected value="">Selecciona una opció</option>
+                                <option value="carrer">Carrer</option>
+                                <option value="puntSingular">Punt Singular</option>
+                                <option value="carretera">Carretera</option>
+                                <option value="entitatPoblacio">Entitat població</option>
+                                <option value="provincia">Provincia</option>
+                            </select>
+                            <div id="provincia" class="form-text">* Tipus de via o lloc on es troba l'incident</div>
+                        </div>
+                    </div>
                     <!-- ELSE -->
                     <div v-else class="row mb-4">
                         <div class="col">
@@ -69,18 +83,20 @@
                         </div>
                     </div>
 
-                    <div class="row mb-4">
+                    <div v-if="tipusLocalitzacio === carrer" class="row mb-4">
                         <div class="col">
-                            <label for="tipusLoc" class="form-label"><vermell>*</vermell>Tipus de localització</label>
-                            <select id="tipusLoc" v-model="tipusLocalitzacio" name="tipusLoc" class="form-select" aria-label="tipusLoc">
-                                <option selected value="">Selecciona una opció</option>
-                                <option value="carrer">Carrer</option>
-                                <option value="puntSingular">Punt Singular</option>
-                                <option value="carretera">Carretera</option>
-                                <option value="entitatPoblacio">Entitat població</option>
-                                <option value="provincia">Provincia</option>
+                            <label for="tipusVia" class="form-label"><vermell>*</vermell>Tipus de via</label>
+                            <select id="tipusVia" name="tipusVia" class="form-select" aria-label="tipusVia">
+                                <option selected value="carrer">Carrer</option>
+                                <option value="avinguda">Avinguda</option>
+                                <option value="bulevar">Bulevar</option>
+                                <option value="carrerPeatonal">Carrer peatonal</option>
+                                <option value="cami">Camí</option>
                             </select>
-                            <div id="provincia" class="form-text">* Provincia de l'incident</div>
+                            <div id="tipusVia" class="form-text">* Tipus de via de la direcció</div>
+                        </div>
+                        <div class="col">
+
                         </div>
                     </div>
 

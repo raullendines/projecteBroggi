@@ -5619,12 +5619,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       elapsedTime: 0,
       timer: undefined,
-      localitzacio: ''
+      localitzacio: '',
+      tipusLocalitzacio: ''
     };
   },
   computed: {
@@ -29245,6 +29252,98 @@ var render = function () {
                         ),
                       ]),
                     ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.localitzacio === "Catalunya"
+                  ? _c("div", { staticClass: "row mb-4" }, [
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "tipusLoc" },
+                          },
+                          [
+                            _c("vermell", [_vm._v("*")]),
+                            _vm._v("Tipus de localització"),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.tipusLocalitzacio,
+                                expression: "tipusLocalitzacio",
+                              },
+                            ],
+                            staticClass: "form-select",
+                            attrs: {
+                              id: "tipusLoc",
+                              name: "tipusLoc",
+                              "aria-label": "tipusLoc",
+                            },
+                            on: {
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.tipusLocalitzacio = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                            },
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { selected: "", value: "" } },
+                              [_vm._v("Selecciona una opció")]
+                            ),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "carrer" } }, [
+                              _vm._v("Carrer"),
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "puntSingular" } }, [
+                              _vm._v("Punt Singular"),
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "carretera" } }, [
+                              _vm._v("Carretera"),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "option",
+                              { attrs: { value: "entitatPoblacio" } },
+                              [_vm._v("Entitat població")]
+                            ),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "provincia" } }, [
+                              _vm._v("Provincia"),
+                            ]),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-text",
+                            attrs: { id: "provincia" },
+                          },
+                          [_vm._v("* Tipus de via o lloc on es troba")]
+                        ),
+                      ]),
+                    ])
                   : _c("div", { staticClass: "row mb-4" }, [
                       _c("div", { staticClass: "col" }, [
                         _c(
@@ -29284,7 +29383,7 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "provincia" },
                           },
-                          [_c("vermell", [_vm._v("*")]), _vm._v(" Provincia")],
+                          [_c("vermell", [_vm._v("*")]), _vm._v("Provincia")],
                           1
                         ),
                         _vm._v(" "),
@@ -29306,8 +29405,6 @@ var render = function () {
                 _vm._m(4),
                 _vm._v(" "),
                 _vm._m(5),
-                _vm._v(" "),
-                _vm._m(6),
               ]),
             ]),
             _vm._v(" "),
@@ -29449,36 +29546,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "form-text", attrs: { id: "municipioInput" } }, [
         _vm._v("* Ciutat de l'incident"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "direccionInput" } },
-          [_vm._v("Direcció")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "direccionInput",
-            "aria-describedby": "direccionInput",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "direccionInput" } },
-          [_vm._v("* Direcció postal de l'incident")]
-        ),
       ]),
     ])
   },
