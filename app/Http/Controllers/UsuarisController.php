@@ -21,8 +21,6 @@ class UsuarisController extends Controller
 
         $user = Usuaris::where('correu', $mail)->first();
 
-        var_dump($mail, $contrasenya, $user);
-
         if ($user != null && Hash::check($contrasenya, $user->contrasenya)) {
             Auth::login($user);
              $response = redirect('/trucades');

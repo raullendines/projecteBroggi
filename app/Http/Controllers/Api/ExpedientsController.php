@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ExpedientsResource;
 use App\Models\Expedients;
 use Illuminate\Http\Request;
 
@@ -14,17 +16,9 @@ class ExpedientsController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $expedients = Expedients::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ExpedientsResource::collection($expedients);
     }
 
     /**
@@ -45,17 +39,6 @@ class ExpedientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Expedients $expedients)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Expedients  $expedients
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Expedients $expedients)
     {
         //
     }

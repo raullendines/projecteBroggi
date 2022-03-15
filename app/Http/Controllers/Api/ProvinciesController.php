@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Comarques;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ProvinciesResource;
+use App\Models\Provincies;
 use Illuminate\Http\Request;
 
-class ComarquesController extends Controller
+class ProvinciesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +16,9 @@ class ComarquesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $provincies = Provincies::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ProvinciesResource::collection($provincies);
     }
 
     /**
@@ -41,21 +35,10 @@ class ComarquesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comarques  $comarques
+     * @param  \App\Models\Provincies  $provincies
      * @return \Illuminate\Http\Response
      */
-    public function show(Comarques $comarques)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Comarques  $comarques
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comarques $comarques)
+    public function show(Provincies $provincies)
     {
         //
     }
@@ -64,10 +47,10 @@ class ComarquesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comarques  $comarques
+     * @param  \App\Models\Provincies  $provincies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comarques $comarques)
+    public function update(Request $request, Provincies $provincies)
     {
         //
     }
@@ -75,10 +58,10 @@ class ComarquesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comarques  $comarques
+     * @param  \App\Models\Provincies  $provincies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comarques $comarques)
+    public function destroy(Provincies $provincies)
     {
         //
     }

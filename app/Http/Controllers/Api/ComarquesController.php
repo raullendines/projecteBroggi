@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Perfils;
+use App\Models\Comarques;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ComarquesResource;
 
-class PerfilsController extends Controller
+class ComarquesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +16,9 @@ class PerfilsController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $comarques = Comarques::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ComarquesResource::collection($comarques);
     }
 
     /**
@@ -41,21 +35,10 @@ class PerfilsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Perfils  $perfils
+     * @param  \App\Models\Comarques  $comarques
      * @return \Illuminate\Http\Response
      */
-    public function show(Perfils $perfils)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Perfils  $perfils
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Perfils $perfils)
+    public function show(Comarques $comarques)
     {
         //
     }
@@ -64,10 +47,10 @@ class PerfilsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Perfils  $perfils
+     * @param  \App\Models\Comarques  $comarques
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perfils $perfils)
+    public function update(Request $request, Comarques $comarques)
     {
         //
     }
@@ -75,10 +58,10 @@ class PerfilsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Perfils  $perfils
+     * @param  \App\Models\Comarques  $comarques
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perfils $perfils)
+    public function destroy(Comarques $comarques)
     {
         //
     }

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Incidents;
+use App\Models\Agencies;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\AgenciesResource;
 
-class IncidentsController extends Controller
+class AgenciesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +16,9 @@ class IncidentsController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $agencies = Agencies::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return AgenciesResource::collection($agencies);
     }
 
     /**
@@ -41,21 +35,10 @@ class IncidentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Incidents  $incidents
+     * @param  \App\Models\Agencies  $agencies
      * @return \Illuminate\Http\Response
      */
-    public function show(Incidents $incidents)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Incidents  $incidents
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Incidents $incidents)
+    public function show(Agencies $agencies)
     {
         //
     }
@@ -64,10 +47,10 @@ class IncidentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Incidents  $incidents
+     * @param  \App\Models\Agencies  $agencies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Incidents $incidents)
+    public function update(Request $request, Agencies $agencies)
     {
         //
     }
@@ -75,10 +58,10 @@ class IncidentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Incidents  $incidents
+     * @param  \App\Models\Agencies  $agencies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Incidents $incidents)
+    public function destroy(Agencies $agencies)
     {
         //
     }
