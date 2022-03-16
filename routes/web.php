@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('plantilla.principal');
-// });
+Route::get('/', function () {
+    return view('plantilla.principal');
+});
 
 Route::resource('/perfils', PerfilsController::class);
 
@@ -33,7 +33,7 @@ Route::get('/trucades', function () {
     return view('callCard.callCard');
 });
 
-Route::get('/', [UsuarisController::class, 'showLogin']);
+Route::get('/login', [UsuarisController::class, 'showLogin']);
 Route::get('/sui', [UsuarisController::class, 'login'])->name('login');
 Route::get('/expedients', function () {
     return view('callManagement.callManagement');
