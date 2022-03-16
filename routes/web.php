@@ -21,21 +21,26 @@ Route::get('/', function () {
 
 Route::resource('/perfils', PerfilsController::class);
 
-Route::get('/login', function () {
-    return view('login.index');
-});
-
 Route::get('/database', function () {
     return view('database.database');
 });
 
-Route::get('/trucades', function () {
-    return view('callCard.callCard');
-});
 
-Route::get('/login', [UsuarisController::class, 'showLogin']);
-Route::get('/sui', [UsuarisController::class, 'login'])->name('login');
+Route::get('/login', [UsuarisController::class, 'showLogin'])->name('login');
+Route::get('/put_login', [UsuarisController::class, 'login']);
 Route::get('/expedients', function () {
     return view('callManagement.callManagement');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/trucades', function () {
+        return view('callCard.callCard');
+    });
+
+    Route::get('/expedients', function () {
+        return view('callManagement.callManagement');
+    });
+    
+
 });
 
