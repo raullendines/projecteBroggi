@@ -23,15 +23,6 @@
                             <div id="procedenciaInput" class="form-text">* Nacionalitat</div>
                         </div>
                         <div class="col">
-                            <label for="comarca" class="form-label"><vermell>*</vermell>Comarca</label>
-                            <select id="comarca" name="comarca" class="form-select" aria-label="comarca">
-                                <option selected value="">Selecciona una opció</option>
-                                <option value="comarca1">Comarca 1</option>
-                                <option value="Altres">Altres</option>
-                            </select>
-                            <div id="comarca" class="form-text">* Comunitat autònoma de l'incident</div>
-                        </div>
-                        <div class="col">
                             <label for="provincia" class="form-label"><vermell>*</vermell>Provincia</label>
                             <select id="provincia" name="provincia" class="form-select" aria-label="provincia">
                                 <option selected value="">Selecciona una opció</option>
@@ -39,6 +30,15 @@
                                 <option value="Altres">Altres</option>
                             </select>
                             <div id="provincia" class="form-text">* Provincia de l'incident</div>
+                        </div>
+                        <div class="col">
+                            <label for="comarca" class="form-label"><vermell>*</vermell>Comarca</label>
+                            <select id="comarca" name="comarca" class="form-select" aria-label="comarca">
+                                <option selected value="">Selecciona una opció</option>
+                                <option value="comarca1">Comarca 1</option>
+                                <option value="Altres">Altres</option>
+                            </select>
+                            <div id="comarca" class="form-text">* Comunitat autònoma de l'incident</div>
                         </div>
                         <div class="col">
                             <label for="municipioInput" class="form-label"><vermell>*</vermell>Municipi</label>
