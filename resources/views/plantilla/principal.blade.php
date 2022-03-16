@@ -20,7 +20,7 @@
 
 <body>
     <div id="app">
-        <navbar-component userId={{ $perfil }}></navbar-component> {{--  :userId={{ $perfil }} --}}
+        <navbar-component userId={{ Auth::user()->rols_id }}></navbar-component> {{--  :userId={{ $perfil }} --}}
         <div style="height: 75vh">
         <div class="container-fluid body-background">
             @yield('contents')
