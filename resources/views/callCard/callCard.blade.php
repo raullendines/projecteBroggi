@@ -4,6 +4,6 @@
 
 @section('contents')
 
-<callcard-component></callcard-component>
+<callcard-component :tipus-incident = {{ $tipusIncidents }}></callcard-component>
 
 @endsection

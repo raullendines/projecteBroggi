@@ -40,7 +40,8 @@ class TipusIncidentsController extends Controller
      */
     public function show(TipusIncidents $tipusIncidents)
     {
-        //
+        $tipusIncidents = TipusIncidents::find($tipusIncidents);
+        return view('callCard.callCard', compact('tipusIncidents'));
     }
 
     /**

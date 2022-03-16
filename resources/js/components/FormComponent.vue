@@ -302,7 +302,8 @@
                 elapsedTime:0,
                 timer: undefined,
                 localitzacio: '',
-                tipusLocalitzacio: ''
+                tipusLocalitzacio: '',
+                tipusIncident: this.$attrs["tipus-incident"]
             };
         },
         computed: {
@@ -322,7 +323,25 @@
             stop() {
                 clearInterval(this.timer);
                 this.elapsedTime = 0;
-                    }
+                    },
+            selectProfiles () {
+                let me = this;
+                axios.get('/provincies/').then((response) => {
+                    me.provincies = response.data.data;
+                    console.log(provincies);
+                    console.log(response);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .finally(() => (this.loading = false));
+            },
+            created() {
+                this.selectProfiles();
+            },
+            mounted() {
+                console.log("Component mounted.");
+            }
         },
             mounted() {
                 this.$root.$on('CallCardComponent', () => {
