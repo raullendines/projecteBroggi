@@ -5764,6 +5764,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -29298,6 +29315,7 @@ var render = function () {
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
+                            name: "procedenciaInput",
                             id: "procedenciaInput",
                             "aria-describedby": "procedenciaInput",
                             placeholder: "Escriu aquí",
@@ -29375,6 +29393,7 @@ var render = function () {
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
+                            name: "municipioInput",
                             id: "municipioInput",
                             "aria-describedby": "municipioInput",
                             placeholder: "Escriu aquí",
@@ -29407,6 +29426,7 @@ var render = function () {
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
+                            name: "procedenciaInput",
                             id: "procedenciaInput",
                             "aria-describedby": "procedenciaInput",
                             placeholder: "Escriu aquí",
@@ -29717,6 +29737,132 @@ var render = function () {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
+                _c("div", { staticClass: "row mb-4" }, [
+                  _c("div", { staticClass: "col" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "tipusIncident" },
+                      },
+                      [
+                        _c("vermell", [_vm._v("*")]),
+                        _vm._v("Tipus d'incident"),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.tipusIncident,
+                            expression: "tipusIncident",
+                          },
+                        ],
+                        staticClass: "form-select",
+                        attrs: {
+                          id: "tipusIncident",
+                          name: "tipusIncident",
+                          "aria-label": "tipusIncident",
+                        },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.tipusIncident = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { selected: "", value: "" } }, [
+                          _vm._v("Selecciona una opció"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "tipusIncident1" } }, [
+                          _vm._v("Tipus 1"),
+                        ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-text", attrs: { id: "provincia" } },
+                      [_vm._v("* Tipus de via o lloc on es troba l'incident")]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col" }, [
+                    _c(
+                      "label",
+                      { staticClass: "form-label", attrs: { for: "incident" } },
+                      [_c("vermell", [_vm._v("*")]), _vm._v("Incident")],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.tipusIncident,
+                            expression: "tipusIncident",
+                          },
+                        ],
+                        staticClass: "form-select",
+                        attrs: {
+                          id: "incident",
+                          name: "incident",
+                          "aria-label": "incident",
+                        },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.tipusIncident = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { selected: "", value: "" } }, [
+                          _vm._v("Selecciona una opció"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "incident1" } }, [
+                          _vm._v("Incident 1"),
+                        ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-text", attrs: { id: "provincia" } },
+                      [_vm._v("* Tipus de via o lloc on es troba l'incident")]
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
                 _vm._m(19),
                 _vm._v(" "),
                 _vm._m(20),
@@ -29853,6 +29999,7 @@ var staticRenderFns = [
         staticClass: "form-control",
         attrs: {
           type: "text",
+          name: "municipioInput",
           id: "municipioInput",
           "aria-describedby": "municipioInput",
           placeholder: "Escriu aquí",
@@ -30246,7 +30393,11 @@ var staticRenderFns = [
         _c("textarea", {
           staticClass: "form-control",
           staticStyle: { height: "60px" },
-          attrs: { placeholder: "Escriu aquí", id: "antecedents" },
+          attrs: {
+            placeholder: "Escriu aquí",
+            name: "antecedents",
+            id: "antecedents",
+          },
         }),
         _vm._v(" "),
         _c("div", { staticClass: "form-text", attrs: { id: "antecedents" } }, [
@@ -30338,7 +30489,11 @@ var staticRenderFns = [
         _c("textarea", {
           staticClass: "form-control",
           staticStyle: { height: "100px" },
-          attrs: { placeholder: "Escriu aquí", id: "notaComunaInput" },
+          attrs: {
+            placeholder: "Escriu aquí",
+            name: "notaComunaInput",
+            id: "notaComunaInput",
+          },
         }),
         _vm._v(" "),
         _c(

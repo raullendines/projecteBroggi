@@ -19,7 +19,7 @@
                     <div v-if="localitzacio === 'Catalunya'" class="row mb-4">
                         <div class="col">
                             <label for="procedenciaInput" class="form-label"><vermell>*</vermell>Procedencia</label>
-                            <input type="text" class="form-control" id="procedenciaInput" aria-describedby="procedenciaInput" placeholder="Escriu aquí">
+                            <input type="text" class="form-control" name="procedenciaInput" id="procedenciaInput" aria-describedby="procedenciaInput" placeholder="Escriu aquí">
                             <div id="procedenciaInput" class="form-text">* Nacionalitat</div>
                         </div>
                         <div class="col">
@@ -42,7 +42,7 @@
                         </div>
                         <div class="col">
                             <label for="municipioInput" class="form-label"><vermell>*</vermell>Municipi</label>
-                            <input type="text" class="form-control" id="municipioInput" aria-describedby="municipioInput" placeholder="Escriu aquí">
+                            <input type="text" class="form-control" name="municipioInput" id="municipioInput" aria-describedby="municipioInput" placeholder="Escriu aquí">
                             <div id="municipioInput" class="form-text">* Ciutat de l'incident</div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                     <div v-else class="row mb-4">
                         <div class="col">
                             <label for="procedenciaInput" class="form-label"><vermell>*</vermell>Procedencia</label>
-                            <input type="text" class="form-control" id="procedenciaInput" aria-describedby="procedenciaInput" placeholder="Escriu aquí">
+                            <input type="text" class="form-control" name="procedenciaInput" id="procedenciaInput" aria-describedby="procedenciaInput" placeholder="Escriu aquí">
                             <div id="procedenciaInput" class="form-text">* Nacionalitat</div>
                         </div>
                         <div class="col">
@@ -64,7 +64,7 @@
                         </div>
                         <div class="col">
                             <label for="municipioInput" class="form-label">Municipi</label>
-                            <input type="text" class="form-control" id="municipioInput" aria-describedby="municipioInput" placeholder="Escriu aquí">
+                            <input type="text" class="form-control" name="municipioInput" id="municipioInput" aria-describedby="municipioInput" placeholder="Escriu aquí">
                             <div id="municipioInput" class="form-text">* Ciutat de l'incident</div>
                         </div>
                     </div>
@@ -87,11 +87,9 @@
                     </div>
 
                         <div v-if="tipusLocalitzacio === '' && localitzacio === 'Catalunya'">
-                            <!-- <div v-if="localitzacio === 'Catalunya'"> -->
                                 <div class="row mb-4">
                                     <hr>
                                 </div>
-                            <!-- </div> -->
                         </div>
                         <div v-if="tipusLocalitzacio === 'entitatPoblacio'">
                             <div class="row mb-4">
@@ -221,11 +219,30 @@
                     </div>
                     </div>
 
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label for="tipusIncident" class="form-label"><vermell>*</vermell>Tipus d'incident</label>
+                            <select id="tipusIncident" v-model="tipusIncident" name="tipusIncident" class="form-select" aria-label="tipusIncident">
+                                <option selected value="">Selecciona una opció</option>
+                                <option value="tipusIncident1">Tipus 1</option>
+                            </select>
+                            <div id="provincia" class="form-text">* Tipus de via o lloc on es troba l'incident</div>
+                        </div>
+                        <div class="col">
+                            <label for="incident" class="form-label"><vermell>*</vermell>Incident</label>
+                            <select id="incident" v-model="tipusIncident" name="incident" class="form-select" aria-label="incident">
+                                <option selected value="">Selecciona una opció</option>
+                                <option value="incident1">Incident 1</option>
+                            </select>
+                            <div id="provincia" class="form-text">* Tipus de via o lloc on es troba l'incident</div>
+                        </div>
+                    </div>
+
 
                     <div class="row mb-4">
                         <div class="col">
                             <label class="form-label" for="antecedents">Antecedents del telèfon</label>
-                            <textarea class="form-control" placeholder="Escriu aquí" id="antecedents" style="height: 60px"></textarea>
+                            <textarea class="form-control" placeholder="Escriu aquí" name="antecedents" id="antecedents" style="height: 60px"></textarea>
                             <div id="antecedents" class="form-text">* Text amb informació rellevant del trucant</div>
                         </div>
                         <div class="col">
@@ -250,7 +267,7 @@
                     <div class="row">
                         <div class="col">
                             <label class="form-label" for="notaComunaInput">Nota comuna</label>
-                            <textarea class="form-control" placeholder="Escriu aquí" id="notaComunaInput" style="height: 100px"></textarea>
+                            <textarea class="form-control" placeholder="Escriu aquí" name="notaComunaInput" id="notaComunaInput" style="height: 100px"></textarea>
                             <div id="notaComunaInput" class="form-text">* Altres anotacions d'interés</div>
                         </div>
                         <div class="col">
