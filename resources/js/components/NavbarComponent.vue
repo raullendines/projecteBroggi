@@ -81,7 +81,7 @@ export default {
           "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
-        name: "Gestió d'espedients",
+        name: "Gestió d'expedients",
         url: "/projecteBroggi/public/expedients",
         icon: "fas fa-file-alt",
         style:
@@ -125,7 +125,7 @@ export default {
     ],
     supervisorItems: [
       {
-        name: "Gestió d'espedients",
+        name: "Gestió d'expedients",
         url: "/expedients",
         icon: "fas fa-file-alt",
         style:

@@ -5935,7 +5935,7 @@ __webpack_require__.r(__webpack_exports__);
         icon: "fas fa-headset",
         style: "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;"
       }, {
-        name: "Gestió d'espedients",
+        name: "Gestió d'expedients",
         url: "/projecteBroggi/public/expedients",
         icon: "fas fa-file-alt",
         style: "background-color:#02AFC8; color:white; margin-right:10px; padding: 7.5px;"
@@ -5967,7 +5967,7 @@ __webpack_require__.r(__webpack_exports__);
         style: "background-color:#FF005D; color:white"
       }],
       supervisorItems: [{
-        name: "Gestió d'espedients",
+        name: "Gestió d'expedients",
         url: "/expedients",
         icon: "fas fa-file-alt",
         style: "background-color:#02AFC8; color:white; margin-right:10px; padding: 7.5px;"
