@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UsuarisResource;
-use App\Models\Usuaris;
+use App\Http\Resources\PerfilsResources;
+use App\Models\Perfils;
 use Illuminate\Http\Request;
 
-class UsuarisController extends Controller
+class PerfilsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +16,9 @@ class UsuarisController extends Controller
      */
     public function index()
     {
-/*         $profiles = Perfils::all();
+        $profiles = Perfils::all();
 
-        return view('plantilla.principal', compact('profiles'));
-    } */
-        $usuaris = Usuaris::all();
-
-        return UsuarisResource::collection($usuaris);
+        return PerfilsResources::collection($profiles);
     }
 
     /**
@@ -39,22 +35,23 @@ class UsuarisController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Usuaris  $usuaris
+     * @param  \App\Models\Perfils  $perfils
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuaris $usuaris)
+    public function show(Perfils $perfil)
     {
-        //
+        $perfils = Perfils::find($perfil);
+        return new PerfilsResources($perfils);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Usuaris  $usuaris
+     * @param  \App\Models\Perfils  $perfils
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuaris $usuaris)
+    public function update(Request $request, Perfils $perfils)
     {
         //
     }
@@ -62,10 +59,10 @@ class UsuarisController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Usuaris  $usuaris
+     * @param  \App\Models\Perfils  $perfils
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuaris $usuaris)
+    public function destroy(Perfils $perfils)
     {
         //
     }

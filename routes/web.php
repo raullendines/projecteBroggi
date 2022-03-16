@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PerfilsController;
 use App\Http\Controllers\UsuarisController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,12 @@ Route::get('/', function () {
     return view('plantilla.principal');
 });
 
+Route::resource('/perfils', PerfilsController::class);
+
+Route::get('/login', function () {
+    return view('login.index');
+});
+
 Route::get('/database', function () {
     return view('database.database');
 });
@@ -27,7 +34,7 @@ Route::get('/trucades', function () {
 });
 
 Route::get('/login', [UsuarisController::class, 'showLogin']);
-Route::get('/sui', [UsuarisController::class, 'login'])->name('login'); 
+Route::get('/sui', [UsuarisController::class, 'login'])->name('login');
 Route::get('/expedients', function () {
     return view('callManagement.callManagement');
 });

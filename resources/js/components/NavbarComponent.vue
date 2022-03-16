@@ -18,8 +18,8 @@
         />
         </a>
 
-      <div class="d-flex" id="navbarNavDropdown">
-        <ul class="navbar-nav d-flex flex-row"> <!--  v-if="isAdmin" -->
+      <div class="d-flex" id="navbarNavDropdown" v-for="profile in profiles" :key="profile.id">
+        <ul class="navbar-nav d-flex flex-row" v-if="profile.id === 3">
           <li class="nav-item" v-for="item in adminItems" :key="item.url">
             <a
               class="btn btn-sm nav-link active"
@@ -33,8 +33,8 @@
             </a>
           </li>
         </ul>
-<!--
-        <ul class="navbar-nav d-flex flex-row" v-if="isSupervisor">
+
+        <ul class="navbar-nav d-flex flex-row" v-if="profile.id === 2">
           <li class="nav-item" v-for="item in supervisorItems" :key="item.url">
             <a
               class="btn btn-sm nav-link active"
@@ -49,7 +49,7 @@
           </li>
         </ul>
 
-        <ul class="navbar-nav d-flex flex-row" v-if="isOperator">
+        <ul class="navbar-nav d-flex flex-row" v-if="profile.id === 1">
           <li class="nav-item" v-for="item in operatorItems" :key="item.url">
             <a
               class="btn btn-sm nav-link active"
@@ -62,7 +62,7 @@
               {{ item.name }}
             </a>
           </li>
-        </ul> -->
+        </ul>
       </div>
     </div>
   </nav>
@@ -109,11 +109,18 @@ export default {
       },
     ],
     operatorItems: [
+        {
+        name: "Carta de trucades",
+        url: "/projecteBroggi/public/trucades",
+        icon: "fas fa-headset",
+        style:
+          "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;",
+      },
       {
         name: "Sortir",
         url: "/logout",
         icon: "fas fa-sign-out-alt",
-        style: "background-color:#C90175; color:white",
+        style: "background-color:#FF005D; color:white",
       },
     ],
     supervisorItems: [
@@ -128,13 +135,27 @@ export default {
         name: "Sortir",
         url: "/logout",
         icon: "fas fa-sign-out-alt",
-        style: "background-color:#C90175; color:white",
+        style: "background-color:#FF005D; color:white",
       },
     ],
+    profiles: [],
   }),
-/*   computed: {
-    ...mapGetters("user", ["isAdmin", "isOperator", "isSupervisor"]),
-  }, */
+  methods: {
+      selectProfiles () {
+          let me = this;
+          axios.get('/perfils/' + '1').then((response) => {
+              me.profiles = response.data.data;
+              console.log(response);
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+      }
+  },
+  created() {
+    this.selectProfiles();
+  },
   mounted() {
     console.log("Component mounted.");
   },
