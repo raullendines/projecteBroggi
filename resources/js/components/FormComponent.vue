@@ -230,7 +230,7 @@
                         </div>
                         <div class="col">
                             <label for="incident" class="form-label"><vermell>*</vermell>Incident</label>
-                            <select id="incident" v-model="tipusIncident" name="incident" class="form-select" aria-label="incident">
+                            <select id="incident" name="incident" class="form-select" aria-label="incident">
                                 <option selected value="">Selecciona una opció</option>
                                 <option value="incident1">Incident 1</option>
                             </select>
