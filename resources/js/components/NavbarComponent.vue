@@ -95,7 +95,7 @@ export default {
           "background-color:#F2AB31; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
-        name: "Gráfic",
+        name: "Gràfic",
         url: "/graph",
         icon: "fas fa-chart-line",
         style:

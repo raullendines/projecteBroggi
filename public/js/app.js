@@ -5945,7 +5945,7 @@ __webpack_require__.r(__webpack_exports__);
         icon: "fas fa-map-marker-alt",
         style: "background-color:#F2AB31; color:white; margin-right:10px; padding: 7.5px;"
       }, {
-        name: "Gráfic",
+        name: "Gràfic",
         url: "/graph",
         icon: "fas fa-chart-line",
         style: "background-color:#4FBF58; color:white; margin-right:10px; padding: 7.5px;"
