@@ -22,8 +22,8 @@ class UsuarisController extends Controller
         $user->actiu = false;
         $user->rols_id = 3;
 
-        $user->save();  */
-        
+        $user->save();
+  */
         return view('login.index');
     }
 
