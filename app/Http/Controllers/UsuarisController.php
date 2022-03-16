@@ -13,6 +13,17 @@ class UsuarisController extends Controller
 
     public function showLogin()
     {
+         /* $user = new Usuaris();
+
+        $user->correu = 'prueba@cep.net';
+        $user->nom = 'prueba';
+        $user->cognoms = 'prueba';
+        $user->contrasenya = \bcrypt('prueba');
+        $user->actiu = false;
+        $user->rols_id = 3;
+
+        $user->save();  */
+        
         return view('login.index');
     }
 
@@ -22,7 +33,7 @@ class UsuarisController extends Controller
 
         $user = Usuaris::where('correu', $mail)->first();
 
-        if ($user != null && Hash::check($contrasenya, $user->contrasenya)) {
+        if ($user != null && $user->actiu == true && Hash::check($contrasenya, $user->contrasenya)) {
             Auth::login($user);
              $response = redirect('/trucades');
         }
