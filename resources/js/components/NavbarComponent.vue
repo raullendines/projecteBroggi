@@ -139,11 +139,13 @@ export default {
       },
     ],
     profiles: [],
+    userId: [],
   }),
   methods: {
       selectProfiles () {
           let me = this;
-          axios.get('/perfils/' + '1').then((response) => {
+          console.log(this.userId);
+          axios.get('/perfils' , me.userId).then((response) => {
               me.profiles = response.data.data;
               console.log(response);
           })
