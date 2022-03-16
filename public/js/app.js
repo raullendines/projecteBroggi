@@ -5718,6 +5718,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -29345,7 +29391,65 @@ var render = function () {
                         ),
                       ]),
                     ])
-                  : _vm._e(),
+                  : _c("div", { staticClass: "row mb-4" }, [
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "procedenciaInput" },
+                          },
+                          [_c("vermell", [_vm._v("*")]), _vm._v("Procedencia")],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: "procedenciaInput",
+                            "aria-describedby": "procedenciaInput",
+                            placeholder: "Escriu aquí",
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-text",
+                            attrs: { id: "procedenciaInput" },
+                          },
+                          [_vm._v("* Nacionalitat")]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "provincia" },
+                          },
+                          [_c("vermell", [_vm._v("*")]), _vm._v("Provincia")],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-text",
+                            attrs: { id: "provincia" },
+                          },
+                          [_vm._v("* Provincia de l'incident")]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(3),
+                    ]),
+                _vm._v(" "),
+                _vm._m(4),
                 _vm._v(" "),
                 _vm.localitzacio === "Catalunya"
                   ? _c("div", { staticClass: "row mb-4" }, [
@@ -29441,63 +29545,19 @@ var render = function () {
                         ),
                       ]),
                     ])
-                  : _c("div", { staticClass: "row mb-4" }, [
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "procedenciaInput" },
-                          },
-                          [_c("vermell", [_vm._v("*")]), _vm._v("Procedencia")],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            id: "procedenciaInput",
-                            "aria-describedby": "procedenciaInput",
-                            placeholder: "Escriu aquí",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-text",
-                            attrs: { id: "procedenciaInput" },
-                          },
-                          [_vm._v("* Nacionalitat")]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "provincia" },
-                          },
-                          [_c("vermell", [_vm._v("*")]), _vm._v("Provincia")],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-text",
-                            attrs: { id: "provincia" },
-                          },
-                          [_vm._v("* Provincia de l'incident")]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(3),
-                    ]),
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.tipusLocalitzacio === "" && _vm.localitzacio === "Catalunya"
+                  ? _c("div", [_vm._m(5)])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.tipusLocalitzacio === "entitatPoblacio"
+                  ? _c("div", [_vm._m(6), _vm._v(" "), _vm._m(7)])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.tipusLocalitzacio === "provincia"
+                  ? _c("div", [_vm._m(8), _vm._v(" "), _vm._m(9)])
+                  : _vm._e(),
                 _vm._v(" "),
                 _vm.tipusLocalitzacio === "carrer"
                   ? _c("div", [
@@ -29516,7 +29576,7 @@ var render = function () {
                             1
                           ),
                           _vm._v(" "),
-                          _vm._m(4),
+                          _vm._m(10),
                           _vm._v(" "),
                           _c(
                             "div",
@@ -29593,14 +29653,22 @@ var render = function () {
                         ]),
                       ]),
                       _vm._v(" "),
-                      _vm._m(5),
+                      _vm._m(11),
                       _vm._v(" "),
-                      _vm._m(6),
+                      _vm._m(12),
+                      _vm._v(" "),
+                      _vm._m(13),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.tipusLocalitzacio === "carretera"
-                  ? _c("div", [_vm._m(7), _vm._v(" "), _vm._m(8)])
+                  ? _c("div", [
+                      _vm._m(14),
+                      _vm._v(" "),
+                      _vm._m(15),
+                      _vm._v(" "),
+                      _vm._m(16),
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.tipusLocalitzacio === "puntSingular"
@@ -29643,13 +29711,15 @@ var render = function () {
                         ]),
                       ]),
                       _vm._v(" "),
-                      _vm._m(9),
+                      _vm._m(17),
+                      _vm._v(" "),
+                      _vm._m(18),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _vm._m(10),
+                _vm._m(19),
                 _vm._v(" "),
-                _vm._m(11),
+                _vm._m(20),
               ]),
             ]),
             _vm._v(" "),
@@ -29798,6 +29868,90 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "label",
+          { staticClass: "form-label", attrs: { for: "referenciesLoc" } },
+          [_vm._v("Altres referències de la localització")]
+        ),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "form-control",
+          staticStyle: { height: "50px" },
+          attrs: {
+            placeholder: "Escriu aquí",
+            name: "referenciesLoc",
+            id: "referenciesLoc",
+          },
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-text", attrs: { id: "referenciesLoc" } },
+          [_vm._v("* Altres anotacions d'interés sobre la localització")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "label",
+          { staticClass: "form-label", attrs: { for: "referenciesLoc" } },
+          [_vm._v("Altres referències de la localització")]
+        ),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "form-control",
+          staticStyle: { height: "50px" },
+          attrs: {
+            placeholder: "Escriu aquí",
+            name: "referenciesLoc",
+            id: "referenciesLoc",
+          },
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-text", attrs: { id: "referenciesLoc" } },
+          [_vm._v("* Altres anotacions d'interés sobre la localització")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
       "select",
       {
@@ -29924,6 +30078,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row mb-4" }, [
       _c("div", { staticClass: "col" }, [
         _c(
@@ -30033,6 +30193,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row mb-4" }, [
       _c("div", { staticClass: "col" }, [
         _c(
@@ -30058,6 +30224,12 @@ var staticRenderFns = [
         ),
       ]),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
   },
   function () {
     var _vm = this

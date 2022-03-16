@@ -46,20 +46,6 @@
                             <div id="municipioInput" class="form-text">* Ciutat de l'incident</div>
                         </div>
                     </div>
-                    <div v-if="localitzacio === 'Catalunya'" class="row mb-4">
-                        <div class="col">
-                            <label for="tipusLoc" class="form-label"><vermell>*</vermell>Tipus de localització</label>
-                            <select id="tipusLoc" v-model="tipusLocalitzacio" name="tipusLoc" class="form-select" aria-label="tipusLoc">
-                                <option selected value="">Selecciona una opció</option>
-                                <option value="carrer">Carrer</option>
-                                <option value="puntSingular">Punt Singular</option>
-                                <option value="carretera">Carretera</option>
-                                <option value="entitatPoblacio">Entitat població</option>
-                                <option value="provincia">Provincia</option>
-                            </select>
-                            <div id="provincia" class="form-text">* Tipus de via o lloc on es troba l'incident</div>
-                        </div>
-                    </div>
                     <!-- ELSE -->
                     <div v-else class="row mb-4">
                         <div class="col">
@@ -82,6 +68,56 @@
                             <div id="municipioInput" class="form-text">* Ciutat de l'incident</div>
                         </div>
                     </div>
+                    <div class="row mb-4">
+                        <hr>
+                    </div>
+                    <div v-if="localitzacio === 'Catalunya'" class="row mb-4">
+                        <div class="col">
+                            <label for="tipusLoc" class="form-label"><vermell>*</vermell>Tipus de localització</label>
+                            <select id="tipusLoc" v-model="tipusLocalitzacio" name="tipusLoc" class="form-select" aria-label="tipusLoc">
+                                <option selected value="">Selecciona una opció</option>
+                                <option value="carrer">Carrer</option>
+                                <option value="puntSingular">Punt Singular</option>
+                                <option value="carretera">Carretera</option>
+                                <option value="entitatPoblacio">Entitat població</option>
+                                <option value="provincia">Provincia</option>
+                            </select>
+                            <div id="provincia" class="form-text">* Tipus de via o lloc on es troba l'incident</div>
+                        </div>
+                    </div>
+
+                        <div v-if="tipusLocalitzacio === '' && localitzacio === 'Catalunya'">
+                            <!-- <div v-if="localitzacio === 'Catalunya'"> -->
+                                <div class="row mb-4">
+                                    <hr>
+                                </div>
+                            <!-- </div> -->
+                        </div>
+                        <div v-if="tipusLocalitzacio === 'entitatPoblacio'">
+                            <div class="row mb-4">
+                            <div class="col">
+                            <label class="form-label" for="referenciesLoc">Altres referències de la localització</label>
+                            <textarea class="form-control" placeholder="Escriu aquí" name="referenciesLoc" id="referenciesLoc" style="height: 50px"></textarea>
+                            <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
+                            </div>
+                        </div>
+                            <div class="row mb-4">
+                                <hr>
+                            </div>
+                        </div>
+                        <div v-if="tipusLocalitzacio === 'provincia'">
+                            <div class="row mb-4">
+                            <div class="col">
+                            <label class="form-label" for="referenciesLoc">Altres referències de la localització</label>
+                            <textarea class="form-control" placeholder="Escriu aquí" name="referenciesLoc" id="referenciesLoc" style="height: 50px"></textarea>
+                            <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
+                            </div>
+                        </div>
+                            <div class="row mb-4">
+                                <hr>
+                            </div>
+                        </div>
+
                         <div v-if="tipusLocalitzacio === 'carrer'">
                             <div class="row mb-4">
                             <div class="col">
@@ -130,6 +166,9 @@
                             <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
                             </div>
                         </div>
+                        <div class="row mb-4">
+                        <hr>
+                    </div>
                     </div>
 
                     <div v-if="tipusLocalitzacio === 'carretera'">
@@ -157,6 +196,9 @@
                             <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
                             </div>
                         </div>
+                        <div class="row mb-4">
+                        <hr>
+                    </div>
                     </div>
 
                     <div v-if="tipusLocalitzacio === 'puntSingular'">
@@ -174,7 +216,11 @@
                             <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
                             </div>
                         </div>
+                        <div class="row mb-4">
+                        <hr>
                     </div>
+                    </div>
+
 
                     <div class="row mb-4">
                         <div class="col">
