@@ -139,11 +139,13 @@ export default {
       },
     ],
     profiles: [],
+    userId:{},
   }),
   methods: {
       selectProfiles () {
           let me = this;
-          axios.get('/perfils/' + '1').then((response) => {
+          this.userId = this.$attrs['userid'];
+          axios.get('/perfils/' + me.userId).then((response) => {
               me.profiles = response.data.data;
               console.log(response);
           })
@@ -151,7 +153,7 @@ export default {
               console.log(err);
           })
           .finally(() => (this.loading = false));
-      }
+      },
   },
   created() {
     this.selectProfiles();

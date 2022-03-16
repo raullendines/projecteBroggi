@@ -5964,7 +5964,8 @@ __webpack_require__.r(__webpack_exports__);
         icon: "fas fa-sign-out-alt",
         style: "background-color:#FF005D; color:white"
       }],
-      profiles: []
+      profiles: [],
+      userId: {}
     };
   },
   methods: {
@@ -5972,7 +5973,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var me = this;
-      axios.get('/perfils/' + '1').then(function (response) {
+      this.userId = this.$attrs['userid'];
+      axios.get('/perfils/' + me.userId).then(function (response) {
         me.profiles = response.data.data;
         console.log(response);
       })["catch"](function (err) {
