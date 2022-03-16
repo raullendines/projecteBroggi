@@ -23,7 +23,9 @@ class UsuarisController extends Controller
 
         if ($user != null && Hash::check($contrasenya, $user->contrasenya)) {
             Auth::login($user);
-             $response = redirect('/trucades');
+            $perfil = $user->rols_id;
+             /* $response = redirect()->route('perfils.show', $perfil); */
+             $response = view('plantilla.principal', compact('perfil'));
         }
         else{
             $request->session()->flash('error', 'Usuari o contrasenya incorrectes');
