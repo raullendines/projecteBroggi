@@ -13,7 +13,7 @@
   </table>
 
   <div class="card mt-3 m-auto" style="width:80%" v-for="call in calls" :key="call.tel">
-  <div class="card-body" :style="call.status === 'Active' ? 'background-color : #99FFA2;' : 'background-color : #FFDA99;'">
+  <div class="card-body" :style="call.style">
     <table class="table table-borderless mb-0">
 <tbody>
     <tr>
@@ -45,22 +45,37 @@ export default {
                 tel: "666444545",
                 date: "21 Ene 2022",
                 time: "12:30:40",
-                status: "Active"
+                status: "Process",
+                style: "color: #4dc058; background-color : #99FFA2;"
             },
             {
                 tel: "666444535",
                 date: "21 Ene 2022",
                 time: "12:30:40",
-                status: "Declined"
+                status: "Resquested",
+                style: "color: #4dc058; background-color : #ffeb00;"
             },
-        ],
-        status: [
-            {active: "fa fa-check-circle fa-lg",
-            style: "color: #4dc058;"
+            {
+                tel: "666444435",
+                date: "21 Ene 2022",
+                time: "12:30:40",
+                status: "Accepted",
+                style: "color: #4dc058; background-color : #6bca33;"
             },
-            {declined: "fa fa-times-circle fa-lg",
-            style: "color: #c90175;"
-            }
+            {
+                tel: "666444335",
+                date: "21 Ene 2022",
+                time: "12:30:40",
+                status: "Closed",
+                style: "color: #4dc058; background-color : #129ce0;"
+            },
+            {
+                tel: "666442335",
+                date: "21 Ene 2022",
+                time: "12:30:40",
+                status: "Inmobilized",
+                style: "color: #4dc058; background-color : #a0bafc;"
+            },
         ],
     }),
   mounted() {
