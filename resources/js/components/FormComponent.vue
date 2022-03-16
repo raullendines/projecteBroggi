@@ -4,6 +4,7 @@
     <div class="modal-content">
       <div class="modal-body">
             <form action="">
+                <h5><b>Identificació de l'interlocutor</b></h5>
                     <div class="row mb-4">
                         <div class="col">
                             <label for="localitzacio" class="form-label"><vermell>*</vermell>Localització</label>
@@ -12,7 +13,7 @@
                                 <option value="Catalunya">Catalunya</option>
                                 <option value="Altres">Altres</option>
                             </select>
-                            <div id="localitzacio" class="form-text">* Comunitat autònoma de l'incident</div>
+                            <div id="localitzacio" class="form-text">* Comunitat autònoma on es troba l'incident</div>
                         </div>
                     </div>
                     <!-- IF -->
@@ -68,10 +69,11 @@
                             <div id="municipioInput" class="form-text">* Ciutat de l'incident</div>
                         </div>
                     </div>
-                    <div class="row mb-4">
+                    <div class="row">
                         <hr>
                     </div>
                     <div v-if="localitzacio === 'Catalunya'" class="row mb-4">
+                        <h5><b>Localització de l'emergencia</b></h5>
                         <div class="col">
                             <label for="tipusLoc" class="form-label"><vermell>*</vermell>Tipus de localització</label>
                             <select id="tipusLoc" v-model="tipusLocalitzacio" name="tipusLoc" class="form-select" aria-label="tipusLoc">
@@ -87,7 +89,7 @@
                     </div>
 
                         <div v-if="tipusLocalitzacio === '' && localitzacio === 'Catalunya'">
-                                <div class="row mb-4">
+                                <div class="row">
                                     <hr>
                                 </div>
                         </div>
@@ -99,7 +101,7 @@
                             <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
                             </div>
                         </div>
-                            <div class="row mb-4">
+                            <div class="row">
                                 <hr>
                             </div>
                         </div>
@@ -111,7 +113,7 @@
                             <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
                             </div>
                         </div>
-                            <div class="row mb-4">
+                            <div class="row">
                                 <hr>
                             </div>
                         </div>
@@ -164,7 +166,7 @@
                             <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row">
                         <hr>
                     </div>
                     </div>
@@ -194,7 +196,7 @@
                             <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row">
                         <hr>
                     </div>
                     </div>
@@ -214,11 +216,14 @@
                             <div id="referenciesLoc" class="form-text">* Altres anotacions d'interés sobre la localització</div>
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row">
                         <hr>
                     </div>
                     </div>
 
+                    <div class="row">
+                        <h5><b>Tipificació de l'incident</b></h5>
+                    </div>
                     <div class="row mb-4">
                         <div class="col">
                             <label for="tipusIncident" class="form-label"><vermell>*</vermell>Tipus d'incident</label>
@@ -226,7 +231,7 @@
                                 <option selected value="">Selecciona una opció</option>
                                 <option value="tipusIncident1">Tipus 1</option>
                             </select>
-                            <div id="provincia" class="form-text">* Tipus de via o lloc on es troba l'incident</div>
+                            <div id="provincia" class="form-text">* Tipus d'incident que hi ha causat</div>
                         </div>
                         <div class="col">
                             <label for="incident" class="form-label"><vermell>*</vermell>Incident</label>
@@ -234,10 +239,13 @@
                                 <option selected value="">Selecciona una opció</option>
                                 <option value="incident1">Incident 1</option>
                             </select>
-                            <div id="provincia" class="form-text">* Tipus de via o lloc on es troba l'incident</div>
+                            <div id="provincia" class="form-text">* Incident que hi ha causat</div>
                         </div>
                     </div>
 
+                    <div class="row mb-4">
+                        <hr>
+                    </div>
 
                     <div class="row mb-4">
                         <div class="col">

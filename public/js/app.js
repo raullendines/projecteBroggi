@@ -5781,6 +5781,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -29248,6 +29256,8 @@ var render = function () {
           _c("div", { staticClass: "modal-content" }, [
             _c("div", { staticClass: "modal-body" }, [
               _c("form", { attrs: { action: "" } }, [
+                _vm._m(0),
+                _vm._v(" "),
                 _c("div", { staticClass: "row mb-4" }, [
                   _c("div", { staticClass: "col" }, [
                     _c(
@@ -29314,7 +29324,7 @@ var render = function () {
                         staticClass: "form-text",
                         attrs: { id: "localitzacio" },
                       },
-                      [_vm._v("* Comunitat autònoma de l'incident")]
+                      [_vm._v("* Comunitat autònoma on es troba l'incident")]
                     ),
                   ]),
                 ]),
@@ -29364,7 +29374,7 @@ var render = function () {
                           1
                         ),
                         _vm._v(" "),
-                        _vm._m(0),
+                        _vm._m(1),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -29387,7 +29397,7 @@ var render = function () {
                           1
                         ),
                         _vm._v(" "),
-                        _vm._m(1),
+                        _vm._m(2),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -29475,7 +29485,7 @@ var render = function () {
                           1
                         ),
                         _vm._v(" "),
-                        _vm._m(2),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -29487,13 +29497,15 @@ var render = function () {
                         ),
                       ]),
                       _vm._v(" "),
-                      _vm._m(3),
+                      _vm._m(4),
                     ]),
                 _vm._v(" "),
-                _vm._m(4),
+                _vm._m(5),
                 _vm._v(" "),
                 _vm.localitzacio === "Catalunya"
                   ? _c("div", { staticClass: "row mb-4" }, [
+                      _vm._m(6),
+                      _vm._v(" "),
                       _c("div", { staticClass: "col" }, [
                         _c(
                           "label",
@@ -29589,15 +29601,15 @@ var render = function () {
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.tipusLocalitzacio === "" && _vm.localitzacio === "Catalunya"
-                  ? _c("div", [_vm._m(5)])
+                  ? _c("div", [_vm._m(7)])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.tipusLocalitzacio === "entitatPoblacio"
-                  ? _c("div", [_vm._m(6), _vm._v(" "), _vm._m(7)])
+                  ? _c("div", [_vm._m(8), _vm._v(" "), _vm._m(9)])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.tipusLocalitzacio === "provincia"
-                  ? _c("div", [_vm._m(8), _vm._v(" "), _vm._m(9)])
+                  ? _c("div", [_vm._m(10), _vm._v(" "), _vm._m(11)])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.tipusLocalitzacio === "carrer"
@@ -29617,7 +29629,7 @@ var render = function () {
                             1
                           ),
                           _vm._v(" "),
-                          _vm._m(10),
+                          _vm._m(12),
                           _vm._v(" "),
                           _c(
                             "div",
@@ -29694,21 +29706,21 @@ var render = function () {
                         ]),
                       ]),
                       _vm._v(" "),
-                      _vm._m(11),
-                      _vm._v(" "),
-                      _vm._m(12),
-                      _vm._v(" "),
                       _vm._m(13),
+                      _vm._v(" "),
+                      _vm._m(14),
+                      _vm._v(" "),
+                      _vm._m(15),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.tipusLocalitzacio === "carretera"
                   ? _c("div", [
-                      _vm._m(14),
-                      _vm._v(" "),
-                      _vm._m(15),
-                      _vm._v(" "),
                       _vm._m(16),
+                      _vm._v(" "),
+                      _vm._m(17),
+                      _vm._v(" "),
+                      _vm._m(18),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
@@ -29752,11 +29764,13 @@ var render = function () {
                         ]),
                       ]),
                       _vm._v(" "),
-                      _vm._m(17),
+                      _vm._m(19),
                       _vm._v(" "),
-                      _vm._m(18),
+                      _vm._m(20),
                     ])
                   : _vm._e(),
+                _vm._v(" "),
+                _vm._m(21),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-4" }, [
                   _c("div", { staticClass: "col" }, [
@@ -29820,7 +29834,7 @@ var render = function () {
                     _c(
                       "div",
                       { staticClass: "form-text", attrs: { id: "provincia" } },
-                      [_vm._v("* Tipus de via o lloc on es troba l'incident")]
+                      [_vm._v("* Tipus d'incident que hi ha causat")]
                     ),
                   ]),
                   _vm._v(" "),
@@ -29879,14 +29893,16 @@ var render = function () {
                     _c(
                       "div",
                       { staticClass: "form-text", attrs: { id: "provincia" } },
-                      [_vm._v("* Tipus de via o lloc on es troba l'incident")]
+                      [_vm._v("* Incident que hi ha causat")]
                     ),
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(19),
+                _vm._m(22),
                 _vm._v(" "),
-                _vm._m(20),
+                _vm._m(23),
+                _vm._v(" "),
+                _vm._m(24),
               ]),
             ]),
             _vm._v(" "),
@@ -29930,6 +29946,12 @@ var render = function () {
   )
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("b", [_vm._v("Identificació de l'interlocutor")])])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -30036,49 +30058,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+    return _c("div", { staticClass: "row" }, [_c("hr")])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+    return _c("h5", [_c("b", [_vm._v("Localització de l'emergencia")])])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "referenciesLoc" } },
-          [_vm._v("Altres referències de la localització")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "50px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "referenciesLoc",
-            id: "referenciesLoc",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc" } },
-          [_vm._v("* Altres anotacions d'interés sobre la localització")]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+    return _c("div", { staticClass: "row" }, [_c("hr")])
   },
   function () {
     var _vm = this
@@ -30114,7 +30106,43 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+    return _c("div", { staticClass: "row" }, [_c("hr")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "label",
+          { staticClass: "form-label", attrs: { for: "referenciesLoc" } },
+          [_vm._v("Altres referències de la localització")]
+        ),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "form-control",
+          staticStyle: { height: "50px" },
+          attrs: {
+            placeholder: "Escriu aquí",
+            name: "referenciesLoc",
+            id: "referenciesLoc",
+          },
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-text", attrs: { id: "referenciesLoc" } },
+          [_vm._v("* Altres anotacions d'interés sobre la localització")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [_c("hr")])
   },
   function () {
     var _vm = this
@@ -30246,7 +30274,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+    return _c("div", { staticClass: "row" }, [_c("hr")])
   },
   function () {
     var _vm = this
@@ -30361,7 +30389,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
+    return _c("div", { staticClass: "row" }, [_c("hr")])
   },
   function () {
     var _vm = this
@@ -30391,6 +30419,20 @@ var staticRenderFns = [
           [_vm._v("* Altres anotacions d'interés sobre la localització")]
         ),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [_c("hr")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("h5", [_c("b", [_vm._v("Tipificació de l'incident")])]),
     ])
   },
   function () {
