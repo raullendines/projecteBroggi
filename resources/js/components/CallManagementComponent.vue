@@ -13,7 +13,7 @@
   </table>
 
   <div class="card mt-3 m-auto" style="width:80%" v-for="call in calls" :key="call.tel">
-  <div class="card-body" :style="call.status === 'Active' ? 'background-color : #99FFA2;' : 'background-color : #FFDA99;'">
+  <div class="card-body" v-if="call.status === 'Process'" :style="status[0].style">
     <table class="table table-borderless mb-0">
 <tbody>
     <tr>
@@ -45,22 +45,49 @@ export default {
                 tel: "666444545",
                 date: "21 Ene 2022",
                 time: "12:30:40",
-                status: "Active"
+                status: "Process"
             },
             {
                 tel: "666444535",
                 date: "21 Ene 2022",
                 time: "12:30:40",
-                status: "Declined"
+                status: "Resquested"
+            },
+            {
+                tel: "666444435",
+                date: "21 Ene 2022",
+                time: "12:30:40",
+                status: "Accepted"
+            },
+            {
+                tel: "666444335",
+                date: "21 Ene 2022",
+                time: "12:30:40",
+                status: "Closed"
+            },
+            {
+                tel: "666442335",
+                date: "21 Ene 2022",
+                time: "12:30:40",
+                status: "Inmobilized"
             },
         ],
         status: [
-            {active: "fa fa-check-circle fa-lg",
-            style: "color: #4dc058;"
+            {process: "fa fa-check-circle fa-lg",
+            style: "color: #4dc058; background-color : #99FFA2;"
             },
-            {declined: "fa fa-times-circle fa-lg",
-            style: "color: #c90175;"
-            }
+            {requested: "fa fa-times-circle fa-lg",
+            style: "color: #c90175; background-color : #FFDA99;"
+            },
+            {accepted: "fa fa-times-circle fa-lg",
+            style: "color: #c90175; background-color : #FFDA99;"
+            },
+            {closed: "fa fa-times-circle fa-lg",
+            style: "color: #c90175; background-color : #FFDA99;"
+            },
+            {immobilize: "fa fa-times-circle fa-lg",
+            style: "color: #c90175; background-color : #FFDA99;"
+            },
         ],
     }),
   mounted() {

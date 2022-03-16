@@ -5410,19 +5410,43 @@ __webpack_require__.r(__webpack_exports__);
         tel: "666444545",
         date: "21 Ene 2022",
         time: "12:30:40",
-        status: "Active"
+        status: "Process"
       }, {
         tel: "666444535",
         date: "21 Ene 2022",
         time: "12:30:40",
-        status: "Declined"
+        status: "Resquested"
+      }, {
+        tel: "666444435",
+        date: "21 Ene 2022",
+        time: "12:30:40",
+        status: "Accepted"
+      }, {
+        tel: "666444335",
+        date: "21 Ene 2022",
+        time: "12:30:40",
+        status: "Closed"
+      }, {
+        tel: "666442335",
+        date: "21 Ene 2022",
+        time: "12:30:40",
+        status: "Inmobilized"
       }],
       status: [{
-        active: "fa fa-check-circle fa-lg",
-        style: "color: #4dc058;"
+        process: "fa fa-check-circle fa-lg",
+        style: "color: #4dc058; background-color : #99FFA2;"
       }, {
-        declined: "fa fa-times-circle fa-lg",
-        style: "color: #c90175;"
+        requested: "fa fa-times-circle fa-lg",
+        style: "color: #c90175; background-color : #FFDA99;"
+      }, {
+        accepted: "fa fa-times-circle fa-lg",
+        style: "color: #c90175; background-color : #FFDA99;"
+      }, {
+        closed: "fa fa-times-circle fa-lg",
+        style: "color: #c90175; background-color : #FFDA99;"
+      }, {
+        immobilize: "fa fa-times-circle fa-lg",
+        style: "color: #c90175; background-color : #FFDA99;"
       }]
     };
   },
@@ -28775,42 +28799,42 @@ var render = function () {
             staticStyle: { width: "80%" },
           },
           [
-            _c(
-              "div",
-              {
-                staticClass: "card-body",
-                style:
-                  call.status === "Active"
-                    ? "background-color : #99FFA2;"
-                    : "background-color : #FFDA99;",
-              },
-              [
-                _c("table", { staticClass: "table table-borderless mb-0" }, [
-                  _c("tbody", [
-                    _c("tr", [
-                      _c(
-                        "th",
-                        {
-                          staticClass: "align-middle col-3",
-                          attrs: { scope: "row" },
-                        },
-                        [_vm._v(_vm._s(call.tel))]
-                      ),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "align-middle col-3" }, [
-                        _vm._v(_vm._s(call.date)),
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "align-middle col-2" }, [
-                        _vm._v(_vm._s(call.time)),
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(1, true),
-                    ]),
-                  ]),
-                ]),
-              ]
-            ),
+            call.status === "Process"
+              ? _c(
+                  "div",
+                  { staticClass: "card-body", style: _vm.status[0].style },
+                  [
+                    _c(
+                      "table",
+                      { staticClass: "table table-borderless mb-0" },
+                      [
+                        _c("tbody", [
+                          _c("tr", [
+                            _c(
+                              "th",
+                              {
+                                staticClass: "align-middle col-3",
+                                attrs: { scope: "row" },
+                              },
+                              [_vm._v(_vm._s(call.tel))]
+                            ),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "align-middle col-3" }, [
+                              _vm._v(_vm._s(call.date)),
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "align-middle col-2" }, [
+                              _vm._v(_vm._s(call.time)),
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(1, true),
+                          ]),
+                        ]),
+                      ]
+                    ),
+                  ]
+                )
+              : _vm._e(),
           ]
         )
       }),
