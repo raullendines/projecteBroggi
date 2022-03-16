@@ -27,6 +27,7 @@ Route::get('/database', function () {
 
 
 Route::get('/login', [UsuarisController::class, 'showLogin'])->name('login');
+Route::get('/logout', [UsuarisController::class, 'logout'])->name('logout');
 Route::get('/put_login', [UsuarisController::class, 'login']);
 Route::get('/expedients', function () {
     return view('callManagement.callManagement');

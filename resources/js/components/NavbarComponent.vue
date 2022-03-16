@@ -103,7 +103,7 @@ export default {
       },
       {
         name: "Sortir",
-        url: "/logout",
+        url: "/projecteBroggi/public/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#FF005D; color:white",
       },
@@ -118,7 +118,7 @@ export default {
       },
       {
         name: "Sortir",
-        url: "/logout",
+        url: "/projecteBroggi/public/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#FF005D; color:white",
       },
@@ -133,7 +133,7 @@ export default {
       },
       {
         name: "Sortir",
-        url: "/logout",
+        url: "/projecteBroggi/public/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#FF005D; color:white",
       },
