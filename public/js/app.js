@@ -5967,6 +5967,11 @@ __webpack_require__.r(__webpack_exports__);
         style: "background-color:#FF005D; color:white"
       }],
       supervisorItems: [{
+        name: "Carta de trucades",
+        url: "/projecteBroggi/public/trucades",
+        icon: "fas fa-headset",
+        style: "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;"
+      }, {
         name: "Gestió d'expedients",
         url: "/expedients",
         icon: "fas fa-file-alt",
