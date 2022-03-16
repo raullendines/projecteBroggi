@@ -4,14 +4,46 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuaris;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarisController extends Controller
 {
+
+    public function showLogin()
+    {
+        return view('login.index');
+    }
+
+    public function login(Request $request){
+        $mail = $request->input('email');
+        $contrasenya = $request->input('password');
+
+        $user = Usuaris::where('correu', $mail)->first();
+
+        if ($user != null && Hash::check($contrasenya, $user->contrasenya)) {
+            Auth::login($user);
+             $response = redirect('/trucades');
+        }
+        else{
+            $request->session()->flash('error', 'Usuari o contrasenya incorrectes');
+             $response = redirect('/login')->withInput();
+        }
+
+           return $response;
+     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         //

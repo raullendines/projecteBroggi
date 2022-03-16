@@ -5935,10 +5935,15 @@ __webpack_require__.r(__webpack_exports__);
         style: "background-color:#FF005D; color:white"
       }],
       operatorItems: [{
+        name: "Carta de trucades",
+        url: "/projecteBroggi/public/trucades",
+        icon: "fas fa-headset",
+        style: "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;"
+      }, {
         name: "Sortir",
         url: "/logout",
         icon: "fas fa-sign-out-alt",
-        style: "background-color:#C90175; color:white"
+        style: "background-color:#FF005D; color:white"
       }],
       supervisorItems: [{
         name: "Gestió d'espedients",
@@ -5949,14 +5954,29 @@ __webpack_require__.r(__webpack_exports__);
         name: "Sortir",
         url: "/logout",
         icon: "fas fa-sign-out-alt",
-        style: "background-color:#C90175; color:white"
-      }]
+        style: "background-color:#FF005D; color:white"
+      }],
+      profiles: []
     };
   },
+  methods: {
+    selectProfiles: function selectProfiles() {
+      var _this = this;
 
-  /*   computed: {
-      ...mapGetters("user", ["isAdmin", "isOperator", "isSupervisor"]),
-    }, */
+      var me = this;
+      axios.get('/perfils/' + '1').then(function (response) {
+        me.profiles = response.data.data;
+        console.log(response);
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this.loading = false;
+      });
+    }
+  },
+  created: function created() {
+    this.selectProfiles();
+  },
   mounted: function mounted() {
     console.log("Component mounted.");
   }
@@ -6025,6 +6045,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.baseURL = "/projecteBroggi/public/api";
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -30566,48 +30587,137 @@ var render = function () {
     "nav",
     {
       staticClass:
-        "\n      navbar navbar-expand-lg navbar-light\n      bg-light\n      shadow\n      p-3\n      rounded\n    ",
+        "\n    navbar navbar-expand-lg navbar-light\n    bg-light\n    shadow\n    p-3\n    rounded\n  ",
     },
     [
-      _c("div", { staticClass: "container-fluid" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", attrs: { id: "navbarNavDropdown" } },
-          [
-            _c(
-              "ul",
-              { staticClass: "navbar-nav d-flex flex-row" },
-              _vm._l(_vm.adminItems, function (item) {
-                return _c("li", { key: item.url, staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-sm nav-link active",
-                      style: item.style,
-                      attrs: {
-                        "aria-current": "page",
-                        href: item.url,
-                        role: "button",
-                      },
-                    },
-                    [
-                      _c("i", { class: item.icon }),
-                      _vm._v(
-                        "\n              " +
-                          _vm._s(item.name) +
-                          "\n            "
-                      ),
-                    ]
-                  ),
-                ])
-              }),
-              0
-            ),
-          ]
-        ),
-      ]),
+      _c(
+        "div",
+        { staticClass: "container-fluid" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.profiles, function (profile) {
+            return _c(
+              "div",
+              {
+                key: profile.id,
+                staticClass: "d-flex",
+                attrs: { id: "navbarNavDropdown" },
+              },
+              [
+                profile.id === 3
+                  ? _c(
+                      "ul",
+                      { staticClass: "navbar-nav d-flex flex-row" },
+                      _vm._l(_vm.adminItems, function (item) {
+                        return _c(
+                          "li",
+                          { key: item.url, staticClass: "nav-item" },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-sm nav-link active",
+                                style: item.style,
+                                attrs: {
+                                  "aria-current": "page",
+                                  href: item.url,
+                                  role: "button",
+                                },
+                              },
+                              [
+                                _c("i", { class: item.icon }),
+                                _vm._v(
+                                  "\n            " +
+                                    _vm._s(item.name) +
+                                    "\n          "
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                profile.id === 2
+                  ? _c(
+                      "ul",
+                      { staticClass: "navbar-nav d-flex flex-row" },
+                      _vm._l(_vm.supervisorItems, function (item) {
+                        return _c(
+                          "li",
+                          { key: item.url, staticClass: "nav-item" },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-sm nav-link active",
+                                style: item.style,
+                                attrs: {
+                                  "aria-current": "page",
+                                  href: item.url,
+                                  role: "button",
+                                },
+                              },
+                              [
+                                _c("i", { class: item.icon }),
+                                _vm._v(
+                                  "\n            " +
+                                    _vm._s(item.name) +
+                                    "\n          "
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                profile.id === 1
+                  ? _c(
+                      "ul",
+                      { staticClass: "navbar-nav d-flex flex-row" },
+                      _vm._l(_vm.operatorItems, function (item) {
+                        return _c(
+                          "li",
+                          { key: item.url, staticClass: "nav-item" },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-sm nav-link active",
+                                style: item.style,
+                                attrs: {
+                                  "aria-current": "page",
+                                  href: item.url,
+                                  role: "button",
+                                },
+                              },
+                              [
+                                _c("i", { class: item.icon }),
+                                _vm._v(
+                                  "\n            " +
+                                    _vm._s(item.name) +
+                                    "\n          "
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+              ]
+            )
+          }),
+        ],
+        2
+      ),
     ]
   )
 }
@@ -42802,7 +42912,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\projecteBroggi"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\projecteBroggi","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Applications/XAMPP/xamppfiles/htdocs/projecteBroggi"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"/Applications/XAMPP/xamppfiles/htdocs/projecteBroggi","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

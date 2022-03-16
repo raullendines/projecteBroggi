@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Provincies;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ExpedientsResource;
+use App\Models\Expedients;
 use Illuminate\Http\Request;
 
-class ProvinciesController extends Controller
+class ExpedientsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +16,9 @@ class ProvinciesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $expedients = Expedients::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ExpedientsResource::collection($expedients);
     }
 
     /**
@@ -41,21 +35,10 @@ class ProvinciesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Provincies  $provincies
+     * @param  \App\Models\Expedients  $expedients
      * @return \Illuminate\Http\Response
      */
-    public function show(Provincies $provincies)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Provincies  $provincies
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Provincies $provincies)
+    public function show(Expedients $expedients)
     {
         //
     }
@@ -64,10 +47,10 @@ class ProvinciesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Provincies  $provincies
+     * @param  \App\Models\Expedients  $expedients
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provincies $provincies)
+    public function update(Request $request, Expedients $expedients)
     {
         //
     }
@@ -75,10 +58,10 @@ class ProvinciesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Provincies  $provincies
+     * @param  \App\Models\Expedients  $expedients
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Provincies $provincies)
+    public function destroy(Expedients $expedients)
     {
         //
     }

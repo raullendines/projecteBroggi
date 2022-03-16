@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CartesTrucadesResource;
 use App\Models\CartesTrucades;
 use Illuminate\Http\Request;
 
@@ -14,17 +16,9 @@ class CartesTrucadesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $callcards = CartesTrucades::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return CartesTrucadesResource::collection($callcards);
     }
 
     /**
@@ -45,17 +39,6 @@ class CartesTrucadesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(CartesTrucades $cartesTrucades)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CartesTrucades  $cartesTrucades
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CartesTrucades $cartesTrucades)
     {
         //
     }

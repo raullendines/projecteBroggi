@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\TipusIncidentsResource;
 use App\Models\TipusIncidents;
 use Illuminate\Http\Request;
 
@@ -14,17 +16,9 @@ class TipusIncidentsController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $tipusIncidents = TipusIncidents::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return TipusIncidentsResource::collection($tipusIncidents);
     }
 
     /**
@@ -45,17 +39,6 @@ class TipusIncidentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(TipusIncidents $tipusIncidents)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TipusIncidents  $tipusIncidents
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TipusIncidents $tipusIncidents)
     {
         //
     }
