@@ -5957,7 +5957,7 @@ __webpack_require__.r(__webpack_exports__);
         style: "background-color:#FF005D; color:white"
       }],
       profiles: [],
-      userId: []
+      userId: {}
     };
   },
   methods: {
@@ -5965,8 +5965,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var me = this;
-      console.log(this.userId);
-      axios.get('/perfils', me.userId).then(function (response) {
+      this.userId = this.$attrs['userid'];
+      axios.get('/perfils/' + me.userId).then(function (response) {
         me.profiles = response.data.data;
         console.log(response);
       })["catch"](function (err) {
