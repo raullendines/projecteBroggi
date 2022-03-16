@@ -124,6 +124,13 @@ export default {
       },
     ],
     supervisorItems: [
+        {
+        name: "Carta de trucades",
+        url: "/projecteBroggi/public/trucades",
+        icon: "fas fa-headset",
+        style:
+          "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;",
+      },
       {
         name: "Gestió d'expedients",
         url: "/expedients",
