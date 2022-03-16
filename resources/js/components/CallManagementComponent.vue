@@ -13,7 +13,7 @@
   </table>
 
   <div class="card mt-3 m-auto" style="width:80%" v-for="call in calls" :key="call.tel">
-  <div class="card-body" v-if="call.status === 'Process'" :style="status[0].style">
+  <div class="card-body" :style="call.style">
     <table class="table table-borderless mb-0">
 <tbody>
     <tr>
@@ -45,48 +45,36 @@ export default {
                 tel: "666444545",
                 date: "21 Ene 2022",
                 time: "12:30:40",
-                status: "Process"
+                status: "Process",
+                style: "color: #4dc058; background-color : #99FFA2;"
             },
             {
                 tel: "666444535",
                 date: "21 Ene 2022",
                 time: "12:30:40",
-                status: "Resquested"
+                status: "Resquested",
+                style: "color: #4dc058; background-color : #ffeb00;"
             },
             {
                 tel: "666444435",
                 date: "21 Ene 2022",
                 time: "12:30:40",
-                status: "Accepted"
+                status: "Accepted",
+                style: "color: #4dc058; background-color : #6bca33;"
             },
             {
                 tel: "666444335",
                 date: "21 Ene 2022",
                 time: "12:30:40",
-                status: "Closed"
+                status: "Closed",
+                style: "color: #4dc058; background-color : #129ce0;"
             },
             {
                 tel: "666442335",
                 date: "21 Ene 2022",
                 time: "12:30:40",
-                status: "Inmobilized"
-            },
-        ],
-        status: [
-            {process: "fa fa-check-circle fa-lg",
-            style: "color: #4dc058; background-color : #99FFA2;"
-            },
-            {requested: "fa fa-times-circle fa-lg",
-            style: "color: #c90175; background-color : #FFDA99;"
-            },
-            {accepted: "fa fa-times-circle fa-lg",
-            style: "color: #c90175; background-color : #FFDA99;"
-            },
-            {closed: "fa fa-times-circle fa-lg",
-            style: "color: #c90175; background-color : #FFDA99;"
-            },
-            {immobilize: "fa fa-times-circle fa-lg",
-            style: "color: #c90175; background-color : #FFDA99;"
+                status: "Inmobilized",
+                style: "color: #4dc058; background-color : #a0bafc;"
             },
         ],
     }),
