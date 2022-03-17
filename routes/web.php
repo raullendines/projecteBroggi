@@ -32,18 +32,14 @@ Route::get('/expedients', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::middleware(['roles:1'])->group(function () {
-
-    }); 
-
-    Route::get('/trucades', function () {
-        return view('callCard.callCard');
-    });
-
-    Route::get('/expedients', function () {
-        return view('callManagement.callManagement');
-    });
+    Route::middleware(['roles'])->group(function () {
+        Route::get('/trucades', function () {
+            return view('callCard.callCard');
+        });
     
-
+        Route::get('/expedients', function () {
+            return view('callManagement.callManagement');
+        });
+    }); 
 });
 
