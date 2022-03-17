@@ -89,21 +89,21 @@ export default {
       },
       {
         name: "Mapa",
-        url: "/map",
+        url: "/projecteBroggi/public/map",
         icon: "fas fa-map-marker-alt",
         style:
           "background-color:#F2AB31; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
         name: "Gráfic",
-        url: "/graph",
+        url: "/projecteBroggi/public/graph",
         icon: "fas fa-chart-line",
         style:
           "background-color:#4FBF58; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
         name: "Sortir",
-        url: "/logout",
+        url: "/projecteBroggi/public/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#FF005D; color:white",
       },
@@ -118,7 +118,7 @@ export default {
       },
       {
         name: "Sortir",
-        url: "/logout",
+        url: "/projecteBroggi/public/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#FF005D; color:white",
       },
@@ -126,14 +126,14 @@ export default {
     supervisorItems: [
       {
         name: "Gestió d'espedients",
-        url: "/expedients",
+        url: "/projecteBroggi/public/expedients",
         icon: "fas fa-file-alt",
         style:
           "background-color:#02AFC8; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
         name: "Sortir",
-        url: "/logout",
+        url: "/projecteBroggi/public/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#FF005D; color:white",
       },

@@ -15,24 +15,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('plantilla.principal');
-// });
+Route::get('/', function () { return view('plantilla.principal'); });
 
 Route::resource('/perfils', PerfilsController::class);
 
-Route::get('/database', function () {
-    return view('database.database');
-});
+Route::get('/database', function () { return view('database.database'); });
 
+Route::get('/error', function () { return view('error.error'); })->name('error');
 
 Route::get('/login', [UsuarisController::class, 'showLogin'])->name('login');
+Route::get('/logout', [UsuarisController::class, 'logout'])->name('logout');
 Route::get('/put_login', [UsuarisController::class, 'login']);
 Route::get('/expedients', function () {
     return view('callManagement.callManagement');
 });
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::middleware(['roles:1'])->group(function () {
+
+    }); 
+
     Route::get('/trucades', function () {
         return view('callCard.callCard');
     });
