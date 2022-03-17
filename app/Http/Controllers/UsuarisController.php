@@ -35,17 +35,18 @@ class UsuarisController extends Controller
 
         if ($user != null && $user->actiu == true && Hash::check($contrasenya, $user->contrasenya)) {
             Auth::login($user);
-             $response = redirect('/trucades');
+            $response = redirect('/trucades');
         }
         else{
             $request->session()->flash('error', 'Usuari o contrasenya incorrectes');
-             $response = redirect('/login')->withInput();
+            $response = redirect('/login')->withInput();
         }
 
            return $response;
      }
 
-    public function logout(){
+    public function logout(Request $request){
+        $request->session()->flash('mensajes', 'Has tancat sessió correctament.');
         Auth::logout();
         return redirect('/login');
     }
