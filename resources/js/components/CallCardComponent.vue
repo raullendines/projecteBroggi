@@ -19,11 +19,11 @@
       <th scope="row" class="align-middle">{{call.tel}}</th>
       <td class="text-center align-middle">{{call.date}}</td>
       <td class="text-end">
-          <button type="button" class="btn btn-outline-secondary" v-if="call.status === 'Declined' || call.status === 'Active' || call.status === 'Call'" disabled>Aceptar</button>
-          <button type="button" @click="start" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalForm" v-else>Aceptar</button>
+          <button type="button" class="btn btn-outline-secondary" v-if="call.status === 'Declined' || call.status === 'Accepted' || call.status === 'Call'" disabled>Aceptar</button>
+          <button type="button" @click="start(call)" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalForm" v-else>Aceptar</button>
       </td>
       <td class="text-end align-middle">
-          <i v-if="call.status === 'Active'" :class="status[0].active" :style="status[0].style"></i>
+          <i v-if="call.status === 'Accepted'" :class="status[0].accepted" :style="status[0].style"></i>
           <i v-else-if="call.status === 'Pending'" :class="status[1].pending" :style="status[1].style"></i>
           <i v-else-if="call.status === 'Declined'" :class="status[2].declined" :style="status[2].style"></i>
           <i v-else-if="call.status === 'Call'" :class="status[3].inCall" :style="status[3].style"></i>
@@ -34,13 +34,14 @@
   </div>
 </div>
 
-<form-component></form-component>
+<form-component @status="getStatus"></form-component>
 
 </main>
 </template>
 
 <script>
 import FormComponent from './FormComponent.vue';
+
 export default {
   components: { FormComponent },
     data: () => ({
@@ -48,7 +49,7 @@ export default {
             {
                 tel: "666444545",
                 date: "21 Ene 2022",
-                status: "Active"
+                status: "Accepted"
             },
             {
                 tel: "666444555",
@@ -67,7 +68,7 @@ export default {
             },
         ],
         status: [
-            {active: "fa fa-check-circle fa-lg",
+            {accepted: "fa fa-check-circle fa-lg",
             style: "color: #4dc058;"
             },
             {pending: "fas fa-clock fa-lg",
@@ -80,10 +81,20 @@ export default {
             style: "color: #02afc8;"
             },
         ],
+        clickedItem:{
+            tel:'',
+            date:'',
+            status:''
+        },
     }),
     methods:{
-        start(){
-            this.$root.$emit('CallCardComponent')
+        start(call){
+            this.$root.$emit('CallCardComponent');
+            this.clickedItem = call;
+            this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, "Call");
+        },
+        getStatus(status) {
+            this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);
         }
     },
   mounted() {

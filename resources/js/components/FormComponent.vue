@@ -294,8 +294,8 @@
       <div class="modal-footer d-flex justify-content-between">
         <p class="">Temps de trucada: {{formattedElapsedTime}}</p>
         <div>
-            <button type="button" class="btn btn-primary" @click="stop" data-bs-dismiss="modal">Penjar</button>
-            <button type="button" class="btn btn-secondary" @click="stop">Guardar i penjar</button>
+            <button type="button" class="btn btn-primary" @click="stop(0)" data-bs-dismiss="modal">Penjar</button>
+            <button type="button" class="btn btn-secondary" @click="stop(1)">Guardar i penjar</button>
         </div>
       </div>
     </div>
@@ -327,10 +327,15 @@
                     this.elapsedTime += 1000;
                 }, 1000);
                     },
-            stop() {
+            stop(e) {
                 clearInterval(this.timer);
                 this.elapsedTime = 0;
-                    }
+                if (e === 0) {
+                    this.$emit('status', "Declined");
+                } else {
+                    this.$emit('status', "Accepted");
+                }
+                    },
         },
             mounted() {
                 this.$root.$on('CallCardComponent', () => {
