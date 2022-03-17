@@ -81,7 +81,7 @@ export default {
           "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
-        name: "Gestió d'espedients",
+        name: "Gestió d'expedients",
         url: "/projecteBroggi/public/expedients",
         icon: "fas fa-file-alt",
         style:
@@ -95,7 +95,7 @@ export default {
           "background-color:#F2AB31; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
-        name: "Gráfic",
+        name: "Gràfic",
         url: "/graph",
         icon: "fas fa-chart-line",
         style:
@@ -103,7 +103,7 @@ export default {
       },
       {
         name: "Sortir",
-        url: "/logout",
+        url: "/projecteBroggi/public/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#FF005D; color:white",
       },
@@ -118,14 +118,21 @@ export default {
       },
       {
         name: "Sortir",
-        url: "/logout",
+        url: "/projecteBroggi/public/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#FF005D; color:white",
       },
     ],
     supervisorItems: [
+        {
+        name: "Carta de trucades",
+        url: "/projecteBroggi/public/trucades",
+        icon: "fas fa-headset",
+        style:
+          "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;",
+      },
       {
-        name: "Gestió d'espedients",
+        name: "Gestió d'expedients",
         url: "/expedients",
         icon: "fas fa-file-alt",
         style:
@@ -133,17 +140,19 @@ export default {
       },
       {
         name: "Sortir",
-        url: "/logout",
+        url: "/projecteBroggi/public/logout",
         icon: "fas fa-sign-out-alt",
         style: "background-color:#FF005D; color:white",
       },
     ],
     profiles: [],
+    userId:{},
   }),
   methods: {
       selectProfiles () {
           let me = this;
-          axios.get('/perfils/' + '1').then((response) => {
+          this.userId = this.$attrs['userid'];
+          axios.get('/perfils/' + me.userId).then((response) => {
               me.profiles = response.data.data;
               console.log(response);
           })
@@ -151,7 +160,7 @@ export default {
               console.log(err);
           })
           .finally(() => (this.loading = false));
-      }
+      },
   },
   created() {
     this.selectProfiles();
