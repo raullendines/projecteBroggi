@@ -6152,9 +6152,9 @@ __webpack_require__.r(__webpack_exports__);
       this.elapsedTime = 0;
 
       if (e === 0) {
-        this.$emit('status', "Declined");
+        this.$emit('status', 'Declined');
       } else {
-        this.$emit('status', "Accepted");
+        this.$emit('status', 'Accepted');
       }
     }
   },
@@ -29281,11 +29281,7 @@ var render = function () {
                     _vm._v(" "),
                     _c("td", { staticClass: "text-end" }, [
                       call.status === "Declined" ||
-<<<<<<< HEAD
                       call.status === "Accepted" ||
-=======
-                      call.status === "Active" ||
->>>>>>> main
                       call.status === "Call"
                         ? _c(
                             "button",
@@ -29304,30 +29300,20 @@ var render = function () {
                                 "data-bs-toggle": "modal",
                                 "data-bs-target": "#modalForm",
                               },
-<<<<<<< HEAD
                               on: {
                                 click: function ($event) {
                                   return _vm.start(call)
                                 },
                               },
-=======
-                              on: { click: _vm.start },
->>>>>>> main
                             },
                             [_vm._v("Aceptar")]
                           ),
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-end align-middle" }, [
-<<<<<<< HEAD
                       call.status === "Accepted"
                         ? _c("i", {
                             class: _vm.status[0].accepted,
-=======
-                      call.status === "Active"
-                        ? _c("i", {
-                            class: _vm.status[0].active,
->>>>>>> main
                             style: _vm.status[0].style,
                           })
                         : call.status === "Pending"
@@ -29355,11 +29341,7 @@ var render = function () {
         )
       }),
       _vm._v(" "),
-<<<<<<< HEAD
       _c("form-component", { on: { status: _vm.getStatus } }),
-=======
-      _c("form-component"),
->>>>>>> main
     ],
     2
   )
@@ -30278,7 +30260,11 @@ var render = function () {
                     {
                       staticClass: "btn btn-primary",
                       attrs: { type: "button", "data-bs-dismiss": "modal" },
-                      on: { click: _vm.stop },
+                      on: {
+                        click: function ($event) {
+                          return _vm.stop(0)
+                        },
+                      },
                     },
                     [_vm._v("\n            Penjar\n          ")]
                   ),
@@ -30288,7 +30274,11 @@ var render = function () {
                     {
                       staticClass: "btn btn-secondary",
                       attrs: { type: "button" },
-                      on: { click: _vm.stop },
+                      on: {
+                        click: function ($event) {
+                          return _vm.stop(1)
+                        },
+                      },
                     },
                     [_vm._v("\n            Guardar i penjar\n          ")]
                   ),

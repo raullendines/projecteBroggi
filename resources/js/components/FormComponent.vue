@@ -597,12 +597,12 @@
             <button
               type="button"
               class="btn btn-primary"
-              @click="stop"
+              @click="stop(0)"
               data-bs-dismiss="modal"
             >
               Penjar
             </button>
-            <button type="button" class="btn btn-secondary" @click="stop">
+            <button type="button" class="btn btn-secondary" @click="stop(1)">
               Guardar i penjar
             </button>
           </div>
@@ -637,9 +637,14 @@ export default {
         this.elapsedTime += 1000;
       }, 1000);
     },
-    stop() {
+    stop(e) {
       clearInterval(this.timer);
       this.elapsedTime = 0;
+      if (e === 0) {
+          this.$emit('status', 'Declined');
+      } else {
+          this.$emit('status', 'Accepted');
+      }
     },
   },
   mounted() {
