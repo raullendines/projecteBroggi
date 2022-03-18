@@ -89,14 +89,14 @@ export default {
       },
       {
         name: "Mapa",
-        url: "/map",
+        url: "/projecteBroggi/public/map",
         icon: "fas fa-map-marker-alt",
         style:
           "background-color:#F2AB31; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
         name: "Gràfic",
-        url: "/graph",
+        url: "/projecteBroggi/public/graph",
         icon: "fas fa-chart-line",
         style:
           "background-color:#4FBF58; color:white; margin-right:10px; padding: 7.5px;",
@@ -133,7 +133,7 @@ export default {
       },
       {
         name: "Gestió d'expedients",
-        url: "/expedients",
+        url: "/projecteBroggi/public/expedients",
         icon: "fas fa-file-alt",
         style:
           "background-color:#02AFC8; color:white; margin-right:10px; padding: 7.5px;",
