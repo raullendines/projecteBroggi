@@ -17,7 +17,7 @@
 <tbody>
     <tr>
       <th scope="row" class="align-middle">{{call.tel}}</th>
-      <td class="text-center align-middle">{{call.date}}</td>
+      <td class="text-center align-middle">{{date | moment}}</td>
       <td class="text-end">
           <button type="button" class="btn btn-outline-secondary" v-if="call.status === 'Declined' || call.status === 'Accepted' || call.status === 'Call'" disabled>Aceptar</button>
           <button type="button" @click="start(call)" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalForm" v-else>Aceptar</button>
@@ -41,6 +41,7 @@
 
 <script>
 import FormComponent from './FormComponent.vue';
+import moment from "moment";
 
 export default {
   components: { FormComponent },
@@ -95,8 +96,13 @@ export default {
         },
         getStatus(status) {
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);
-        }
+        },
     },
+      filters: {
+    moment() {
+      return this.moment(new Date()).format('Do MMM YYYY');
+    }
+  },
   mounted() {
     console.log("Component mounted.");
   },
