@@ -647,6 +647,12 @@ export default {
       }
     },
   },
+  props:{
+      expMsg:{},
+  },
+  created: {
+
+  },
   mounted() {
     this.$root.$on("CallCardComponent", () => {
       // your code goes here

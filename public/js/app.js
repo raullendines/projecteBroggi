@@ -5428,37 +5428,59 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       calls: [{
+        id: 0,
         tel: "666444545",
         date: "21 Ene 2022",
         time: "12:30:40",
         status: "Process",
         style: "color: #4dc058; background-color : #99FFA2;"
       }, {
+        id: 1,
         tel: "666444535",
         date: "21 Ene 2022",
         time: "12:30:40",
         status: "Resquested",
         style: "color: #4dc058; background-color : #ffeb00;"
       }, {
+        id: 2,
         tel: "666444435",
         date: "21 Ene 2022",
         time: "12:30:40",
         status: "Accepted",
         style: "color: #4dc058; background-color : #6bca33;"
       }, {
+        id: 3,
         tel: "666444335",
         date: "21 Ene 2022",
         time: "12:30:40",
         status: "Closed",
         style: "color: #4dc058; background-color : #129ce0;"
       }, {
+        id: 4,
         tel: "666442335",
         date: "21 Ene 2022",
         time: "12:30:40",
         status: "Inmobilized",
         style: "color: #4dc058; background-color : #a0bafc;"
-      }]
+      }],
+      clickedItem: {
+        id: '',
+        tel: '',
+        date: '',
+        status: ''
+      },
+      expItem: {
+        id: '',
+        msg: ''
+      }
     };
+  },
+  methods: {
+    expAction: function expAction(call, e) {
+      this.expItem.id = call;
+      this.expItem.msg = e;
+      return this.expItem;
+    }
   },
   mounted: function mounted() {
     console.log("Component mounted.");
@@ -6164,6 +6186,10 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
+  props: {
+    expMsg: {}
+  },
+  created: {},
   mounted: function mounted() {
     var _this2 = this;
 
@@ -50849,7 +50875,7 @@ var render = function () {
         return _c(
           "div",
           {
-            key: call.tel,
+            key: call.id,
             staticClass: "card mt-3 m-auto",
             staticStyle: { width: "80%" },
           },
@@ -50875,7 +50901,43 @@ var render = function () {
                       _vm._v(_vm._s(call.time)),
                     ]),
                     _vm._v(" "),
-                    _vm._m(1, true),
+                    _c("td", { staticClass: "text-end col-2" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-info",
+                          attrs: {
+                            type: "button",
+                            "data-bs-toggle": "modal",
+                            "data-bs-target": "#modalForm",
+                          },
+                          on: {
+                            click: function ($event) {
+                              return _vm.expAction(call.id, "ver")
+                            },
+                          },
+                        },
+                        [_vm._v("Ver")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-info",
+                          attrs: {
+                            type: "button",
+                            "data-bs-toggle": "modal",
+                            "data-bs-target": "#modalForm",
+                          },
+                          on: {
+                            click: function ($event) {
+                              return _vm.expAction(call.id, "modificar")
+                            },
+                          },
+                        },
+                        [_vm._v("Modificar")]
+                      ),
+                    ]),
                   ]),
                 ]),
               ]),
@@ -50884,7 +50946,7 @@ var render = function () {
         )
       }),
       _vm._v(" "),
-      _c("form-component"),
+      _c("form-component", { attrs: { expMsg: _vm.expItem } }),
     ],
     2
   )
@@ -50911,38 +50973,6 @@ var staticRenderFns = [
         ]),
       ]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "text-end col-2" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-info",
-          attrs: {
-            type: "button",
-            "data-bs-toggle": "modal",
-            "data-bs-target": "#modalForm",
-          },
-        },
-        [_vm._v("Ver")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-info",
-          attrs: {
-            type: "button",
-            "data-bs-toggle": "modal",
-            "data-bs-target": "#modalForm",
-          },
-        },
-        [_vm._v("Modificar")]
-      ),
-    ])
   },
 ]
 render._withStripped = true
