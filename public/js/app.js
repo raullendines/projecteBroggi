@@ -5316,19 +5316,15 @@ __webpack_require__.r(__webpack_exports__);
     return {
       calls: [{
         tel: "666444545",
-        date: "21 Ene 2022",
         status: "Accepted"
       }, {
         tel: "666444555",
-        date: "21 Ene 2022",
         status: "Pending"
       }, {
         tel: "666444535",
-        date: "21 Ene 2022",
         status: "Declined"
       }, {
         tel: "666444435",
-        date: "21 Ene 2022",
         status: "Call"
       }],
       status: [{
@@ -5348,7 +5344,8 @@ __webpack_require__.r(__webpack_exports__);
         tel: '',
         date: '',
         status: ''
-      }
+      },
+      currentdate: {}
     };
   },
   methods: {
@@ -5359,11 +5356,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     getStatus: function getStatus(status) {
       this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);
-    }
-  },
-  filters: {
+    },
     moment: function moment() {
-      return this.moment(new Date()).format('Do MMM YYYY');
+      moment__WEBPACK_IMPORTED_MODULE_1___default().locale('es');
+
+      this.currentdate = moment__WEBPACK_IMPORTED_MODULE_1___default()(new Date()).format('DD MMM YYYY').toUpperCase().replace('.', '');
+      return this.currentdate;
     }
   },
   mounted: function mounted() {
@@ -6350,20 +6348,16 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var moment_locale_es__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment/locale/es */ "./node_modules/moment/locale/es.js");
-/* harmony import */ var moment_locale_es__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_locale_es__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 /**
@@ -6387,14 +6381,6 @@ Vue.component("callmanagement-component", (__webpack_require__(/*! ./components/
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
-
-
-__webpack_require__(/*! moment/locale/es */ "./node_modules/moment/locale/es.js");
-
-Vue.use(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"), {
-  moment: (moment__WEBPACK_IMPORTED_MODULE_0___default())
-});
 var app = new Vue({
   el: "#app"
 });
@@ -50732,7 +50718,7 @@ var render = function () {
                     ),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-center align-middle" }, [
-                      _vm._v(_vm._s(_vm._f("moment")(_vm.date))),
+                      _vm._v(_vm._s(_vm.moment())),
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-end" }, [

@@ -17,7 +17,7 @@
 <tbody>
     <tr>
       <th scope="row" class="align-middle">{{call.tel}}</th>
-      <td class="text-center align-middle">{{date | moment}}</td>
+      <td class="text-center align-middle">{{moment()}}</td>
       <td class="text-end">
           <button type="button" class="btn btn-outline-secondary" v-if="call.status === 'Declined' || call.status === 'Accepted' || call.status === 'Call'" disabled>Aceptar</button>
           <button type="button" @click="start(call)" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalForm" v-else>Aceptar</button>
@@ -41,30 +41,25 @@
 
 <script>
 import FormComponent from './FormComponent.vue';
-import moment from "moment";
-
+import moment from 'moment';
 export default {
   components: { FormComponent },
     data: () => ({
         calls: [
             {
                 tel: "666444545",
-                date: "21 Ene 2022",
                 status: "Accepted"
             },
             {
                 tel: "666444555",
-                date: "21 Ene 2022",
                 status: "Pending"
             },
             {
                 tel: "666444535",
-                date: "21 Ene 2022",
                 status: "Declined"
             },
             {
                 tel: "666444435",
-                date: "21 Ene 2022",
                 status: "Call"
             },
         ],
@@ -87,6 +82,7 @@ export default {
             date:'',
             status:''
         },
+        currentdate:{},
     }),
     methods:{
         start(call){
@@ -97,11 +93,11 @@ export default {
         getStatus(status) {
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);
         },
-    },
-      filters: {
-    moment() {
-      return this.moment(new Date()).format('Do MMM YYYY');
-    }
+        moment: function () {
+            moment.locale('es');
+            this.currentdate = moment(new Date()).format('DD MMM YYYY').toUpperCase().replace('.', '');
+            return this.currentdate;
+        }
   },
   mounted() {
     console.log("Component mounted.");
