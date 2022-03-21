@@ -1,5 +1,6 @@
 <template>
-  <div
+  <div>
+<div
     class="modal fade"
     id="modalForm"
     tabindex="-1"
@@ -66,8 +67,7 @@
                   aria-label="provincia"
                 >
                   <option selected value="">Selecciona una opció</option>
-                  <option value="provincia1">Provincia 1</option>
-                  <option value="Altres">Altres</option>
+                  <option v-for="provincia in provincies" :key="provincia.id">{{ provincia.nom }}</option>
                 </select>
                 <div id="provincia" class="form-text">
                   * Provincia de l'incident
@@ -598,6 +598,8 @@
               type="button"
               class="btn btn-primary"
               @click="stop(0)"
+              data-bs-target="#penjarModal"
+              data-bs-toggle="modal"
               data-bs-dismiss="modal"
             >
               Penjar
@@ -610,6 +612,39 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="penjarModal" aria-hidden="true" aria-labelledby="penjarModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Raó per la que pengem trucada sense completar expedient</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col">
+                <label for="raoPenjar" class="form-label">Raó:</label>
+                <select
+                  id="raoPenjar"
+                  name="raoPenjar"
+                  class="form-select"
+                  aria-label="raoPenjar"
+                >
+                  <option selected>Selecciona una raó</option>
+                  <option value="rao1">Raó 1</option>
+                  <option value="rao2">Raó 2</option>
+                  <option value="rao3">Raó 3</option>
+                </select>
+                <div id="vipSelect" class="form-text">* Per quina raó s'ha decidit penjar sense completar l'expedient.</div>
+              </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-dismiss="modal">Guardar i penjar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+
 </template>
 
 <script>
@@ -621,6 +656,7 @@ export default {
       localitzacio: "",
       tipusLocalitzacio: "",
       tipusIncident: "",
+      provincies: []
     };
   },
   computed: {
@@ -646,6 +682,17 @@ export default {
           this.$emit('status', 'Accepted');
       }
     },
+    selectProvincies() {
+        let me = this;
+          me.userId = me.$attrs['userid'];
+          axios.get('/provincies/').then((response) => {
+              me.provincies = response.data;
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+    }
   },
   props:{
       expMsg:{},
