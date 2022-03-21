@@ -684,9 +684,9 @@ export default {
     },
     selectProvincies() {
         let me = this;
-          me.userId = me.$attrs['userid'];
           axios.get('/provincies/').then((response) => {
               me.provincies = response.data;
+              console.log(me.provincies);
           })
           .catch((err) => {
               console.log(err);
@@ -697,8 +697,8 @@ export default {
   props:{
       expMsg:{},
   },
-  created: {
-
+  created() {
+    this.selectProvincies()
   },
   mounted() {
     this.$root.$on("CallCardComponent", () => {
