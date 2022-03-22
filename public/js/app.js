@@ -5535,6 +5535,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
 //
 //
 //
@@ -6186,14 +6189,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {
+    return _defineProperty({
       elapsedTime: 0,
       timer: undefined,
       localitzacio: "",
       tipusLocalitzacio: "",
       tipusIncident: "",
-      provincies: []
-    };
+      provincies: [],
+      municipis: [],
+      comarques: [],
+      tipusIncidents: [],
+      incidents: [],
+      selectProvincia: "",
+      selectComarca: ""
+    }, "tipusIncident", "");
   },
   computed: {
     formattedElapsedTime: function formattedElapsedTime() {
@@ -6233,6 +6242,61 @@ __webpack_require__.r(__webpack_exports__);
       })["finally"](function () {
         return _this2.loading = false;
       });
+    },
+    selectComarques: function selectComarques() {
+      var _this3 = this;
+
+      var me = this;
+      var provincia = this.selectProvincia;
+      axios.get('/comarques/' + provincia).then(function (response) {
+        me.comarques = response.data;
+        console.log(me.comarques);
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this3.loading = false;
+      });
+    },
+    selectMunicipis: function selectMunicipis() {
+      var _this4 = this;
+
+      var me = this;
+      var municipi = this.selectComarca;
+      axios.get('/municipis/' + municipi).then(function (response) {
+        me.municipis = response.data;
+        console.log(me.municipis);
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this4.loading = false;
+      });
+    },
+    selectTipusIncident: function selectTipusIncident() {
+      var _this5 = this;
+
+      var me = this;
+      axios.get('/incidents_types/').then(function (response) {
+        me.tipusIncidents = response.data;
+        console.log(me.tipusIncidents);
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this5.loading = false;
+      });
+    },
+    selectIncidents: function selectIncidents() {
+      var _this6 = this;
+
+      var me = this;
+      var tipusIncident = this.tipusIncident;
+      axios.get('/incidents/' + tipusIncident).then(function (response) {
+        me.incidents = response.data;
+        console.log(me.incidents);
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this6.loading = false;
+      });
     }
   },
   props: {
@@ -6240,13 +6304,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.selectProvincies();
+    this.selectMunicipis();
+    this.selectTipusIncident();
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this7 = this;
 
     this.$root.$on("CallCardComponent", function () {
       // your code goes here
-      _this3.start();
+      _this7.start();
     });
     console.log("Component mounted.");
   }
@@ -51252,11 +51318,43 @@ var render = function () {
                           _c(
                             "select",
                             {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.selectProvincia,
+                                  expression: "selectProvincia",
+                                },
+                              ],
                               staticClass: "form-select",
                               attrs: {
                                 id: "provincia",
                                 name: "provincia",
                                 "aria-label": "provincia",
+                              },
+                              on: {
+                                change: [
+                                  function ($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call(
+                                        $event.target.options,
+                                        function (o) {
+                                          return o.selected
+                                        }
+                                      )
+                                      .map(function (o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.selectProvincia = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  function ($event) {
+                                    return _vm.selectComarques()
+                                  },
+                                ],
                               },
                             },
                             [
@@ -51267,9 +51365,14 @@ var render = function () {
                               ),
                               _vm._v(" "),
                               _vm._l(_vm.provincies, function (provincia) {
-                                return _c("option", { key: provincia.id }, [
-                                  _vm._v(_vm._s(provincia.nom)),
-                                ])
+                                return _c(
+                                  "option",
+                                  {
+                                    key: provincia.id,
+                                    domProps: { value: provincia.id },
+                                  },
+                                  [_vm._v(_vm._s(provincia.nom))]
+                                )
                               }),
                             ],
                             2
@@ -51300,7 +51403,68 @@ var render = function () {
                             1
                           ),
                           _vm._v(" "),
-                          _vm._m(1),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.selectComarca,
+                                  expression: "selectComarca",
+                                },
+                              ],
+                              staticClass: "form-select",
+                              attrs: {
+                                id: "comarca",
+                                name: "comarca",
+                                "aria-label": "comarca",
+                              },
+                              on: {
+                                change: [
+                                  function ($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call(
+                                        $event.target.options,
+                                        function (o) {
+                                          return o.selected
+                                        }
+                                      )
+                                      .map(function (o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.selectComarca = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  function ($event) {
+                                    return _vm.selectMunicipis()
+                                  },
+                                ],
+                              },
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { selected: "", value: "" } },
+                                [_vm._v("Selecciona una opció")]
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.comarques, function (comarca) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: comarca.id,
+                                    domProps: { value: comarca.id },
+                                  },
+                                  [_vm._v(_vm._s(comarca.nom))]
+                                )
+                              }),
+                            ],
+                            2
+                          ),
                           _vm._v(" "),
                           _c(
                             "div",
@@ -51310,7 +51474,7 @@ var render = function () {
                             },
                             [
                               _vm._v(
-                                "\n                  * Comunitat autònoma de l'incident\n                "
+                                "\n                  * Comarca de l'incident\n                "
                               ),
                             ]
                           ),
@@ -51321,32 +51485,52 @@ var render = function () {
                             "label",
                             {
                               staticClass: "form-label",
-                              attrs: { for: "municipioInput" },
+                              attrs: { for: "selectMunicipi" },
                             },
                             [_c("vermell", [_vm._v("*")]), _vm._v("Municipi")],
                             1
                           ),
                           _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              name: "municipioInput",
-                              id: "municipioInput",
-                              "aria-describedby": "municipioInput",
-                              placeholder: "Escriu aquí",
+                          _c(
+                            "select",
+                            {
+                              staticClass: "form-select",
+                              attrs: {
+                                id: "selectMunicipi",
+                                name: "selectMunicipi",
+                                "aria-label": "selectMunicipi",
+                              },
                             },
-                          }),
+                            [
+                              _c(
+                                "option",
+                                { attrs: { selected: "", value: "" } },
+                                [_vm._v("Selecciona una opció")]
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.municipis, function (municipi) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: municipi.id,
+                                    domProps: { value: municipi.id },
+                                  },
+                                  [_vm._v(_vm._s(municipi.nom))]
+                                )
+                              }),
+                            ],
+                            2
+                          ),
                           _vm._v(" "),
                           _c(
                             "div",
                             {
                               staticClass: "form-text",
-                              attrs: { id: "municipioInput" },
+                              attrs: { id: "selectMunicipi" },
                             },
                             [
                               _vm._v(
-                                "\n                  * Ciutat de l'incident\n                "
+                                "\n                  * Municipi de l'incident\n                "
                               ),
                             ]
                           ),
@@ -51397,19 +51581,28 @@ var render = function () {
                             "label",
                             {
                               staticClass: "form-label",
-                              attrs: { for: "provincia" },
+                              attrs: { for: "provinciaInput" },
                             },
                             [_c("vermell", [_vm._v("*")]), _vm._v("Provincia")],
                             1
                           ),
                           _vm._v(" "),
-                          _vm._m(2),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              name: "provinciaInput",
+                              id: "provinciaInput",
+                              "aria-describedby": "provinciaInput",
+                              placeholder: "Escriu aquí",
+                            },
+                          }),
                           _vm._v(" "),
                           _c(
                             "div",
                             {
                               staticClass: "form-text",
-                              attrs: { id: "provincia" },
+                              attrs: { id: "provinciaInput" },
                             },
                             [
                               _vm._v(
@@ -51419,14 +51612,14 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _vm._m(3),
+                        _vm._m(1),
                       ]),
                   _vm._v(" "),
-                  _vm._m(4),
+                  _vm._m(2),
                   _vm._v(" "),
                   _vm.localitzacio === "Catalunya"
                     ? _c("div", { staticClass: "row mb-4" }, [
-                        _vm._m(5),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c("div", { staticClass: "col" }, [
                           _c(
@@ -51527,15 +51720,15 @@ var render = function () {
                   _vm._v(" "),
                   _vm.tipusLocalitzacio === "" &&
                   _vm.localitzacio === "Catalunya"
-                    ? _c("div", [_vm._m(6)])
+                    ? _c("div", [_vm._m(4)])
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.tipusLocalitzacio === "entitatPoblacio"
-                    ? _c("div", [_vm._m(7), _vm._v(" "), _vm._m(8)])
+                    ? _c("div", [_vm._m(5), _vm._v(" "), _vm._m(6)])
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.tipusLocalitzacio === "provincia"
-                    ? _c("div", [_vm._m(9), _vm._v(" "), _vm._m(10)])
+                    ? _c("div", [_vm._m(7), _vm._v(" "), _vm._m(8)])
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.tipusLocalitzacio === "carrer"
@@ -51555,7 +51748,7 @@ var render = function () {
                               1
                             ),
                             _vm._v(" "),
-                            _vm._m(11),
+                            _vm._m(9),
                             _vm._v(" "),
                             _c(
                               "div",
@@ -51636,21 +51829,21 @@ var render = function () {
                           ]),
                         ]),
                         _vm._v(" "),
+                        _vm._m(10),
+                        _vm._v(" "),
+                        _vm._m(11),
+                        _vm._v(" "),
                         _vm._m(12),
-                        _vm._v(" "),
-                        _vm._m(13),
-                        _vm._v(" "),
-                        _vm._m(14),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.tipusLocalitzacio === "carretera"
                     ? _c("div", [
+                        _vm._m(13),
+                        _vm._v(" "),
+                        _vm._m(14),
+                        _vm._v(" "),
                         _vm._m(15),
-                        _vm._v(" "),
-                        _vm._m(16),
-                        _vm._v(" "),
-                        _vm._m(17),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -51694,13 +51887,13 @@ var render = function () {
                           ]),
                         ]),
                         _vm._v(" "),
-                        _vm._m(18),
+                        _vm._m(16),
                         _vm._v(" "),
-                        _vm._m(19),
+                        _vm._m(17),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(20),
+                  _vm._m(18),
                   _vm._v(" "),
                   _c("div", { staticClass: "row mb-4" }, [
                     _c("div", { staticClass: "col" }, [
@@ -51735,19 +51928,24 @@ var render = function () {
                             "aria-label": "tipusIncident",
                           },
                           on: {
-                            change: function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.tipusIncident = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
+                            change: [
+                              function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.tipusIncident = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              function ($event) {
+                                return _vm.selectIncidents()
+                              },
+                            ],
                           },
                         },
                         [
@@ -51755,10 +51953,18 @@ var render = function () {
                             _vm._v("Selecciona una opció"),
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "tipusIncident1" } }, [
-                            _vm._v("Tipus 1"),
-                          ]),
-                        ]
+                          _vm._l(_vm.tipusIncidents, function (tipusIncident) {
+                            return _c(
+                              "option",
+                              {
+                                key: tipusIncident.id,
+                                domProps: { value: tipusIncident.id },
+                              },
+                              [_vm._v(_vm._s(tipusIncident.descripcio))]
+                            )
+                          }),
+                        ],
+                        2
                       ),
                       _vm._v(" "),
                       _c(
@@ -51786,7 +51992,34 @@ var render = function () {
                         1
                       ),
                       _vm._v(" "),
-                      _vm._m(21),
+                      _c(
+                        "select",
+                        {
+                          staticClass: "form-select",
+                          attrs: {
+                            id: "incident",
+                            name: "incident",
+                            "aria-label": "incident",
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { selected: "", value: "" } }, [
+                            _vm._v("Selecciona una opció"),
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.incidents, function (incident) {
+                            return _c(
+                              "option",
+                              {
+                                key: incident.id,
+                                domProps: { value: incident.id },
+                              },
+                              [_vm._v(_vm._s(incident.descripcio))]
+                            )
+                          }),
+                        ],
+                        2
+                      ),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -51803,11 +52036,11 @@ var render = function () {
                     ]),
                   ]),
                   _vm._v(" "),
-                  _vm._m(22),
+                  _vm._m(19),
                   _vm._v(" "),
-                  _vm._m(23),
+                  _vm._m(20),
                   _vm._v(" "),
-                  _vm._m(24),
+                  _vm._m(21),
                 ]),
               ]),
               _vm._v(" "),
@@ -51863,7 +52096,7 @@ var render = function () {
       ]
     ),
     _vm._v(" "),
-    _vm._m(25),
+    _vm._m(22),
   ])
 }
 var staticRenderFns = [
@@ -51872,54 +52105,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h5", [_c("b", [_vm._v("Identificació de l'interlocutor")])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-select",
-        attrs: { id: "comarca", name: "comarca", "aria-label": "comarca" },
-      },
-      [
-        _c("option", { attrs: { selected: "", value: "" } }, [
-          _vm._v("Selecciona una opció"),
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "comarca1" } }, [_vm._v("Comarca 1")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "Altres" } }, [_vm._v("Altres")]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-select",
-        attrs: {
-          id: "provincia",
-          name: "provincia",
-          "aria-label": "provincia",
-        },
-      },
-      [
-        _c("option", { attrs: { selected: "", value: "" } }, [
-          _vm._v("Selecciona una opció"),
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "provincia1" } }, [
-          _vm._v("Provincia 1"),
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "Altres" } }, [_vm._v("Altres")]),
-      ]
-    )
   },
   function () {
     var _vm = this
@@ -52363,25 +52548,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-select",
-        attrs: { id: "incident", name: "incident", "aria-label": "incident" },
-      },
-      [
-        _c("option", { attrs: { selected: "", value: "" } }, [
-          _vm._v("Selecciona una opció"),
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "incident1" } }, [_vm._v("Incident 1")]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
   },
   function () {
@@ -52642,7 +52808,7 @@ var staticRenderFns = [
                 "button",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { "data-bs-dismiss": "modal" },
+                  attrs: { "data-bs-dismiss": "modal", "aria-label": "Close" },
                 },
                 [_vm._v("Guardar i penjar")]
               ),
@@ -65004,7 +65170,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\projecteBroggi"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\projecteBroggi","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

@@ -38,9 +38,11 @@ class IncidentsController extends Controller
      * @param  \App\Models\Incidents  $incidents
      * @return \Illuminate\Http\Response
      */
-    public function show(Incidents $incidents)
+    public function show($incidents)
     {
-        //
+        $inci = Incidents::where('classes_incidents_id', '=', $incidents)
+                                    ->get();
+        return new IncidentsResource($inci);
     }
 
     /**

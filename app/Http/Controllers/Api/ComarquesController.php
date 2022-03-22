@@ -38,9 +38,11 @@ class ComarquesController extends Controller
      * @param  \App\Models\Comarques  $comarques
      * @return \Illuminate\Http\Response
      */
-    public function show(Comarques $comarques)
+    public function show($comarque)
     {
-        //
+        $comarques = Comarques::where('provincies_id', '=', $comarque)
+                                    ->get();
+        return new ComarquesResource($comarques);
     }
 
     /**
