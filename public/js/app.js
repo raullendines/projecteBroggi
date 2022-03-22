@@ -5420,6 +5420,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5443,7 +5488,7 @@ __webpack_require__.r(__webpack_exports__);
         style: "color: #4dc058; background-color : #ffeb00;"
       }, {
         id: 2,
-        tel: "666444435",
+        tel: "666444235",
         date: "21 Ene 2022",
         time: "12:30:40",
         status: "Accepted",
@@ -5463,16 +5508,35 @@ __webpack_require__.r(__webpack_exports__);
         status: "Inmobilized",
         style: "color: #4dc058; background-color : #a0bafc;"
       }],
+      expList: [{
+        id: 1,
+        date_ini: "21 Ene 2022",
+        date_mod: "21 Ene 2022",
+        estat_id: 1
+      }, {
+        id: 2,
+        date_ini: "21 Ene 2022",
+        date_mod: "21 Ene 2022",
+        estat_id: 2
+      }, {
+        id: 3,
+        date_ini: "21 Ene 2022",
+        date_mod: "21 Ene 2022",
+        estat_id: 2
+      }],
+      statusStyles: ["background-color : #99FFA2;", "background-color : #ffeb00;", "background-color : #6bca33;", "background-color : #129ce0;", "background-color : #a0bafc;"],
       clickedItem: {
-        id: '',
-        tel: '',
-        date: '',
-        status: ''
+        id: "",
+        tel: "",
+        date: "",
+        status: ""
       },
       expItem: {
-        id: '',
-        msg: ''
-      }
+        id: "",
+        msg: ""
+      },
+      expedientesList: [],
+      expedientesStatus: []
     };
   },
   methods: {
@@ -5480,7 +5544,31 @@ __webpack_require__.r(__webpack_exports__);
       this.expItem.id = call;
       this.expItem.msg = e;
       return this.expItem;
+    },
+    selectExpedientes: function selectExpedientes() {
+      var _this = this;
+
+      var me = this;
+      axios.get("/expedients").then(function (response) {
+        me.expedientesList = response.data;
+        console.log(response);
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this.loading = false;
+      });
+    },
+    statusExp: function statusExp() {
+      var me = this;
+      axios.get("/expedients_status").then(function (response) {
+        me.expedientesStatus = response.data;
+        console.log(me.expedientesStatus);
+      });
     }
+  },
+  created: function created() {
+    this.selectExpedientes();
+    this.statusExp();
   },
   mounted: function mounted() {
     console.log("Component mounted.");
@@ -6189,7 +6277,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     expMsg: {}
   },
-  created: {},
+  created: function created() {},
   mounted: function mounted() {
     var _this2 = this;
 
@@ -50869,86 +50957,175 @@ var render = function () {
         _vm._v("Gestió d'expedients"),
       ]),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _vm._l(_vm.calls, function (call) {
-        return _c(
-          "div",
-          {
-            key: call.id,
-            staticClass: "card mt-3 m-auto",
-            staticStyle: { width: "80%" },
-          },
-          [
-            _c("div", { staticClass: "card-body", style: call.style }, [
-              _c("table", { staticClass: "table table-borderless mb-0" }, [
-                _c("tbody", [
-                  _c("tr", [
-                    _c(
-                      "th",
-                      {
-                        staticClass: "align-middle col-3",
-                        attrs: { scope: "row" },
-                      },
-                      [_vm._v(_vm._s(call.tel))]
-                    ),
+      _c(
+        "div",
+        {
+          staticClass: "accordion mt-3 m-auto",
+          attrs: { id: "accordionExample" },
+        },
+        _vm._l(_vm.expList, function (exp) {
+          return _c("div", { key: exp.id, staticClass: "accordion-item" }, [
+            _c(
+              "h2",
+              {
+                staticClass: "accordion-header",
+                attrs: { id: "headingOne" + exp.id },
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "accordion-button",
+                    style: _vm.statusStyles[exp.estat_id - 1],
+                    attrs: {
+                      type: "button",
+                      "data-bs-toggle": "collapse",
+                      "data-bs-target": "#collapseOne" + exp.id,
+                      "aria-expanded": [exp.id === 1 ? "true" : "false"],
+                      "aria-controls": "collapseOne" + exp.id,
+                    },
+                  },
+                  [_vm._v("\n          " + _vm._s(exp.date_ini) + "\n        ")]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "accordion-collapse collapse show",
+                attrs: {
+                  id: "collapseOne" + exp.id,
+                  "aria-labelledby": "headingOne" + exp.id,
+                  "data-bs-parent": "#accordionExample",
+                },
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "accordion-body" },
+                  [
+                    _vm._m(0, true),
                     _vm._v(" "),
-                    _c("td", { staticClass: "align-middle col-3" }, [
-                      _vm._v(_vm._s(call.date)),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "align-middle col-2" }, [
-                      _vm._v(_vm._s(call.time)),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-end col-2" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          attrs: {
-                            type: "button",
-                            "data-bs-toggle": "modal",
-                            "data-bs-target": "#modalForm",
-                          },
-                          on: {
-                            click: function ($event) {
-                              return _vm.expAction(call.id, "ver")
-                            },
-                          },
-                        },
-                        [_vm._v("Ver")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          attrs: {
-                            type: "button",
-                            "data-bs-toggle": "modal",
-                            "data-bs-target": "#modalForm",
-                          },
-                          on: {
-                            click: function ($event) {
-                              return _vm.expAction(call.id, "modificar")
-                            },
-                          },
-                        },
-                        [_vm._v("Modificar")]
-                      ),
-                    ]),
-                  ]),
-                ]),
-              ]),
-            ]),
-          ]
-        )
-      }),
+                    _vm._l(_vm.calls, function (call) {
+                      return _c("div", { key: call.id }, [
+                        call.id === exp.id
+                          ? _c("div", { staticClass: "card" }, [
+                              _c("div", { staticClass: "card-body" }, [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass: "table table-borderless mb-0",
+                                  },
+                                  [
+                                    _c("tbody", [
+                                      _c("tr", [
+                                        _c(
+                                          "th",
+                                          {
+                                            staticClass: "align-middle col-3",
+                                            attrs: { scope: "row" },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                        " +
+                                                _vm._s(call.tel) +
+                                                "\n                      "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "align-middle col-3" },
+                                          [_vm._v(_vm._s(call.date))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "align-middle col-2" },
+                                          [_vm._v(_vm._s(call.time))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "text-end col-2" },
+                                          [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-info",
+                                                attrs: {
+                                                  type: "button",
+                                                  "data-bs-toggle": "modal",
+                                                  "data-bs-target":
+                                                    "#modalForm",
+                                                },
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.expAction(
+                                                      call.id,
+                                                      "ver"
+                                                    )
+                                                  },
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                          Ver\n                        "
+                                                ),
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-info",
+                                                attrs: {
+                                                  type: "button",
+                                                  "data-bs-toggle": "modal",
+                                                  "data-bs-target":
+                                                    "#modalForm",
+                                                },
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.expAction(
+                                                      call.id,
+                                                      "modificar"
+                                                    )
+                                                  },
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                          Modificar\n                        "
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                      ]),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ])
+                          : _vm._e(),
+                      ])
+                    }),
+                  ],
+                  2
+                ),
+              ]
+            ),
+          ])
+        }),
+        0
+      ),
       _vm._v(" "),
       _c("form-component", { attrs: { expMsg: _vm.expItem } }),
     ],
-    2
+    1
   )
 }
 var staticRenderFns = [
@@ -50956,23 +51133,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "table",
-      { staticClass: "table m-auto mt-3", staticStyle: { width: "80%" } },
-      [
-        _c("thead", [
-          _c("tr", [
-            _c("th", { staticClass: "col-4" }, [_vm._v("Número tel.")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "col" }, [_vm._v("Data")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "col" }, [_vm._v("Temps")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "col text-end align-middle" }),
-          ]),
+    return _c("table", { staticClass: "table m-auto mt-3" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", { staticClass: "col-4" }, [_vm._v("Número tel.")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "col" }, [_vm._v("Data")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "col" }, [_vm._v("Temps")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "col text-end align-middle" }),
         ]),
-      ]
-    )
+      ]),
+    ])
   },
 ]
 render._withStripped = true

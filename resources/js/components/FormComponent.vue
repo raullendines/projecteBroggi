@@ -650,7 +650,7 @@ export default {
   props:{
       expMsg:{},
   },
-  created: {
+  created() {
 
   },
   mounted() {
