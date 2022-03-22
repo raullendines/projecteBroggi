@@ -48,4 +48,3 @@ Route::apiResource('usuaris', UsuarisController::class);
 Route::apiResource('comarques', ComarquesController::class);
 
 
-//Comarques no me deja agregarlo
