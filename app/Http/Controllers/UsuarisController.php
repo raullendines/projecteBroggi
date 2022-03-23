@@ -24,7 +24,7 @@ class UsuarisController extends Controller
 
         if ($user != null && $user->actiu == true && Hash::check($contrasenya, $user->contrasenya)) {
             Auth::login($user);
-            $response = redirect('/trucades');
+            $response = redirect('/');
         }
         else{
             $request->session()->flash('error', 'Usuari o contrasenya incorrectes');
