@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('plantilla.principal'); });
 
 Route::get('/database', function () { return view('database.database'); });
 
@@ -30,6 +29,8 @@ Route::get('/expedients', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['role: 1, 2, 3'])->group(function () {
+        Route::get('/', function () { return view('plantilla.principal'); });
+
         Route::get('/trucades', function () {
             return view('callCard.callCard');
         });
@@ -51,6 +52,8 @@ Route::middleware(['auth'])->group(function () {
         });
     });
 });
+
+
 
 
 // 1 -> Operador 112
