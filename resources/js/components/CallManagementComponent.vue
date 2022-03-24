@@ -4,23 +4,23 @@
 
     <div class="accordion mt-3 m-auto" id="accordionExample">
       <div class="accordion-item" v-for="exp in expList" :key="exp.id">
-        <h2 class="accordion-header" :id="'headingOne' + exp.id">
+        <h2 class="accordion-header" :id="'heading' + exp.id">
           <button
             class="accordion-button"
             type="button"
             data-bs-toggle="collapse"
-            :data-bs-target="'#collapseOne' + exp.id"
-            :aria-expanded="[exp.id === 1 ? 'true' : 'false']"
-            :aria-controls="'collapseOne' + exp.id"
+            :data-bs-target="'#collapse' + exp.id"
+            aria-expanded = "false"
+            :aria-controls="'collapse' + exp.id"
             :style="statusStyles[exp.estat_id -1 ]"
           >
             {{ exp.date_ini }}
           </button>
         </h2>
         <div
-          :id="'collapseOne' + exp.id"
-          class="accordion-collapse collapse show"
-          :aria-labelledby="'headingOne' + exp.id"
+          :id="'collapse' + exp.id"
+          class="accordion-collapse collapse"
+          :aria-labelledby="'heading' + exp.id"
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">

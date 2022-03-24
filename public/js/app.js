@@ -50969,7 +50969,7 @@ var render = function () {
               "h2",
               {
                 staticClass: "accordion-header",
-                attrs: { id: "headingOne" + exp.id },
+                attrs: { id: "heading" + exp.id },
               },
               [
                 _c(
@@ -50980,9 +50980,9 @@ var render = function () {
                     attrs: {
                       type: "button",
                       "data-bs-toggle": "collapse",
-                      "data-bs-target": "#collapseOne" + exp.id,
-                      "aria-expanded": [exp.id === 1 ? "true" : "false"],
-                      "aria-controls": "collapseOne" + exp.id,
+                      "data-bs-target": "#collapse" + exp.id,
+                      "aria-expanded": "false",
+                      "aria-controls": "collapse" + exp.id,
                     },
                   },
                   [_vm._v("\n          " + _vm._s(exp.date_ini) + "\n        ")]
@@ -50993,10 +50993,10 @@ var render = function () {
             _c(
               "div",
               {
-                staticClass: "accordion-collapse collapse show",
+                staticClass: "accordion-collapse collapse",
                 attrs: {
-                  id: "collapseOne" + exp.id,
-                  "aria-labelledby": "headingOne" + exp.id,
+                  id: "collapse" + exp.id,
+                  "aria-labelledby": "heading" + exp.id,
                   "data-bs-parent": "#accordionExample",
                 },
               },
