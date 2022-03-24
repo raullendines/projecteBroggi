@@ -1,7 +1,7 @@
 <template>
   <div>
 <div
-    class="modal fade"
+    class="modal"
     id="modalForm"
     tabindex="-1"
     data-bs-backdrop="static"
@@ -605,7 +605,7 @@
             >
               Penjar
             </button>
-            <button type="button" class="btn btn-secondary" @click="stop(1)">
+            <button type="button" class="btn btn-secondary" @click="stop(1)" data-bs-dismiss="modal">
               Guardar i penjar
             </button>
           </div>
@@ -639,7 +639,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Guardar i penjar</button>
+        <button class="btn btn-primary" data-bs-target="#penjarModal" data-bs-dismiss="modal" aria-label="Close">Guardar i penjar</button>
       </div>
     </div>
   </div>
