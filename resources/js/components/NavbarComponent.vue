@@ -102,6 +102,12 @@ export default {
           "background-color:#4FBF58; color:white; margin-right:10px; padding: 7.5px;",
       },
       {
+        name: "Admin",
+        url: "/projecteBroggi/public/admin",
+        icon: "fas fa-user-cog",
+        style: "background-color:#FF005D; color:white; margin-right:10px; padding: 7.5px;",
+      },
+      {
         name: "Sortir",
         url: "/projecteBroggi/public/logout",
         icon: "fas fa-sign-out-alt",

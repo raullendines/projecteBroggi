@@ -40,6 +40,10 @@ Vue.component(
     "callmanagement-component",
     require("./components/CallManagementComponent.vue").default
 );
+Vue.component(
+    "admin-component",
+    require("./components/AdminComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

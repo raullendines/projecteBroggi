@@ -50,6 +50,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/graph', function () {
             return view('callManagement.callManagement');
         });
+
+        Route::get('/admin', function () {
+            return view('admin.admin');
+        });
     });
 });
 
