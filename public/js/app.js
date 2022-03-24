@@ -5422,6 +5422,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5445,7 +5490,7 @@ __webpack_require__.r(__webpack_exports__);
         style: "color: #4dc058; background-color : #ffeb00;"
       }, {
         id: 2,
-        tel: "666444435",
+        tel: "666444235",
         date: "21 Ene 2022",
         time: "12:30:40",
         status: "Accepted",
@@ -5465,16 +5510,35 @@ __webpack_require__.r(__webpack_exports__);
         status: "Inmobilized",
         style: "color: #4dc058; background-color : #a0bafc;"
       }],
+      expList: [{
+        id: 1,
+        date_ini: "21 Ene 2022",
+        date_mod: "21 Ene 2022",
+        estat_id: 1
+      }, {
+        id: 2,
+        date_ini: "21 Ene 2022",
+        date_mod: "21 Ene 2022",
+        estat_id: 2
+      }, {
+        id: 3,
+        date_ini: "21 Ene 2022",
+        date_mod: "21 Ene 2022",
+        estat_id: 2
+      }],
+      statusStyles: ["background-color : #99FFA2;", "background-color : #ffeb00;", "background-color : #6bca33;", "background-color : #129ce0;", "background-color : #a0bafc;"],
       clickedItem: {
-        id: '',
-        tel: '',
-        date: '',
-        status: ''
+        id: "",
+        tel: "",
+        date: "",
+        status: ""
       },
       expItem: {
-        id: '',
-        msg: ''
-      }
+        id: "",
+        msg: ""
+      },
+      expedientesList: [],
+      expedientesStatus: []
     };
   },
   methods: {
@@ -5482,7 +5546,31 @@ __webpack_require__.r(__webpack_exports__);
       this.expItem.id = call;
       this.expItem.msg = e;
       return this.expItem;
+    },
+    selectExpedientes: function selectExpedientes() {
+      var _this = this;
+
+      var me = this;
+      axios.get("/expedients").then(function (response) {
+        me.expedientesList = response.data;
+        console.log(response);
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this.loading = false;
+      });
+    },
+    statusExp: function statusExp() {
+      var me = this;
+      axios.get("/expedients_status").then(function (response) {
+        me.expedientesStatus = response.data;
+        console.log(me.expedientesStatus);
+      });
     }
+  },
+  created: function created() {
+    this.selectExpedientes();
+    this.statusExp();
   },
   mounted: function mounted() {
     console.log("Component mounted.");
@@ -50491,7 +50579,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -50530,7 +50618,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -50569,7 +50657,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -50608,7 +50696,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -50647,7 +50735,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -50669,7 +50757,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CallCardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CallCardComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CallCardComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CallCardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CallCardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -50685,7 +50773,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CallManagementComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CallManagementComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CallManagementComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CallManagementComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CallManagementComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -50701,7 +50789,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -50717,7 +50805,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FormComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -50733,7 +50821,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NavbarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NavbarComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/NavbarComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NavbarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NavbarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -50987,86 +51075,175 @@ var render = function () {
         _vm._v("Gestió d'expedients"),
       ]),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _vm._l(_vm.calls, function (call) {
-        return _c(
-          "div",
-          {
-            key: call.id,
-            staticClass: "card mt-3 m-auto",
-            staticStyle: { width: "80%" },
-          },
-          [
-            _c("div", { staticClass: "card-body", style: call.style }, [
-              _c("table", { staticClass: "table table-borderless mb-0" }, [
-                _c("tbody", [
-                  _c("tr", [
-                    _c(
-                      "th",
-                      {
-                        staticClass: "align-middle col-3",
-                        attrs: { scope: "row" },
-                      },
-                      [_vm._v(_vm._s(call.tel))]
-                    ),
+      _c(
+        "div",
+        {
+          staticClass: "accordion mt-3 m-auto",
+          attrs: { id: "accordionExample" },
+        },
+        _vm._l(_vm.expList, function (exp) {
+          return _c("div", { key: exp.id, staticClass: "accordion-item" }, [
+            _c(
+              "h2",
+              {
+                staticClass: "accordion-header",
+                attrs: { id: "heading" + exp.id },
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "accordion-button",
+                    style: _vm.statusStyles[exp.estat_id - 1],
+                    attrs: {
+                      type: "button",
+                      "data-bs-toggle": "collapse",
+                      "data-bs-target": "#collapse" + exp.id,
+                      "aria-expanded": "false",
+                      "aria-controls": "collapse" + exp.id,
+                    },
+                  },
+                  [_vm._v("\n          " + _vm._s(exp.date_ini) + "\n        ")]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "accordion-collapse collapse",
+                attrs: {
+                  id: "collapse" + exp.id,
+                  "aria-labelledby": "heading" + exp.id,
+                  "data-bs-parent": "#accordionExample",
+                },
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "accordion-body" },
+                  [
+                    _vm._m(0, true),
                     _vm._v(" "),
-                    _c("td", { staticClass: "align-middle col-3" }, [
-                      _vm._v(_vm._s(call.date)),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "align-middle col-2" }, [
-                      _vm._v(_vm._s(call.time)),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-end col-2" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          attrs: {
-                            type: "button",
-                            "data-bs-toggle": "modal",
-                            "data-bs-target": "#modalForm",
-                          },
-                          on: {
-                            click: function ($event) {
-                              return _vm.expAction(call.id, "ver")
-                            },
-                          },
-                        },
-                        [_vm._v("Ver")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          attrs: {
-                            type: "button",
-                            "data-bs-toggle": "modal",
-                            "data-bs-target": "#modalForm",
-                          },
-                          on: {
-                            click: function ($event) {
-                              return _vm.expAction(call.id, "modificar")
-                            },
-                          },
-                        },
-                        [_vm._v("Modificar")]
-                      ),
-                    ]),
-                  ]),
-                ]),
-              ]),
-            ]),
-          ]
-        )
-      }),
+                    _vm._l(_vm.calls, function (call) {
+                      return _c("div", { key: call.id }, [
+                        call.id === exp.id
+                          ? _c("div", { staticClass: "card" }, [
+                              _c("div", { staticClass: "card-body" }, [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass: "table table-borderless mb-0",
+                                  },
+                                  [
+                                    _c("tbody", [
+                                      _c("tr", [
+                                        _c(
+                                          "th",
+                                          {
+                                            staticClass: "align-middle col-3",
+                                            attrs: { scope: "row" },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                        " +
+                                                _vm._s(call.tel) +
+                                                "\n                      "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "align-middle col-3" },
+                                          [_vm._v(_vm._s(call.date))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "align-middle col-2" },
+                                          [_vm._v(_vm._s(call.time))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "text-end col-2" },
+                                          [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-info",
+                                                attrs: {
+                                                  type: "button",
+                                                  "data-bs-toggle": "modal",
+                                                  "data-bs-target":
+                                                    "#modalForm",
+                                                },
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.expAction(
+                                                      call.id,
+                                                      "ver"
+                                                    )
+                                                  },
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                          Ver\n                        "
+                                                ),
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-info",
+                                                attrs: {
+                                                  type: "button",
+                                                  "data-bs-toggle": "modal",
+                                                  "data-bs-target":
+                                                    "#modalForm",
+                                                },
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.expAction(
+                                                      call.id,
+                                                      "modificar"
+                                                    )
+                                                  },
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                          Modificar\n                        "
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                      ]),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ])
+                          : _vm._e(),
+                      ])
+                    }),
+                  ],
+                  2
+                ),
+              ]
+            ),
+          ])
+        }),
+        0
+      ),
       _vm._v(" "),
       _c("form-component", { attrs: { expMsg: _vm.expItem } }),
     ],
-    2
+    1
   )
 }
 var staticRenderFns = [
@@ -51074,23 +51251,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "table",
-      { staticClass: "table m-auto mt-3", staticStyle: { width: "80%" } },
-      [
-        _c("thead", [
-          _c("tr", [
-            _c("th", { staticClass: "col-4" }, [_vm._v("Número tel.")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "col" }, [_vm._v("Data")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "col" }, [_vm._v("Temps")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "col text-end align-middle" }),
-          ]),
+    return _c("table", { staticClass: "table m-auto mt-3" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", { staticClass: "col-4" }, [_vm._v("Número tel.")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "col" }, [_vm._v("Data")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "col" }, [_vm._v("Temps")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "col text-end align-middle" }),
         ]),
-      ]
-    )
+      ]),
+    ])
   },
 ]
 render._withStripped = true
@@ -65183,7 +65356,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -65197,20 +65370,20 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
@@ -65243,7 +65416,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return result;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -65255,7 +65428,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -65267,7 +65440,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -65279,12 +65452,12 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -65295,7 +65468,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -65304,11 +65477,11 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
-/******/ 		
+/******/
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
@@ -65316,19 +65489,19 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			"/js/app": 0,
 /******/ 			"css/app": 0
 /******/ 		};
-/******/ 		
+/******/
 /******/ 		// no chunk on demand loading
-/******/ 		
+/******/
 /******/ 		// no prefetching
-/******/ 		
+/******/
 /******/ 		// no preloaded
-/******/ 		
+/******/
 /******/ 		// no HMR
-/******/ 		
+/******/
 /******/ 		// no HMR manifest
-/******/ 		
+/******/
 /******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
+/******/
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
@@ -65353,14 +65526,14 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/ 		
+/******/
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
@@ -65368,6 +65541,6 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+/******/
 /******/ })()
 ;
