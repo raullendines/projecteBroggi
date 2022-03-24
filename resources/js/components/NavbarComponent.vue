@@ -153,7 +153,7 @@ export default {
           let me = this;
           this.userId = this.$attrs['userid'];
           axios.get('/perfils/' + me.userId).then((response) => {
-              me.profiles = response.data.data;
+              me.profiles = response.data;
               console.log(response);
           })
           .catch((err) => {

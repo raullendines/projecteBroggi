@@ -20,7 +20,7 @@
       <td class="text-center align-middle">{{moment()}}</td>
       <td class="text-end">
           <button type="button" class="btn btn-outline-secondary" v-if="call.status === 'Declined' || call.status === 'Accepted' || call.status === 'Call'" disabled>Aceptar</button>
-          <button type="button" @click="start(call)" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalForm" v-else>Aceptar</button>
+          <a @click="start(call)" class="btn btn-outline-secondary" data-bs-toggle="modal" href="#modalForm" v-else>Aceptar</a>
       </td>
       <td class="text-end align-middle">
           <i v-if="call.status === 'Accepted'" :class="status[0].accepted" :style="status[0].style"></i>
@@ -83,12 +83,15 @@ export default {
             status:''
         },
         currentdate:{},
+        callComponent: false,
     }),
     methods:{
         start(call){
             this.$root.$emit('CallCardComponent');
             this.clickedItem = call;
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, "Call");
+            this.callComponent = true;
+
         },
         getStatus(status) {
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);

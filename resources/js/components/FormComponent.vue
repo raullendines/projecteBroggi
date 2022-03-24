@@ -1,6 +1,7 @@
 <template>
-  <div
-    class="modal fade"
+  <div>
+<div
+    class="modal"
     id="modalForm"
     tabindex="-1"
     data-bs-backdrop="static"
@@ -64,10 +65,11 @@
                   name="provincia"
                   class="form-select"
                   aria-label="provincia"
+                  v-model="selectProvincia"
+                  @change="selectComarques()"
                 >
                   <option selected value="">Selecciona una opció</option>
-                  <option value="provincia1">Provincia 1</option>
-                  <option value="Altres">Altres</option>
+                  <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id" >{{ provincia.nom }}</option>
                 </select>
                 <div id="provincia" class="form-text">
                   * Provincia de l'incident
@@ -82,29 +84,31 @@
                   name="comarca"
                   class="form-select"
                   aria-label="comarca"
+                  v-model="selectComarca"
+                  @change="selectMunicipis()"
                 >
                   <option selected value="">Selecciona una opció</option>
-                  <option value="comarca1">Comarca 1</option>
-                  <option value="Altres">Altres</option>
+                  <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id">{{comarca.nom}}</option>
                 </select>
                 <div id="comarca" class="form-text">
-                  * Comunitat autònoma de l'incident
+                  * Comarca de l'incident
                 </div>
               </div>
               <div class="col">
-                <label for="municipioInput" class="form-label"
+                <label for="selectMunicipi" class="form-label"
                   ><vermell>*</vermell>Municipi</label
                 >
-                <input
-                  type="text"
-                  class="form-control"
-                  name="municipioInput"
-                  id="municipioInput"
-                  aria-describedby="municipioInput"
-                  placeholder="Escriu aquí"
-                />
-                <div id="municipioInput" class="form-text">
-                  * Ciutat de l'incident
+                <select
+                  id="selectMunicipi"
+                  name="selectMunicipi"
+                  class="form-select"
+                  aria-label="selectMunicipi"
+                >
+                  <option selected value="">Selecciona una opció</option>
+                  <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" >{{ municipi.nom }}</option>
+                </select>
+                <div id="selectMunicipi" class="form-text">
+                  * Municipi de l'incident
                 </div>
               </div>
             </div>
@@ -127,20 +131,16 @@
                 </div>
               </div>
               <div class="col">
-                <label for="provincia" class="form-label"
-                  ><vermell>*</vermell>Provincia</label
-                >
-                <select
-                  id="provincia"
-                  name="provincia"
-                  class="form-select"
-                  aria-label="provincia"
-                >
-                  <option selected value="">Selecciona una opció</option>
-                  <option value="provincia1">Provincia 1</option>
-                  <option value="Altres">Altres</option>
-                </select>
-                <div id="provincia" class="form-text">
+                <label for="provinciaInput" class="form-label"><vermell>*</vermell>Provincia</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="provinciaInput"
+                  id="provinciaInput"
+                  aria-describedby="provinciaInput"
+                  placeholder="Escriu aquí"
+                />
+                <div id="provinciaInput" class="form-text">
                   * Provincia de l'incident
                 </div>
               </div>
@@ -475,9 +475,10 @@
                   name="tipusIncident"
                   class="form-select"
                   aria-label="tipusIncident"
+                  @change="selectIncidents()"
                 >
                   <option selected value="">Selecciona una opció</option>
-                  <option value="tipusIncident1">Tipus 1</option>
+                  <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id" :value="tipusIncident.id">{{tipusIncident.descripcio}}</option>
                 </select>
                 <div id="provincia" class="form-text">
                   * Tipus d'incident que hi ha causat
@@ -494,7 +495,7 @@
                   aria-label="incident"
                 >
                   <option selected value="">Selecciona una opció</option>
-                  <option value="incident1">Incident 1</option>
+                  <option v-for="incident in incidents" :key="incident.id" :value="incident.id">{{incident.descripcio}}</option>
                 </select>
                 <div id="provincia" class="form-text">
                   * Incident que hi ha causat
@@ -598,11 +599,13 @@
               type="button"
               class="btn btn-primary"
               @click="stop(0)"
+              data-bs-target="#penjarModal"
+              data-bs-toggle="modal"
               data-bs-dismiss="modal"
             >
               Penjar
             </button>
-            <button type="button" class="btn btn-secondary" @click="stop(1)">
+            <button type="button" class="btn btn-secondary" @click="stop(1)" data-bs-dismiss="modal">
               Guardar i penjar
             </button>
           </div>
@@ -610,6 +613,39 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="penjarModal" aria-hidden="true" aria-labelledby="penjarModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Raó per la que pengem trucada sense completar expedient</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col">
+                <label for="raoPenjar" class="form-label">Raó:</label>
+                <select
+                  id="raoPenjar"
+                  name="raoPenjar"
+                  class="form-select"
+                  aria-label="raoPenjar"
+                >
+                  <option selected>Selecciona una raó</option>
+                  <option value="rao1">Raó 1</option>
+                  <option value="rao2">Raó 2</option>
+                  <option value="rao3">Raó 3</option>
+                </select>
+                <div id="vipSelect" class="form-text">* Per quina raó s'ha decidit penjar sense completar l'expedient.</div>
+              </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#penjarModal" data-bs-dismiss="modal" aria-label="Close">Guardar i penjar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+
 </template>
 
 <script>
@@ -621,6 +657,14 @@ export default {
       localitzacio: "",
       tipusLocalitzacio: "",
       tipusIncident: "",
+      provincies: [],
+      municipis: [],
+      comarques: [],
+      tipusIncidents: [],
+      incidents: [],
+      selectProvincia: "",
+      selectComarca: "",
+      tipusIncident: ""
     };
   },
   computed: {
@@ -646,12 +690,72 @@ export default {
           this.$emit('status', 'Accepted');
       }
     },
+    selectProvincies() {
+        let me = this;
+          axios.get('/provincies/').then((response) => {
+              me.provincies = response.data;
+              console.log(me.provincies);
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+    },
+    selectComarques() {
+        let me = this;
+        let provincia = this.selectProvincia;
+          axios.get('/comarques/' + provincia).then((response) => {
+              me.comarques = response.data;
+              console.log(me.comarques);
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+    },
+    selectMunicipis() {
+       let me = this;
+        let municipi = this.selectComarca;
+          axios.get('/municipis/' + municipi).then((response) => {
+              me.municipis = response.data;
+              console.log(me.municipis);
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+    },
+    selectTipusIncident() {
+        let me = this;
+          axios.get('/incidents_types/').then((response) => {
+              me.tipusIncidents = response.data;
+              console.log(me.tipusIncidents);
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+    },
+    selectIncidents() {
+       let me = this;
+        let tipusIncident = this.tipusIncident;
+          axios.get('/incidents/' + tipusIncident).then((response) => {
+              me.incidents = response.data;
+              console.log(me.incidents);
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+    }
   },
   props:{
       expMsg:{},
   },
-  created: {
-
+  created() {
+    this.selectProvincies()
+    this.selectMunicipis()
+    this.selectTipusIncident()
   },
   mounted() {
     this.$root.$on("CallCardComponent", () => {
