@@ -40,6 +40,10 @@ Vue.component(
     "callmanagement-component",
     require("./components/CallManagementComponent.vue").default
 );
+Vue.component(
+    "map-component",
+    require("./components/MapComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

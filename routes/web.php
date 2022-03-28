@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role: 3'])->group(function () {
         Route::get('/map', function () {
-            return view('callManagement.callManagement');
+            return view('map.map');
         });
 
         Route::get('/graph', function () {
