@@ -30,11 +30,11 @@
                   aria-label="localitzacio"
                 >
                   <option selected value="">Selecciona una opció</option>
-                  <option value="Catalunya">Catalunya</option>
-                  <option value="Altres">Altres</option>
+                  <option value="1">Catalunya</option>
+                  <option value="0">Altres</option>
                 </select>
                 <div id="localitzacio" class="form-text">
-                  * Comunitat autònoma on es troba l'incident
+                  * Comunitat autònoma de l'interlocutor
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@
                   placeholder="Escriu aquí"
                 />
                 <div id="procedenciaInput" class="form-text">
-                  * Nacionalitat
+                  * Des d'on es realitza la trucada.
                 </div>
               </div>
               <div class="col">
@@ -72,7 +72,7 @@
                   <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id" >{{ provincia.nom }}</option>
                 </select>
                 <div id="provincia" class="form-text">
-                  * Provincia de l'incident
+                  * Provincia de l'interlocutor
                 </div>
               </div>
               <div class="col">
@@ -91,7 +91,7 @@
                   <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id">{{comarca.nom}}</option>
                 </select>
                 <div id="comarca" class="form-text">
-                  * Comarca de l'incident
+                  * Comarca de l'interlocutor
                 </div>
               </div>
               <div class="col">
@@ -108,7 +108,7 @@
                   <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" >{{ municipi.nom }}</option>
                 </select>
                 <div id="selectMunicipi" class="form-text">
-                  * Municipi de l'incident
+                  * Municipi de l'interlocutor
                 </div>
               </div>
             </div>
@@ -127,7 +127,7 @@
                   placeholder="Escriu aquí"
                 />
                 <div id="procedenciaInput" class="form-text">
-                  * Nacionalitat
+                  * Nacionalitat de l'interlocutor
                 </div>
               </div>
               <div class="col">
@@ -141,7 +141,7 @@
                   placeholder="Escriu aquí"
                 />
                 <div id="provinciaInput" class="form-text">
-                  * Provincia de l'incident
+                  * Provincia de l'interlocutor
                 </div>
               </div>
               <div class="col">
@@ -155,7 +155,7 @@
                   placeholder="Escriu aquí"
                 />
                 <div id="municipioInput" class="form-text">
-                  * Ciutat de l'incident
+                  * Ciutat de l'interlocutor
                 </div>
               </div>
             </div>
@@ -176,11 +176,11 @@
                   aria-label="tipusLoc"
                 >
                   <option selected value="">Selecciona una opció</option>
-                  <option value="carrer">Carrer</option>
-                  <option value="puntSingular">Punt Singular</option>
-                  <option value="carretera">Carretera</option>
-                  <option value="entitatPoblacio">Entitat població</option>
-                  <option value="provincia">Provincia</option>
+                  <option value="1">Carrer</option>
+                  <option value="2">Punt Singular</option>
+                  <option value="3">Entitat població</option>
+                  <option value="4">Carretera</option>
+                  <option value="5">Provincia</option>
                 </select>
                 <div id="provincia" class="form-text">
                   * Tipus de via o lloc on es troba l'incident
@@ -593,6 +593,7 @@
           </form>
         </div>
         <div class="modal-footer d-flex justify-content-between">
+            <input type="hidden" name="tempsTrucada" id="tempsTrucada" :value="formattedElapsedTime">
           <p class="">Temps de trucada: {{ formattedElapsedTime }}</p>
           <div>
             <button
