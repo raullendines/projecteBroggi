@@ -16,9 +16,8 @@ class AgenciesController extends Controller
      */
     public function index()
     {
-        $agencies = Agencies::all();
-
-        return AgenciesResource::collection($agencies);
+        $agencies = Agencies::pluck('carrer');
+        return new AgenciesResource($agencies);
     }
 
     /**
@@ -38,9 +37,10 @@ class AgenciesController extends Controller
      * @param  \App\Models\Agencies  $agencies
      * @return \Illuminate\Http\Response
      */
-    public function show(Agencies $agencies)
+    public function show(Agencies $agency)
     {
-        //
+        $agencies = Agencies::pluck('carrer');
+        return new AgenciesResource($agencies);
     }
 
     /**

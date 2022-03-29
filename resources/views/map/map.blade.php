@@ -4,6 +4,6 @@
 
 @section('contents')
 
-<map-component></map-component>
+    <map-component></map-component>
 
 @endsection

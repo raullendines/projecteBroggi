@@ -6430,35 +6430,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      localizacion: "Plaza Urquinaona 10, Barcelona"
+      agencies: []
     };
   },
+  methods: {
+    selectAgencies: function selectAgencies() {
+      var _this = this;
+
+      var me = this;
+      axios.get("/agencies/").then(function (response) {
+        me.agencies = response.data;
+        console.log(me.agencies.length);
+
+        for (var i = 0; i < 1; i++) {
+          _this.createMapAgencies(i);
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this.loading = false;
+      });
+    },
+    createMapAgencies: function createMapAgencies(i) {
+      console.log(this.agencies.length);
+      mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      var mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
+      });
+      mapboxClient.geocoding.forwardGeocode({
+        query: this.agencies[i],
+        autocomplete: false,
+        limit: 1
+      }).send().then(function (response) {
+        if (!response || !response.body || !response.body.features || !response.body.features.length) {
+          console.error("Invalid response:");
+          console.error(response);
+          return;
+        }
+
+        var feature = response.body.features[0];
+        var map = new mapboxgl.Map({
+          container: "map",
+          style: "mapbox://styles/mapbox/streets-v11",
+          center: feature.center,
+          zoom: 10
+        }); // Create a marker and add it to the map.
+
+        new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+      });
+    }
+  },
   mounted: function mounted() {
-    mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
-    var mapboxClient = mapboxSdk({
-      accessToken: mapboxgl.accessToken
-    });
-    mapboxClient.geocoding.forwardGeocode({
-      query: this.localizacion,
-      autocomplete: false,
-      limit: 1
-    }).send().then(function (response) {
-      if (!response || !response.body || !response.body.features || !response.body.features.length) {
-        console.error("Invalid response:");
-        console.error(response);
-        return;
-      }
-
-      var feature = response.body.features[0];
-      var map = new mapboxgl.Map({
-        container: "map",
-        style: "mapbox://styles/mapbox/streets-v11",
-        center: feature.center,
-        zoom: 10
-      }); // Create a marker and add it to the map.
-
-      new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
-    });
+    this.selectAgencies();
   }
 });
 
