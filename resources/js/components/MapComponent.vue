@@ -8,19 +8,49 @@
 export default {
   data() {
     return {
-      agencies: []
+      agencies: [],
+      mapa: {},
+      incident: {}
     };
   },
   methods: {
+    selectIncidencia() {
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+      mapboxClient.geocoding
+        .forwardGeocode({
+          query: "Plaça Urquinaona 10, Barcelona",
+          autocomplete: false,
+          limit: 1,
+        })
+        .send()
+        .then((response) => {
+          if (
+            !response ||
+            !response.body ||
+            !response.body.features ||
+            !response.body.features.length
+          ) {
+            console.error("Invalid response:");
+            console.error(response);
+            return;
+          }
+
+          const feature = response.body.features[0];
+
+          this.createMap(feature);
+        });
+    },
     selectAgencies() {
+      console.log("selectAgencies");
       let me = this;
       axios
         .get("/agencies/")
         .then((response) => {
           me.agencies = response.data;
-          console.log(me.agencies.length);
-          for (let i = 0; i < 1; i++) {
-             this.createMapAgencies(i);
+          for (const agencia of this.agencies) {
+            this.createMapAgencies(agencia);
           }
         })
         .catch((err) => {
@@ -28,15 +58,18 @@ export default {
         })
         .finally(() => (this.loading = false));
     },
-    createMapAgencies(i){
-    console.log(this.agencies.length);
-    
-    mapboxgl.accessToken =
-      "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
-    const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+
+    createMapAgencies(agencia) {
+      let me = this;
+      console.log("createMapAgencies");
+
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+      console.log(agencia);
       mapboxClient.geocoding
         .forwardGeocode({
-          query: this.agencies[i],
+          query: agencia.carrer + ", " + agencia.municipis.nom,
           autocomplete: false,
           limit: 1,
         })
@@ -54,25 +87,43 @@ export default {
           }
           const feature = response.body.features[0];
 
-          const map = new mapboxgl.Map({
-            container: "map",
-            style: "mapbox://styles/mapbox/streets-v11",
-            center: feature.center,
-            zoom: 10,
-          });
+          // create the popup
+          const popup = new mapboxgl.Popup({ offset: 25 }).setText("ID: " +agencia.id);
 
-  
+          // create DOM element for the marker
+          const el = document.createElement("div");
+          el.id = "marker";
+
           // Create a marker and add it to the map.
-          new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+          new mapboxgl.Marker().setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
         });
+    },
 
-    }
+    createPopUp() {},
 
+    createMap(feature) {
+      console.log("createMap");
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: feature.center,
+        zoom: 4,
+      });
+
+      this.mapa = map;
+
+      new mapboxgl.Marker({
+        color: "#FF0000",
+      })
+        .setLngLat(feature.center)
+        .addTo(map);
+
+      this.selectAgencies();
+    },
   },
   mounted() {
-    this.selectAgencies();
-    
-    
+    console.log("mounted");
+    this.selectIncidencia();
   },
 };
 </script>

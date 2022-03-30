@@ -16,7 +16,7 @@ class AgenciesController extends Controller
      */
     public function index()
     {
-        $agencies = Agencies::pluck('carrer');
+        $agencies = Agencies::with('Municipis')->get();
         return new AgenciesResource($agencies);
     }
 

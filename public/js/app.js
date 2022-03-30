@@ -6421,6 +6421,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -6430,35 +6436,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      agencies: []
+      agencies: [],
+      mapa: {},
+      incident: {}
     };
   },
   methods: {
-    selectAgencies: function selectAgencies() {
+    selectIncidencia: function selectIncidencia() {
       var _this = this;
 
-      var me = this;
-      axios.get("/agencies/").then(function (response) {
-        me.agencies = response.data;
-        console.log(me.agencies.length);
-
-        for (var i = 0; i < 1; i++) {
-          _this.createMapAgencies(i);
-        }
-      })["catch"](function (err) {
-        console.log(err);
-      })["finally"](function () {
-        return _this.loading = false;
-      });
-    },
-    createMapAgencies: function createMapAgencies(i) {
-      console.log(this.agencies.length);
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
       });
       mapboxClient.geocoding.forwardGeocode({
-        query: this.agencies[i],
+        query: "Plaça Urquinaona 10, Barcelona",
         autocomplete: false,
         limit: 1
       }).send().then(function (response) {
@@ -6469,19 +6461,88 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         var feature = response.body.features[0];
-        var map = new mapboxgl.Map({
-          container: "map",
-          style: "mapbox://styles/mapbox/streets-v11",
-          center: feature.center,
-          zoom: 10
-        }); // Create a marker and add it to the map.
 
-        new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+        _this.createMap(feature);
       });
+    },
+    selectAgencies: function selectAgencies() {
+      var _this2 = this;
+
+      console.log("selectAgencies");
+      var me = this;
+      axios.get("/agencies/").then(function (response) {
+        me.agencies = response.data;
+
+        var _iterator = _createForOfIteratorHelper(_this2.agencies),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var agencia = _step.value;
+
+            _this2.createMapAgencies(agencia);
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this2.loading = false;
+      });
+    },
+    createMapAgencies: function createMapAgencies(agencia) {
+      var me = this;
+      console.log("createMapAgencies");
+      mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      var mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
+      });
+      console.log(agencia);
+      mapboxClient.geocoding.forwardGeocode({
+        query: agencia.carrer + ", " + agencia.municipis.nom,
+        autocomplete: false,
+        limit: 1
+      }).send().then(function (response) {
+        if (!response || !response.body || !response.body.features || !response.body.features.length) {
+          console.error("Invalid response:");
+          console.error(response);
+          return;
+        }
+
+        var feature = response.body.features[0]; // create the popup
+
+        var popup = new mapboxgl.Popup({
+          offset: 25
+        }).setText("ID: " + agencia.id); // create DOM element for the marker
+
+        var el = document.createElement("div");
+        el.id = "marker"; // Create a marker and add it to the map.
+
+        new mapboxgl.Marker().setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
+      });
+    },
+    createPopUp: function createPopUp() {},
+    createMap: function createMap(feature) {
+      console.log("createMap");
+      var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: feature.center,
+        zoom: 4
+      });
+      this.mapa = map;
+      new mapboxgl.Marker({
+        color: "#FF0000"
+      }).setLngLat(feature.center).addTo(map);
+      this.selectAgencies();
     }
   },
   mounted: function mounted() {
-    this.selectAgencies();
+    console.log("mounted");
+    this.selectIncidencia();
   }
 });
 
