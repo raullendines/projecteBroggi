@@ -20,7 +20,7 @@
       <td class="text-center align-middle">{{moment()}}</td>
       <td class="text-end">
           <button type="button" class="btn btn-outline-secondary" v-if="call.status === 'Declined' || call.status === 'Accepted' || call.status === 'Call'" disabled>Aceptar</button>
-          <a @click="start(call)" class="btn btn-outline-secondary" data-bs-toggle="modal" href="#modalForm" v-else>Aceptar</a>
+          <a class="btn btn-outline-secondary" @click="start(call)" data-bs-toggle="modal" href="#modalForm" v-else>Aceptar</a>
       </td>
       <td class="text-end align-middle">
           <i v-if="call.status === 'Accepted'" :class="status[0].accepted" :style="status[0].style"></i>
@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<form-component @status="getStatus"></form-component>
+<form-component @status="getStatus" :numTelefon="telefono"></form-component>
 
 </main>
 </template>
@@ -45,6 +45,7 @@ import moment from 'moment';
 export default {
   components: { FormComponent },
     data: () => ({
+        telefono: '',
         calls: [
             {
                 tel: "666444545",
@@ -91,7 +92,7 @@ export default {
             this.clickedItem = call;
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, "Call");
             this.callComponent = true;
-
+            this.telefono = call.tel;
         },
         getStatus(status) {
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);

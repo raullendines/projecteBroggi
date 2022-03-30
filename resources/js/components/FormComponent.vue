@@ -39,7 +39,7 @@
               </div>
             </div>
             <!-- IF -->
-            <div v-if="localitzacio === 'Catalunya'" class="row mb-4">
+            <div v-if="localitzacio === '1'" class="row mb-4">
               <div class="col">
                 <label for="procedenciaInput" class="form-label"
                   ><vermell>*</vermell>Procedencia</label
@@ -61,8 +61,8 @@
                   ><vermell>*</vermell>Provincia</label
                 >
                 <select
-                  id="provincia"
-                  name="provincia"
+                  id="selectProvincia"
+                  name="selectProvincia"
                   class="form-select"
                   aria-label="provincia"
                   v-model="selectProvincia"
@@ -71,7 +71,7 @@
                   <option selected value="">Selecciona una opció</option>
                   <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id" >{{ provincia.nom }}</option>
                 </select>
-                <div id="provincia" class="form-text">
+                <div id="selectProvincia" class="form-text">
                   * Provincia de l'interlocutor
                 </div>
               </div>
@@ -162,7 +162,7 @@
             <div class="row">
               <hr />
             </div>
-            <div v-if="localitzacio === 'Catalunya'" class="row mb-4">
+            <div v-if="localitzacio === '1'" class="row mb-4">
               <h5><b>Localització de l'emergencia</b></h5>
               <div class="col">
                 <label for="tipusLoc" class="form-label"
@@ -175,7 +175,7 @@
                   class="form-select"
                   aria-label="tipusLoc"
                 >
-                  <option selected value="">Selecciona una opció</option>
+                  <option selected value="0">Selecciona una opció</option>
                   <option value="1">Carrer</option>
                   <option value="2">Punt Singular</option>
                   <option value="3">Entitat població</option>
@@ -189,7 +189,7 @@
             </div>
 
             <div
-              v-if="tipusLocalitzacio === '' && localitzacio === 'Catalunya'"
+              v-if="tipusLocalitzacio === '0' && localitzacio === '1'"
             >
               <div class="row">
                 <hr />
@@ -217,7 +217,7 @@
                 <hr />
               </div>
             </div>
-            <div v-if="tipusLocalitzacio === 'provincia'">
+            <div v-if="tipusLocalitzacio === '5'">
               <div class="row mb-4">
                 <div class="col">
                   <label class="form-label" for="referenciesLoc"
@@ -240,7 +240,7 @@
               </div>
             </div>
 
-            <div v-if="tipusLocalitzacio === 'carrer'">
+            <div v-if="tipusLocalitzacio === '1'">
               <div class="row mb-4">
                 <div class="col">
                   <label for="tipusVia" class="form-label"
@@ -351,7 +351,7 @@
               </div>
             </div>
 
-            <div v-if="tipusLocalitzacio === 'carretera'">
+            <div v-if="tipusLocalitzacio === '4'">
               <div class="row mb-4">
                 <div class="col">
                   <label for="nomCarretera" class="form-label">Nom</label>
@@ -420,7 +420,7 @@
               </div>
             </div>
 
-            <div v-if="tipusLocalitzacio === 'puntSingular'">
+            <div v-if="tipusLocalitzacio === '2'">
               <div class="row mb-4">
                 <div class="col">
                   <label for="nomPunt" class="form-label"
@@ -533,10 +533,11 @@
                     placeholder="Escriu aquí"
                     class="form-control"
                     id="phoneInput"
+                    :value="this.numTelefon"
                     aria-describedby="phoneInput"
                   />
                 </div>
-                <div id="antecedentsSelect" class="form-text">
+                <div id="phoneInput" class="form-text">
                   * Número de telèfon
                 </div>
               </div>
@@ -752,6 +753,7 @@ export default {
   },
   props:{
       expMsg:{},
+      numTelefon: String
   },
   created() {
     this.selectProvincies()
@@ -764,6 +766,6 @@ export default {
       this.start();
     });
     console.log("Component mounted.");
-  },
+  }
 };
 </script>

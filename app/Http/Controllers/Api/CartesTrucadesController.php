@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartesTrucadesResource;
 use App\Models\CartesTrucades;
+use App\Models\DadesPersonals;
 use Illuminate\Http\Request;
 
 class CartesTrucadesController extends Controller
@@ -30,28 +31,41 @@ class CartesTrucadesController extends Controller
     public function store(Request $request)
     {
         $cartaTrucada = new CartesTrucades();
+        $dadesPersonals = new DadesPersonals();
 
-        //$cartaTrucada->sigles = $request->input('sigles');
-        $cartaTrucada->codi_trucada = $request->input('');      //---> FALTA SABER QUIN CODI APLIQUEM
-        $cartaTrucada->temps_trucada = $request->input('tempsTrucada');
+        $adreca = $request->input('procedenciaInput') + $request->input('selectMunicipi');
 
 
-        $cartaTrucada->telefon = $request->input('');
-        $cartaTrucada->procedencia_trucada = $request->input('procedenciaInput');
-        $cartaTrucada->nom_trucada = $request->input('');
-        $cartaTrucada->municipis_id_trucada = $request->input('selectMunicipi');
-        $cartaTrucada->adreca_trucada = $request->input('');
-        //AQUI ES TE QUE FER UN INSERT I OBTENIR EL ID
+        //----------------DADES PERSONALS------------------
+        $dadesPersonals->telefon = $request->input('phoneInput');
+        $dadesPersonals->adreca = $request->input('');
+        $dadesPersonals->antecedents = $request->input('antecedents');
+        //------------------------------------------------
 
-        $cartaTrucada->dades_personals_id = $request->input('');
-        
-        //--------------------------------------------
+        //--------------COMUNES-----------------
+        $cartaTrucada->temps_trucada = $request->input('tempsTrucada'); //QUEDA PENDENT COM ENVIAR EL TEMPS DE TRUCADA
+        $cartaTrucada->telefon = $request->input('phoneInput');
         $cartaTrucada->fora_catalunya = $request->input('localitzacio');
-        $cartaTrucada->provincies_id = $request->input('provincia');
-        $cartaTrucada->municipis_id = $request->input('selectMunicipi');
+        //-------------------------------------
 
-        $cartaTrucada->tipus_localitzacions_id = $request->input('tipusLoc');
+        //--------------CATALUNYA-------------------
         if($request->input('localitzacio') == 1){
+            $cartaTrucada->procedencia_trucada = $request->input('procedenciaInput');
+            $cartaTrucada->nom_trucada = $request->input(''); //QUEDA PENDENT
+            $cartaTrucada->municipis_id_trucada = $request->input('selectMunicipi');
+            $cartaTrucada->adreca_trucada = $request->input(''); //QUEDA PENDENT
+
+            //AQUI ES TE QUE FER UN INSERT I OBTENIR EL ID
+
+
+            $cartaTrucada->dades_personals_id = $request->input('');    //UN COP FET EL INSERT AGAFEM EL ID
+
+            //--------------------------------------------
+            $cartaTrucada->provincies_id = $request->input('selectProvincia');
+            $cartaTrucada->municipis_id = $request->input('selectMunicipi'); //Preguntar entre municipis id i municipis id trucada diferencia
+
+            $cartaTrucada->tipus_localitzacions_id = $request->input('tipusLoc');
+
 
             if($request->input('tipusLoc') == 1){
                 $cartaTrucada->descripcio_localitzacio = $request->input('');
@@ -78,14 +92,18 @@ class CartesTrucadesController extends Controller
                 $cartaTrucada->detall_localitzacio = $request->input('');
                 $cartaTrucada->altres_ref_localitzacio = $request->input('');
             }
-        }else{
+
+            $cartaTrucada->incidents_id = $request->input('');
+            $cartaTrucada->nota_comuna = $request->input('');
+            $cartaTrucada->expedients_id = $request->input('');
+            $cartaTrucada->usuaris_id = $request->input('');
+        }
+        //---------------------------------------
+
+        //---------------ALTRES-------------------
+        else{
 
         }
-
-        $cartaTrucada->incidents_id = $request->input('');
-        $cartaTrucada->nota_comuna = $request->input('');
-        $cartaTrucada->expedients_id = $request->input('');
-        $cartaTrucada->usuaris_id = $request->input('');
     }
 
     /**

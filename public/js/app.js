@@ -5314,6 +5314,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      telefono: '',
       calls: [{
         tel: "666444545",
         status: "Accepted"
@@ -5355,6 +5356,7 @@ __webpack_require__.r(__webpack_exports__);
       this.clickedItem = call;
       this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, "Call");
       this.callComponent = true;
+      this.telefono = call.tel;
     },
     getStatus: function getStatus(status) {
       this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);
@@ -6278,6 +6280,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return _defineProperty({
@@ -6391,7 +6394,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   props: {
-    expMsg: {}
+    expMsg: {},
+    numTelefon: String
   },
   created: function created() {
     this.selectProvincies();
@@ -51016,7 +51020,10 @@ var render = function () {
         )
       }),
       _vm._v(" "),
-      _c("form-component", { on: { status: _vm.getStatus } }),
+      _c("form-component", {
+        attrs: { numTelefon: _vm.telefono },
+        on: { status: _vm.getStatus },
+      }),
     ],
     2
   )
@@ -51413,11 +51420,11 @@ var render = function () {
                             _vm._v("Selecciona una opció"),
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "Catalunya" } }, [
+                          _c("option", { attrs: { value: "1" } }, [
                             _vm._v("Catalunya"),
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "Altres" } }, [
+                          _c("option", { attrs: { value: "0" } }, [
                             _vm._v("Altres"),
                           ]),
                         ]
@@ -51438,7 +51445,7 @@ var render = function () {
                     ]),
                   ]),
                   _vm._v(" "),
-                  _vm.localitzacio === "Catalunya"
+                  _vm.localitzacio === "1"
                     ? _c("div", { staticClass: "row mb-4" }, [
                         _c("div", { staticClass: "col" }, [
                           _c(
@@ -51473,7 +51480,7 @@ var render = function () {
                             },
                             [
                               _vm._v(
-                                "\n                  * Nacionalitat de l'interlocutor\n                "
+                                "\n                  * Des d'on es realitza la trucada.\n                "
                               ),
                             ]
                           ),
@@ -51503,8 +51510,8 @@ var render = function () {
                               ],
                               staticClass: "form-select",
                               attrs: {
-                                id: "provincia",
-                                name: "provincia",
+                                id: "selectProvincia",
+                                name: "selectProvincia",
                                 "aria-label": "provincia",
                               },
                               on: {
@@ -51557,7 +51564,7 @@ var render = function () {
                             "div",
                             {
                               staticClass: "form-text",
-                              attrs: { id: "provincia" },
+                              attrs: { id: "selectProvincia" },
                             },
                             [
                               _vm._v(
@@ -51792,7 +51799,7 @@ var render = function () {
                   _vm._v(" "),
                   _vm._m(2),
                   _vm._v(" "),
-                  _vm.localitzacio === "Catalunya"
+                  _vm.localitzacio === "1"
                     ? _c("div", { staticClass: "row mb-4" }, [
                         _vm._m(3),
                         _vm._v(" "),
@@ -51847,31 +51854,27 @@ var render = function () {
                             [
                               _c(
                                 "option",
-                                { attrs: { selected: "", value: "" } },
+                                { attrs: { selected: "", value: "0" } },
                                 [_vm._v("Selecciona una opció")]
                               ),
                               _vm._v(" "),
-                              _c("option", { attrs: { value: "carrer" } }, [
+                              _c("option", { attrs: { value: "1" } }, [
                                 _vm._v("Carrer"),
                               ]),
                               _vm._v(" "),
-                              _c(
-                                "option",
-                                { attrs: { value: "puntSingular" } },
-                                [_vm._v("Punt Singular")]
-                              ),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("Punt Singular"),
+                              ]),
                               _vm._v(" "),
-                              _c("option", { attrs: { value: "carretera" } }, [
+                              _c("option", { attrs: { value: "3" } }, [
+                                _vm._v("Entitat població"),
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "4" } }, [
                                 _vm._v("Carretera"),
                               ]),
                               _vm._v(" "),
-                              _c(
-                                "option",
-                                { attrs: { value: "entitatPoblacio" } },
-                                [_vm._v("Entitat població")]
-                              ),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "provincia" } }, [
+                              _c("option", { attrs: { value: "5" } }, [
                                 _vm._v("Provincia"),
                               ]),
                             ]
@@ -51893,8 +51896,7 @@ var render = function () {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "" &&
-                  _vm.localitzacio === "Catalunya"
+                  _vm.tipusLocalitzacio === "0" && _vm.localitzacio === "1"
                     ? _c("div", [_vm._m(4)])
                     : _vm._e(),
                   _vm._v(" "),
@@ -51902,11 +51904,11 @@ var render = function () {
                     ? _c("div", [_vm._m(5), _vm._v(" "), _vm._m(6)])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "provincia"
+                  _vm.tipusLocalitzacio === "5"
                     ? _c("div", [_vm._m(7), _vm._v(" "), _vm._m(8)])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "carrer"
+                  _vm.tipusLocalitzacio === "1"
                     ? _c("div", [
                         _c("div", { staticClass: "row mb-4" }, [
                           _c("div", { staticClass: "col" }, [
@@ -52012,7 +52014,7 @@ var render = function () {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "carretera"
+                  _vm.tipusLocalitzacio === "4"
                     ? _c("div", [
                         _vm._m(13),
                         _vm._v(" "),
@@ -52022,7 +52024,7 @@ var render = function () {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "puntSingular"
+                  _vm.tipusLocalitzacio === "2"
                     ? _c("div", [
                         _c("div", { staticClass: "row mb-4" }, [
                           _c("div", { staticClass: "col" }, [
@@ -52213,9 +52215,60 @@ var render = function () {
                   _vm._v(" "),
                   _vm._m(19),
                   _vm._v(" "),
-                  _vm._m(20),
+                  _c("div", { staticClass: "row mb-4" }, [
+                    _vm._m(20),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "phoneInput" },
+                        },
+                        [_vm._v("Telèfon")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group" }, [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "input-group-text",
+                            attrs: { id: "phoneInput" },
+                          },
+                          [_vm._v("+34")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "tel",
+                            name: "phoneInput",
+                            placeholder: "Escriu aquí",
+                            id: "phoneInput",
+                            "aria-describedby": "phoneInput",
+                          },
+                          domProps: { value: this.numTelefon },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "phoneInput" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                  * Número de telèfon\n                "
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(21),
+                  ]),
                   _vm._v(" "),
-                  _vm._m(21),
+                  _vm._m(22),
                 ]),
               ]),
               _vm._v(" "),
@@ -52280,7 +52333,7 @@ var render = function () {
       ]
     ),
     _vm._v(" "),
-    _vm._m(22),
+    _vm._m(23),
   ])
 }
 var staticRenderFns = [
@@ -52740,99 +52793,68 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "antecedents" } },
-          [_vm._v("Antecedents del telèfon")]
+    return _c("div", { staticClass: "col" }, [
+      _c(
+        "label",
+        { staticClass: "form-label", attrs: { for: "antecedents" } },
+        [_vm._v("Antecedents del telèfon")]
+      ),
+      _vm._v(" "),
+      _c("textarea", {
+        staticClass: "form-control",
+        staticStyle: { height: "60px" },
+        attrs: {
+          placeholder: "Escriu aquí",
+          name: "antecedents",
+          id: "antecedents",
+        },
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-text", attrs: { id: "antecedents" } }, [
+        _vm._v(
+          "\n                  * Text amb informació rellevant del trucant\n                "
         ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "60px" },
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col" }, [
+      _c(
+        "label",
+        { staticClass: "form-label", attrs: { for: "genereSelect" } },
+        [_vm._v("Gènere")]
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          staticClass: "form-select",
           attrs: {
-            placeholder: "Escriu aquí",
-            name: "antecedents",
-            id: "antecedents",
+            id: "genereSelect",
+            name: "genereSelect",
+            "aria-label": "genereSelect",
           },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-text", attrs: { id: "antecedents" } }, [
-          _vm._v(
-            "\n                  * Text amb informació rellevant del trucant\n                "
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "phoneInput" } },
-          [_vm._v("Telèfon")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group" }, [
-          _c(
-            "span",
-            { staticClass: "input-group-text", attrs: { id: "phoneInput" } },
-            [_vm._v("+34")]
-          ),
+        },
+        [
+          _c("option", { attrs: { selected: "" } }, [
+            _vm._v("Selecciona una opció"),
+          ]),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "tel",
-              name: "phoneInput",
-              placeholder: "Escriu aquí",
-              id: "phoneInput",
-              "aria-describedby": "phoneInput",
-            },
-          }),
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "antecedentsSelect" } },
-          [_vm._v("\n                  * Número de telèfon\n                ")]
-        ),
-      ]),
+          _c("option", { attrs: { value: "Home" } }, [_vm._v("Home")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "Dona" } }, [_vm._v("Dona")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "Altres" } }, [_vm._v("Altres")]),
+        ]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "genereSelect" } },
-          [_vm._v("Gènere")]
+      _c("div", { staticClass: "form-text", attrs: { id: "genereSelect" } }, [
+        _vm._v(
+          "\n                  * Gènere amb el que s'identifica\n                "
         ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-select",
-            attrs: {
-              id: "genereSelect",
-              name: "genereSelect",
-              "aria-label": "genereSelect",
-            },
-          },
-          [
-            _c("option", { attrs: { selected: "" } }, [
-              _vm._v("Selecciona una opció"),
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Home" } }, [_vm._v("Home")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Dona" } }, [_vm._v("Dona")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Altres" } }, [_vm._v("Altres")]),
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-text", attrs: { id: "genereSelect" } }, [
-          _vm._v(
-            "\n                  * Gènere amb el que s'identifica\n                "
-          ),
-        ]),
       ]),
     ])
   },
