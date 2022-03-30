@@ -34,7 +34,41 @@
                   <option value="0">Altres</option>
                 </select>
                 <div id="localitzacio" class="form-text">
-                  * Comunitat autònoma de l'interlocutor
+                  * Localització de l'incident
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <label for="nomIntelocutor" class="form-label"
+                  >Nom</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nomIntelocutor"
+                  id="nomIntelocutor"
+                  aria-describedby="nomIntelocutor"
+                  placeholder="Escriu aquí"
+                />
+                <div id="nomIntelocutor" class="form-text">
+                  * Nom de l'interlocutor
+                </div>
+              </div>
+              <div class="col">
+                <label for="adreca" class="form-label"
+                  >Adreça</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="adreca"
+                  id="adreca"
+                  aria-describedby="adreca"
+                  placeholder="Escriu aquí"
+                />
+                <div id="adreca" class="form-text">
+                  * Adreça de l'interlocutor
                 </div>
               </div>
             </div>
@@ -175,7 +209,7 @@
                   class="form-select"
                   aria-label="tipusLoc"
                 >
-                  <option selected value="0">Selecciona una opció</option>
+                  <option selected value="">Selecciona una opció</option>
                   <option value="1">Carrer</option>
                   <option value="2">Punt Singular</option>
                   <option value="3">Entitat població</option>
@@ -189,26 +223,26 @@
             </div>
 
             <div
-              v-if="tipusLocalitzacio === '0' && localitzacio === '1'"
+              v-if="tipusLocalitzacio === '' && localitzacio === '1'"
             >
               <div class="row">
                 <hr />
               </div>
             </div>
-            <div v-if="tipusLocalitzacio === 'entitatPoblacio'">
+            <div v-if="tipusLocalitzacio === '3'">
               <div class="row mb-4">
                 <div class="col">
-                  <label class="form-label" for="referenciesLoc"
+                  <label class="form-label" for="referenciesLoc3"
                     >Altres referències de la localització</label
                   >
                   <textarea
                     class="form-control"
                     placeholder="Escriu aquí"
-                    name="referenciesLoc"
-                    id="referenciesLoc"
+                    name="referenciesLoc3"
+                    id="referenciesLoc3"
                     style="height: 50px"
                   ></textarea>
-                  <div id="referenciesLoc" class="form-text">
+                  <div id="referenciesLoc3" class="form-text">
                     * Altres anotacions d'interés sobre la localització
                   </div>
                 </div>
@@ -220,17 +254,17 @@
             <div v-if="tipusLocalitzacio === '5'">
               <div class="row mb-4">
                 <div class="col">
-                  <label class="form-label" for="referenciesLoc"
+                  <label class="form-label" for="referenciesLoc5"
                     >Altres referències de la localització</label
                   >
                   <textarea
                     class="form-control"
                     placeholder="Escriu aquí"
-                    name="referenciesLoc"
-                    id="referenciesLoc"
+                    name="referenciesLoc5"
+                    id="referenciesLoc5"
                     style="height: 50px"
                   ></textarea>
-                  <div id="referenciesLoc" class="form-text">
+                  <div id="referenciesLoc5" class="form-text">
                     * Altres anotacions d'interés sobre la localització
                   </div>
                 </div>
@@ -331,17 +365,17 @@
               </div>
               <div class="row mb-4">
                 <div class="col">
-                  <label class="form-label" for="referenciesLoc"
+                  <label class="form-label" for="referenciesLoc1"
                     >Altres referències de la localització</label
                   >
                   <textarea
                     class="form-control"
                     placeholder="Escriu aquí"
-                    name="referenciesLoc"
-                    id="referenciesLoc"
+                    name="referenciesLoc1"
+                    id="referenciesLoc1"
                     style="height: 50px"
                   ></textarea>
-                  <div id="referenciesLoc" class="form-text">
+                  <div id="referenciesLoc1" class="form-text">
                     * Altres anotacions d'interés sobre la localització
                   </div>
                 </div>
@@ -400,17 +434,17 @@
               </div>
               <div class="row mb-4">
                 <div class="col">
-                  <label class="form-label" for="referenciesLoc"
+                  <label class="form-label" for="referenciesLoc4"
                     >Altres referències de la localització</label
                   >
                   <textarea
                     class="form-control"
                     placeholder="Escriu aquí"
-                    name="referenciesLoc"
-                    id="referenciesLoc"
+                    name="referenciesLoc4"
+                    id="referenciesLoc4"
                     style="height: 50px"
                   ></textarea>
-                  <div id="referenciesLoc" class="form-text">
+                  <div id="referenciesLoc4" class="form-text">
                     * Altres anotacions d'interés sobre la localització
                   </div>
                 </div>
@@ -441,17 +475,17 @@
               </div>
               <div class="row mb-4">
                 <div class="col">
-                  <label class="form-label" for="referenciesLoc"
+                  <label class="form-label" for="referenciesLoc2"
                     >Altres referències de la localització</label
                   >
                   <textarea
                     class="form-control"
                     placeholder="Escriu aquí"
-                    name="referenciesLoc"
-                    id="referenciesLoc"
+                    name="referenciesLoc2"
+                    id="referenciesLoc2"
                     style="height: 50px"
                   ></textarea>
-                  <div id="referenciesLoc" class="form-text">
+                  <div id="referenciesLoc2" class="form-text">
                     * Altres anotacions d'interés sobre la localització
                   </div>
                 </div>

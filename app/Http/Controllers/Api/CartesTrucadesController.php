@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\CartesTrucadesResource;
+use Illuminate\Http\Request;
 use App\Models\CartesTrucades;
 use App\Models\DadesPersonals;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
+use App\Http\Resources\CartesTrucadesResource;
 
 class CartesTrucadesController extends Controller
 {
@@ -30,16 +32,21 @@ class CartesTrucadesController extends Controller
      */
     public function store(Request $request)
     {
-        $cartaTrucada = new CartesTrucades();
-        $dadesPersonals = new DadesPersonals();
 
-        $adreca = $request->input('procedenciaInput') + $request->input('selectMunicipi');
+        try{
+            DB::beginTransaction();
+            $cartaTrucada = new CartesTrucades();
+        $dadesPersonals = new DadesPersonals();
 
 
         //----------------DADES PERSONALS------------------
         $dadesPersonals->telefon = $request->input('phoneInput');
         $dadesPersonals->adreca = $request->input('');
         $dadesPersonals->antecedents = $request->input('antecedents');
+
+        $dadesPersonals->save();
+        $cartaTrucada->dades_personals_id = $dadesPersonals->id;    //UN COP FET EL INSERT AGAFEM EL ID
+
         //------------------------------------------------
 
         //--------------COMUNES-----------------
@@ -51,14 +58,11 @@ class CartesTrucadesController extends Controller
         //--------------CATALUNYA-------------------
         if($request->input('localitzacio') == 1){
             $cartaTrucada->procedencia_trucada = $request->input('procedenciaInput');
-            $cartaTrucada->nom_trucada = $request->input(''); //QUEDA PENDENT
+            $cartaTrucada->nom_trucada = $request->input('nomIntelocutor');
             $cartaTrucada->municipis_id_trucada = $request->input('selectMunicipi');
-            $cartaTrucada->adreca_trucada = $request->input(''); //QUEDA PENDENT
-
-            //AQUI ES TE QUE FER UN INSERT I OBTENIR EL ID
+            $cartaTrucada->adreca_trucada = $request->input('adreca');
 
 
-            $cartaTrucada->dades_personals_id = $request->input('');    //UN COP FET EL INSERT AGAFEM EL ID
 
             //--------------------------------------------
             $cartaTrucada->provincies_id = $request->input('selectProvincia');
@@ -68,40 +72,51 @@ class CartesTrucadesController extends Controller
 
 
             if($request->input('tipusLoc') == 1){
-                $cartaTrucada->descripcio_localitzacio = $request->input('');
-                $cartaTrucada->detall_localitzacio = $request->input('');
-                $cartaTrucada->altres_ref_localitzacio = $request->input('');
+                $carrerDescrip = $request->input('tipusVia') . ' ' . $request->input('nomVia') . ' ' . $request->input('numVia');
+                $detallLoc = $request->input('escala') . ' ' . $request->input('pis') . ' ' . $request->input('porta');
+
+                $cartaTrucada->descripcio_localitzacio = $carrerDescrip;
+                $cartaTrucada->detall_localitzacio = $detallLoc;
+                $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc1');
             }
             else if($request->input('tipusLoc') == 2){
-                $cartaTrucada->descripcio_localitzacio = $request->input('');
-                $cartaTrucada->detall_localitzacio = $request->input('');
-                $cartaTrucada->altres_ref_localitzacio = $request->input('');
+                $cartaTrucada->descripcio_localitzacio = $request->input('nomPunt');
+                $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc2');
             }
             else if($request->input('tipusLoc') == 3){
-                $cartaTrucada->descripcio_localitzacio = $request->input('');
-                $cartaTrucada->detall_localitzacio = $request->input('');
-                $cartaTrucada->altres_ref_localitzacio = $request->input('');
+                $cartaTrucada->descripcio_localitzacio = $request->input('selectMunicipi');
+                $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc3');
             }
             else if($request->input('tipusLoc') == 4){
-                $cartaTrucada->descripcio_localitzacio = $request->input('');
-                $cartaTrucada->detall_localitzacio = $request->input('');
-                $cartaTrucada->altres_ref_localitzacio = $request->input('');
+                $descripCarretera = $request->input('nomCarretera') . ' ' . $request->input('puntKilometric');
+
+                $cartaTrucada->descripcio_localitzacio = $descripCarretera;
+                $cartaTrucada->detall_localitzacio = $request->input('sentitCarretera');
+                $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc4');
             }
             else if($request->input('tipusLoc') == 5){
-                $cartaTrucada->descripcio_localitzacio = $request->input('');
-                $cartaTrucada->detall_localitzacio = $request->input('');
-                $cartaTrucada->altres_ref_localitzacio = $request->input('');
+                $cartaTrucada->descripcio_localitzacio = $request->input('selectProvincia');
+                $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc5');
             }
-
-            $cartaTrucada->incidents_id = $request->input('');
-            $cartaTrucada->nota_comuna = $request->input('');
-            $cartaTrucada->expedients_id = $request->input('');
-            $cartaTrucada->usuaris_id = $request->input('');
         }
         //---------------------------------------
-
-        //---------------ALTRES-------------------
+        //---------------ALTRES (LOCALITZACÓ)-------------------
         else{
+
+        }
+        //--------------------------------------------------
+
+        //---------MES COMUNES------------------
+        $cartaTrucada->incidents_id = $request->input('incident');
+        $cartaTrucada->nota_comuna = $request->input('notaComunaInput');
+        $cartaTrucada->expedients_id = $request->input('');
+        $cartaTrucada->usuaris_id = $request->input('');
+        //---------------------------------------
+
+        $cartaTrucada->save();
+
+        } catch(QueryException $ex){
+            DB::rollBack();
 
         }
     }
