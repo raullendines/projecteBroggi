@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuaris;
+use App\Clases\Utilitat;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use phpDocumentor\Reflection\PseudoTypes\True_;
+use App\Http\Resources\UsuarisResource;
+use Illuminate\Database\QueryException;
 
 class UsuarisController extends Controller
 {
 
     public function showLogin()
-    {   
+    {
         return view('login.index');
     }
 
@@ -56,10 +59,10 @@ class UsuarisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        /* 
-        $user = new Usuaris();
+
+        /* $user = new Usuaris();
 
         $user->correu = 'prueba@cep.net';
         $user->nom = 'prueba';
@@ -68,8 +71,29 @@ class UsuarisController extends Controller
         $user->actiu = false;
         $user->rols_id = 3;
 
-        $user->save();  
-        */
+        $user->save(); */
+
+        $usuari =  new Usuaris();
+        $usuari->nom = $request->input('nom');
+        $usuari->cognoms = $request->input('cognoms');
+        $usuari->correu = $request->input('correu');
+        $usuari->contrasenya = $request->input('contrasenya');
+        $usuari->rols_id = $request->input('rols_id');
+        $usuari->actiu = ($request->input('actiu') == 'actiu');
+
+        try {
+            $usuari->save();
+            $response = (new UsuarisResource($usuari))
+                ->response()
+                ->setStatusCode(201);
+        } catch (QueryException $ex) {
+            $mensaje = Utilitat::errorMessage($ex);
+            $response = \response()
+                ->json(["error" => $mensaje], 400);
+        }
+
+        return $response;
+
     }
 
     /**
@@ -80,7 +104,26 @@ class UsuarisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuari =  new Usuaris();
+        $usuari->nom = $request->input('nom');
+        $usuari->cognoms = $request->input('cognoms');
+        $usuari->correu = $request->input('correu');
+        $usuari->contrasenya = $request->input('contrasenya');
+        $usuari->rols_id = $request->input('rols_id');
+        $usuari->actiu = ($request->input('actiu') == 'actiu');
+
+        try {
+            $usuari->save();
+            $response = (new UsuarisResource($usuari))
+                ->response()
+                ->setStatusCode(201);
+        } catch (QueryException $ex) {
+            $mensaje = Utilitat::errorMessage($ex);
+            $response = \response()
+                ->json(["error" => $mensaje], 400);
+        }
+
+        return $response;
     }
 
     /**
@@ -112,9 +155,27 @@ class UsuarisController extends Controller
      * @param  \App\Models\Usuaris  $usuaris
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuaris $usuaris)
+    public function update(Request $request, Usuaris $usuari)
     {
-        //
+        $usuari->nom = $request->input('nom');
+        $usuari->cognoms = $request->input('cognoms');
+        $usuari->correu = $request->input('correu');
+        $usuari->contrasenya = $request->input('contrasenya');
+        $usuari->rols_id = $request->input('rols_id');
+        $usuari->actiu = ($request->input('actiu') == 'actiu');
+
+        try {
+            $usuari->save();
+            $response = (new UsuarisResource($usuari))
+                ->response()
+                ->setStatusCode(201);
+        } catch (QueryException $ex) {
+            $mensaje = Utilitat::errorMessage($ex);
+            $response = \response()
+                ->json(["error" => $mensaje], 400);
+        }
+
+        return $response;
     }
 
     /**

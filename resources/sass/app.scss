@@ -52,7 +52,8 @@
 
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
-
+/* @import '~@mdi/font/css/materialdesignicons.min.css'; */
+@import url('https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css');
 // Variables
 // @import 'variables';
 @import "~bootswatch/dist/flatly/variables";
@@ -62,3 +63,7 @@
 
 //Bootswatch
 @import "~bootswatch/dist/flatly/bootswatch";
+
+//Vuetify
+@import "~vuetify/dist/vuetify.min.css";
+

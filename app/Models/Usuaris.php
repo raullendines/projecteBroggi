@@ -10,6 +10,8 @@ class Usuaris extends Authenticatable
 {
     use HasFactory;
 
+    protected $fillable = ['nom', 'cognoms', 'correu', 'contrasenya', 'rols_id', 'actiu'];
+
     public $table = 'usuaris';
     public $primaryKey = 'id'; //Por defecto es id
     public $incrementing = true; //Por defecto es true
@@ -23,5 +25,5 @@ class Usuaris extends Authenticatable
     public function CartesTrucades()
     {
         return $this->hasMany(CartesTrucades::class, 'usuaris_id');
-    } 
+    }
 }

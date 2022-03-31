@@ -3,11 +3,17 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import moment from "moment";
+import Vue from "vue";
+import Vuetify from "vuetify";
+import 'vuetify/dist/vuetify.min.css'; // vuetify style css
 
 require("./bootstrap");
 require("moment");
 
 window.Vue = require("vue").default;
+
+Vue.use(Vuetify);
 
 /**
  * The following block of code may be used to automatically register your
@@ -53,4 +59,6 @@ Vue.component(
 
 const app = new Vue({
     el: "#app",
+    vuetify: new Vuetify(), // to access $vuetify inside your Vue components
+    moment: new moment,
 });

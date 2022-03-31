@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Usuaris;
+use App\Clases\Utilitat;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UsuarisResource;
-use App\Models\Usuaris;
-use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class UsuarisController extends Controller
 {
@@ -33,7 +35,26 @@ class UsuarisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuari =  new Usuaris();
+        $usuari->nom = $request->input('nom');
+        $usuari->cognoms = $request->input('cognoms');
+        $usuari->correu = $request->input('correu');
+        $usuari->contrasenya = $request->input('contrasenya');
+        $usuari->rols_id = $request->input('rols_id');
+        $usuari->actiu = ($request->input('actiu') == 'actiu');
+
+        try {
+            $usuari->save();
+            $response = (new UsuarisResource($usuari))
+                ->response()
+                ->setStatusCode(201);
+        } catch (QueryException $ex) {
+            $mensaje = Utilitat::errorMessage($ex);
+            $response = \response()
+                ->json(["error" => $mensaje], 400);
+        }
+
+        return $response;
     }
 
     /**
@@ -54,9 +75,28 @@ class UsuarisController extends Controller
      * @param  \App\Models\Usuaris  $usuaris
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuaris $usuaris)
+    public function update(Request $request, Usuaris $usuari)
     {
-        //
+
+        $usuari->nom = $request->input('nom');
+        $usuari->cognoms = $request->input('cognoms');
+        $usuari->correu = $request->input('correu');
+        $usuari->contrasenya = $request->input('contrasenya');
+        $usuari->rols_id = $request->input('rols_id');
+        $usuari->actiu = ($request->input('actiu') == 'actiu');
+
+        try {
+            $usuari->save();
+            $response = (new UsuarisResource($usuari))
+            ->response()
+            ->setStatusCode(201);
+        } catch (QueryException $ex) {
+            $mensaje = Utilitat::errorMessage($ex);
+            $response = \response()
+            ->json(["error" => $mensaje], 400);
+        }
+
+        return $response;
     }
 
     /**
