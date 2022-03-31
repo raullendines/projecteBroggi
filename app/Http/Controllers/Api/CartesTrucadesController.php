@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Expedients;
 use Illuminate\Http\Request;
 use App\Models\CartesTrucades;
 use App\Models\DadesPersonals;
@@ -34,14 +35,22 @@ class CartesTrucadesController extends Controller
     {
 
         try{
-            DB::beginTransaction();
-            $cartaTrucada = new CartesTrucades();
+        DB::beginTransaction();
+        $cartaTrucada = new CartesTrucades();
         $dadesPersonals = new DadesPersonals();
+        $expedient = new Expedients();
 
 
+        //--------------EXPEDIENT----------------------
+        $expedient->data_creacio = $request->input('dataCreacio');
+        $expedient->estats_expedients_id = 1;
+        $expedient->save();
+
+        $cartaTrucada->expedients_id = $expedient->id;
+        //---------------------------------------------
         //----------------DADES PERSONALS------------------
         $dadesPersonals->telefon = $request->input('phoneInput');
-        $dadesPersonals->adreca = $request->input('');
+        $dadesPersonals->adreca = $request->input('adreca');
         $dadesPersonals->antecedents = $request->input('antecedents');
 
         $dadesPersonals->save();
@@ -50,7 +59,7 @@ class CartesTrucadesController extends Controller
         //------------------------------------------------
 
         //--------------COMUNES-----------------
-        $cartaTrucada->temps_trucada = $request->input('tempsTrucada'); //QUEDA PENDENT COM ENVIAR EL TEMPS DE TRUCADA
+        $cartaTrucada->temps_trucada = $request->input('tempsTrucada');
         $cartaTrucada->telefon = $request->input('phoneInput');
         $cartaTrucada->fora_catalunya = $request->input('localitzacio');
         //-------------------------------------
@@ -109,7 +118,10 @@ class CartesTrucadesController extends Controller
         //---------MES COMUNES------------------
         $cartaTrucada->incidents_id = $request->input('incident');
         $cartaTrucada->nota_comuna = $request->input('notaComunaInput');
-        $cartaTrucada->expedients_id = $request->input('');
+
+
+
+
         $cartaTrucada->usuaris_id = $request->input('');
         //---------------------------------------
 

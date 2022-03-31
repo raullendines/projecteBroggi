@@ -6315,28 +6315,105 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return _defineProperty({
+    var _ref;
+
+    return _ref = {
       elapsedTime: 0,
       timer: undefined,
-      localitzacio: "",
-      tipusLocalitzacio: "",
       tipusIncident: "",
       provincies: [],
       municipis: [],
       comarques: [],
       tipusIncidents: [],
       incidents: [],
-      selectProvincia: "",
       selectComarca: ""
-    }, "tipusIncident", "");
+    }, _defineProperty(_ref, "tipusIncident", ""), _defineProperty(_ref, "trucada", {
+      procedenciaInput: '',
+      dataCreacio: '',
+      localitzacio: "",
+      phoneInput: '',
+      adreca: '',
+      antecedents: '',
+      tempsTrucada: '',
+      nomIntelocutor: '',
+      selectMunicipi: '',
+      selectProvincia: "",
+      tipusLoc: '',
+      tipusVia: '',
+      nomVia: '',
+      numVia: '',
+      escala: '',
+      pis: '',
+      porta: '',
+      referenciesLoc1: '',
+      nomPunt: '',
+      referenciesLoc2: '',
+      referenciesLoc3: '',
+      nomCarretera: '',
+      puntKilometric: '',
+      sentitCarretera: '',
+      referenciesLoc4: '',
+      referenciesLoc5: '',
+      incident: '',
+      notaComunaInput: ''
+    }), _ref;
   },
   computed: {
     formattedElapsedTime: function formattedElapsedTime() {
       var date = new Date(null);
       date.setSeconds(this.elapsedTime / 1000);
       var utc = date.toUTCString();
+      this.trucada.tempsTrucada = utc.substr(utc.indexOf(":") - 2, 8);
       return utc.substr(utc.indexOf(":") - 2, 8);
     }
   },
@@ -6357,6 +6434,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         this.$emit('status', 'Accepted');
       }
+
+      this.currentDateTime();
     },
     selectProvincies: function selectProvincies() {
       var _this2 = this;
@@ -6425,7 +6504,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["finally"](function () {
         return _this6.loading = false;
       });
-    }
+    },
+    currentDateTime: function currentDateTime() {
+      var current = new Date();
+      var date = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+      var time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+      var dateTime = date + ' ' + time;
+      trucada.dataCreacio = dateTime;
+    },
+    insertForm: function insertForm() {}
   },
   props: {
     expMsg: {},
@@ -6443,6 +6530,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // your code goes here
       _this7.start();
     });
+    this.trucada.phoneInput = this.numTelefon;
     console.log("Component mounted.");
   }
 });
@@ -51401,7 +51489,7 @@ var render = function () {
           [
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "modal-body" }, [
-                _c("form", { attrs: { action: "" } }, [
+                _c("form", [
                   _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "row mb-4" }, [
@@ -51423,8 +51511,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.localitzacio,
-                              expression: "localitzacio",
+                              value: _vm.trucada.localitzacio,
+                              expression: "trucada.localitzacio",
                             },
                           ],
                           staticClass: "form-select",
@@ -51443,9 +51531,13 @@ var render = function () {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.localitzacio = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                              _vm.$set(
+                                _vm.trucada,
+                                "localitzacio",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
                             },
                           },
                         },
@@ -51479,9 +51571,111 @@ var render = function () {
                     ]),
                   ]),
                   _vm._v(" "),
-                  _vm._m(1),
+                  _c("div", { staticClass: "row mb-4" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "nomIntelocutor" },
+                        },
+                        [_vm._v("Nom")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.trucada.nomIntelocutor,
+                            expression: "trucada.nomIntelocutor",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "nomIntelocutor",
+                          id: "nomIntelocutor",
+                          "aria-describedby": "nomIntelocutor",
+                          placeholder: "Escriu aquí",
+                        },
+                        domProps: { value: _vm.trucada.nomIntelocutor },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.trucada,
+                              "nomIntelocutor",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "nomIntelocutor" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                  * Nom de l'interlocutor\n                "
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        { staticClass: "form-label", attrs: { for: "adreca" } },
+                        [_vm._v("Adreça")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.trucada.adreca,
+                            expression: "trucada.adreca",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "adreca",
+                          id: "adreca",
+                          "aria-describedby": "adreca",
+                          placeholder: "Escriu aquí",
+                        },
+                        domProps: { value: _vm.trucada.adreca },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.trucada, "adreca", $event.target.value)
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-text", attrs: { id: "adreca" } },
+                        [
+                          _vm._v(
+                            "\n                  * Adreça de l'interlocutor\n                "
+                          ),
+                        ]
+                      ),
+                    ]),
+                  ]),
                   _vm._v(" "),
-                  _vm.localitzacio === "1"
+                  _vm.trucada.localitzacio === "1"
                     ? _c("div", { staticClass: "row mb-4" }, [
                         _c("div", { staticClass: "col" }, [
                           _c(
@@ -51498,6 +51692,14 @@ var render = function () {
                           ),
                           _vm._v(" "),
                           _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.trucada.procedenciaInput,
+                                expression: "trucada.procedenciaInput",
+                              },
+                            ],
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
@@ -51505,6 +51707,19 @@ var render = function () {
                               id: "procedenciaInput",
                               "aria-describedby": "procedenciaInput",
                               placeholder: "Escriu aquí",
+                            },
+                            domProps: { value: _vm.trucada.procedenciaInput },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.trucada,
+                                  "procedenciaInput",
+                                  $event.target.value
+                                )
+                              },
                             },
                           }),
                           _vm._v(" "),
@@ -51540,8 +51755,8 @@ var render = function () {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.selectProvincia,
-                                  expression: "selectProvincia",
+                                  value: _vm.trucada.selectProvincia,
+                                  expression: "trucada.selectProvincia",
                                 },
                               ],
                               staticClass: "form-select",
@@ -51565,9 +51780,13 @@ var render = function () {
                                           "_value" in o ? o._value : o.value
                                         return val
                                       })
-                                    _vm.selectProvincia = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
+                                    _vm.$set(
+                                      _vm.trucada,
+                                      "selectProvincia",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
                                   },
                                   function ($event) {
                                     return _vm.selectComarques()
@@ -51712,11 +51931,39 @@ var render = function () {
                           _c(
                             "select",
                             {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.selectMunicipi,
+                                  expression: "trucada.selectMunicipi",
+                                },
+                              ],
                               staticClass: "form-select",
                               attrs: {
                                 id: "selectMunicipi",
                                 name: "selectMunicipi",
                                 "aria-label": "selectMunicipi",
+                              },
+                              on: {
+                                change: function ($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function (o) {
+                                      return o.selected
+                                    })
+                                    .map(function (o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "selectMunicipi",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
                               },
                             },
                             [
@@ -51830,14 +52077,14 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _vm._m(2),
+                        _vm._m(1),
                       ]),
                   _vm._v(" "),
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
-                  _vm.localitzacio === "1"
+                  _vm.trucada.localitzacio === "1"
                     ? _c("div", { staticClass: "row mb-4" }, [
-                        _vm._m(4),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c("div", { staticClass: "col" }, [
                           _c(
@@ -51860,8 +52107,8 @@ var render = function () {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.tipusLocalitzacio,
-                                  expression: "tipusLocalitzacio",
+                                  value: _vm.trucada.tipusLoc,
+                                  expression: "trucada.tipusLoc",
                                 },
                               ],
                               staticClass: "form-select",
@@ -51881,9 +52128,13 @@ var render = function () {
                                         "_value" in o ? o._value : o.value
                                       return val
                                     })
-                                  _vm.tipusLocalitzacio = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "tipusLoc",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
                                 },
                               },
                             },
@@ -51932,19 +52183,138 @@ var render = function () {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "" && _vm.localitzacio === "1"
-                    ? _c("div", [_vm._m(5)])
+                  _vm.trucada.tipusLoc === "" &&
+                  _vm.trucada.localitzacio === "1"
+                    ? _c("div", [_vm._m(4)])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "3"
-                    ? _c("div", [_vm._m(6), _vm._v(" "), _vm._m(7)])
+                  _vm.trucada.tipusLoc === "3"
+                    ? _c("div", [
+                        _c("div", { staticClass: "row mb-4" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "referenciesLoc3" },
+                              },
+                              [_vm._v("Altres referències de la localització")]
+                            ),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.referenciesLoc3,
+                                  expression: "trucada.referenciesLoc3",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              staticStyle: { height: "50px" },
+                              attrs: {
+                                placeholder: "Escriu aquí",
+                                name: "referenciesLoc3",
+                                id: "referenciesLoc3",
+                              },
+                              domProps: { value: _vm.trucada.referenciesLoc3 },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "referenciesLoc3",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "referenciesLoc3" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    * Altres anotacions d'interés sobre la localització\n                  "
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(5),
+                      ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "5"
-                    ? _c("div", [_vm._m(8), _vm._v(" "), _vm._m(9)])
+                  _vm.trucada.tipusLoc === "5"
+                    ? _c("div", [
+                        _c("div", { staticClass: "row mb-4" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "referenciesLoc5" },
+                              },
+                              [_vm._v("Altres referències de la localització")]
+                            ),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.referenciesLoc5,
+                                  expression: "trucada.referenciesLoc5",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              staticStyle: { height: "50px" },
+                              attrs: {
+                                placeholder: "Escriu aquí",
+                                name: "referenciesLoc5",
+                                id: "referenciesLoc5",
+                              },
+                              domProps: { value: _vm.trucada.referenciesLoc5 },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "referenciesLoc5",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "referenciesLoc5" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    * Altres anotacions d'interés sobre la localització\n                  "
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(6),
+                      ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "1"
+                  _vm.trucada.tipusLoc === "1"
                     ? _c("div", [
                         _c("div", { staticClass: "row mb-4" }, [
                           _c("div", { staticClass: "col" }, [
@@ -51961,7 +52331,73 @@ var render = function () {
                               1
                             ),
                             _vm._v(" "),
-                            _vm._m(10),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.trucada.tipusVia,
+                                    expression: "trucada.tipusVia",
+                                  },
+                                ],
+                                staticClass: "form-select",
+                                attrs: {
+                                  id: "tipusVia",
+                                  name: "tipusVia",
+                                  "aria-label": "tipusVia",
+                                },
+                                on: {
+                                  change: function ($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call(
+                                        $event.target.options,
+                                        function (o) {
+                                          return o.selected
+                                        }
+                                      )
+                                      .map(function (o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.trucada,
+                                      "tipusVia",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  },
+                                },
+                              },
+                              [
+                                _c(
+                                  "option",
+                                  { attrs: { selected: "", value: "carrer" } },
+                                  [_vm._v("Carrer")]
+                                ),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "avinguda" } }, [
+                                  _vm._v("Avinguda"),
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "bulevar" } }, [
+                                  _vm._v("Bulevar"),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "option",
+                                  { attrs: { value: "carrerPeatonal" } },
+                                  [_vm._v("Carrer peatonal")]
+                                ),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "cami" } }, [
+                                  _vm._v("Camí"),
+                                ]),
+                              ]
+                            ),
                             _vm._v(" "),
                             _c(
                               "div",
@@ -51989,6 +52425,14 @@ var render = function () {
                             ),
                             _vm._v(" "),
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.nomVia,
+                                  expression: "trucada.nomVia",
+                                },
+                              ],
                               staticClass: "form-control",
                               attrs: {
                                 type: "text",
@@ -51996,6 +52440,19 @@ var render = function () {
                                 id: "nomVia",
                                 "aria-describedby": "nomVia",
                                 placeholder: "Escriu aquí",
+                              },
+                              domProps: { value: _vm.trucada.nomVia },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "nomVia",
+                                    $event.target.value
+                                  )
+                                },
                               },
                             }),
                             _vm._v(" "),
@@ -52021,6 +52478,14 @@ var render = function () {
                             ),
                             _vm._v(" "),
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.numVia,
+                                  expression: "trucada.numVia",
+                                },
+                              ],
                               staticClass: "form-control",
                               attrs: {
                                 type: "number",
@@ -52028,6 +52493,19 @@ var render = function () {
                                 id: "numVia",
                                 "aria-describedby": "numVia",
                                 placeholder: "Escriu aquí",
+                              },
+                              domProps: { value: _vm.trucada.numVia },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "numVia",
+                                    $event.target.value
+                                  )
+                                },
                               },
                             }),
                             _vm._v(" "),
@@ -52042,25 +52520,459 @@ var render = function () {
                           ]),
                         ]),
                         _vm._v(" "),
-                        _vm._m(11),
+                        _c("div", { staticClass: "row mb-4" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "escala" },
+                              },
+                              [_vm._v("Escala")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.escala,
+                                  expression: "trucada.escala",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "escala",
+                                id: "escala",
+                                "aria-describedby": "escala",
+                                placeholder: "Escriu aquí",
+                              },
+                              domProps: { value: _vm.trucada.escala },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "escala",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "escala" },
+                              },
+                              [_vm._v("* Escala ubicada")]
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "pis" },
+                              },
+                              [_vm._v("Pis")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.pis,
+                                  expression: "trucada.pis",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                name: "pis",
+                                id: "pis",
+                                "aria-describedby": "pis",
+                                placeholder: "Escriu aquí",
+                              },
+                              domProps: { value: _vm.trucada.pis },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "pis",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "pis" },
+                              },
+                              [_vm._v("* Pis incident")]
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "porta" },
+                              },
+                              [_vm._v("Porta")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.porta,
+                                  expression: "trucada.porta",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                name: "porta",
+                                id: "porta",
+                                "aria-describedby": "porta",
+                                placeholder: "Escriu aquí",
+                              },
+                              domProps: { value: _vm.trucada.porta },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "porta",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "porta" },
+                              },
+                              [_vm._v("* Porta incident")]
+                            ),
+                          ]),
+                        ]),
                         _vm._v(" "),
-                        _vm._m(12),
+                        _c("div", { staticClass: "row mb-4" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "referenciesLoc1" },
+                              },
+                              [_vm._v("Altres referències de la localització")]
+                            ),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.referenciesLoc1,
+                                  expression: "trucada.referenciesLoc1",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              staticStyle: { height: "50px" },
+                              attrs: {
+                                placeholder: "Escriu aquí",
+                                name: "referenciesLoc1",
+                                id: "referenciesLoc1",
+                              },
+                              domProps: { value: _vm.trucada.referenciesLoc1 },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "referenciesLoc1",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "referenciesLoc1" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    * Altres anotacions d'interés sobre la localització\n                  "
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]),
                         _vm._v(" "),
-                        _vm._m(13),
+                        _vm._m(7),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "4"
+                  _vm.trucada.tipusLoc === "4"
                     ? _c("div", [
-                        _vm._m(14),
+                        _c("div", { staticClass: "row mb-4" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "nomCarretera" },
+                              },
+                              [_vm._v("Nom")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.nomCarretera,
+                                  expression: "trucada.nomCarretera",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "nomCarretera",
+                                id: "nomCarretera",
+                                "aria-describedby": "nomCarretera",
+                                placeholder: "Escriu aquí",
+                              },
+                              domProps: { value: _vm.trucada.nomCarretera },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "nomCarretera",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "nomCarretera" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    * Nom de la carretera on hi ha l'incident\n                  "
+                                ),
+                              ]
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "puntKilometric" },
+                              },
+                              [_vm._v("Punt Kilomètric")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.puntKilometric,
+                                  expression: "trucada.puntKilometric",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                name: "puntKilometric",
+                                id: "puntKilometric",
+                                "aria-describedby": "puntKilometric",
+                                placeholder: "Escriu aquí",
+                              },
+                              domProps: { value: _vm.trucada.puntKilometric },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "puntKilometric",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "puntKilometric" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    * Punt kilomètric de la carretera on hi ha l'incident\n                  "
+                                ),
+                              ]
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "sentitCarretera" },
+                              },
+                              [_vm._v("Sentit")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.sentitCarretera,
+                                  expression: "trucada.sentitCarretera",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "sentitCarretera",
+                                id: "sentitCarretera",
+                                "aria-describedby": "sentitCarretera",
+                                placeholder: "Escriu aquí",
+                              },
+                              domProps: { value: _vm.trucada.sentitCarretera },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "sentitCarretera",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "sentitCarretera" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    * Sentit de la carretera on hi ha l'incident\n                  "
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]),
                         _vm._v(" "),
-                        _vm._m(15),
+                        _c("div", { staticClass: "row mb-4" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "referenciesLoc4" },
+                              },
+                              [_vm._v("Altres referències de la localització")]
+                            ),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.referenciesLoc4,
+                                  expression: "trucada.referenciesLoc4",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              staticStyle: { height: "50px" },
+                              attrs: {
+                                placeholder: "Escriu aquí",
+                                name: "referenciesLoc4",
+                                id: "referenciesLoc4",
+                              },
+                              domProps: { value: _vm.trucada.referenciesLoc4 },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "referenciesLoc4",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "referenciesLoc4" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    * Altres anotacions d'interés sobre la localització\n                  "
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]),
                         _vm._v(" "),
-                        _vm._m(16),
+                        _vm._m(8),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.tipusLocalitzacio === "2"
+                  _vm.trucada.tipusLoc === "2"
                     ? _c("div", [
                         _c("div", { staticClass: "row mb-4" }, [
                           _c("div", { staticClass: "col" }, [
@@ -52075,6 +52987,14 @@ var render = function () {
                             ),
                             _vm._v(" "),
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.nomPunt,
+                                  expression: "trucada.nomPunt",
+                                },
+                              ],
                               staticClass: "form-control",
                               attrs: {
                                 type: "text",
@@ -52082,6 +53002,19 @@ var render = function () {
                                 id: "nomPunt",
                                 "aria-describedby": "nomPunt",
                                 placeholder: "Escriu aquí",
+                              },
+                              domProps: { value: _vm.trucada.nomPunt },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "nomPunt",
+                                    $event.target.value
+                                  )
+                                },
                               },
                             }),
                             _vm._v(" "),
@@ -52100,13 +53033,68 @@ var render = function () {
                           ]),
                         ]),
                         _vm._v(" "),
-                        _vm._m(17),
+                        _c("div", { staticClass: "row mb-4" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "referenciesLoc2" },
+                              },
+                              [_vm._v("Altres referències de la localització")]
+                            ),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.trucada.referenciesLoc2,
+                                  expression: "trucada.referenciesLoc2",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              staticStyle: { height: "50px" },
+                              attrs: {
+                                placeholder: "Escriu aquí",
+                                name: "referenciesLoc2",
+                                id: "referenciesLoc2",
+                              },
+                              domProps: { value: _vm.trucada.referenciesLoc2 },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.trucada,
+                                    "referenciesLoc2",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-text",
+                                attrs: { id: "referenciesLoc2" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    * Altres anotacions d'interés sobre la localització\n                  "
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]),
                         _vm._v(" "),
-                        _vm._m(18),
+                        _vm._m(9),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(19),
+                  _vm._m(10),
                   _vm._v(" "),
                   _c("div", { staticClass: "row mb-4" }, [
                     _c("div", { staticClass: "col" }, [
@@ -52208,11 +53196,38 @@ var render = function () {
                       _c(
                         "select",
                         {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.trucada.incident,
+                              expression: "trucada.incident",
+                            },
+                          ],
                           staticClass: "form-select",
                           attrs: {
                             id: "incident",
                             name: "incident",
                             "aria-label": "incident",
+                          },
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.trucada,
+                                "incident",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            },
                           },
                         },
                         [
@@ -52249,10 +53264,63 @@ var render = function () {
                     ]),
                   ]),
                   _vm._v(" "),
-                  _vm._m(20),
+                  _vm._m(11),
                   _vm._v(" "),
                   _c("div", { staticClass: "row mb-4" }, [
-                    _vm._m(21),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "antecedents" },
+                        },
+                        [_vm._v("Antecedents del telèfon")]
+                      ),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.trucada.antecedents,
+                            expression: "trucada.antecedents",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        staticStyle: { height: "60px" },
+                        attrs: {
+                          placeholder: "Escriu aquí",
+                          name: "antecedents",
+                          id: "antecedents",
+                        },
+                        domProps: { value: _vm.trucada.antecedents },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.trucada,
+                              "antecedents",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "antecedents" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                  * Text amb informació rellevant del trucant\n                "
+                          ),
+                        ]
+                      ),
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col" }, [
                       _c(
@@ -52275,6 +53343,14 @@ var render = function () {
                         ),
                         _vm._v(" "),
                         _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.trucada.phoneInput,
+                              expression: "trucada.phoneInput",
+                            },
+                          ],
                           staticClass: "form-control",
                           attrs: {
                             type: "tel",
@@ -52283,7 +53359,19 @@ var render = function () {
                             id: "phoneInput",
                             "aria-describedby": "phoneInput",
                           },
-                          domProps: { value: this.numTelefon },
+                          domProps: { value: _vm.trucada.phoneInput },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.trucada,
+                                "phoneInput",
+                                $event.target.value
+                              )
+                            },
+                          },
                         }),
                       ]),
                       _vm._v(" "),
@@ -52301,10 +53389,131 @@ var render = function () {
                       ),
                     ]),
                     _vm._v(" "),
-                    _vm._m(22),
+                    _vm._m(12),
                   ]),
                   _vm._v(" "),
-                  _vm._m(23),
+                  _c("div", { staticClass: "row mb-4" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "notaComunaInput" },
+                        },
+                        [_vm._v("Nota comuna")]
+                      ),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.trucada.notaComunaInput,
+                            expression: "trucada.notaComunaInput",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        staticStyle: { height: "100px" },
+                        attrs: {
+                          placeholder: "Escriu aquí",
+                          name: "notaComunaInput",
+                          id: "notaComunaInput",
+                        },
+                        domProps: { value: _vm.trucada.notaComunaInput },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.trucada,
+                              "notaComunaInput",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-text",
+                          attrs: { id: "notaComunaInput" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                  * Altres anotacions d'interés\n                "
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(13),
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(14),
+                  _vm._v(" "),
+                  _vm._m(15),
+                  _vm._v(" "),
+                  _vm._m(16),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.trucada.tempsTrucada,
+                        expression: "trucada.tempsTrucada",
+                      },
+                    ],
+                    attrs: {
+                      type: "hidden",
+                      name: "tempsTrucada",
+                      id: "tempsTrucada",
+                    },
+                    domProps: { value: _vm.trucada.tempsTrucada },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.trucada,
+                          "tempsTrucada",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.trucada.dataCreacio,
+                        expression: "trucada.dataCreacio",
+                      },
+                    ],
+                    attrs: {
+                      type: "hidden",
+                      name: "dataCreacio",
+                      id: "dataCreacio",
+                    },
+                    domProps: { value: _vm.trucada.dataCreacio },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.trucada,
+                          "dataCreacio",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
                 ]),
               ]),
               _vm._v(" "),
@@ -52312,15 +53521,6 @@ var render = function () {
                 "div",
                 { staticClass: "modal-footer d-flex justify-content-between" },
                 [
-                  _c("input", {
-                    attrs: {
-                      type: "hidden",
-                      name: "tempsTrucada",
-                      id: "tempsTrucada",
-                    },
-                    domProps: { value: _vm.formattedElapsedTime },
-                  }),
-                  _vm._v(" "),
                   _c("p", {}, [
                     _vm._v(
                       "Temps de trucada: " + _vm._s(_vm.formattedElapsedTime)
@@ -52369,7 +53569,7 @@ var render = function () {
       ]
     ),
     _vm._v(" "),
-    _vm._m(24),
+    _vm._m(17),
   ])
 }
 var staticRenderFns = [
@@ -52378,64 +53578,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h5", [_c("b", [_vm._v("Identificació de l'interlocutor")])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "nomIntelocutor" } },
-          [_vm._v("Nom")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "nomIntelocutor",
-            id: "nomIntelocutor",
-            "aria-describedby": "nomIntelocutor",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "nomIntelocutor" } },
-          [
-            _vm._v(
-              "\n                  * Nom de l'interlocutor\n                "
-            ),
-          ]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c("label", { staticClass: "form-label", attrs: { for: "adreca" } }, [
-          _vm._v("Adreça"),
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "adreca",
-            id: "adreca",
-            "aria-describedby": "adreca",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-text", attrs: { id: "adreca" } }, [
-          _vm._v(
-            "\n                  * Adreça de l'interlocutor\n                "
-          ),
-        ]),
-      ]),
-    ])
   },
   function () {
     var _vm = this
@@ -52488,35 +53630,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "referenciesLoc3" } },
-          [_vm._v("Altres referències de la localització")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "50px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "referenciesLoc3",
-            id: "referenciesLoc3",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc3" } },
-          [
-            _vm._v(
-              "\n                    * Altres anotacions d'interés sobre la localització\n                  "
-            ),
-          ]
-        ),
-      ]),
-    ])
+    return _c("div", { staticClass: "row" }, [_c("hr")])
   },
   function () {
     var _vm = this
@@ -52528,340 +53642,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "referenciesLoc5" } },
-          [_vm._v("Altres referències de la localització")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "50px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "referenciesLoc5",
-            id: "referenciesLoc5",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc5" } },
-          [
-            _vm._v(
-              "\n                    * Altres anotacions d'interés sobre la localització\n                  "
-            ),
-          ]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [_c("hr")])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-select",
-        attrs: { id: "tipusVia", name: "tipusVia", "aria-label": "tipusVia" },
-      },
-      [
-        _c("option", { attrs: { selected: "", value: "carrer" } }, [
-          _vm._v("Carrer"),
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "avinguda" } }, [_vm._v("Avinguda")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "bulevar" } }, [_vm._v("Bulevar")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "carrerPeatonal" } }, [
-          _vm._v("Carrer peatonal"),
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "cami" } }, [_vm._v("Camí")]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c("label", { staticClass: "form-label", attrs: { for: "escala" } }, [
-          _vm._v("Escala"),
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "escala",
-            id: "escala",
-            "aria-describedby": "escala",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-text", attrs: { id: "escala" } }, [
-          _vm._v("* Escala ubicada"),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c("label", { staticClass: "form-label", attrs: { for: "pis" } }, [
-          _vm._v("Pis"),
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "number",
-            name: "pis",
-            id: "pis",
-            "aria-describedby": "pis",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-text", attrs: { id: "pis" } }, [
-          _vm._v("* Pis incident"),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c("label", { staticClass: "form-label", attrs: { for: "porta" } }, [
-          _vm._v("Porta"),
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "number",
-            name: "porta",
-            id: "porta",
-            "aria-describedby": "porta",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-text", attrs: { id: "porta" } }, [
-          _vm._v("* Porta incident"),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "referenciesLoc1" } },
-          [_vm._v("Altres referències de la localització")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "50px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "referenciesLoc1",
-            id: "referenciesLoc1",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc1" } },
-          [
-            _vm._v(
-              "\n                    * Altres anotacions d'interés sobre la localització\n                  "
-            ),
-          ]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [_c("hr")])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "nomCarretera" } },
-          [_vm._v("Nom")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "nomCarretera",
-            id: "nomCarretera",
-            "aria-describedby": "nomCarretera",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-text", attrs: { id: "nomCarretera" } }, [
-          _vm._v(
-            "\n                    * Nom de la carretera on hi ha l'incident\n                  "
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "puntKilometric" } },
-          [_vm._v("Punt Kilomètric")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "number",
-            name: "puntKilometric",
-            id: "puntKilometric",
-            "aria-describedby": "puntKilometric",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "puntKilometric" } },
-          [
-            _vm._v(
-              "\n                    * Punt kilomètric de la carretera on hi ha l'incident\n                  "
-            ),
-          ]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "sentitCarretera" } },
-          [_vm._v("Sentit")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "sentitCarretera",
-            id: "sentitCarretera",
-            "aria-describedby": "sentitCarretera",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "sentitCarretera" } },
-          [
-            _vm._v(
-              "\n                    * Sentit de la carretera on hi ha l'incident\n                  "
-            ),
-          ]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "referenciesLoc4" } },
-          [_vm._v("Altres referències de la localització")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "50px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "referenciesLoc4",
-            id: "referenciesLoc4",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc4" } },
-          [
-            _vm._v(
-              "\n                    * Altres anotacions d'interés sobre la localització\n                  "
-            ),
-          ]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [_c("hr")])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "referenciesLoc2" } },
-          [_vm._v("Altres referències de la localització")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "50px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "referenciesLoc2",
-            id: "referenciesLoc2",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc2" } },
-          [
-            _vm._v(
-              "\n                    * Altres anotacions d'interés sobre la localització\n                  "
-            ),
-          ]
-        ),
-      ]),
-    ])
   },
   function () {
     var _vm = this
@@ -52882,34 +53669,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col" }, [
-      _c(
-        "label",
-        { staticClass: "form-label", attrs: { for: "antecedents" } },
-        [_vm._v("Antecedents del telèfon")]
-      ),
-      _vm._v(" "),
-      _c("textarea", {
-        staticClass: "form-control",
-        staticStyle: { height: "60px" },
-        attrs: {
-          placeholder: "Escriu aquí",
-          name: "antecedents",
-          id: "antecedents",
-        },
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-text", attrs: { id: "antecedents" } }, [
-        _vm._v(
-          "\n                  * Text amb informació rellevant del trucant\n                "
-        ),
-      ]),
-    ])
   },
   function () {
     var _vm = this
@@ -52956,35 +53715,58 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "notaComunaInput" } },
-          [_vm._v("Nota comuna")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "100px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "notaComunaInput",
-            id: "notaComunaInput",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "notaComunaInput" } },
-          [
-            _vm._v(
-              "\n                  * Altres anotacions d'interés\n                "
-            ),
-          ]
-        ),
+    return _c("div", { staticClass: "col" }, [
+      _c("label", { staticClass: "form-label", attrs: { for: "vipSelect" } }, [
+        _vm._v("Agències"),
       ]),
       _vm._v(" "),
+      _c(
+        "select",
+        {
+          staticClass: "form-select",
+          attrs: {
+            id: "selectAgencies",
+            name: "selectAgencies",
+            "aria-label": "selectAgencies",
+          },
+        },
+        [
+          _c("option", { attrs: { selected: "", value: "-1" } }, [
+            _vm._v("Selecciona una opció"),
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "vip1" } }, [_vm._v("VIP-1")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "vip2" } }, [_vm._v("VIP-2")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "vip3" } }, [_vm._v("VIP-3")]),
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-text", attrs: { id: "selectAgencies" } }, [
+        _vm._v("* Agències predefinides"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [_c("hr")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("h5", [_c("b", [_vm._v("Finalització del tractament")])]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col" }, [
         _c(
           "label",
