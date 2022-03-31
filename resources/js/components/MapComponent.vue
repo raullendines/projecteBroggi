@@ -31,7 +31,8 @@ export default {
             !response.body ||
             !response.body.features ||
             !response.body.features.length
-          ) {
+          ) 
+          {
             console.error("Invalid response:");
             console.error(response);
             return;
@@ -86,7 +87,6 @@ export default {
             return;
           }
           const feature = response.body.features[0];
-
           // create the popup
           const popup = new mapboxgl.Popup({ offset: 25 }).setText("ID: " +agencia.id);
 
