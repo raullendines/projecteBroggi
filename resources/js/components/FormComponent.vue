@@ -689,7 +689,7 @@
             >
               Penjar
             </button>
-            <button type="button" class="btn btn-secondary" @click="stop(1)" data-bs-dismiss="modal">
+            <button type="button" @click="insertForm()" class="btn btn-secondary" data-bs-dismiss="modal">
               Guardar i penjar
             </button>
           </div>
@@ -817,7 +817,7 @@ export default {
     },
     selectComarques() {
         let me = this;
-        let provincia = this.selectProvincia;
+        let provincia = this.trucada.selectProvincia;
           axios.get('/comarques/' + provincia).then((response) => {
               me.comarques = response.data;
               console.log(me.comarques);
@@ -829,7 +829,7 @@ export default {
     },
     selectMunicipis() {
        let me = this;
-        let municipi = this.selectComarca;
+        let municipi = this.trucada.selectComarca;
           axios.get('/municipis/' + municipi).then((response) => {
               me.municipis = response.data;
               console.log(me.municipis);
@@ -871,7 +871,18 @@ export default {
         trucada.dataCreacio = dateTime;
     },
     insertForm(){
+        let me = this;
+        aixos
+            .post('/callCards2', me.trucada)
+            .then(function(response){
+                console.log(response);
+                stop(1);
 
+
+            }).catch(function(error){
+                console.log(error.response.status);
+                console.log(error.response.data);
+            });
     }
   },
   props:{

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Clases\Utilitat;
 use App\Models\Expedients;
 use Illuminate\Http\Request;
 use App\Models\CartesTrucades;
@@ -129,7 +130,12 @@ class CartesTrucadesController extends Controller
 
         } catch(QueryException $ex){
             DB::rollBack();
-
+            $mensaje = Utilitat::errorMessage($ex);
+            $response = \response()
+                        ->json(
+                            ['error' => $mensaje], 400
+                        );
+            echo $response;
         }
     }
 

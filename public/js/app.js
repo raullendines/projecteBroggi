@@ -6454,7 +6454,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       var me = this;
-      var provincia = this.selectProvincia;
+      var provincia = this.trucada.selectProvincia;
       axios.get('/comarques/' + provincia).then(function (response) {
         me.comarques = response.data;
         console.log(me.comarques);
@@ -6468,7 +6468,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       var me = this;
-      var municipi = this.selectComarca;
+      var municipi = this.trucada.selectComarca;
       axios.get('/municipis/' + municipi).then(function (response) {
         me.municipis = response.data;
         console.log(me.municipis);
@@ -6512,7 +6512,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var dateTime = date + ' ' + time;
       trucada.dataCreacio = dateTime;
     },
-    insertForm: function insertForm() {}
+    insertForm: function insertForm() {
+      var me = this;
+      aixos.post('/callCards2', me.trucada).then(function (response) {
+        console.log(response);
+        stop(1);
+      })["catch"](function (error) {
+        console.log(error.response.status);
+        console.log(error.response.data);
+      });
+    }
   },
   props: {
     expMsg: {},
@@ -53554,7 +53563,7 @@ var render = function () {
                         attrs: { type: "button", "data-bs-dismiss": "modal" },
                         on: {
                           click: function ($event) {
-                            return _vm.stop(1)
+                            return _vm.insertForm()
                           },
                         },
                       },
