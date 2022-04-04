@@ -18,7 +18,7 @@
 
 <body>
     <div id="app">
-        <div class="container-fluid mt-5" style="padding: 0px">
+        <div class="container-fluid mt-5 loginVert">
             @yield('contents')
         </div>
     </div>

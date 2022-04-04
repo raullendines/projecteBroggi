@@ -1,7 +1,7 @@
 @extends('plantilla.form')
 
 @section('titulo', 'Login')
-    
+
 @section('contents')
 
 <div class="container border border-dark rounded bg-light">
@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="input-group">
-                            <div class="form-floating col-11">
+                            <div class="form-floating col-11 p-0">
                                 <input type="password" class="form-control" name="password" id="password" placeholder="Contrassenya"/>
                                 <label for="password">Contrassenya</label>
                             </div>
