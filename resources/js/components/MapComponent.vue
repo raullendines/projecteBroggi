@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <div id="map" class="map-size"></div>
-  </div>
+<!--     <div class="row">
+ -->      <div id="map" class="map-size col"></div>
+<!--     </div>
+ -->  </div>
 </template>
 
 <script>
@@ -10,7 +12,7 @@ export default {
     return {
       agencies: [],
       mapa: {},
-      incident: {}
+      incident: "Plaça Urquinaona 10, Barcelona"
     };
   },
   methods: {
@@ -20,7 +22,7 @@ export default {
       const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
       mapboxClient.geocoding
         .forwardGeocode({
-          query: "Plaça Urquinaona 10, Barcelona",
+          query: this.incident,
           autocomplete: false,
           limit: 1,
         })
@@ -43,7 +45,7 @@ export default {
           this.createMap(feature);
         });
     },
-    selectAgencies() {
+    selectAllAgencies() {
       console.log("selectAgencies");
       let me = this;
       axios
@@ -107,7 +109,7 @@ export default {
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
         center: feature.center,
-        zoom: 4,
+        zoom: 12,
       });
 
       this.mapa = map;
@@ -118,7 +120,7 @@ export default {
         .setLngLat(feature.center)
         .addTo(map);
 
-      this.selectAgencies();
+      this.selectAllAgencies();
     },
   },
   mounted() {

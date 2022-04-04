@@ -6433,12 +6433,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       agencies: [],
       mapa: {},
-      incident: {}
+      incident: "Plaça Urquinaona 10, Barcelona"
     };
   },
   methods: {
@@ -6450,7 +6452,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         accessToken: mapboxgl.accessToken
       });
       mapboxClient.geocoding.forwardGeocode({
-        query: "Plaça Urquinaona 10, Barcelona",
+        query: this.incident,
         autocomplete: false,
         limit: 1
       }).send().then(function (response) {
@@ -6465,7 +6467,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         _this.createMap(feature);
       });
     },
-    selectAgencies: function selectAgencies() {
+    selectAllAgencies: function selectAllAgencies() {
       var _this2 = this;
 
       console.log("selectAgencies");
@@ -6531,13 +6533,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
         center: feature.center,
-        zoom: 4
+        zoom: 12
       });
       this.mapa = map;
       new mapboxgl.Marker({
         color: "#FF0000"
       }).setLngLat(feature.center).addTo(map);
-      this.selectAgencies();
+      this.selectAllAgencies();
     }
   },
   mounted: function mounted() {
@@ -53662,7 +53664,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "map-size", attrs: { id: "map" } }),
+      _c("div", { staticClass: "map-size col", attrs: { id: "map" } }),
     ])
   },
 ]
