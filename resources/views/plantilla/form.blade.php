@@ -18,13 +18,13 @@
 
 <body>
     <div id="app">
-        <div class="container-fluid mt-5" style="padding: 0">
+        <div class="container-fluid mt-5" style="padding: 0px">
             @yield('contents')
         </div>
     </div>
 
 </body>
-<script src="{{ asset('js/app.js') }}"></script>
+{{-- <script src="{{ asset('js/app.js') }}"></script> --> esta comentado por el boostrap --}}
 <script src="{{ asset('js/login.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
