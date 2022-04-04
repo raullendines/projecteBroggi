@@ -5627,9 +5627,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
 //
 //
 //
@@ -6365,48 +6362,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    var _ref;
-
-    return _ref = {
+    return {
       elapsedTime: 0,
       timer: undefined,
-      tipusIncident: "",
       provincies: [],
       municipis: [],
       comarques: [],
       tipusIncidents: [],
       incidents: [],
-      selectComarca: ""
-    }, _defineProperty(_ref, "tipusIncident", ""), _defineProperty(_ref, "trucada", {
-      procedenciaInput: '',
-      dataCreacio: '',
-      localitzacio: "",
-      phoneInput: '',
-      adreca: '',
-      antecedents: '',
-      tempsTrucada: '',
-      nomIntelocutor: '',
-      selectMunicipi: '',
-      selectProvincia: "",
-      tipusLoc: '',
-      tipusVia: '',
-      nomVia: '',
-      numVia: '',
-      escala: '',
-      pis: '',
-      porta: '',
-      referenciesLoc1: '',
-      nomPunt: '',
-      referenciesLoc2: '',
-      referenciesLoc3: '',
-      nomCarretera: '',
-      puntKilometric: '',
-      sentitCarretera: '',
-      referenciesLoc4: '',
-      referenciesLoc5: '',
-      incident: '',
-      notaComunaInput: ''
-    }), _ref;
+      trucada: {
+        selectComarca: "",
+        tipusIncident: "",
+        procedenciaInput: '',
+        localitzacio: "",
+        phoneInput: '',
+        adreca: '',
+        antecedents: '',
+        tempsTrucada: '',
+        nomIntelocutor: '',
+        selectMunicipi: '',
+        selectProvincia: "",
+        tipusLoc: '',
+        tipusVia: '',
+        nomVia: '',
+        numVia: '',
+        escala: '',
+        pis: '',
+        porta: '',
+        referenciesLoc1: '',
+        nomPunt: '',
+        referenciesLoc2: '',
+        referenciesLoc3: '',
+        nomCarretera: '',
+        puntKilometric: '',
+        sentitCarretera: '',
+        referenciesLoc4: '',
+        referenciesLoc5: '',
+        incident: '',
+        notaComunaInput: ''
+      }
+    };
   },
   computed: {
     formattedElapsedTime: function formattedElapsedTime() {
@@ -6468,8 +6463,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       var me = this;
-      var municipi = this.trucada.selectComarca;
-      axios.get('/municipis/' + municipi).then(function (response) {
+      var comarca = this.trucada.selectComarca;
+      axios.get('/municipis/' + comarca).then(function (response) {
         me.municipis = response.data;
         console.log(me.municipis);
       })["catch"](function (err) {
@@ -6495,7 +6490,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this6 = this;
 
       var me = this;
-      var tipusIncident = this.tipusIncident;
+      var tipusIncident = this.trucada.tipusIncident;
       axios.get('/incidents/' + tipusIncident).then(function (response) {
         me.incidents = response.data;
         console.log(me.incidents);
@@ -6514,10 +6509,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     insertForm: function insertForm() {
       var me = this;
-      aixos.post('/callCards2', me.trucada).then(function (response) {
+      axios.post('/callCards2', me.trucada).then(function (response) {
+        debugger;
         console.log(response);
         stop(1);
       })["catch"](function (error) {
+        debugger;
         console.log(error.response.status);
         console.log(error.response.data);
       });
@@ -6529,7 +6526,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   created: function created() {
     this.selectProvincies();
-    this.selectMunicipis();
     this.selectTipusIncident();
   },
   mounted: function mounted() {
@@ -51856,8 +51852,8 @@ var render = function () {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.selectComarca,
-                                  expression: "selectComarca",
+                                  value: _vm.trucada.selectComarca,
+                                  expression: "trucada.selectComarca",
                                 },
                               ],
                               staticClass: "form-select",
@@ -51881,9 +51877,13 @@ var render = function () {
                                           "_value" in o ? o._value : o.value
                                         return val
                                       })
-                                    _vm.selectComarca = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
+                                    _vm.$set(
+                                      _vm.trucada,
+                                      "selectComarca",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
                                   },
                                   function ($event) {
                                     return _vm.selectMunicipis()
@@ -53127,8 +53127,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.tipusIncident,
-                              expression: "tipusIncident",
+                              value: _vm.trucada.tipusIncident,
+                              expression: "trucada.tipusIncident",
                             },
                           ],
                           staticClass: "form-select",
@@ -53148,9 +53148,13 @@ var render = function () {
                                     var val = "_value" in o ? o._value : o.value
                                     return val
                                   })
-                                _vm.tipusIncident = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
+                                _vm.$set(
+                                  _vm.trucada,
+                                  "tipusIncident",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
                               },
                               function ($event) {
                                 return _vm.selectIncidents()
@@ -53489,35 +53493,6 @@ var render = function () {
                         _vm.$set(
                           _vm.trucada,
                           "tempsTrucada",
-                          $event.target.value
-                        )
-                      },
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.trucada.dataCreacio,
-                        expression: "trucada.dataCreacio",
-                      },
-                    ],
-                    attrs: {
-                      type: "hidden",
-                      name: "dataCreacio",
-                      id: "dataCreacio",
-                    },
-                    domProps: { value: _vm.trucada.dataCreacio },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.trucada,
-                          "dataCreacio",
                           $event.target.value
                         )
                       },

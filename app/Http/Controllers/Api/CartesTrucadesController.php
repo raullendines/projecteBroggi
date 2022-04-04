@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+// use App\Clases\Utilitat;
 use App\Clases\Utilitat;
 use App\Models\Expedients;
 use Illuminate\Http\Request;
@@ -43,7 +44,6 @@ class CartesTrucadesController extends Controller
 
 
         //--------------EXPEDIENT----------------------
-        $expedient->data_creacio = $request->input('dataCreacio');
         $expedient->estats_expedients_id = 1;
         $expedient->save();
 
@@ -135,8 +135,9 @@ class CartesTrucadesController extends Controller
                         ->json(
                             ['error' => $mensaje], 400
                         );
-            echo $response;
         }
+
+        return $response;
     }
 
     /**

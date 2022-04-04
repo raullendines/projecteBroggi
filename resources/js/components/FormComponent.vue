@@ -121,7 +121,7 @@
                   name="comarca"
                   class="form-select"
                   aria-label="comarca"
-                  v-model="selectComarca"
+                  v-model="trucada.selectComarca"
                   @change="selectMunicipis()"
                 >
                   <option selected value="">Selecciona una opció</option>
@@ -524,7 +524,7 @@
                 >
                 <select
                   id="tipusIncident"
-                  v-model="tipusIncident"
+                  v-model="trucada.tipusIncident"
                   name="tipusIncident"
                   class="form-select"
                   aria-label="tipusIncident"
@@ -673,7 +673,6 @@
               </div>
             </div>
             <input type="hidden" name="tempsTrucada" id="tempsTrucada" v-model="trucada.tempsTrucada">
-            <input type="hidden" name="dataCreacio" id="dataCreacio" v-model="trucada.dataCreacio">
           </form>
         </div>
         <div class="modal-footer d-flex justify-content-between">
@@ -738,18 +737,16 @@ export default {
     return {
       elapsedTime: 0,
       timer: undefined,
-      tipusIncident: "",
       provincies: [],
       municipis: [],
       comarques: [],
       tipusIncidents: [],
       incidents: [],
-      selectComarca: "",
-      tipusIncident: "",
 
       trucada: {
+      selectComarca: "",
+      tipusIncident: "",
       procedenciaInput: '',
-      dataCreacio: '',
       localitzacio: "",
       phoneInput: '',
       adreca: '',
@@ -829,8 +826,8 @@ export default {
     },
     selectMunicipis() {
        let me = this;
-        let municipi = this.trucada.selectComarca;
-          axios.get('/municipis/' + municipi).then((response) => {
+        let comarca = this.trucada.selectComarca;
+          axios.get('/municipis/' + comarca).then((response) => {
               me.municipis = response.data;
               console.log(me.municipis);
           })
@@ -851,8 +848,8 @@ export default {
           .finally(() => (this.loading = false));
     },
     selectIncidents() {
-       let me = this;
-        let tipusIncident = this.tipusIncident;
+        let me = this;
+        let tipusIncident = this.trucada.tipusIncident;
           axios.get('/incidents/' + tipusIncident).then((response) => {
               me.incidents = response.data;
               console.log(me.incidents);
@@ -872,14 +869,16 @@ export default {
     },
     insertForm(){
         let me = this;
-        aixos
+        axios
             .post('/callCards2', me.trucada)
             .then(function(response){
+                debugger;
                 console.log(response);
                 stop(1);
 
 
             }).catch(function(error){
+                debugger;
                 console.log(error.response.status);
                 console.log(error.response.data);
             });
@@ -890,9 +889,8 @@ export default {
       numTelefon: String
   },
   created() {
-    this.selectProvincies()
-    this.selectMunicipis()
-    this.selectTipusIncident()
+    this.selectProvincies();
+    this.selectTipusIncident();
   },
   mounted() {
     this.$root.$on("CallCardComponent", () => {
