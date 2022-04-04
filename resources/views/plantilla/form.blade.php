@@ -18,11 +18,11 @@
 
 <body>
     <div id="app">
-        <div class="container-fluid mt-5">
+        <div class="container-fluid mt-5" style="padding: 0">
             @yield('contents')
         </div>
     </div>
-   
+
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/login.js') }}"></script>
