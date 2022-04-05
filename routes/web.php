@@ -29,7 +29,7 @@ Route::get('/expedients', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['role: 1, 2, 3'])->group(function () {
-        Route::get('/', function () { return view('plantilla.principal'); });
+        Route::get('/', function () { return view('mainPage.mainPage'); });
 
         Route::get('/trucades', function () {
             return view('callCard.callCard');
