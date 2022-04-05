@@ -47,6 +47,10 @@ Vue.component(
     require("./components/CallManagementComponent.vue").default
 );
 Vue.component(
+    "map-component",
+    require("./components/MapComponent.vue").default
+);
+Vue.component(
     "admin-component",
     require("./components/AdminComponent.vue").default
 );
