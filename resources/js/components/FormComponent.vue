@@ -683,16 +683,10 @@
             <button
               type="button"
               class="btn btn-primary"
-<<<<<<< HEAD
-              @click="stop"
-              data-bs-target="#raonsPenjar"
-              data-bs-toggle="modal"
-=======
               @click="stop(0)"
               data-bs-target="#penjarModal"
               data-bs-toggle="modal"
               data-bs-dismiss="modal"
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
             >
               Penjar
             </button>
