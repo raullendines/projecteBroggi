@@ -54,6 +54,10 @@ Vue.component(
     "admin-component",
     require("./components/AdminComponent.vue").default
 );
+Vue.component(
+    "graph-component",
+    require("./components/GraphComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

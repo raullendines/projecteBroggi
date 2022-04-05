@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::get('/graph', function () {
-            return view('callManagement.callManagement');
+            return view('graph.graph');
         });
 
         Route::get('/admin', function () {
