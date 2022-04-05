@@ -6466,10 +6466,84 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       selected_agency: [],
+      policiaLocalMarker: {},
+      policiaMunicipalMarker: {},
+      guardiaUrbanaMarker: {},
+      mossosEsquadraMarker: {},
+      bombersVoluntarisMarker: {},
+      bombersMarker: {},
+      transitMarker: {},
+      atencioCiutadanaMarker: {},
       agencies: [],
       mapa: {},
       incident: "Plaça Urquinaona 10, Barcelona"
@@ -6479,6 +6553,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     selectIncidencia: function selectIncidencia() {
       var _this = this;
 
+      var me = this;
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
@@ -6497,13 +6572,31 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var feature = response.body.features[0];
 
         _this.createMap(feature);
+
+        var description = "<p><b>" + _this.incident + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
+        var popup = new mapboxgl.Popup({
+          offset: 25
+        }).setHTML(description);
+        var el = document.createElement("div");
+        el.id = "marker";
+        _this.policiaLocalMarker = new mapboxgl.Marker({
+          color: "#BA0001"
+        }).setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
       });
     },
     selectAllAgencies: function selectAllAgencies() {
       var _this2 = this;
 
-      console.log("selectAgencies");
       var me = this;
+      var checkboxGU = document.querySelector("#guardiaUrbana");
+      var checkboxPL = document.querySelector("#policiaLocal");
+      var checkboxME = document.querySelector("#mossosEsquadra");
+      var checkboxPM = document.querySelector("#policiaMunicipal");
+      var checkboxBV = document.querySelector("#bombersVoluntaris");
+      var checkboxB = document.querySelector("#bombers");
+      var checkboxT = document.querySelector("#transit");
+      var checkboxAC = document.querySelector("#atencioCiutadana");
+      var checkboxAll = document.querySelector("#selectAll");
       axios.get("/agencies/").then(function (response) {
         me.agencies = response.data;
 
@@ -6514,13 +6607,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var agencia = _step.value;
 
-            if (agencia.nom.includes('Policia Local') && _this2.selected_agency.includes('policiaLocal')) {
+            if (agencia.nom.includes("Policia Local") && _this2.selected_agency.includes("policiaLocal")) {
               _this2.createMapPoliciaLocal(agencia);
-            } else if (agencia.nom.includes('Parc de Bombers Voluntaris') && _this2.selected_agency.includes('bombersVoluntaris')) {
+            } else if (agencia.nom.includes("Parc de Bombers Voluntaris") && _this2.selected_agency.includes("bombersVoluntaris")) {
               _this2.createMapBombersVoluntaris(agencia);
-            } else if (agencia.nom.includes('Parc de Bombers') && _this2.selected_agency.includes('bombers')) {
+            } else if (agencia.nom.includes("Parc de Bombers") && _this2.selected_agency.includes("bombers")) {
               _this2.createMapBombers(agencia);
-            } else if (agencia.nom.includes('Àrea Regional de Trànsit') && _this2.selected_agency.includes('transit')) {
+            } else if (agencia.nom.includes("Àrea Regional de Trànsit") && _this2.selected_agency.includes("transit")) {
               _this2.createMapTransit(agencia);
             } else if (agencia.nom.includes("Mossos d'Esquadra") && _this2.selected_agency.includes("mossosEsquadra")) {
               _this2.createMapMossos(agencia);
@@ -6530,6 +6623,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               _this2.createMapAtencioCiutadana(agencia);
             } else if (agencia.nom.includes("Policia Municipal") && _this2.selected_agency.includes("policiaMunicipal")) {
               _this2.createMapPoliciaMunicipal(agencia);
+            } else if (checkboxAll.checked = true) {
+              /*  this.createMapPoliciaLocal(agencia);
+              this.createMapBombersVoluntaris(agencia);
+              this.createMapBombers(agencia);
+              this.createMapTransit(agencia);
+              this.createMapMossos(agencia);
+              this.createMapGuardiaUrbana(agencia);
+              this.createMapAtencioCiutadana(agencia);
+              this.createMapPoliciaMunicipal(agencia); */
             }
           }
         } catch (err) {
@@ -6538,19 +6640,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           _iterator.f();
         }
       })["catch"](function (err) {
-        console.log(err);
+        /*           console.log(err);
+         */
       })["finally"](function () {
         return _this2.loading = false;
       });
     },
     createMapPoliciaLocal: function createMapPoliciaLocal(agencia) {
+      var _this3 = this;
+
       var me = this;
-      console.log("createMapAgencies");
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
       });
-      console.log(agencia);
       mapboxClient.geocoding.forwardGeocode({
         query: agencia.carrer + ", " + agencia.municipis.nom,
         autocomplete: false,
@@ -6564,26 +6667,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         var feature = response.body.features[0]; // create the popup
 
+        var description = "<p><b>" + agencia.nom + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
         var popup = new mapboxgl.Popup({
           offset: 25
-        }).setText("ID: " + agencia.id); // create DOM element for the marker
+        }).setHTML(description); // create DOM element for the marker
 
         var el = document.createElement("div");
         el.id = "marker"; // Create a marker and add it to the map.
 
-        new mapboxgl.Marker({
+        _this3.policiaLocalMarker = new mapboxgl.Marker({
           color: "#575455"
         }).setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
       });
     },
+    removeMapPoliciaLocal: function removeMapPoliciaLocal(agencia) {
+      this.policiaLocalMarker.remove();
+    },
     createMapPoliciaMunicipal: function createMapPoliciaMunicipal(agencia) {
       var me = this;
-      console.log("createMapAgencies");
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
       });
-      console.log(agencia);
       mapboxClient.geocoding.forwardGeocode({
         query: agencia.carrer + ", " + agencia.municipis.nom,
         autocomplete: false,
@@ -6597,9 +6702,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         var feature = response.body.features[0]; // create the popup
 
+        var description = "<p><b>" + agencia.nom + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
         var popup = new mapboxgl.Popup({
           offset: 25
-        }).setText("ID: " + agencia.id); // create DOM element for the marker
+        }).setHTML(description); // create DOM element for the marker
 
         var el = document.createElement("div");
         el.id = "marker"; // Create a marker and add it to the map.
@@ -6611,12 +6717,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     createMapAtencioCiutadana: function createMapAtencioCiutadana(agencia) {
       var me = this;
-      console.log("createMapAgencies");
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
       });
-      console.log(agencia);
       mapboxClient.geocoding.forwardGeocode({
         query: agencia.carrer + ", " + agencia.municipis.nom,
         autocomplete: false,
@@ -6630,9 +6734,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         var feature = response.body.features[0]; // create the popup
 
+        var description = "<p><b>" + agencia.nom + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
         var popup = new mapboxgl.Popup({
           offset: 25
-        }).setText("ID: " + agencia.id); // create DOM element for the marker
+        }).setHTML(description); // create DOM element for the marker
 
         var el = document.createElement("div");
         el.id = "marker"; // Create a marker and add it to the map.
@@ -6644,12 +6749,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     createMapBombers: function createMapBombers(agencia) {
       var me = this;
-      console.log("createMapAgencies");
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
       });
-      console.log(agencia);
       mapboxClient.geocoding.forwardGeocode({
         query: agencia.carrer + ", " + agencia.municipis.nom,
         autocomplete: false,
@@ -6663,9 +6766,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         var feature = response.body.features[0]; // create the popup
 
+        var description = "<p><b>" + agencia.nom + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
         var popup = new mapboxgl.Popup({
           offset: 25
-        }).setText("ID: " + agencia.id); // create DOM element for the marker
+        }).setHTML(description); // create DOM element for the marker
 
         var el = document.createElement("div");
         el.id = "marker"; // Create a marker and add it to the map.
@@ -6677,12 +6781,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     createMapGuardiaUrbana: function createMapGuardiaUrbana(agencia) {
       var me = this;
-      console.log("createMapAgencies");
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
       });
-      console.log(agencia);
       mapboxClient.geocoding.forwardGeocode({
         query: agencia.carrer + ", " + agencia.municipis.nom,
         autocomplete: false,
@@ -6696,9 +6798,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         var feature = response.body.features[0]; // create the popup
 
+        var description = "<p><b>" + agencia.nom + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
         var popup = new mapboxgl.Popup({
           offset: 25
-        }).setText("ID: " + agencia.id); // create DOM element for the marker
+        }).setHTML(description); // create DOM element for the marker
 
         var el = document.createElement("div");
         el.id = "marker"; // Create a marker and add it to the map.
@@ -6710,12 +6813,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     createMapTransit: function createMapTransit(agencia) {
       var me = this;
-      console.log("createMapAgencies");
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
       });
-      console.log(agencia);
       mapboxClient.geocoding.forwardGeocode({
         query: agencia.carrer + ", " + agencia.municipis.nom,
         autocomplete: false,
@@ -6729,9 +6830,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         var feature = response.body.features[0]; // create the popup
 
+        var description = "<p><b>" + agencia.nom + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
         var popup = new mapboxgl.Popup({
           offset: 25
-        }).setText("ID: " + agencia.id); // create DOM element for the marker
+        }).setHTML(description); // create DOM element for the marker
 
         var el = document.createElement("div");
         el.id = "marker"; // Create a marker and add it to the map.
@@ -6743,12 +6845,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     createMapMossos: function createMapMossos(agencia) {
       var me = this;
-      console.log("createMapAgencies");
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
       });
-      console.log(agencia);
       mapboxClient.geocoding.forwardGeocode({
         query: agencia.carrer + ", " + agencia.municipis.nom,
         autocomplete: false,
@@ -6762,9 +6862,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         var feature = response.body.features[0]; // create the popup
 
+        var description = "<p><b>" + agencia.nom + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
         var popup = new mapboxgl.Popup({
           offset: 25
-        }).setText("ID: " + agencia.id); // create DOM element for the marker
+        }).setHTML(description); // create DOM element for the marker
 
         var el = document.createElement("div");
         el.id = "marker"; // Create a marker and add it to the map.
@@ -6776,12 +6877,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     createMapBombersVoluntaris: function createMapBombersVoluntaris(agencia) {
       var me = this;
-      console.log("createMapAgencies");
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
       });
-      console.log(agencia);
       mapboxClient.geocoding.forwardGeocode({
         query: agencia.carrer + ", " + agencia.municipis.nom,
         autocomplete: false,
@@ -6795,9 +6894,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         var feature = response.body.features[0]; // create the popup
 
+        var description = "<p><b>" + agencia.nom + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
         var popup = new mapboxgl.Popup({
           offset: 25
-        }).setText("ID: " + agencia.id); // create DOM element for the marker
+        }).setHTML(description); // create DOM element for the marker
 
         var el = document.createElement("div");
         el.id = "marker"; // Create a marker and add it to the map.
@@ -6809,12 +6909,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     createMapAgencies: function createMapAgencies(agencia) {
       var me = this;
-      console.log("createMapAgencies");
       mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
       var mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
       });
-      console.log(agencia);
       mapboxClient.geocoding.forwardGeocode({
         query: agencia.carrer + ", " + agencia.municipis.nom,
         autocomplete: false,
@@ -6828,9 +6926,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         var feature = response.body.features[0]; // create the popup
 
+        var description = "<p><b>" + agencia.nom + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
         var popup = new mapboxgl.Popup({
           offset: 25
-        }).setText("ID: " + agencia.id); // create DOM element for the marker
+        }).setHTML(description); // create DOM element for the marker
 
         var el = document.createElement("div");
         el.id = "marker"; // Create a marker and add it to the map.
@@ -6840,7 +6939,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     createPopUp: function createPopUp() {},
     createMap: function createMap(feature) {
-      console.log("createMap");
       var map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
@@ -6855,7 +6953,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   mounted: function mounted() {
-    console.log("mounted");
     this.selectIncidencia();
   }
 });
@@ -54410,6 +54507,61 @@ var render = function () {
         _c("label", { attrs: { for: "atencioCiutadana" } }, [
           _vm._v(" Atenció Ciutadana"),
         ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("h5", [_vm._v("Seleccionar tots")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_agency,
+              expression: "selected_agency",
+            },
+          ],
+          attrs: {
+            type: "checkbox",
+            id: "selectAll",
+            name: "selectAll",
+            value: "selectAll",
+          },
+          domProps: {
+            checked: Array.isArray(_vm.selected_agency)
+              ? _vm._i(_vm.selected_agency, "selectAll") > -1
+              : _vm.selected_agency,
+          },
+          on: {
+            change: [
+              function ($event) {
+                var $$a = _vm.selected_agency,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "selectAll",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.selected_agency = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.selected_agency = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.selected_agency = $$c
+                }
+              },
+              function ($event) {
+                return _vm.selectAllAgencies()
+              },
+            ],
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "selectAll" } }, [_vm._v(" Tots")]),
         _c("br"),
       ]),
     ]
