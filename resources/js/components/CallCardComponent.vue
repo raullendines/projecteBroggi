@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<form-component @status="getStatus" :numTelefon="telefono" :useridm="userid" v-if="isMounted"></form-component>
+<form-component @status="getStatus" :numTelefon="telefono" :useridm="userid" :codigoTrucada="codiTrucada" v-if="isMounted"></form-component>
 
 </main>
 </template>
@@ -48,6 +48,7 @@ export default {
         isMounted: false,
         telefono: '',
         userid: '',
+        codiTrucada: '',
         calls: [
             {
                 tel: "666444545",
@@ -89,12 +90,28 @@ export default {
         callComponent: false,
     }),
     methods:{
+        codiTrucadaInsert(){
+        let me = this;
+
+        axios
+        .post('/codi_trucada')
+            .then(function(response){
+                console.log("EL RESPONSE DEL CODI DE TRUCADA ---> ");
+                console.log(response);
+                me.codiTrucada = response.data.id;
+
+            }).catch(function(error){
+                console.log(error.response);
+
+            });
+    },
         start(call){
             this.$root.$emit('CallCardComponent');
             this.clickedItem = call;
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, "Call");
             this.callComponent = true;
             this.telefono = call.tel;
+            this.codiTrucadaInsert();
         },
         getStatus(status) {
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);
@@ -103,7 +120,7 @@ export default {
             moment.locale('es');
             this.currentdate = moment(new Date()).format('DD MMM YYYY').toUpperCase().replace('.', '');
             return this.currentdate;
-        }
+        },
   },
   mounted() {
     console.log("Component mounted.");

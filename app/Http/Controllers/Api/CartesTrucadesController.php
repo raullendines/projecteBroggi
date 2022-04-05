@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 use App\Http\Resources\CartesTrucadesResource;
+use App\Models\CodiTrucada;
 
 class CartesTrucadesController extends Controller
 {
@@ -61,7 +62,7 @@ class CartesTrucadesController extends Controller
 
         //--------------COMUNES-----------------
         $cartaTrucada->temps_trucada = $request->input('tempsTrucada');
-        $cartaTrucada->codi_trucada = "TRUC-01";
+        $cartaTrucada->codi_trucada = "TRUC-" . $request->input('codiTrucada');
         $cartaTrucada->telefon = $request->input('phoneInput');
         $cartaTrucada->fora_catalunya = $request->input('localitzacio');
         //-------------------------------------
@@ -128,10 +129,11 @@ class CartesTrucadesController extends Controller
         //---------------------------------------
 
         $cartaTrucada->save();
+
         $response = (new CartesTrucadesResource($cartaTrucada))
                     ->response()
                     ->setStatusCode(201);
-
+                    DB::commit();
         } catch(QueryException $ex){
             DB::rollBack();
             $mensaje = Utilitat::errorMessage($ex);

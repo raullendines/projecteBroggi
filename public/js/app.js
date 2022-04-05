@@ -5317,6 +5317,7 @@ __webpack_require__.r(__webpack_exports__);
       isMounted: false,
       telefono: '',
       userid: '',
+      codiTrucada: '',
       calls: [{
         tel: "666444545",
         status: "Accepted"
@@ -5353,12 +5354,23 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    codiTrucadaInsert: function codiTrucadaInsert() {
+      var me = this;
+      axios.post('/codi_trucada').then(function (response) {
+        console.log("EL RESPONSE DEL CODI DE TRUCADA ---> ");
+        console.log(response);
+        me.codiTrucada = response.data.id;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
     start: function start(call) {
       this.$root.$emit('CallCardComponent');
       this.clickedItem = call;
       this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, "Call");
       this.callComponent = true;
       this.telefono = call.tel;
+      this.codiTrucadaInsert();
     },
     getStatus: function getStatus(status) {
       this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);
@@ -6365,6 +6377,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6405,7 +6418,8 @@ __webpack_require__.r(__webpack_exports__);
         referenciesLoc4: '',
         referenciesLoc5: '',
         incident: '',
-        notaComunaInput: ''
+        notaComunaInput: '',
+        codiTrucada: this.codigoTrucada
       }
     };
   },
@@ -6528,7 +6542,8 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     expMsg: {},
     numTelefon: String,
-    useridm: Number
+    useridm: Number,
+    codigoTrucada: Number
   },
   created: function created() {
     this.selectProvincies();
@@ -51155,7 +51170,11 @@ var render = function () {
       _vm._v(" "),
       _vm.isMounted
         ? _c("form-component", {
-            attrs: { numTelefon: _vm.telefono, useridm: _vm.userid },
+            attrs: {
+              numTelefon: _vm.telefono,
+              useridm: _vm.userid,
+              codigoTrucada: _vm.codiTrucada,
+            },
             on: { status: _vm.getStatus },
           })
         : _vm._e(),
@@ -53524,6 +53543,35 @@ var render = function () {
                           return
                         }
                         _vm.$set(_vm.trucada, "usuariId", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.trucada.codiTrucada,
+                        expression: "trucada.codiTrucada",
+                      },
+                    ],
+                    attrs: {
+                      type: "hidden",
+                      name: "codiTrucada",
+                      id: "codiTrucada",
+                    },
+                    domProps: { value: _vm.trucada.codiTrucada },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.trucada,
+                          "codiTrucada",
+                          $event.target.value
+                        )
                       },
                     },
                   }),
