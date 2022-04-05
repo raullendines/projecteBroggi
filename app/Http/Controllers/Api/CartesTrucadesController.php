@@ -111,14 +111,19 @@ class CartesTrucadesController extends Controller
                 $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc5');
             }
         }
-        //---------------------------------------
+        //------------------------------------------------------
         //---------------ALTRES (LOCALITZACÓ)-------------------
         else{
+            $cartaTrucada->procedencia_trucada = $request->input('procedenciaInput');
+            $cartaTrucada->nom_trucada = $request->input('nomIntelocutor');
+            $cartaTrucada->municipis_id_trucada = $request->input('municipioInput');
+            $cartaTrucada->adreca_trucada = $request->input('adreca');
+            $cartaTrucada->provincies_id = $request->input('provinciaInput');
 
         }
         //--------------------------------------------------
 
-        //---------MES COMUNES------------------
+        //-------------------MES COMUNES--------------------
         $cartaTrucada->incidents_id = $request->input('incident');
         $cartaTrucada->nota_comuna = $request->input('notaComunaInput');
 
