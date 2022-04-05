@@ -36,6 +36,7 @@
                   class="mb-2"
                   v-bind="attrs"
                   v-on="on"
+                  outlined
                   @click="newItem()"
                 >
                   Nou Usuari
