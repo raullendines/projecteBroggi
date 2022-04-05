@@ -5314,7 +5314,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      isMounted: false,
       telefono: '',
+      userid: '',
       calls: [{
         tel: "666444545",
         status: "Accepted"
@@ -5370,6 +5372,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log("Component mounted.");
+    this.userid = parseInt(this.$attrs['userid']);
+    this.isMounted = true;
   }
 });
 
@@ -6360,6 +6364,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6371,6 +6376,7 @@ __webpack_require__.r(__webpack_exports__);
       tipusIncidents: [],
       incidents: [],
       trucada: {
+        usuariId: this.useridm,
         selectComarca: "",
         tipusIncident: "",
         procedenciaInput: '',
@@ -6378,7 +6384,7 @@ __webpack_require__.r(__webpack_exports__);
         phoneInput: '',
         adreca: '',
         antecedents: '',
-        tempsTrucada: '',
+        tempsTrucada: 0,
         nomIntelocutor: '',
         selectMunicipi: '',
         selectProvincia: "",
@@ -6408,7 +6414,7 @@ __webpack_require__.r(__webpack_exports__);
       var date = new Date(null);
       date.setSeconds(this.elapsedTime / 1000);
       var utc = date.toUTCString();
-      this.trucada.tempsTrucada = utc.substr(utc.indexOf(":") - 2, 8);
+      this.trucada.tempsTrucada = this.elapsedTime / 1000;
       return utc.substr(utc.indexOf(":") - 2, 8);
     }
   },
@@ -6510,19 +6516,19 @@ __webpack_require__.r(__webpack_exports__);
     insertForm: function insertForm() {
       var me = this;
       axios.post('/callCards2', me.trucada).then(function (response) {
-        debugger;
         console.log(response);
         stop(1);
       })["catch"](function (error) {
-        debugger;
         console.log(error.response.status);
         console.log(error.response.data);
+        stop(1);
       });
     }
   },
   props: {
     expMsg: {},
-    numTelefon: String
+    numTelefon: String,
+    useridm: Number
   },
   created: function created() {
     this.selectProvincies();
@@ -51147,10 +51153,12 @@ var render = function () {
         )
       }),
       _vm._v(" "),
-      _c("form-component", {
-        attrs: { numTelefon: _vm.telefono },
-        on: { status: _vm.getStatus },
-      }),
+      _vm.isMounted
+        ? _c("form-component", {
+            attrs: { numTelefon: _vm.telefono, useridm: _vm.userid },
+            on: { status: _vm.getStatus },
+          })
+        : _vm._e(),
     ],
     2
   )
@@ -53495,6 +53503,27 @@ var render = function () {
                           "tempsTrucada",
                           $event.target.value
                         )
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.trucada.usuariId,
+                        expression: "trucada.usuariId",
+                      },
+                    ],
+                    attrs: { type: "hidden", name: "usuariId", id: "usuariId" },
+                    domProps: { value: _vm.trucada.usuariId },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.trucada, "usuariId", $event.target.value)
                       },
                     },
                   }),

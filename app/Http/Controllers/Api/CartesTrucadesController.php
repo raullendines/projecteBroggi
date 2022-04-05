@@ -61,6 +61,7 @@ class CartesTrucadesController extends Controller
 
         //--------------COMUNES-----------------
         $cartaTrucada->temps_trucada = $request->input('tempsTrucada');
+        $cartaTrucada->codi_trucada = "TRUC-01";
         $cartaTrucada->telefon = $request->input('phoneInput');
         $cartaTrucada->fora_catalunya = $request->input('localitzacio');
         //-------------------------------------
@@ -123,10 +124,13 @@ class CartesTrucadesController extends Controller
 
 
 
-        $cartaTrucada->usuaris_id = $request->input('');
+        $cartaTrucada->usuaris_id = $request->input("usuariId");
         //---------------------------------------
 
         $cartaTrucada->save();
+        $response = (new CartesTrucadesResource($cartaTrucada))
+                    ->response()
+                    ->setStatusCode(201);
 
         } catch(QueryException $ex){
             DB::rollBack();

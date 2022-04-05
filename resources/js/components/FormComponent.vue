@@ -673,6 +673,7 @@
               </div>
             </div>
             <input type="hidden" name="tempsTrucada" id="tempsTrucada" v-model="trucada.tempsTrucada">
+            <input type="hidden" name="usuariId" id="usuariId" v-model="trucada.usuariId">
           </form>
         </div>
         <div class="modal-footer d-flex justify-content-between">
@@ -744,6 +745,7 @@ export default {
       incidents: [],
 
       trucada: {
+      usuariId: this.useridm,
       selectComarca: "",
       tipusIncident: "",
       procedenciaInput: '',
@@ -751,7 +753,7 @@ export default {
       phoneInput: '',
       adreca: '',
       antecedents: '',
-      tempsTrucada: '',
+      tempsTrucada: 0,
       nomIntelocutor: '',
       selectMunicipi: '',
       selectProvincia: "",
@@ -781,7 +783,7 @@ export default {
       const date = new Date(null);
       date.setSeconds(this.elapsedTime / 1000);
       const utc = date.toUTCString();
-      this.trucada.tempsTrucada = utc.substr(utc.indexOf(":") - 2, 8);
+      this.trucada.tempsTrucada = this.elapsedTime / 1000;
       return utc.substr(utc.indexOf(":") - 2, 8);
     },
   },
@@ -872,21 +874,19 @@ export default {
         axios
             .post('/callCards2', me.trucada)
             .then(function(response){
-                debugger;
                 console.log(response);
                 stop(1);
-
-
             }).catch(function(error){
-                debugger;
                 console.log(error.response.status);
                 console.log(error.response.data);
+                stop(1);
             });
     }
   },
   props:{
       expMsg:{},
-      numTelefon: String
+      numTelefon: String,
+      useridm: Number,
   },
   created() {
     this.selectProvincies();

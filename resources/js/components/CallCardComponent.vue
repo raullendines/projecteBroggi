@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<form-component @status="getStatus" :numTelefon="telefono"></form-component>
+<form-component @status="getStatus" :numTelefon="telefono" :useridm="userid" v-if="isMounted"></form-component>
 
 </main>
 </template>
@@ -45,7 +45,9 @@ import moment from 'moment';
 export default {
   components: { FormComponent },
     data: () => ({
+        isMounted: false,
         telefono: '',
+        userid: '',
         calls: [
             {
                 tel: "666444545",
@@ -105,6 +107,8 @@ export default {
   },
   mounted() {
     console.log("Component mounted.");
+    this.userid = parseInt(this.$attrs['userid']);
+    this.isMounted = true;
   },
 };
 </script>
