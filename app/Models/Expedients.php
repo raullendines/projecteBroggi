@@ -23,6 +23,6 @@ class Expedients extends Model
     public function CartesTrucades()
     {
         return $this->hasMany(CartesTrucades::class, 'expedients_id');
-    } 
+    }
 }
 
