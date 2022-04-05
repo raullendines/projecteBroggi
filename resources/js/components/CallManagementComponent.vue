@@ -54,7 +54,7 @@
                             class="btn btn-outline-info"
                             data-bs-toggle="modal"
                             data-bs-target="#modalForm"
-                            @click="expAction(call.id, 'ver')"
+                            @click="expAction(call, 'ver')"
                           >
                             Ver
                           </button>
@@ -63,7 +63,7 @@
                             class="btn btn-outline-warning"
                             data-bs-toggle="modal"
                             data-bs-target="#modalForm"
-                            @click="expAction(call.id, 'modificar')"
+                            @click="expAction(call, 'modificar')"
                           >
                             Modificar
                           </button>
@@ -79,7 +79,7 @@
       </div>
     </div>
 
-    <form-component :expMsg="expItem"></form-component>
+    <form-component :expMsg="expItem" v-if="isMounted"></form-component>
   </main>
 </template>
 
@@ -89,6 +89,7 @@ import moment from "moment";
 export default {
   components: { FormComponent },
   data: () => ({
+      isMounted: false,
     statusStyles: [
       "color : #4FBF58;", //proces verd
       "color : #FDFD96;", //solicitat groc
@@ -97,7 +98,7 @@ export default {
       "color : #cbbad4;", //inmobilitzat lila
     ],
     expItem: {
-      id: "",
+      call: [],
       msg: "",
     },
     expedientesList: [],
@@ -110,8 +111,9 @@ export default {
   }),
   methods: {
     expAction(call, e) {
-      this.expItem.id = call;
+      this.expItem.call = call;
       this.expItem.msg = e;
+      this.start();
       return this.expItem;
     },
     selectExpedientes() {
@@ -121,8 +123,6 @@ export default {
         .then((response) => {
           me.expedientesList = response.data;
           me.moment();
-/*           me.addExp = {"id":26,"data_creacio":"2022-04-05 13:28:56","data_ultima_modificacio":null,"estats_expedients_id":2,"formatTime":"05 ABR 2022"}
-          me.expedientesList.push(me.addExp); */
         })
         .catch((err) => {
           console.log(err);
@@ -143,9 +143,6 @@ export default {
         .get("/callCards2")
         .then((response) => {
           me.callLists = response.data;
-
-/*           me.addItem = {"id":16,"codi_trucada":"TRUC-","data_hora":"2022-04-05 13:28:56","temps_trucada":36,"dades_personals_id":24,"telefon":"606436424","procedencia_trucada":"dgpnasf","origen_trucada":null,"nom_trucada":"asfj","municipis_id_trucada":205,"adreca_trucada":"sjfñaiu","fora_catalunya":1,"provincies_id":1,"municipis_id":205,"tipus_localitzacions_id":2,"descripcio_localitzacio":"asdf","detall_localitzacio":null,"altres_ref_localitzacio":"asdfhb","incidents_id":112,"nota_comuna":"fasdf","expedients_id":26,"usuaris_id":10}
-          me.callLists.push(me.addItem) */
         })
         .catch((err) => {
           console.log(err);
@@ -176,6 +173,10 @@ export default {
         });
       }
     },
+    start(){
+            let me = this;
+            me.$root.$emit('CallManagementComponent');
+        },
   },
   created() {
     this.selectExpedientes();
@@ -183,6 +184,7 @@ export default {
   },
   mounted() {
     console.log("Component mounted.");
+    this.isMounted = true;
   },
 };
 </script>

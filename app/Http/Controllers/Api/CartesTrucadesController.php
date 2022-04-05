@@ -152,9 +152,10 @@ class CartesTrucadesController extends Controller
      * @param  \App\Models\CartesTrucades  $cartesTrucades
      * @return \Illuminate\Http\Response
      */
-    public function show(CartesTrucades $cartesTrucades)
+    public function show(CartesTrucades $callCards2)
     {
-        //
+        $callCards2 = CartesTrucades::find($callCards2);
+        return new CartesTrucadesResource($callCards2);
     }
 
     /**
