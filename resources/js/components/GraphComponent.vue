@@ -1,5 +1,7 @@
 <template>
-<div v-if="chartData.labels.length > 0">
+<div>
+<div class="row mt-3 align-center"> <h5> <b> Numero de trucades per tipus d'accident</b></h5>  </div>
+<div v-if="chartData.labels.length > 0" class="row">
   <Bar
     :chart-options="chartOptions"
     :chart-data="chartData"
@@ -11,6 +13,7 @@
     :width="width"
     :height="height"
   />
+</div>
 </div>
 </template>
 
@@ -74,7 +77,7 @@ export default {
           {
             label: 'Numero de trucades',
             backgroundColor: '#00AFC8',
-            data: []
+            data: [1, 3, 4, 5, 1, 5, 4, 2, 1, 3]
           }
         ]
       },
@@ -85,7 +88,7 @@ export default {
     }
   },
   methods: {
-    selectLamadas() {
+   /*  selectLamadas() {
       let me = this;
         axios.get('/callCards2/').then((response) => {
             me.llamada = response.data;
@@ -95,28 +98,28 @@ export default {
             console.log(err);
         })
         .finally(() => (this.loading = false));
-    },
+    }, */
     selectIncidentsTypes() {
       let me = this;
-        axios.get('/incidents_types/').then((response) => {
+        axios.get('/incidents_types/1').then((response) => {
             me.chartData.labels = response.data;
-            console.log(me.chartData.labels);
-            this.bucle();
+           /*  console.log(me.chartData.labels);
+            this.bucle(); */
         })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => (this.loading = false));
     },
-    bucle(){
+    /* bucle(){
       let me = this;
       for (const numero of me.chartData.labels) {
         let num = numero.id
         this.selectIncidents(num);
       }
         
-    },
-    selectIncidents(num) {
+    }, */
+    /* selectIncidents(num) {
       let me = this;
         axios.get('/incidents/' + num).then((response) => {
             me.incidentes = response.data;
@@ -130,12 +133,12 @@ export default {
     },
      countTelefonos(){
        console.log(this.incidentes);
-     }
+     } */
   },
   created(){
-    this.selectLamadas();
+    /* this.selectLamadas(); */
     this.selectIncidentsTypes();
-    this.selectIncidents();
+    /* this.selectIncidents(); */
   }
 }
 </script>

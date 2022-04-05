@@ -18,7 +18,7 @@ class TipusIncidentsController extends Controller
     {
         $tipusIncidents = TipusIncidents::all();
 
-        return TipusIncidentsResource::collection($tipusIncidents); 
+        return TipusIncidentsResource::collection($tipusIncidents);
     }
 
     /**
@@ -39,15 +39,11 @@ class TipusIncidentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(TipusIncidents $tipusIncidents)
-    {   
-        $tipus = TipusIncidents::join('incidents', 'incidents.cartes_incidents_id', '=', 'tipus_incidents.id')
-                                ->join('cartes_trucades', 'incidents.id', '=', 'cartes_trucades.incidents_id')
-                                /* ->where('cartes_trucades', $tipusIncidents) */
-                                ->select('cartes_trucades.dades_personals_id', 'incidents.descripcio')
-                                ->get();
+    {
+        $tipusIncidents = TipusIncidents::pluck('descripcio');
+        return new TipusIncidentsResource($tipusIncidents);
 
-        return TipusIncidentsResource::collection($tipus);
-
+        
     }
 
     /**
