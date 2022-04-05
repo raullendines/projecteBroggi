@@ -15,16 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('plantilla.principal');
-});
 
-Route::resource('/perfils', PerfilsController::class);
+Route::get('/database', function () { return view('database.database'); });
 
-Route::get('/database', function () {
-    return view('database.database');
-});
-
+Route::get('/error', function () { return view('error.error'); })->name('error');
 
 Route::get('/login', [UsuarisController::class, 'showLogin'])->name('login');
 Route::get('/logout', [UsuarisController::class, 'logout'])->name('logout');
@@ -34,14 +28,34 @@ Route::get('/expedients', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/trucades', function () {
-        return view('callCard.callCard');
+    Route::middleware(['role: 1, 2, 3'])->group(function () {
+        Route::get('/', function () { return view('plantilla.principal'); });
+
+        Route::get('/trucades', function () {
+            return view('callCard.callCard');
+        });
     });
 
-    Route::get('/expedients', function () {
-        return view('callManagement.callManagement');
+    Route::middleware(['role: 2,3'])->group(function () {
+        Route::get('/expedients', function () {
+            return view('callManagement.callManagement');
+        });
     });
-    
 
+    Route::middleware(['role: 3'])->group(function () {
+        Route::get('/map', function () {
+            return view('callManagement.callManagement');
+        });
+
+        Route::get('/graph', function () {
+            return view('callManagement.callManagement');
+        });
+    });
 });
 
+
+
+
+// 1 -> Operador 112
+// 2 -> Supervisor 112
+// 3 -> Administrador Sistema

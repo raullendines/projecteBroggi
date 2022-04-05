@@ -4,6 +4,6 @@
 
 @section('contents')
 
-<callcard-component></callcard-component>
+<callcard-component userId={{ Auth::user()->id }}></callcard-component>
 
 @endsection

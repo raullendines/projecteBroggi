@@ -38,9 +38,11 @@ class MunicipisController extends Controller
      * @param  \App\Models\Municipis  $municipis
      * @return \Illuminate\Http\Response
      */
-    public function show(Municipis $municipis)
+    public function show($municipis)
     {
-        //
+        $municip = Municipis::where('comarques_id', '=', $municipis)
+                                    ->get();
+        return new MunicipisResource($municip);
     }
 
     /**
