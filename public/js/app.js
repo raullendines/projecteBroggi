@@ -6435,9 +6435,41 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      selected_agency: [],
       agencies: [],
       mapa: {},
       incident: "Plaça Urquinaona 10, Barcelona"
@@ -6482,7 +6514,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var agencia = _step.value;
 
-            _this2.createMapAgencies(agencia);
+            if (agencia.nom.includes('Policia Local') && _this2.selected_agency.includes('policiaLocal')) {
+              _this2.createMapPoliciaLocal(agencia);
+            } else if (agencia.nom.includes('Parc de Bombers Voluntaris') && _this2.selected_agency.includes('bombersVoluntaris')) {
+              _this2.createMapBombersVoluntaris(agencia);
+            } else if (agencia.nom.includes('Parc de Bombers') && _this2.selected_agency.includes('bombers')) {
+              _this2.createMapBombers(agencia);
+            } else if (agencia.nom.includes('Àrea Regional de Trànsit') && _this2.selected_agency.includes('transit')) {
+              _this2.createMapTransit(agencia);
+            } else if (agencia.nom.includes("Mossos d'Esquadra") && _this2.selected_agency.includes("mossosEsquadra")) {
+              _this2.createMapMossos(agencia);
+            } else if (agencia.nom.includes("Guàrdia Urbana") && _this2.selected_agency.includes("guardiaUrbana")) {
+              _this2.createMapGuardiaUrbana(agencia);
+            } else if (agencia.nom.includes("Oficina d'Atenció Ciutadana") && _this2.selected_agency.includes("atencioCiutadana")) {
+              _this2.createMapAtencioCiutadana(agencia);
+            } else if (agencia.nom.includes("Policia Municipal") && _this2.selected_agency.includes("policiaMunicipal")) {
+              _this2.createMapPoliciaMunicipal(agencia);
+            }
           }
         } catch (err) {
           _iterator.e(err);
@@ -6493,6 +6541,270 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         console.log(err);
       })["finally"](function () {
         return _this2.loading = false;
+      });
+    },
+    createMapPoliciaLocal: function createMapPoliciaLocal(agencia) {
+      var me = this;
+      console.log("createMapAgencies");
+      mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      var mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
+      });
+      console.log(agencia);
+      mapboxClient.geocoding.forwardGeocode({
+        query: agencia.carrer + ", " + agencia.municipis.nom,
+        autocomplete: false,
+        limit: 1
+      }).send().then(function (response) {
+        if (!response || !response.body || !response.body.features || !response.body.features.length) {
+          console.error("Invalid response:");
+          console.error(response);
+          return;
+        }
+
+        var feature = response.body.features[0]; // create the popup
+
+        var popup = new mapboxgl.Popup({
+          offset: 25
+        }).setText("ID: " + agencia.id); // create DOM element for the marker
+
+        var el = document.createElement("div");
+        el.id = "marker"; // Create a marker and add it to the map.
+
+        new mapboxgl.Marker({
+          color: "#575455"
+        }).setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
+      });
+    },
+    createMapPoliciaMunicipal: function createMapPoliciaMunicipal(agencia) {
+      var me = this;
+      console.log("createMapAgencies");
+      mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      var mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
+      });
+      console.log(agencia);
+      mapboxClient.geocoding.forwardGeocode({
+        query: agencia.carrer + ", " + agencia.municipis.nom,
+        autocomplete: false,
+        limit: 1
+      }).send().then(function (response) {
+        if (!response || !response.body || !response.body.features || !response.body.features.length) {
+          console.error("Invalid response:");
+          console.error(response);
+          return;
+        }
+
+        var feature = response.body.features[0]; // create the popup
+
+        var popup = new mapboxgl.Popup({
+          offset: 25
+        }).setText("ID: " + agencia.id); // create DOM element for the marker
+
+        var el = document.createElement("div");
+        el.id = "marker"; // Create a marker and add it to the map.
+
+        new mapboxgl.Marker({
+          color: "#1E55A5"
+        }).setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
+      });
+    },
+    createMapAtencioCiutadana: function createMapAtencioCiutadana(agencia) {
+      var me = this;
+      console.log("createMapAgencies");
+      mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      var mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
+      });
+      console.log(agencia);
+      mapboxClient.geocoding.forwardGeocode({
+        query: agencia.carrer + ", " + agencia.municipis.nom,
+        autocomplete: false,
+        limit: 1
+      }).send().then(function (response) {
+        if (!response || !response.body || !response.body.features || !response.body.features.length) {
+          console.error("Invalid response:");
+          console.error(response);
+          return;
+        }
+
+        var feature = response.body.features[0]; // create the popup
+
+        var popup = new mapboxgl.Popup({
+          offset: 25
+        }).setText("ID: " + agencia.id); // create DOM element for the marker
+
+        var el = document.createElement("div");
+        el.id = "marker"; // Create a marker and add it to the map.
+
+        new mapboxgl.Marker({
+          color: "#000002"
+        }).setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
+      });
+    },
+    createMapBombers: function createMapBombers(agencia) {
+      var me = this;
+      console.log("createMapAgencies");
+      mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      var mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
+      });
+      console.log(agencia);
+      mapboxClient.geocoding.forwardGeocode({
+        query: agencia.carrer + ", " + agencia.municipis.nom,
+        autocomplete: false,
+        limit: 1
+      }).send().then(function (response) {
+        if (!response || !response.body || !response.body.features || !response.body.features.length) {
+          console.error("Invalid response:");
+          console.error(response);
+          return;
+        }
+
+        var feature = response.body.features[0]; // create the popup
+
+        var popup = new mapboxgl.Popup({
+          offset: 25
+        }).setText("ID: " + agencia.id); // create DOM element for the marker
+
+        var el = document.createElement("div");
+        el.id = "marker"; // Create a marker and add it to the map.
+
+        new mapboxgl.Marker({
+          color: "#08743D"
+        }).setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
+      });
+    },
+    createMapGuardiaUrbana: function createMapGuardiaUrbana(agencia) {
+      var me = this;
+      console.log("createMapAgencies");
+      mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      var mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
+      });
+      console.log(agencia);
+      mapboxClient.geocoding.forwardGeocode({
+        query: agencia.carrer + ", " + agencia.municipis.nom,
+        autocomplete: false,
+        limit: 1
+      }).send().then(function (response) {
+        if (!response || !response.body || !response.body.features || !response.body.features.length) {
+          console.error("Invalid response:");
+          console.error(response);
+          return;
+        }
+
+        var feature = response.body.features[0]; // create the popup
+
+        var popup = new mapboxgl.Popup({
+          offset: 25
+        }).setText("ID: " + agencia.id); // create DOM element for the marker
+
+        var el = document.createElement("div");
+        el.id = "marker"; // Create a marker and add it to the map.
+
+        new mapboxgl.Marker({
+          color: "#F58D2F"
+        }).setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
+      });
+    },
+    createMapTransit: function createMapTransit(agencia) {
+      var me = this;
+      console.log("createMapAgencies");
+      mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      var mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
+      });
+      console.log(agencia);
+      mapboxClient.geocoding.forwardGeocode({
+        query: agencia.carrer + ", " + agencia.municipis.nom,
+        autocomplete: false,
+        limit: 1
+      }).send().then(function (response) {
+        if (!response || !response.body || !response.body.features || !response.body.features.length) {
+          console.error("Invalid response:");
+          console.error(response);
+          return;
+        }
+
+        var feature = response.body.features[0]; // create the popup
+
+        var popup = new mapboxgl.Popup({
+          offset: 25
+        }).setText("ID: " + agencia.id); // create DOM element for the marker
+
+        var el = document.createElement("div");
+        el.id = "marker"; // Create a marker and add it to the map.
+
+        new mapboxgl.Marker({
+          color: "#F16AA8"
+        }).setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
+      });
+    },
+    createMapMossos: function createMapMossos(agencia) {
+      var me = this;
+      console.log("createMapAgencies");
+      mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      var mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
+      });
+      console.log(agencia);
+      mapboxClient.geocoding.forwardGeocode({
+        query: agencia.carrer + ", " + agencia.municipis.nom,
+        autocomplete: false,
+        limit: 1
+      }).send().then(function (response) {
+        if (!response || !response.body || !response.body.features || !response.body.features.length) {
+          console.error("Invalid response:");
+          console.error(response);
+          return;
+        }
+
+        var feature = response.body.features[0]; // create the popup
+
+        var popup = new mapboxgl.Popup({
+          offset: 25
+        }).setText("ID: " + agencia.id); // create DOM element for the marker
+
+        var el = document.createElement("div");
+        el.id = "marker"; // Create a marker and add it to the map.
+
+        new mapboxgl.Marker({
+          color: "#6A4D9F"
+        }).setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
+      });
+    },
+    createMapBombersVoluntaris: function createMapBombersVoluntaris(agencia) {
+      var me = this;
+      console.log("createMapAgencies");
+      mapboxgl.accessToken = "pk.eyJ1IjoicmF1bDEyNDMiLCJhIjoiY2wxMHM1dnN3MDB5MTNsb2Jnc3Z6eTFqMSJ9.38of2U9_JEHowPDEehuuvA";
+      var mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
+      });
+      console.log(agencia);
+      mapboxClient.geocoding.forwardGeocode({
+        query: agencia.carrer + ", " + agencia.municipis.nom,
+        autocomplete: false,
+        limit: 1
+      }).send().then(function (response) {
+        if (!response || !response.body || !response.body.features || !response.body.features.length) {
+          console.error("Invalid response:");
+          console.error(response);
+          return;
+        }
+
+        var feature = response.body.features[0]; // create the popup
+
+        var popup = new mapboxgl.Popup({
+          offset: 25
+        }).setText("ID: " + agencia.id); // create DOM element for the marker
+
+        var el = document.createElement("div");
+        el.id = "marker"; // Create a marker and add it to the map.
+
+        new mapboxgl.Marker({
+          color: "#ECE70D"
+        }).setLngLat(feature.center).setPopup(popup).addTo(me.mapa);
       });
     },
     createMapAgencies: function createMapAgencies(agencia) {
@@ -53656,16 +53968,459 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "container mt-3",
+      staticStyle: { display: "flex", "flex-wrap": "wrap" },
+    },
+    [
+      _c("div", { staticClass: "map-size col-10", attrs: { id: "map" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col search-box p-2" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("h5", [_vm._v("Policia")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_agency,
+              expression: "selected_agency",
+            },
+          ],
+          attrs: {
+            type: "checkbox",
+            id: "guardiaUrbana",
+            name: "guardiaUrbana",
+            value: "guardiaUrbana",
+          },
+          domProps: {
+            checked: Array.isArray(_vm.selected_agency)
+              ? _vm._i(_vm.selected_agency, "guardiaUrbana") > -1
+              : _vm.selected_agency,
+          },
+          on: {
+            change: [
+              function ($event) {
+                var $$a = _vm.selected_agency,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "guardiaUrbana",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.selected_agency = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.selected_agency = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.selected_agency = $$c
+                }
+              },
+              function ($event) {
+                return _vm.selectAllAgencies()
+              },
+            ],
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "guardiaUrbana" } }, [
+          _vm._v(" Guardia Urbana"),
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_agency,
+              expression: "selected_agency",
+            },
+          ],
+          attrs: {
+            type: "checkbox",
+            id: "policiaMunicipal",
+            name: "policiaMunicipal",
+            value: "policiaMunicipal",
+          },
+          domProps: {
+            checked: Array.isArray(_vm.selected_agency)
+              ? _vm._i(_vm.selected_agency, "policiaMunicipal") > -1
+              : _vm.selected_agency,
+          },
+          on: {
+            change: [
+              function ($event) {
+                var $$a = _vm.selected_agency,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "policiaMunicipal",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.selected_agency = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.selected_agency = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.selected_agency = $$c
+                }
+              },
+              function ($event) {
+                return _vm.selectAllAgencies()
+              },
+            ],
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "policiaMunicipal" } }, [
+          _vm._v(" Policia Municipal"),
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_agency,
+              expression: "selected_agency",
+            },
+          ],
+          attrs: {
+            type: "checkbox",
+            id: "policiaLocal",
+            name: "policiaLocal",
+            value: "policiaLocal",
+          },
+          domProps: {
+            checked: Array.isArray(_vm.selected_agency)
+              ? _vm._i(_vm.selected_agency, "policiaLocal") > -1
+              : _vm.selected_agency,
+          },
+          on: {
+            change: [
+              function ($event) {
+                var $$a = _vm.selected_agency,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "policiaLocal",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.selected_agency = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.selected_agency = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.selected_agency = $$c
+                }
+              },
+              function ($event) {
+                return _vm.selectAllAgencies()
+              },
+            ],
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "policiaLocal" } }, [
+          _vm._v(" Policia Local"),
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_agency,
+              expression: "selected_agency",
+            },
+          ],
+          attrs: {
+            type: "checkbox",
+            id: "mossosEsquadra",
+            name: "mossosEsquadra",
+            value: "mossosEsquadra",
+          },
+          domProps: {
+            checked: Array.isArray(_vm.selected_agency)
+              ? _vm._i(_vm.selected_agency, "mossosEsquadra") > -1
+              : _vm.selected_agency,
+          },
+          on: {
+            change: [
+              function ($event) {
+                var $$a = _vm.selected_agency,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "mossosEsquadra",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.selected_agency = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.selected_agency = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.selected_agency = $$c
+                }
+              },
+              function ($event) {
+                return _vm.selectAllAgencies()
+              },
+            ],
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "mossosEsquadra" } }, [
+          _vm._v(" Mossos Esquadra"),
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("h5", [_vm._v("Bombers")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_agency,
+              expression: "selected_agency",
+            },
+          ],
+          attrs: {
+            type: "checkbox",
+            id: "bombersVoluntaris",
+            name: "bombersVoluntaris",
+            value: "bombersVoluntaris",
+          },
+          domProps: {
+            checked: Array.isArray(_vm.selected_agency)
+              ? _vm._i(_vm.selected_agency, "bombersVoluntaris") > -1
+              : _vm.selected_agency,
+          },
+          on: {
+            change: [
+              function ($event) {
+                var $$a = _vm.selected_agency,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "bombersVoluntaris",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.selected_agency = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.selected_agency = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.selected_agency = $$c
+                }
+              },
+              function ($event) {
+                return _vm.selectAllAgencies()
+              },
+            ],
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "bombersVoluntaris" } }, [
+          _vm._v(" Bombers Volutaris"),
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_agency,
+              expression: "selected_agency",
+            },
+          ],
+          attrs: {
+            type: "checkbox",
+            id: "bombers",
+            name: "bombers",
+            value: "bombers",
+          },
+          domProps: {
+            checked: Array.isArray(_vm.selected_agency)
+              ? _vm._i(_vm.selected_agency, "bombers") > -1
+              : _vm.selected_agency,
+          },
+          on: {
+            change: [
+              function ($event) {
+                var $$a = _vm.selected_agency,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "bombers",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.selected_agency = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.selected_agency = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.selected_agency = $$c
+                }
+              },
+              function ($event) {
+                return _vm.selectAllAgencies()
+              },
+            ],
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "bombers" } }, [_vm._v(" Bombers")]),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("h5", [_vm._v("Ajuda al ciutadà")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_agency,
+              expression: "selected_agency",
+            },
+          ],
+          attrs: {
+            type: "checkbox",
+            id: "transit",
+            name: "transit",
+            value: "transit",
+          },
+          domProps: {
+            checked: Array.isArray(_vm.selected_agency)
+              ? _vm._i(_vm.selected_agency, "transit") > -1
+              : _vm.selected_agency,
+          },
+          on: {
+            change: [
+              function ($event) {
+                var $$a = _vm.selected_agency,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "transit",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.selected_agency = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.selected_agency = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.selected_agency = $$c
+                }
+              },
+              function ($event) {
+                return _vm.selectAllAgencies()
+              },
+            ],
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "transit" } }, [_vm._v(" Transit")]),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_agency,
+              expression: "selected_agency",
+            },
+          ],
+          attrs: {
+            type: "checkbox",
+            id: "atencioCiutadana",
+            name: "atencioCiutadana",
+            value: "atencioCiutadana",
+          },
+          domProps: {
+            checked: Array.isArray(_vm.selected_agency)
+              ? _vm._i(_vm.selected_agency, "atencioCiutadana") > -1
+              : _vm.selected_agency,
+          },
+          on: {
+            change: [
+              function ($event) {
+                var $$a = _vm.selected_agency,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "atencioCiutadana",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.selected_agency = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.selected_agency = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.selected_agency = $$c
+                }
+              },
+              function ($event) {
+                return _vm.selectAllAgencies()
+              },
+            ],
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "atencioCiutadana" } }, [
+          _vm._v(" Atenció Ciutadana"),
+        ]),
+        _c("br"),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "map-size col", attrs: { id: "map" } }),
-    ])
+    return _c("h3", [_c("b", [_vm._v("Agencies")])])
   },
 ]
 render._withStripped = true
