@@ -15,7 +15,7 @@
     >
       <div class="modal-content">
         <div class="modal-body">
-          <form action="">
+          <form>
             <h5><b>Identificació de l'interlocutor</b></h5>
             <div class="row mb-4">
               <div class="col">
@@ -23,23 +23,59 @@
                   ><vermell>*</vermell>Localització</label
                 >
                 <select
-                  v-model="localitzacio"
+                  v-model="trucada.localitzacio"
                   id="localitzacio"
                   name="localitzacio"
                   class="form-select"
                   aria-label="localitzacio"
                 >
                   <option selected value="">Selecciona una opció</option>
-                  <option value="Catalunya">Catalunya</option>
-                  <option value="Altres">Altres</option>
+                  <option value="1">Catalunya</option>
+                  <option value="0">Altres</option>
                 </select>
                 <div id="localitzacio" class="form-text">
-                  * Comunitat autònoma on es troba l'incident
+                  * Localització de l'incident
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <label for="nomIntelocutor" class="form-label"
+                  >Nom</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nomIntelocutor"
+                  id="nomIntelocutor"
+                  v-model="trucada.nomIntelocutor"
+                  aria-describedby="nomIntelocutor"
+                  placeholder="Escriu aquí"
+                />
+                <div id="nomIntelocutor" class="form-text">
+                  * Nom de l'interlocutor
+                </div>
+              </div>
+              <div class="col">
+                <label for="adreca" class="form-label"
+                  >Adreça</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="adreca"
+                  id="adreca"
+                  v-model="trucada.adreca"
+                  aria-describedby="adreca"
+                  placeholder="Escriu aquí"
+                />
+                <div id="adreca" class="form-text">
+                  * Adreça de l'interlocutor
                 </div>
               </div>
             </div>
             <!-- IF -->
-            <div v-if="localitzacio === 'Catalunya'" class="row mb-4">
+            <div v-if="trucada.localitzacio === '1'" class="row mb-4">
               <div class="col">
                 <label for="procedenciaInput" class="form-label"
                   ><vermell>*</vermell>Procedencia</label
@@ -50,10 +86,11 @@
                   name="procedenciaInput"
                   id="procedenciaInput"
                   aria-describedby="procedenciaInput"
+                  v-model="trucada.procedenciaInput"
                   placeholder="Escriu aquí"
                 />
                 <div id="procedenciaInput" class="form-text">
-                  * Nacionalitat
+                  * Des d'on es realitza la trucada.
                 </div>
               </div>
               <div class="col">
@@ -61,18 +98,18 @@
                   ><vermell>*</vermell>Provincia</label
                 >
                 <select
-                  id="provincia"
-                  name="provincia"
+                  id="selectProvincia"
+                  name="selectProvincia"
                   class="form-select"
                   aria-label="provincia"
-                  v-model="selectProvincia"
+                  v-model="trucada.selectProvincia"
                   @change="selectComarques()"
                 >
                   <option selected value="">Selecciona una opció</option>
                   <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id" >{{ provincia.nom }}</option>
                 </select>
-                <div id="provincia" class="form-text">
-                  * Provincia de l'incident
+                <div id="selectProvincia" class="form-text">
+                  * Provincia de l'interlocutor
                 </div>
               </div>
               <div class="col">
@@ -84,14 +121,14 @@
                   name="comarca"
                   class="form-select"
                   aria-label="comarca"
-                  v-model="selectComarca"
+                  v-model="trucada.selectComarca"
                   @change="selectMunicipis()"
                 >
                   <option selected value="">Selecciona una opció</option>
                   <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id">{{comarca.nom}}</option>
                 </select>
                 <div id="comarca" class="form-text">
-                  * Comarca de l'incident
+                  * Comarca de l'interlocutor
                 </div>
               </div>
               <div class="col">
@@ -101,6 +138,7 @@
                 <select
                   id="selectMunicipi"
                   name="selectMunicipi"
+                  v-model="trucada.selectMunicipi"
                   class="form-select"
                   aria-label="selectMunicipi"
                 >
@@ -108,7 +146,7 @@
                   <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" >{{ municipi.nom }}</option>
                 </select>
                 <div id="selectMunicipi" class="form-text">
-                  * Municipi de l'incident
+                  * Municipi de l'interlocutor
                 </div>
               </div>
             </div>
@@ -127,7 +165,7 @@
                   placeholder="Escriu aquí"
                 />
                 <div id="procedenciaInput" class="form-text">
-                  * Nacionalitat
+                  * Nacionalitat de l'interlocutor
                 </div>
               </div>
               <div class="col">
@@ -141,7 +179,7 @@
                   placeholder="Escriu aquí"
                 />
                 <div id="provinciaInput" class="form-text">
-                  * Provincia de l'incident
+                  * Provincia de l'interlocutor
                 </div>
               </div>
               <div class="col">
@@ -155,14 +193,14 @@
                   placeholder="Escriu aquí"
                 />
                 <div id="municipioInput" class="form-text">
-                  * Ciutat de l'incident
+                  * Ciutat de l'interlocutor
                 </div>
               </div>
             </div>
             <div class="row">
               <hr />
             </div>
-            <div v-if="localitzacio === 'Catalunya'" class="row mb-4">
+            <div v-if="trucada.localitzacio === '1'" class="row mb-4">
               <h5><b>Localització de l'emergencia</b></h5>
               <div class="col">
                 <label for="tipusLoc" class="form-label"
@@ -170,17 +208,17 @@
                 >
                 <select
                   id="tipusLoc"
-                  v-model="tipusLocalitzacio"
+                  v-model="trucada.tipusLoc"
                   name="tipusLoc"
                   class="form-select"
                   aria-label="tipusLoc"
                 >
                   <option selected value="">Selecciona una opció</option>
-                  <option value="carrer">Carrer</option>
-                  <option value="puntSingular">Punt Singular</option>
-                  <option value="carretera">Carretera</option>
-                  <option value="entitatPoblacio">Entitat població</option>
-                  <option value="provincia">Provincia</option>
+                  <option value="1">Carrer</option>
+                  <option value="2">Punt Singular</option>
+                  <option value="3">Entitat població</option>
+                  <option value="4">Carretera</option>
+                  <option value="5">Provincia</option>
                 </select>
                 <div id="provincia" class="form-text">
                   * Tipus de via o lloc on es troba l'incident
@@ -189,26 +227,27 @@
             </div>
 
             <div
-              v-if="tipusLocalitzacio === '' && localitzacio === 'Catalunya'"
+              v-if="trucada.tipusLoc === '' && trucada.localitzacio === '1'"
             >
               <div class="row">
                 <hr />
               </div>
             </div>
-            <div v-if="tipusLocalitzacio === 'entitatPoblacio'">
+            <div v-if="trucada.tipusLoc === '3'">
               <div class="row mb-4">
                 <div class="col">
-                  <label class="form-label" for="referenciesLoc"
+                  <label class="form-label" for="referenciesLoc3"
                     >Altres referències de la localització</label
                   >
                   <textarea
                     class="form-control"
                     placeholder="Escriu aquí"
-                    name="referenciesLoc"
-                    id="referenciesLoc"
+                    name="referenciesLoc3"
+                    id="referenciesLoc3"
+                    v-model="trucada.referenciesLoc3"
                     style="height: 50px"
                   ></textarea>
-                  <div id="referenciesLoc" class="form-text">
+                  <div id="referenciesLoc3" class="form-text">
                     * Altres anotacions d'interés sobre la localització
                   </div>
                 </div>
@@ -217,20 +256,21 @@
                 <hr />
               </div>
             </div>
-            <div v-if="tipusLocalitzacio === 'provincia'">
+            <div v-if="trucada.tipusLoc === '5'">
               <div class="row mb-4">
                 <div class="col">
-                  <label class="form-label" for="referenciesLoc"
+                  <label class="form-label" for="referenciesLoc5"
                     >Altres referències de la localització</label
                   >
                   <textarea
                     class="form-control"
                     placeholder="Escriu aquí"
-                    name="referenciesLoc"
-                    id="referenciesLoc"
+                    name="referenciesLoc5"
+                    v-model="trucada.referenciesLoc5"
+                    id="referenciesLoc5"
                     style="height: 50px"
                   ></textarea>
-                  <div id="referenciesLoc" class="form-text">
+                  <div id="referenciesLoc5" class="form-text">
                     * Altres anotacions d'interés sobre la localització
                   </div>
                 </div>
@@ -240,7 +280,7 @@
               </div>
             </div>
 
-            <div v-if="tipusLocalitzacio === 'carrer'">
+            <div v-if="trucada.tipusLoc === '1'">
               <div class="row mb-4">
                 <div class="col">
                   <label for="tipusVia" class="form-label"
@@ -249,6 +289,7 @@
                   <select
                     id="tipusVia"
                     name="tipusVia"
+                    v-model="trucada.tipusVia"
                     class="form-select"
                     aria-label="tipusVia"
                   >
@@ -271,6 +312,7 @@
                     class="form-control"
                     name="nomVia"
                     id="nomVia"
+                    v-model="trucada.nomVia"
                     aria-describedby="nomVia"
                     placeholder="Escriu aquí"
                   />
@@ -284,6 +326,7 @@
                     type="number"
                     class="form-control"
                     name="numVia"
+                    v-model="trucada.numVia"
                     id="numVia"
                     aria-describedby="numVia"
                     placeholder="Escriu aquí"
@@ -299,6 +342,7 @@
                     class="form-control"
                     name="escala"
                     id="escala"
+                    v-model="trucada.escala"
                     aria-describedby="escala"
                     placeholder="Escriu aquí"
                   />
@@ -311,6 +355,7 @@
                     class="form-control"
                     name="pis"
                     id="pis"
+                    v-model="trucada.pis"
                     aria-describedby="pis"
                     placeholder="Escriu aquí"
                   />
@@ -323,6 +368,7 @@
                     class="form-control"
                     name="porta"
                     id="porta"
+                    v-model="trucada.porta"
                     aria-describedby="porta"
                     placeholder="Escriu aquí"
                   />
@@ -331,17 +377,18 @@
               </div>
               <div class="row mb-4">
                 <div class="col">
-                  <label class="form-label" for="referenciesLoc"
+                  <label class="form-label" for="referenciesLoc1"
                     >Altres referències de la localització</label
                   >
                   <textarea
                     class="form-control"
                     placeholder="Escriu aquí"
-                    name="referenciesLoc"
-                    id="referenciesLoc"
+                    name="referenciesLoc1"
+                    v-model="trucada.referenciesLoc1"
+                    id="referenciesLoc1"
                     style="height: 50px"
                   ></textarea>
-                  <div id="referenciesLoc" class="form-text">
+                  <div id="referenciesLoc1" class="form-text">
                     * Altres anotacions d'interés sobre la localització
                   </div>
                 </div>
@@ -351,7 +398,7 @@
               </div>
             </div>
 
-            <div v-if="tipusLocalitzacio === 'carretera'">
+            <div v-if="trucada.tipusLoc === '4'">
               <div class="row mb-4">
                 <div class="col">
                   <label for="nomCarretera" class="form-label">Nom</label>
@@ -360,6 +407,7 @@
                     class="form-control"
                     name="nomCarretera"
                     id="nomCarretera"
+                    v-model="trucada.nomCarretera"
                     aria-describedby="nomCarretera"
                     placeholder="Escriu aquí"
                   />
@@ -376,6 +424,7 @@
                     class="form-control"
                     name="puntKilometric"
                     id="puntKilometric"
+                    v-model="trucada.puntKilometric"
                     aria-describedby="puntKilometric"
                     placeholder="Escriu aquí"
                   />
@@ -390,6 +439,7 @@
                     class="form-control"
                     name="sentitCarretera"
                     id="sentitCarretera"
+                    v-model="trucada.sentitCarretera"
                     aria-describedby="sentitCarretera"
                     placeholder="Escriu aquí"
                   />
@@ -400,17 +450,18 @@
               </div>
               <div class="row mb-4">
                 <div class="col">
-                  <label class="form-label" for="referenciesLoc"
+                  <label class="form-label" for="referenciesLoc4"
                     >Altres referències de la localització</label
                   >
                   <textarea
                     class="form-control"
                     placeholder="Escriu aquí"
-                    name="referenciesLoc"
-                    id="referenciesLoc"
+                    name="referenciesLoc4"
+                    id="referenciesLoc4"
+                    v-model="trucada.referenciesLoc4"
                     style="height: 50px"
                   ></textarea>
-                  <div id="referenciesLoc" class="form-text">
+                  <div id="referenciesLoc4" class="form-text">
                     * Altres anotacions d'interés sobre la localització
                   </div>
                 </div>
@@ -420,7 +471,7 @@
               </div>
             </div>
 
-            <div v-if="tipusLocalitzacio === 'puntSingular'">
+            <div v-if="trucada.tipusLoc === '2'">
               <div class="row mb-4">
                 <div class="col">
                   <label for="nomPunt" class="form-label"
@@ -431,6 +482,7 @@
                     class="form-control"
                     name="nomPunt"
                     id="nomPunt"
+                    v-model="trucada.nomPunt"
                     aria-describedby="nomPunt"
                     placeholder="Escriu aquí"
                   />
@@ -441,17 +493,18 @@
               </div>
               <div class="row mb-4">
                 <div class="col">
-                  <label class="form-label" for="referenciesLoc"
+                  <label class="form-label" for="referenciesLoc2"
                     >Altres referències de la localització</label
                   >
                   <textarea
                     class="form-control"
                     placeholder="Escriu aquí"
-                    name="referenciesLoc"
-                    id="referenciesLoc"
+                    name="referenciesLoc2"
+                    id="referenciesLoc2"
+                    v-model="trucada.referenciesLoc2"
                     style="height: 50px"
                   ></textarea>
-                  <div id="referenciesLoc" class="form-text">
+                  <div id="referenciesLoc2" class="form-text">
                     * Altres anotacions d'interés sobre la localització
                   </div>
                 </div>
@@ -471,7 +524,7 @@
                 >
                 <select
                   id="tipusIncident"
-                  v-model="tipusIncident"
+                  v-model="trucada.tipusIncident"
                   name="tipusIncident"
                   class="form-select"
                   aria-label="tipusIncident"
@@ -491,6 +544,7 @@
                 <select
                   id="incident"
                   name="incident"
+                  v-model="trucada.incident"
                   class="form-select"
                   aria-label="incident"
                 >
@@ -517,6 +571,7 @@
                   placeholder="Escriu aquí"
                   name="antecedents"
                   id="antecedents"
+                  v-model="trucada.antecedents"
                   style="height: 60px"
                 ></textarea>
                 <div id="antecedents" class="form-text">
@@ -533,10 +588,11 @@
                     placeholder="Escriu aquí"
                     class="form-control"
                     id="phoneInput"
+                    v-model="trucada.phoneInput"
                     aria-describedby="phoneInput"
                   />
                 </div>
-                <div id="antecedentsSelect" class="form-text">
+                <div id="phoneInput" class="form-text">
                   * Número de telèfon
                 </div>
               </div>
@@ -558,7 +614,7 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row mb-4">
               <div class="col">
                 <label class="form-label" for="notaComunaInput"
                   >Nota comuna</label
@@ -568,12 +624,38 @@
                   placeholder="Escriu aquí"
                   name="notaComunaInput"
                   id="notaComunaInput"
+                  v-model="trucada.notaComunaInput"
                   style="height: 100px"
                 ></textarea>
                 <div id="notaComunaInput" class="form-text">
                   * Altres anotacions d'interés
                 </div>
               </div>
+              <div class="col">
+                <label for="vipSelect" class="form-label">Agències</label>
+                <select
+                  id="selectAgencies"
+                  name="selectAgencies"
+                  class="form-select"
+                  aria-label="selectAgencies"
+                >
+                  <option selected value="-1">Selecciona una opció</option>
+                  <option value="vip1">VIP-1</option>
+                  <option value="vip2">VIP-2</option>
+                  <option value="vip3">VIP-3</option>
+                </select>
+                <div id="selectAgencies" class="form-text">* Agències predefinides</div>
+              </div>
+            </div>
+            <div class="row">
+                <hr />
+              </div>
+              <!-- fjakñslfjñasfjñaslfjkas -->
+              <div class="row">
+              <h5><b>Finalització del tractament</b></h5>
+            </div>
+              <div class="row">
+
               <div class="col">
                 <label for="vipSelect" class="form-label">VIP</label>
                 <select
@@ -590,6 +672,9 @@
                 <div id="vipSelect" class="form-text">* VIP predefinits</div>
               </div>
             </div>
+            <input type="hidden" name="tempsTrucada" id="tempsTrucada" v-model="trucada.tempsTrucada">
+            <input type="hidden" name="usuariId" id="usuariId" v-model="trucada.usuariId">
+            <input type="hidden" name="codiTrucada" id="codiTrucada" v-model="this.codigoTrucada">
           </form>
         </div>
         <div class="modal-footer d-flex justify-content-between">
@@ -605,13 +690,32 @@
             >
               Penjar
             </button>
-            <button type="button" class="btn btn-secondary" @click="stop(1)" data-bs-dismiss="modal">
+            <button type="button" @click="insertForm()" class="btn btn-secondary" data-bs-dismiss="modal">
               Guardar i penjar
             </button>
           </div>
         </div>
       </div>
     </div>
+
+<!-- Modal -->
+<div class="modal fade" id="raonsPenjar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="raonsPenjar" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
   </div>
   <div class="modal fade" id="penjarModal" aria-hidden="true" aria-labelledby="penjarModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
@@ -654,17 +758,45 @@ export default {
     return {
       elapsedTime: 0,
       timer: undefined,
-      localitzacio: "",
-      tipusLocalitzacio: "",
-      tipusIncident: "",
       provincies: [],
       municipis: [],
       comarques: [],
       tipusIncidents: [],
       incidents: [],
-      selectProvincia: "",
+
+      trucada: {
+      usuariId: this.useridm,
       selectComarca: "",
-      tipusIncident: ""
+      tipusIncident: "",
+      procedenciaInput: '',
+      localitzacio: "",
+      phoneInput: '',
+      adreca: '',
+      antecedents: '',
+      tempsTrucada: 0,
+      nomIntelocutor: '',
+      selectMunicipi: '',
+      selectProvincia: "",
+      tipusLoc: '',
+      tipusVia: '',
+      nomVia: '',
+      numVia: '',
+      escala: '',
+      pis: '',
+      porta: '',
+      referenciesLoc1: '',
+      nomPunt: '',
+      referenciesLoc2: '',
+      referenciesLoc3: '',
+      nomCarretera: '',
+      puntKilometric: '',
+      sentitCarretera: '',
+      referenciesLoc4: '',
+      referenciesLoc5: '',
+      incident: '',
+      notaComunaInput: '',
+      codiTrucada: this.codigoTrucada,
+      }
     };
   },
   computed: {
@@ -672,11 +804,13 @@ export default {
       const date = new Date(null);
       date.setSeconds(this.elapsedTime / 1000);
       const utc = date.toUTCString();
+      this.trucada.tempsTrucada = this.elapsedTime / 1000;
       return utc.substr(utc.indexOf(":") - 2, 8);
     },
   },
   methods: {
     start() {
+      this.trucada.codiTrucada = this.codigoTrucada;
       this.timer = setInterval(() => {
         this.elapsedTime += 1000;
       }, 1000);
@@ -689,6 +823,7 @@ export default {
       } else {
           this.$emit('status', 'Accepted');
       }
+      this.currentDateTime();
     },
     selectProvincies() {
         let me = this;
@@ -703,7 +838,7 @@ export default {
     },
     selectComarques() {
         let me = this;
-        let provincia = this.selectProvincia;
+        let provincia = this.trucada.selectProvincia;
           axios.get('/comarques/' + provincia).then((response) => {
               me.comarques = response.data;
               console.log(me.comarques);
@@ -715,8 +850,8 @@ export default {
     },
     selectMunicipis() {
        let me = this;
-        let municipi = this.selectComarca;
-          axios.get('/municipis/' + municipi).then((response) => {
+        let comarca = this.trucada.selectComarca;
+          axios.get('/municipis/' + comarca).then((response) => {
               me.municipis = response.data;
               console.log(me.municipis);
           })
@@ -737,8 +872,8 @@ export default {
           .finally(() => (this.loading = false));
     },
     selectIncidents() {
-       let me = this;
-        let tipusIncident = this.tipusIncident;
+        let me = this;
+        let tipusIncident = this.trucada.tipusIncident;
           axios.get('/incidents/' + tipusIncident).then((response) => {
               me.incidents = response.data;
               console.log(me.incidents);
@@ -747,22 +882,46 @@ export default {
               console.log(err);
           })
           .finally(() => (this.loading = false));
+    },
+    currentDateTime(){
+        const current = new Date();
+        const date = current.getFullYear()+'-'+(current.getMonth()+1)+'-'+current.getDate();
+        const time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+        const dateTime = date +' '+ time;
+
+        trucada.dataCreacio = dateTime;
+    },
+    insertForm(){
+        let me = this;
+        axios
+            .post('/callCards2', me.trucada)
+            .then(function(response){
+                console.log(response);
+                stop(1);
+            }).catch(function(error){
+                console.log(error.response.status);
+                console.log(error.response.data);
+                stop(1);
+            });
     }
   },
   props:{
       expMsg:{},
+      numTelefon: String,
+      useridm: Number,
+      codigoTrucada: Number
   },
   created() {
-    this.selectProvincies()
-    this.selectMunicipis()
-    this.selectTipusIncident()
+    this.selectProvincies();
+    this.selectTipusIncident();
   },
   mounted() {
     this.$root.$on("CallCardComponent", () => {
       // your code goes here
       this.start();
     });
+    this.trucada.phoneInput = this.numTelefon;
     console.log("Component mounted.");
-  },
+  }
 };
 </script>
