@@ -5317,7 +5317,7 @@ __webpack_require__.r(__webpack_exports__);
       isMounted: false,
       telefono: '',
       userid: '',
-      codiTrucada: '',
+      codiTrucada: -1,
       calls: [{
         tel: "666444545",
         status: "Accepted"
@@ -5350,7 +5350,8 @@ __webpack_require__.r(__webpack_exports__);
         status: ''
       },
       currentdate: {},
-      callComponent: false
+      modal: '',
+      modalHref: ''
     };
   },
   methods: {
@@ -5358,19 +5359,18 @@ __webpack_require__.r(__webpack_exports__);
       var me = this;
       axios.post('/codi_trucada').then(function (response) {
         console.log("EL RESPONSE DEL CODI DE TRUCADA ---> ");
-        console.log(response);
         me.codiTrucada = response.data.id;
       })["catch"](function (error) {
         console.log(error.response);
       });
     },
     start: function start(call) {
-      this.$root.$emit('CallCardComponent');
-      this.clickedItem = call;
-      this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, "Call");
-      this.callComponent = true;
-      this.telefono = call.tel;
-      this.codiTrucadaInsert();
+      var me = this;
+      me.$root.$emit('CallCardComponent');
+      me.clickedItem = call;
+      me.codiTrucadaInsert();
+      me.clickedItem.status = me.clickedItem.status.replace(me.clickedItem.status, "Call");
+      me.telefono = call.tel;
     },
     getStatus: function getStatus(status) {
       this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);
@@ -6277,8 +6277,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
-=======
 //
 //
 //
@@ -6380,7 +6378,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6439,6 +6455,7 @@ __webpack_require__.r(__webpack_exports__);
     start: function start() {
       var _this = this;
 
+      this.trucada.codiTrucada = this.codigoTrucada;
       this.timer = setInterval(function () {
         _this.elapsedTime += 1000;
       }, 1000);
@@ -51125,8 +51142,9 @@ var render = function () {
                         : _c(
                             "a",
                             {
-                              staticClass: "btn btn-outline-secondary",
+                              staticClass: "btn btn-outline-secondary modalBtn",
                               attrs: {
+                                id: "modalbtn",
                                 "data-bs-toggle": "modal",
                                 href: "#modalForm",
                               },
@@ -51243,13 +51261,8 @@ var render = function () {
       _c(
         "div",
         {
-<<<<<<< HEAD
-          staticClass:
-            "\n        modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable\n      ",
-=======
           staticClass: "accordion mt-3 m-auto",
           attrs: { id: "accordionExample" },
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
         },
         _vm._l(_vm.expList, function (exp) {
           return _c("div", { key: exp.id, staticClass: "accordion-item" }, [
@@ -51960,39 +51973,6 @@ var render = function () {
                             ]
                           ),
                         ]),
-<<<<<<< HEAD
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-text",
-                        attrs: { id: "localitzacio" },
-                      },
-                      [
-                        _vm._v(
-                          "\n                  * Comunitat autònoma on es troba l'incident\n                "
-                        ),
-                      ]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _vm.localitzacio === "Catalunya"
-                  ? _c("div", { staticClass: "row mb-4" }, [
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "procedenciaInput" },
-                          },
-                          [_c("vermell", [_vm._v("*")]), _vm._v("Procedencia")],
-                          1
-                        ),
-=======
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
                         _vm._v(" "),
                         _c("div", { staticClass: "col" }, [
                           _c(
@@ -52118,17 +52098,6 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-<<<<<<< HEAD
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-text",
-                            attrs: { id: "procedenciaInput" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                  * Nacionalitat\n                "
-=======
                         _c("div", { staticClass: "col" }, [
                           _c(
                             "label",
@@ -52995,49 +52964,10 @@ var render = function () {
                                   "\n                    * Sentit de la carretera on hi ha l'incident\n                  "
                                 ),
                               ]
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
                             ),
                           ]),
                         ]),
                         _vm._v(" "),
-<<<<<<< HEAD
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-text",
-                            attrs: { id: "provincia" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                  * Provincia de l'incident\n                "
-                            ),
-                          ]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "comarca" },
-                          },
-                          [_c("vermell", [_vm._v("*")]), _vm._v("Comarca")],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-text",
-                            attrs: { id: "comarca" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                  * Comunitat autònoma de l'incident\n                "
-=======
                         _c("div", { staticClass: "row mb-4" }, [
                           _c("div", { staticClass: "col" }, [
                             _c(
@@ -53091,59 +53021,10 @@ var render = function () {
                                   "\n                    * Altres anotacions d'interés sobre la localització\n                  "
                                 ),
                               ]
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
                             ),
                           ]),
                         ]),
                         _vm._v(" "),
-<<<<<<< HEAD
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-text",
-                            attrs: { id: "municipioInput" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                  * Ciutat de l'incident\n                "
-                            ),
-                          ]
-                        ),
-                      ]),
-                    ])
-                  : _c("div", { staticClass: "row mb-4" }, [
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "procedenciaInput" },
-                          },
-                          [_c("vermell", [_vm._v("*")]), _vm._v("Procedencia")],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            name: "procedenciaInput",
-                            id: "procedenciaInput",
-                            "aria-describedby": "procedenciaInput",
-                            placeholder: "Escriu aquí",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-text",
-                            attrs: { id: "procedenciaInput" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                  * Nacionalitat\n                "
-=======
                         _vm._m(8),
                       ])
                     : _vm._e(),
@@ -53205,22 +53086,10 @@ var render = function () {
                                   "\n                    * Nom del punt singular on hi ha l'incident\n                  "
                                 ),
                               ]
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
                             ),
                           ]),
                         ]),
                         _vm._v(" "),
-<<<<<<< HEAD
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-text",
-                            attrs: { id: "provincia" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                  * Provincia de l'incident\n                "
-=======
                         _c("div", { staticClass: "row mb-4" }, [
                           _c("div", { staticClass: "col" }, [
                             _c(
@@ -53230,7 +53099,6 @@ var render = function () {
                                 attrs: { for: "referenciesLoc2" },
                               },
                               [_vm._v("Altres referències de la localització")]
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
                             ),
                             _vm._v(" "),
                             _c("textarea", {
@@ -53339,112 +53207,6 @@ var render = function () {
                               function ($event) {
                                 return _vm.selectIncidents()
                               },
-<<<<<<< HEAD
-                            },
-                          },
-                          [
-                            _c(
-                              "option",
-                              { attrs: { selected: "", value: "" } },
-                              [_vm._v("Selecciona una opció")]
-                            ),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "carrer" } }, [
-                              _vm._v("Carrer"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "puntSingular" } }, [
-                              _vm._v("Punt Singular"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "carretera" } }, [
-                              _vm._v("Carretera"),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "option",
-                              { attrs: { value: "entitatPoblacio" } },
-                              [_vm._v("Entitat població")]
-                            ),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "provincia" } }, [
-                              _vm._v("Provincia"),
-                            ]),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-text",
-                            attrs: { id: "provincia" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                  * Tipus de via o lloc on es troba l'incident\n                "
-                            ),
-                          ]
-                        ),
-                      ]),
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.tipusLocalitzacio === "" && _vm.localitzacio === "Catalunya"
-                  ? _c("div", [_vm._m(7)])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.tipusLocalitzacio === "entitatPoblacio"
-                  ? _c("div", [_vm._m(8), _vm._v(" "), _vm._m(9)])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.tipusLocalitzacio === "provincia"
-                  ? _c("div", [_vm._m(10), _vm._v(" "), _vm._m(11)])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.tipusLocalitzacio === "carrer"
-                  ? _c("div", [
-                      _c("div", { staticClass: "row mb-4" }, [
-                        _c("div", { staticClass: "col" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-label",
-                              attrs: { for: "tipusVia" },
-                            },
-                            [
-                              _c("vermell", [_vm._v("*")]),
-                              _vm._v("Tipus de via"),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _vm._m(12),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-text",
-                              attrs: { id: "tipusVia" },
-                            },
-                            [
-                              _vm._v(
-                                "\n                    * Tipus de via de la direcció\n                  "
-                              ),
-                            ]
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-label",
-                              attrs: { for: "nomVia" },
-                            },
-                            [_c("vermell", [_vm._v("*")]), _vm._v("Nom")],
-                            1
-                          ),
-=======
                             ],
                           },
                         },
@@ -53452,7 +53214,6 @@ var render = function () {
                           _c("option", { attrs: { selected: "", value: "" } }, [
                             _vm._v("Selecciona una opció"),
                           ]),
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
                           _vm._v(" "),
                           _vm._l(_vm.tipusIncidents, function (tipusIncident) {
                             return _c(
@@ -53671,18 +53432,8 @@ var render = function () {
                                 $event.target.value
                               )
                             },
-<<<<<<< HEAD
-                            [
-                              _vm._v(
-                                "\n                    * Nom del punt singular on hi ha l'incident\n                  "
-                              ),
-                            ]
-                          ),
-                        ]),
-=======
                           },
                         }),
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
                       ]),
                       _vm._v(" "),
                       _c(
@@ -53758,16 +53509,6 @@ var render = function () {
                       ),
                     ]),
                     _vm._v(" "),
-<<<<<<< HEAD
-                    _c(
-                      "div",
-                      { staticClass: "form-text", attrs: { id: "provincia" } },
-                      [
-                        _vm._v(
-                          "\n                  * Tipus d'incident que hi ha causat\n                "
-                        ),
-                      ]
-=======
                     _vm._m(13),
                   ]),
                   _vm._v(" "),
@@ -53832,8 +53573,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.trucada.codiTrucada,
-                        expression: "trucada.codiTrucada",
+                        value: this.codigoTrucada,
+                        expression: "this.codigoTrucada",
                       },
                     ],
                     attrs: {
@@ -53841,17 +53582,13 @@ var render = function () {
                       name: "codiTrucada",
                       id: "codiTrucada",
                     },
-                    domProps: { value: _vm.trucada.codiTrucada },
+                    domProps: { value: this.codigoTrucada },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.trucada,
-                          "codiTrucada",
-                          $event.target.value
-                        )
+                        _vm.$set(this, "codigoTrucada", $event.target.value)
                       },
                     },
                   }),
@@ -53865,7 +53602,6 @@ var render = function () {
                   _c("p", {}, [
                     _vm._v(
                       "Temps de trucada: " + _vm._s(_vm.formattedElapsedTime)
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
                     ),
                   ]),
                   _vm._v(" "),
@@ -53890,15 +53626,6 @@ var render = function () {
                     ),
                     _vm._v(" "),
                     _c(
-<<<<<<< HEAD
-                      "div",
-                      { staticClass: "form-text", attrs: { id: "provincia" } },
-                      [
-                        _vm._v(
-                          "\n                  * Incident que hi ha causat\n                "
-                        ),
-                      ]
-=======
                       "button",
                       {
                         staticClass: "btn btn-secondary",
@@ -53910,67 +53637,20 @@ var render = function () {
                         },
                       },
                       [_vm._v("\n              Guardar i penjar\n            ")]
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
                     ),
                   ]),
                 ]
               ),
             ]),
-<<<<<<< HEAD
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "modal-footer d-flex justify-content-between" },
-              [
-                _c("p", {}, [
-                  _vm._v(
-                    "Temps de trucada: " + _vm._s(_vm.formattedElapsedTime)
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: {
-                        type: "button",
-                        "data-bs-target": "#raonsPenjar",
-                        "data-bs-toggle": "modal",
-                      },
-                      on: { click: _vm.stop },
-                    },
-                    [_vm._v("\n              Penjar\n            ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      attrs: { type: "button" },
-                      on: { click: _vm.stop },
-                    },
-                    [_vm._v("\n              Guardar i penjar\n            ")]
-                  ),
-                ]),
-              ]
-            ),
-          ]),
-        ]
-      ),
-      _vm._v(" "),
-      _vm._m(26),
-    ]
-  )
-=======
           ]
         ),
+        _vm._v(" "),
+        _vm._m(17),
       ]
     ),
     _vm._v(" "),
-    _vm._m(17),
+    _vm._m(18),
   ])
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
 }
 var staticRenderFns = [
   function () {
@@ -54002,13 +53682,9 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("div", { staticClass: "form-text", attrs: { id: "municipioInput" } }, [
-<<<<<<< HEAD
-        _vm._v("\n                  * Ciutat de l'incident\n                "),
-=======
         _vm._v(
           "\n                  * Ciutat de l'interlocutor\n                "
         ),
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
       ]),
     ])
   },
@@ -54034,82 +53710,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-<<<<<<< HEAD
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "referenciesLoc" } },
-          [_vm._v("Altres referències de la localització")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "50px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "referenciesLoc",
-            id: "referenciesLoc",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc" } },
-          [
-            _vm._v(
-              "\n                    * Altres anotacions d'interés sobre la localització\n                  "
-            ),
-          ]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-=======
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
     return _c("div", { staticClass: "row" }, [_c("hr")])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-<<<<<<< HEAD
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "referenciesLoc" } },
-          [_vm._v("Altres referències de la localització")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "50px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "referenciesLoc",
-            id: "referenciesLoc",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc" } },
-          [
-            _vm._v(
-              "\n                    * Altres anotacions d'interés sobre la localització\n                  "
-            ),
-          ]
-        ),
-      ]),
-    ])
-=======
     return _c("div", { staticClass: "row" }, [_c("hr")])
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
   },
   function () {
     var _vm = this
@@ -54133,39 +53740,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-<<<<<<< HEAD
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "referenciesLoc" } },
-          [_vm._v("Altres referències de la localització")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "50px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "referenciesLoc",
-            id: "referenciesLoc",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc" } },
-          [
-            _vm._v(
-              "\n                    * Altres anotacions d'interés sobre la localització\n                  "
-            ),
-          ]
-        ),
-      ]),
-=======
     return _c("div", { staticClass: "row" }, [
       _c("h5", [_c("b", [_vm._v("Tipificació de l'incident")])]),
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
     ])
   },
   function () {
@@ -54178,40 +53754,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-<<<<<<< HEAD
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "nomCarretera" } },
-          [_vm._v("Nom")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "nomCarretera",
-            id: "nomCarretera",
-            "aria-describedby": "nomCarretera",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-text", attrs: { id: "nomCarretera" } }, [
-          _vm._v(
-            "\n                    * Nom de la carretera on hi ha l'incident\n                  "
-          ),
-        ]),
-      ]),
-=======
     return _c("div", { staticClass: "col" }, [
       _c(
         "label",
         { staticClass: "form-label", attrs: { for: "genereSelect" } },
         [_vm._v("Gènere")]
       ),
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
       _vm._v(" "),
       _c(
         "select",
@@ -54222,47 +53770,6 @@ var staticRenderFns = [
             name: "genereSelect",
             "aria-label": "genereSelect",
           },
-<<<<<<< HEAD
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "puntKilometric" } },
-          [
-            _vm._v(
-              "\n                    * Punt kilomètric de la carretera on hi ha l'incident\n                  "
-            ),
-          ]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "sentitCarretera" } },
-          [_vm._v("Sentit")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "sentitCarretera",
-            id: "sentitCarretera",
-            "aria-describedby": "sentitCarretera",
-            placeholder: "Escriu aquí",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "sentitCarretera" } },
-          [
-            _vm._v(
-              "\n                    * Sentit de la carretera on hi ha l'incident\n                  "
-            ),
-          ]
-=======
         },
         [
           _c("option", { attrs: { selected: "" } }, [
@@ -54280,7 +53787,6 @@ var staticRenderFns = [
       _c("div", { staticClass: "form-text", attrs: { id: "genereSelect" } }, [
         _vm._v(
           "\n                  * Gènere amb el que s'identifica\n                "
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
         ),
       ]),
     ])
@@ -54289,39 +53795,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-<<<<<<< HEAD
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "referenciesLoc" } },
-          [_vm._v("Altres referències de la localització")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "50px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "referenciesLoc",
-            id: "referenciesLoc",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc" } },
-          [
-            _vm._v(
-              "\n                    * Altres anotacions d'interés sobre la localització\n                  "
-            ),
-          ]
-        ),
-=======
     return _c("div", { staticClass: "col" }, [
       _c("label", { staticClass: "form-label", attrs: { for: "vipSelect" } }, [
         _vm._v("Agències"),
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
       ]),
       _vm._v(" "),
       _c(
@@ -54333,19 +53809,6 @@ var staticRenderFns = [
             name: "selectAgencies",
             "aria-label": "selectAgencies",
           },
-<<<<<<< HEAD
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "referenciesLoc" } },
-          [
-            _vm._v(
-              "\n                    * Altres anotacions d'interés sobre la localització\n                  "
-            ),
-          ]
-        ),
-=======
         },
         [
           _c("option", { attrs: { selected: "", value: "-1" } }, [
@@ -54362,7 +53825,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "form-text", attrs: { id: "selectAgencies" } }, [
         _vm._v("* Agències predefinides"),
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
       ]),
     ])
   },
@@ -54377,136 +53839,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-<<<<<<< HEAD
-      _c("h5", [_c("b", [_vm._v("Tipificació de l'incident")])]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-select",
-        attrs: { id: "incident", name: "incident", "aria-label": "incident" },
-      },
-      [
-        _c("option", { attrs: { selected: "", value: "" } }, [
-          _vm._v("Selecciona una opció"),
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "incident1" } }, [_vm._v("Incident 1")]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [_c("hr")])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-4" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "antecedents" } },
-          [_vm._v("Antecedents del telèfon")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "60px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "antecedents",
-            id: "antecedents",
-          },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-text", attrs: { id: "antecedents" } }, [
-          _vm._v(
-            "\n                  * Text amb informació rellevant del trucant\n                "
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "phoneInput" } },
-          [_vm._v("Telèfon")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group" }, [
-          _c(
-            "span",
-            { staticClass: "input-group-text", attrs: { id: "phoneInput" } },
-            [_vm._v("+34")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "tel",
-              name: "phoneInput",
-              placeholder: "Escriu aquí",
-              id: "phoneInput",
-              "aria-describedby": "phoneInput",
-            },
-          }),
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "antecedentsSelect" } },
-          [_vm._v("\n                  * Número de telèfon\n                ")]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "genereSelect" } },
-          [_vm._v("Gènere")]
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-select",
-            attrs: {
-              id: "genereSelect",
-              name: "genereSelect",
-              "aria-label": "genereSelect",
-            },
-          },
-          [
-            _c("option", { attrs: { selected: "" } }, [
-              _vm._v("Selecciona una opció"),
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Home" } }, [_vm._v("Home")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Dona" } }, [_vm._v("Dona")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Altres" } }, [_vm._v("Altres")]),
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-text", attrs: { id: "genereSelect" } }, [
-          _vm._v(
-            "\n                  * Gènere amb el que s'identifica\n                "
-          ),
-        ]),
-      ]),
-=======
       _c("h5", [_c("b", [_vm._v("Finalització del tractament")])]),
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
     ])
   },
   function () {
@@ -54517,37 +53850,6 @@ var staticRenderFns = [
       _c("div", { staticClass: "col" }, [
         _c(
           "label",
-<<<<<<< HEAD
-          { staticClass: "form-label", attrs: { for: "notaComunaInput" } },
-          [_vm._v("Nota comuna")]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "100px" },
-          attrs: {
-            placeholder: "Escriu aquí",
-            name: "notaComunaInput",
-            id: "notaComunaInput",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-text", attrs: { id: "notaComunaInput" } },
-          [
-            _vm._v(
-              "\n                  * Altres anotacions d'interés\n                "
-            ),
-          ]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "label",
-=======
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
           { staticClass: "form-label", attrs: { for: "vipSelect" } },
           [_vm._v("VIP")]
         ),
@@ -54590,7 +53892,6 @@ var staticRenderFns = [
       {
         staticClass: "modal fade",
         attrs: {
-<<<<<<< HEAD
           id: "raonsPenjar",
           "data-bs-backdrop": "static",
           "data-bs-keyboard": "false",
@@ -54601,23 +53902,12 @@ var staticRenderFns = [
       },
       [
         _c("div", { staticClass: "modal-dialog" }, [
-=======
-          id: "penjarModal",
-          "aria-hidden": "true",
-          "aria-labelledby": "penjarModal",
-          tabindex: "-1",
-        },
-      },
-      [
-        _c("div", { staticClass: "modal-dialog modal-dialog-centered" }, [
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
           _c("div", { staticClass: "modal-content" }, [
             _c("div", { staticClass: "modal-header" }, [
               _c(
                 "h5",
                 {
                   staticClass: "modal-title",
-<<<<<<< HEAD
                   attrs: { id: "staticBackdropLabel" },
                 },
                 [_vm._v("Modal title")]
@@ -54635,7 +53925,52 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _vm._v("\n        ...\n      "),
-=======
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button", "data-bs-dismiss": "modal" },
+                },
+                [_vm._v("Close")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "btn btn-primary", attrs: { type: "button" } },
+                [_vm._v("Understood")]
+              ),
+            ]),
+          ]),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "penjarModal",
+          "aria-hidden": "true",
+          "aria-labelledby": "penjarModal",
+          tabindex: "-1",
+        },
+      },
+      [
+        _c("div", { staticClass: "modal-dialog modal-dialog-centered" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c(
+                "h5",
+                {
+                  staticClass: "modal-title",
                   attrs: { id: "exampleModalToggleLabel2" },
                 },
                 [
@@ -54695,25 +54030,12 @@ var staticRenderFns = [
                   ),
                 ]),
               ]),
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "modal-footer" }, [
               _c(
                 "button",
                 {
-<<<<<<< HEAD
-                  staticClass: "btn btn-secondary",
-                  attrs: { type: "button", "data-bs-dismiss": "modal" },
-                },
-                [_vm._v("Close")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "btn btn-primary", attrs: { type: "button" } },
-                [_vm._v("Understood")]
-=======
                   staticClass: "btn btn-primary",
                   attrs: {
                     "data-bs-target": "#penjarModal",
@@ -54722,7 +54044,6 @@ var staticRenderFns = [
                   },
                 },
                 [_vm._v("Guardar i penjar")]
->>>>>>> 466a79eb831b6be5cf73c97cfbe4818d640509d0
               ),
             ]),
           ]),
@@ -67082,7 +66403,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\projecteBroggi"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\projecteBroggi","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Applications/XAMPP/xamppfiles/htdocs/projecteBroggi"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"/Applications/XAMPP/xamppfiles/htdocs/projecteBroggi","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

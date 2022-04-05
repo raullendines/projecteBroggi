@@ -20,7 +20,7 @@
       <td class="text-center align-middle">{{moment()}}</td>
       <td class="text-end">
           <button type="button" class="btn btn-outline-secondary" v-if="call.status === 'Declined' || call.status === 'Accepted' || call.status === 'Call'" disabled>Aceptar</button>
-          <a class="btn btn-outline-secondary" @click="start(call)" data-bs-toggle="modal" href="#modalForm" v-else>Aceptar</a>
+          <a class="btn btn-outline-secondary modalBtn" id="modalbtn" @click="start(call)" data-bs-toggle='modal' href="#modalForm" v-else >Aceptar</a>
       </td>
       <td class="text-end align-middle">
           <i v-if="call.status === 'Accepted'" :class="status[0].accepted" :style="status[0].style"></i>
@@ -48,7 +48,7 @@ export default {
         isMounted: false,
         telefono: '',
         userid: '',
-        codiTrucada: '',
+        codiTrucada: -1,
         calls: [
             {
                 tel: "666444545",
@@ -87,31 +87,28 @@ export default {
             status:''
         },
         currentdate:{},
-        callComponent: false,
+            modal: '',
+            modalHref: ''
     }),
     methods:{
         codiTrucadaInsert(){
         let me = this;
-
         axios
         .post('/codi_trucada')
             .then(function(response){
                 console.log("EL RESPONSE DEL CODI DE TRUCADA ---> ");
-                console.log(response);
                 me.codiTrucada = response.data.id;
-
             }).catch(function(error){
                 console.log(error.response);
-
             });
     },
         start(call){
-            this.$root.$emit('CallCardComponent');
-            this.clickedItem = call;
-            this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, "Call");
-            this.callComponent = true;
-            this.telefono = call.tel;
-            this.codiTrucadaInsert();
+            let me = this;
+            me.$root.$emit('CallCardComponent');
+            me.clickedItem = call;
+            me.codiTrucadaInsert();
+            me.clickedItem.status = me.clickedItem.status.replace(me.clickedItem.status, "Call");
+            me.telefono = call.tel;
         },
         getStatus(status) {
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);

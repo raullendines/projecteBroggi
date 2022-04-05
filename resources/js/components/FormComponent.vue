@@ -674,7 +674,7 @@
             </div>
             <input type="hidden" name="tempsTrucada" id="tempsTrucada" v-model="trucada.tempsTrucada">
             <input type="hidden" name="usuariId" id="usuariId" v-model="trucada.usuariId">
-            <input type="hidden" name="codiTrucada" id="codiTrucada" v-model="trucada.codiTrucada">
+            <input type="hidden" name="codiTrucada" id="codiTrucada" v-model="this.codigoTrucada">
           </form>
         </div>
         <div class="modal-footer d-flex justify-content-between">
@@ -795,7 +795,7 @@ export default {
       referenciesLoc5: '',
       incident: '',
       notaComunaInput: '',
-      codiTrucada: '',
+      codiTrucada: this.codigoTrucada,
       }
     };
   },
@@ -810,6 +810,7 @@ export default {
   },
   methods: {
     start() {
+      this.trucada.codiTrucada = this.codigoTrucada;
       this.timer = setInterval(() => {
         this.elapsedTime += 1000;
       }, 1000);
@@ -892,7 +893,6 @@ export default {
     },
     insertForm(){
         let me = this;
-        this.trucada.codiTrucada = this.codigoTrucada;
         axios
             .post('/callCards2', me.trucada)
             .then(function(response){
