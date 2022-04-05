@@ -152,14 +152,14 @@
                         <v-spacer></v-spacer>
                         <button
                           type="button"
-                          class="btn btn-outline-secondary mr-2"
+                          class="btn btn-outline-primary mr-2"
                           @click="cancel()"
                         >
                           Cancelar
                         </button>
                         <button
                           type="submit"
-                          class="btn btn-outline-primary"
+                          class="btn btn-outline-secondary"
                           @click="insertUsuari()"
                           v-if="insert"
                         >
