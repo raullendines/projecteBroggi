@@ -6623,15 +6623,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               _this2.createMapAtencioCiutadana(agencia);
             } else if (agencia.nom.includes("Policia Municipal") && _this2.selected_agency.includes("policiaMunicipal")) {
               _this2.createMapPoliciaMunicipal(agencia);
-            } else if (checkboxAll.checked = true) {
-              /*  this.createMapPoliciaLocal(agencia);
-              this.createMapBombersVoluntaris(agencia);
-              this.createMapBombers(agencia);
-              this.createMapTransit(agencia);
-              this.createMapMossos(agencia);
-              this.createMapGuardiaUrbana(agencia);
-              this.createMapAtencioCiutadana(agencia);
-              this.createMapPoliciaMunicipal(agencia); */
+            } else if (_this2.selected_agency.includes("todos")) {
+              _this2.createMapAgencies(agencia);
             }
           }
         } catch (err) {
@@ -6640,8 +6633,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           _iterator.f();
         }
       })["catch"](function (err) {
-        /*           console.log(err);
-         */
+        console.log(err);
       })["finally"](function () {
         return _this2.loading = false;
       });
@@ -54524,13 +54516,13 @@ var render = function () {
           ],
           attrs: {
             type: "checkbox",
-            id: "selectAll",
-            name: "selectAll",
-            value: "selectAll",
+            id: "todos",
+            name: "todos",
+            value: "todos",
           },
           domProps: {
             checked: Array.isArray(_vm.selected_agency)
-              ? _vm._i(_vm.selected_agency, "selectAll") > -1
+              ? _vm._i(_vm.selected_agency, "todos") > -1
               : _vm.selected_agency,
           },
           on: {
@@ -54540,7 +54532,7 @@ var render = function () {
                   $$el = $event.target,
                   $$c = $$el.checked ? true : false
                 if (Array.isArray($$a)) {
-                  var $$v = "selectAll",
+                  var $$v = "todos",
                     $$i = _vm._i($$a, $$v)
                   if ($$el.checked) {
                     $$i < 0 && (_vm.selected_agency = $$a.concat([$$v]))
@@ -54561,7 +54553,9 @@ var render = function () {
           },
         }),
         _vm._v(" "),
-        _c("label", { attrs: { for: "selectAll" } }, [_vm._v(" Tots")]),
+        _c("label", { attrs: { for: "todos" } }, [
+          _vm._v(" Atenció Ciutadana"),
+        ]),
         _c("br"),
       ]),
     ]

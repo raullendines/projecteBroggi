@@ -90,15 +90,15 @@
 
       <br />
       <h5>Seleccionar tots</h5>
-      <input
+       <input
         type="checkbox"
-        id="selectAll"
-        name="selectAll"
-        value="selectAll"
+        id="todos"
+        name="todos"
+        value="todos"
         v-model="selected_agency"
         @change="selectAllAgencies()"
       />
-      <label for="selectAll"> Tots</label><br />
+      <label for="todos"> Atenció Ciutadana</label><br />
     </div>
   </div>
 </template>
@@ -221,21 +221,16 @@ export default {
               this.selected_agency.includes("policiaMunicipal")
             ) {
               this.createMapPoliciaMunicipal(agencia);
-            } else if ((checkboxAll.checked = true)) {
-              /*  this.createMapPoliciaLocal(agencia);
-              this.createMapBombersVoluntaris(agencia);
-              this.createMapBombers(agencia);
-              this.createMapTransit(agencia);
-              this.createMapMossos(agencia);
-              this.createMapGuardiaUrbana(agencia);
-              this.createMapAtencioCiutadana(agencia);
-              this.createMapPoliciaMunicipal(agencia); */
+            } else if(
+              this.selected_agency.includes("todos")
+            ) {
+              this.createMapAgencies(agencia);
             }
           }
         })
         .catch((err) => {
-          /*           console.log(err);
-           */
+                     console.log(err);
+           
         })
         .finally(() => (this.loading = false));
     },
