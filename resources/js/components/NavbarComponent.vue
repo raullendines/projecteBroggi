@@ -46,6 +46,63 @@
               </a>
             </li>
           </ul>
+
+
+          <ul class="navbar-nav d-flex flex-row" v-if="profile.id === 2">
+            <li
+              class="nav-item"
+              v-for="(item, i) in supervisorItems"
+              :key="item.url"
+            >
+              <a
+                class="btn btn-sm nav-link active"
+                :class="
+                  currentHref === 'http://localhost' + item.url
+                    ? 'btn-primary'
+                    : 'btn-outline-primary'
+                "
+                aria-current="page"
+                :href="item.url"
+                role="button"
+                :id="
+                  currentHref == 'http://localhost' + item.url
+                    ? 'tab' + i
+                    : 'tabOutline' + i
+                "
+              >
+                <i :class="item.icon"></i> &nbsp;
+                {{ item.name }}
+              </a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav d-flex flex-row" v-if="profile.id === 1">
+            <li
+              class="nav-item"
+              v-for="(item, i) in operatorItems"
+              :key="item.url"
+            >
+              <a
+                class="btn btn-sm nav-link active"
+                :class="
+                  currentHref === 'http://localhost' + item.url
+                    ? 'btn-primary'
+                    : 'btn-outline-primary'
+                "
+                aria-current="page"
+                :href="item.url"
+                role="button"
+                :id="
+                  currentHref == 'http://localhost' + item.url
+                    ? 'tab' + i
+                    : 'tabOutline' + i
+                "
+              >
+                <i :class="item.icon"></i> &nbsp;
+                {{ item.name }}
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -228,14 +285,11 @@ export default {
           name: "Cartes de trucades",
           url: "/projecteBroggi/public/trucades",
           icon: "fas fa-headset",
-          style:
-            "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;",
         },
         {
           name: "Sortir",
           url: "/projecteBroggi/public/logout",
           icon: "fas fa-sign-out-alt",
-          style: "background-color:#FF005D; color:white",
         },
       ],
       supervisorItems: [
@@ -243,21 +297,16 @@ export default {
           name: "Cartes de trucades",
           url: "/projecteBroggi/public/trucades",
           icon: "fas fa-headset",
-          style:
-            "background-color:#C90175; color:white; margin-right:10px; padding: 7.5px;",
         },
         {
           name: "Gestió d'expedients",
           url: "/projecteBroggi/public/expedients",
           icon: "fas fa-file-alt",
-          style:
-            "background-color:#02AFC8; color:white; margin-right:10px; padding: 7.5px;",
         },
         {
           name: "Sortir",
           url: "/projecteBroggi/public/logout",
           icon: "fas fa-sign-out-alt",
-          style: "background-color:#FF005D; color:white",
         },
       ],
       profiles: [],
