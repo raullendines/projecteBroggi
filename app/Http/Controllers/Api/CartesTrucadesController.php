@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CartesTrucadesResource;
 use App\Models\CartesTrucades;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartesTrucadesController extends Controller
 {
@@ -65,4 +66,20 @@ class CartesTrucadesController extends Controller
     {
         //
     }
+
+
+    public function contador()
+    {
+        $contador = DB::table("cartes_trucades")
+            ->join("incidents", "incidents.id", "=", "cartes_trucades.incidents_id")
+            ->join("tipus_incidents", "incidents.classes_incidents_id", "=", "tipus_incidents.id")
+            ->select("tipus_incidents.descripcio")
+            ->select(DB::raw("count(*)"))
+            ->groupBy("tipus_incidents.id")
+            ->get();
+
+            $mensaje = Utilitat::errorMessage($ex);
+           
+    }
+
 }
