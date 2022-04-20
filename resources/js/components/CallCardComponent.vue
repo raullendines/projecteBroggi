@@ -1,15 +1,15 @@
 <template>
-<main>
-    <table class="table m-auto mt-3" style="width:80%">
-  <thead>
-    <tr>
-      <th class="col-5" >Número tel.</th>
-      <th class="col">Data</th>
-      <th class="col"></th>
-      <th class="col text-end align-middle" >Estat</th>
-    </tr>
-  </thead>
-  </table>
+  <main>
+    <table class="table m-auto mt-3" style="width: 80%">
+      <thead>
+        <tr>
+          <th class="col-5">Número tel.</th>
+          <th class="col">Data</th>
+          <th class="col"></th>
+          <th class="col text-end align-middle">Estat</th>
+        </tr>
+      </thead>
+    </table>
 
   <div class="card mt-3 m-auto" style="width:80%" v-for="call in calls" :key="call.tel">
   <div class="card-body">
@@ -20,7 +20,7 @@
       <td class="text-center align-middle">{{moment()}}</td>
       <td class="text-end">
           <button type="button" class="btn btn-outline-secondary" v-if="call.status === 'Declined' || call.status === 'Accepted' || call.status === 'Call'" disabled>Aceptar</button>
-          <a @click="start(call)" class="btn btn-outline-secondary" data-bs-toggle="modal" href="#modalForm" v-else>Aceptar</a>
+          <a class="btn btn-outline-secondary modalBtn" id="modalbtn" @click="start(call)" data-bs-toggle='modal' href="#modalForm" v-else >Aceptar</a>
       </td>
       <td class="text-end align-middle">
           <i v-if="call.status === 'Accepted'" :class="status[0].accepted" :style="status[0].style"></i>
@@ -34,17 +34,21 @@
   </div>
 </div>
 
-<form-component @status="getStatus"></form-component>
+<form-component @status="getStatus" :numTelefon="telefono" :useridm="userid" :codigoTrucada="codiTrucada" v-if="isMounted"></form-component>
 
 </main>
 </template>
 
 <script>
-import FormComponent from './FormComponent.vue';
-import moment from 'moment';
+import FormComponent from "./FormComponent.vue";
+import moment from "moment";
 export default {
   components: { FormComponent },
     data: () => ({
+        isMounted: false,
+        telefono: '',
+        userid: '',
+        codiTrucada: -1,
         calls: [
             {
                 tel: "666444545",
@@ -83,15 +87,28 @@ export default {
             status:''
         },
         currentdate:{},
-        callComponent: false,
+            modal: '',
+            modalHref: ''
     }),
     methods:{
+        codiTrucadaInsert(){
+        let me = this;
+        axios
+        .post('/codi_trucada')
+            .then(function(response){
+                console.log("EL RESPONSE DEL CODI DE TRUCADA ---> ");
+                me.codiTrucada = response.data.id;
+            }).catch(function(error){
+                console.log(error.response);
+            });
+    },
         start(call){
-            this.$root.$emit('CallCardComponent');
-            this.clickedItem = call;
-            this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, "Call");
-            this.callComponent = true;
-
+            let me = this;
+            me.$root.$emit('CallCardComponent');
+            me.clickedItem = call;
+            me.codiTrucadaInsert();
+            me.clickedItem.status = me.clickedItem.status.replace(me.clickedItem.status, "Call");
+            me.telefono = call.tel;
         },
         getStatus(status) {
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);
@@ -100,10 +117,12 @@ export default {
             moment.locale('es');
             this.currentdate = moment(new Date()).format('DD MMM YYYY').toUpperCase().replace('.', '');
             return this.currentdate;
-        }
+        },
   },
   mounted() {
     console.log("Component mounted.");
+    this.userid = parseInt(this.$attrs['userid']);
+    this.isMounted = true;
   },
 };
 </script>

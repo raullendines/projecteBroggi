@@ -36,6 +36,7 @@
                   class="mb-2"
                   v-bind="attrs"
                   v-on="on"
+                  outlined
                   @click="newItem()"
                 >
                   Nou Usuari
@@ -152,14 +153,14 @@
                         <v-spacer></v-spacer>
                         <button
                           type="button"
-                          class="btn btn-outline-secondary mr-2"
+                          class="btn btn-outline-primary mr-2"
                           @click="cancel()"
                         >
                           Cancelar
                         </button>
                         <button
                           type="submit"
-                          class="btn btn-outline-primary"
+                          class="btn btn-outline-secondary"
                           @click="insertUsuari()"
                           v-if="insert"
                         >
@@ -256,7 +257,6 @@ export default {
         .get("/usuaris")
         .then((response) => {
           me.usuaris = response.data;
-          console.log("select");
           console.log(response.data);
           this.changeValue();
         })
@@ -268,7 +268,7 @@ export default {
     insertUsuari() {
       let me = this;
       me.checkInputs();
-      if (this.validateInput === true) {
+      if (this.validateInput === false) {
         axios
         .post("/usuaris", me.usuari)
         .then((response) => {
@@ -288,7 +288,7 @@ export default {
     updateUsuari() {
       let me = this;
       this.checkInputs();
-      if (this.validateInput === true) {
+      if (this.validateInput === false) {
                 axios
         .put("/usuaris/" + me.usuari.id, me.usuari)
         .then((response) => {

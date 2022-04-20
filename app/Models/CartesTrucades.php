@@ -9,13 +9,37 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class CartesTrucades extends Model
 {
 
-    /* 
+    /*
     public function CartesTrucades()
     {
         return $this->hasMany(CartesTrucades::class, 'incidents_id');
-    } 
+    }
     */
     use HasFactory;
+
+    protected $fillable = [
+        'codi_trucada',
+        'data_hora',
+        'temps_trucada',
+        'dades_personals_id',
+        'telefon',
+        'procedencia_trucada',
+        'origen_trucada',
+        'nom_trucada',
+        'municipis_id_trucada',
+        'adreca_trucada',
+        'fora_catalunya',
+        'provincies_id',
+        'municipis_id',
+        'tipus_localitzacions_id',
+        'descripcio_localitzacio',
+        'detall_localitzacio',
+        'altres_ref_localitzacio',
+        'incidents_id',
+        'nota_comuna',
+        'expedients_id',
+        'usuaris_id'
+    ];
 
     public $table = 'cartes_trucades';
     public $primaryKey = 'id'; //Por defecto es id
