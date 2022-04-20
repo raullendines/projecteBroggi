@@ -89,7 +89,6 @@ export default {
   },
   methods: {
    selectLamadas() {
-     console.log("ha entrado");
       let me = this;
         axios.get('/contador/').then((response) => {
             me.llamada = response.data;
@@ -104,48 +103,11 @@ export default {
       for (const call of this.llamada) {
         this.chartData.labels.push(call.descripcio);
         this.chartData.datasets[0].data.push(call.Contador);
-        console.log(this.chartData.labels);
-        console.log(this.chartData.datasets[0].data );
       }
     },
-    selectIncidentsTypes() {
-      let me = this;
-        axios.get('/incidents_types/1').then((response) => {
-            me.chartData.labels = response.data;
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-        .finally(() => (this.loading = false));
-    },
-    /* bucle(){
-      let me = this;
-      for (const numero of me.chartData.labels) {
-        let num = numero.id
-        this.selectIncidents(num);
-      }
-        
-    }, */
-    /* selectIncidents(num) {
-      let me = this;
-        axios.get('/incidents/' + num).then((response) => {
-            me.incidentes = response.data;
-            this.countTelefonos();
-         })
-        .catch((err) => {
-            console.log(err);
-        })
-        .finally(() => (this.loading = false));
-        
-    },
-     countTelefonos(){
-       console.log(this.incidentes);
-     } */
   },
   created(){
-    /* this.selectLamadas(); */
     this.selectLamadas();
-    /* this.selectIncidents(); */
   }
 }
 </script>

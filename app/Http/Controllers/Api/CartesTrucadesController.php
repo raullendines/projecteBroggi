@@ -14,13 +14,8 @@ use App\Http\Resources\CartesTrucadesResource;
 // use App\Clases\Utilitat;
 use App\Clases\Utilitat;
 use App\Models\Expedients;
-use Illuminate\Http\Request;
-use App\Models\CartesTrucades;
 use App\Models\DadesPersonals;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
-use App\Http\Resources\CartesTrucadesResource;
 use App\Models\CodiTrucada;
 
 
