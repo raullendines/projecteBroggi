@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\CartesTrucadesResource;
-use App\Models\CartesTrucades;
+use App\Models\Agencies;
 use Illuminate\Http\Request;
+use App\Models\CartesTrucades;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ContadorResource;
+use App\Http\Resources\CartesTrucadesResource;
 
 class CartesTrucadesController extends Controller
 {
@@ -73,13 +75,10 @@ class CartesTrucadesController extends Controller
         $contador = DB::table("cartes_trucades")
             ->join("incidents", "incidents.id", "=", "cartes_trucades.incidents_id")
             ->join("tipus_incidents", "incidents.classes_incidents_id", "=", "tipus_incidents.id")
-            ->select("tipus_incidents.descripcio")
-            ->select(DB::raw("count(*)"))
-            ->groupBy("tipus_incidents.id")
+            ->select("tipus_incidents.descripcio", DB::raw("count(*) as Contador"))
+            ->groupBy("tipus_incidents.descripcio")
             ->get();
 
-            $mensaje = Utilitat::errorMessage($ex);
-           
+        return $contador->toJson(JSON_PRETTY_PRINT);
     }
-
 }
