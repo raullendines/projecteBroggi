@@ -20,7 +20,7 @@
             <div class="row mb-4">
               <div class="col">
                 <label for="localitzacio" class="form-label"
-                  ><p class="vermell">*</p>Localització</label
+                  ><b class="vermell">*</b>Localització</label
                 >
                 <select
                   v-model="trucada.localitzacio"
@@ -78,7 +78,7 @@
             <div v-if="trucada.localitzacio === '1'" class="row mb-4">
               <div class="col">
                 <label for="procedenciaInput" class="form-label"
-                  ><p class="vermell">*</p>Procedencia</label
+                  ><b class="vermell">*</b>Procedencia</label
                 >
                 <input
                   type="text"
@@ -95,7 +95,7 @@
               </div>
               <div class="col">
                 <label for="provincia" class="form-label"
-                  ><p class="vermell">*</p>Provincia</label
+                  ><b class="vermell">*</b>Provincia</label
                 >
                 <select
                   id="selectProvincia"
@@ -114,7 +114,7 @@
               </div>
               <div class="col">
                 <label for="comarca" class="form-label"
-                  ><p class="vermell">*</p>Comarca</label
+                  ><b class="vermell">*</b>Comarca</label
                 >
                 <select
                   id="comarca"
@@ -133,7 +133,7 @@
               </div>
               <div class="col">
                 <label for="selectMunicipi" class="form-label"
-                  ><p class="vermell">*</p>Municipi</label
+                  ><b class="vermell">*</b>Municipi</label
                 >
                 <select
                   id="selectMunicipi"
@@ -141,6 +141,7 @@
                   v-model="trucada.selectMunicipi"
                   class="form-select"
                   aria-label="selectMunicipi"
+                  @change="selectAgencies()"
                 >
                   <option selected value="">Selecciona una opció</option>
                   <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" >{{ municipi.nom }}</option>
@@ -154,7 +155,7 @@
             <div v-else class="row mb-4">
               <div class="col">
                 <label for="procedenciaInput" class="form-label"
-                  ><p class="vermell">*</p>Procedencia</label
+                  ><b class="vermell">*</b>Procedencia</label
                 >
                 <input
                   type="text"
@@ -169,7 +170,7 @@
                 </div>
               </div>
               <div class="col">
-                <label for="provinciaInput" class="form-label"><p class="vermell">*</p>Provincia</label>
+                <label for="provinciaInput" class="form-label"><b class="vermell">*</b>Provincia</label>
                 <input
                   type="text"
                   class="form-control"
@@ -204,7 +205,7 @@
               <h5><b>Localització de l'emergencia</b></h5>
               <div class="col">
                 <label for="tipusLoc" class="form-label"
-                  ><p class="vermell">*</p>Tipus de localització</label
+                  ><b class="vermell">*</b>Tipus de localització</label
                 >
                 <select
                   id="tipusLoc"
@@ -284,7 +285,7 @@
               <div class="row mb-4">
                 <div class="col">
                   <label for="tipusVia" class="form-label"
-                    ><p class="vermell">*</p>Tipus de via</label
+                    ><b class="vermell">*</b>Tipus de via</label
                   >
                   <select
                     id="tipusVia"
@@ -305,7 +306,7 @@
                 </div>
                 <div class="col">
                   <label for="nomVia" class="form-label"
-                    ><p class="vermell">*</p>Nom</label
+                    ><b class="vermell">*</b>Nom</label
                   >
                   <input
                     type="text"
@@ -320,7 +321,7 @@
                 </div>
                 <div class="col">
                   <label for="numVia" class="form-label"
-                    ><p class="vermell">*</p>Número</label
+                    ><b class="vermell">*</b>Número</label
                   >
                   <input
                     type="number"
@@ -475,7 +476,7 @@
               <div class="row mb-4">
                 <div class="col">
                   <label for="nomPunt" class="form-label"
-                    ><p class="vermell">*</p>Nom</label
+                    ><b class="vermell">*</b>Nom</label
                   >
                   <input
                     type="text"
@@ -520,7 +521,7 @@
             <div class="row mb-4">
               <div class="col">
                 <label for="tipusIncident" class="form-label"
-                  ><p class="vermell">*</p>Tipus d'incident</label
+                  ><b class="vermell">*</b>Tipus d'incident</label
                 >
                 <select
                   id="tipusIncident"
@@ -539,7 +540,7 @@
               </div>
               <div class="col">
                 <label for="incident" class="form-label"
-                  ><p class="vermell">*</p>Incident</label
+                  ><b class="vermell">*</b>Incident</label
                 >
                 <select
                   id="incident"
@@ -632,7 +633,7 @@
                 </div>
               </div>
               <div class="col">
-                <label for="vipSelect" class="form-label">Agències</label>
+                <label for="selectAgencies" class="form-label">Agències</label>
                 <select
                   id="selectAgencies"
                   name="selectAgencies"
@@ -640,9 +641,7 @@
                   aria-label="selectAgencies"
                 >
                   <option selected value="-1">Selecciona una opció</option>
-                  <option value="vip1">VIP-1</option>
-                  <option value="vip2">VIP-2</option>
-                  <option value="vip3">VIP-3</option>
+                  <option v-for="agencia in agencies" :key="agencia.id" :value="agencia.id">{{agencia.nom}}</option>
                 </select>
                 <div id="selectAgencies" class="form-text">* Agències predefinides</div>
               </div>
@@ -763,6 +762,7 @@ export default {
       comarques: [],
       tipusIncidents: [],
       incidents: [],
+      agencies: [],
 
       trucada: {
       usuaris_id: this.useridm,
@@ -796,31 +796,8 @@ export default {
       incident: '',
       notaComunaInput: '',
       codiTrucada: '',
-      },
-      trucadaExpedients: {
-          id:"",
-          codi_trucada:"",
-          data_hora:"",
-          temps_trucada:"",
-          dades_personals_id:"",
-          telefon:"",
-          procedencia_trucada:"",
-          origen_trucada:"",
-          nom_trucada:"",
-          municipis_id_trucada:"",
-          adreca_trucada:"",
-          fora_catalunya:"",
-          provincies_id:"",
-          municipis_id:"",
-          tipus_localitzacions_id:"",
-          descripcio_localitzacio:"",
-          detall_localitzacio:"",
-          altres_ref_localitzacio:"",
-          incidents_id:"",
-          nota_comuna:"",
-          expedients_id:"",
-          usuaris_id:""
-          }
+      agencia: ''
+      }
     };
   },
   computed: {
@@ -848,6 +825,18 @@ export default {
           this.$emit('status', 'Accepted');
       }
       this.currentDateTime();
+    },
+    selectAgencies(){
+        let me = this;
+        let comarca = this.trucada.selectComarca;
+        axios.get('/agencies_comarca/'. comarca).then((response) => {
+              me.agencies = response.data;
+              console.log(me.agencies);
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
     },
     selectProvincies() {
         let me = this;

@@ -191,6 +191,15 @@ class CartesTrucadesController extends Controller
         //
     }
 
+    public function agencies($comarca)
+    {
+        $contador = DB::table("agencies")
+            ->join("municipis", "municipis.id", "=", "agencies.municipis_id")
+            ->where('comarques_id', '=', $comarca)
+            ->get();
+
+        return $contador->toJson(JSON_PRETTY_PRINT);
+    }
 
     public function contador()
     {
