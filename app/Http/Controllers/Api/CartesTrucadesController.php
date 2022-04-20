@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Models\Agencies;
-use Illuminate\Http\Request;
+
 use App\Models\CartesTrucades;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
+
+
 use App\Http\Resources\ContadorResource;
-use App\Http\Resources\CartesTrucadesResource;
+
 
 // use App\Clases\Utilitat;
 use App\Clases\Utilitat;
 use App\Models\Expedients;
 use Illuminate\Http\Request;
-use App\Models\CartesTrucades;
+
 use App\Models\DadesPersonals;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
