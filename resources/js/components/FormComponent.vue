@@ -20,7 +20,7 @@
             <div class="row mb-4">
               <div class="col">
                 <label for="localitzacio" class="form-label"
-                  ><vermell>*</vermell>Localització</label
+                  ><p class="vermell">*</p>Localització</label
                 >
                 <select
                   v-model="trucada.localitzacio"
@@ -78,7 +78,7 @@
             <div v-if="trucada.localitzacio === '1'" class="row mb-4">
               <div class="col">
                 <label for="procedenciaInput" class="form-label"
-                  ><vermell>*</vermell>Procedencia</label
+                  ><p class="vermell">*</p>Procedencia</label
                 >
                 <input
                   type="text"
@@ -95,7 +95,7 @@
               </div>
               <div class="col">
                 <label for="provincia" class="form-label"
-                  ><vermell>*</vermell>Provincia</label
+                  ><p class="vermell">*</p>Provincia</label
                 >
                 <select
                   id="selectProvincia"
@@ -114,7 +114,7 @@
               </div>
               <div class="col">
                 <label for="comarca" class="form-label"
-                  ><vermell>*</vermell>Comarca</label
+                  ><p class="vermell">*</p>Comarca</label
                 >
                 <select
                   id="comarca"
@@ -133,7 +133,7 @@
               </div>
               <div class="col">
                 <label for="selectMunicipi" class="form-label"
-                  ><vermell>*</vermell>Municipi</label
+                  ><p class="vermell">*</p>Municipi</label
                 >
                 <select
                   id="selectMunicipi"
@@ -154,7 +154,7 @@
             <div v-else class="row mb-4">
               <div class="col">
                 <label for="procedenciaInput" class="form-label"
-                  ><vermell>*</vermell>Procedencia</label
+                  ><p class="vermell">*</p>Procedencia</label
                 >
                 <input
                   type="text"
@@ -169,7 +169,7 @@
                 </div>
               </div>
               <div class="col">
-                <label for="provinciaInput" class="form-label"><vermell>*</vermell>Provincia</label>
+                <label for="provinciaInput" class="form-label"><p class="vermell">*</p>Provincia</label>
                 <input
                   type="text"
                   class="form-control"
@@ -204,7 +204,7 @@
               <h5><b>Localització de l'emergencia</b></h5>
               <div class="col">
                 <label for="tipusLoc" class="form-label"
-                  ><vermell>*</vermell>Tipus de localització</label
+                  ><p class="vermell">*</p>Tipus de localització</label
                 >
                 <select
                   id="tipusLoc"
@@ -284,7 +284,7 @@
               <div class="row mb-4">
                 <div class="col">
                   <label for="tipusVia" class="form-label"
-                    ><vermell>*</vermell>Tipus de via</label
+                    ><p class="vermell">*</p>Tipus de via</label
                   >
                   <select
                     id="tipusVia"
@@ -305,7 +305,7 @@
                 </div>
                 <div class="col">
                   <label for="nomVia" class="form-label"
-                    ><vermell>*</vermell>Nom</label
+                    ><p class="vermell">*</p>Nom</label
                   >
                   <input
                     type="text"
@@ -320,7 +320,7 @@
                 </div>
                 <div class="col">
                   <label for="numVia" class="form-label"
-                    ><vermell>*</vermell>Número</label
+                    ><p class="vermell">*</p>Número</label
                   >
                   <input
                     type="number"
@@ -475,7 +475,7 @@
               <div class="row mb-4">
                 <div class="col">
                   <label for="nomPunt" class="form-label"
-                    ><vermell>*</vermell>Nom</label
+                    ><p class="vermell">*</p>Nom</label
                   >
                   <input
                     type="text"
@@ -520,7 +520,7 @@
             <div class="row mb-4">
               <div class="col">
                 <label for="tipusIncident" class="form-label"
-                  ><vermell>*</vermell>Tipus d'incident</label
+                  ><p class="vermell">*</p>Tipus d'incident</label
                 >
                 <select
                   id="tipusIncident"
@@ -539,7 +539,7 @@
               </div>
               <div class="col">
                 <label for="incident" class="form-label"
-                  ><vermell>*</vermell>Incident</label
+                  ><p class="vermell">*</p>Incident</label
                 >
                 <select
                   id="incident"
