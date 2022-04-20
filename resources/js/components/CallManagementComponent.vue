@@ -3,7 +3,11 @@
     <h2 class="text-center mt-3">Gestió d'expedients</h2>
 
     <div class="accordion mt-3 m-auto" id="accordionExample">
-      <div class="accordion-item" v-for="(exp, i) in expedientesList" :key="exp.id">
+      <div
+        class="accordion-item"
+        v-for="(exp, i) in expedientesList"
+        :key="exp.id"
+      >
         <h2 class="accordion-header" :id="'heading' + exp.id">
           <button
             class="accordion-button"
@@ -24,7 +28,7 @@
         <div
           :id="'collapse' + exp.id"
           class="accordion-collapse collapse"
-          :class="i != 0  ? 'show' : ''"
+          :class="i != 0 ? 'show' : ''"
           :aria-labelledby="'heading' + exp.id"
           data-bs-parent="#accordionExample"
         >
@@ -52,18 +56,18 @@
                           <button
                             type="button"
                             class="btn btn-outline-info"
+                            @click="expAction(call, 'ver', exp.estats_expedients_id, exp.id)"
                             data-bs-toggle="modal"
-                            data-bs-target="#modalForm"
-                            @click="expAction(call, 'ver')"
+                            data-bs-target="#modalFormManagement"
                           >
                             Ver
                           </button>
                           <button
                             type="button"
                             class="btn btn-outline-warning"
+                            @click="expAction(call, 'modificar', exp.estats_expedients_id, exp.id)"
                             data-bs-toggle="modal"
-                            data-bs-target="#modalForm"
-                            @click="expAction(call, 'modificar')"
+                            data-bs-target="#modalFormManagement"
                           >
                             Modificar
                           </button>
@@ -79,17 +83,21 @@
       </div>
     </div>
 
-    <form-component :expMsg="expItem" v-if="isMounted"></form-component>
+    <managementForm-component
+      :expMsg="expItem"
+      v-if="isMounted"
+      :statusList="expedientesStatus"
+    ></managementForm-component>
   </main>
 </template>
 
 <script>
-import FormComponent from "./FormComponent.vue";
+import ManagementFormComponent from "./ManagementFormComponent.vue";
 import moment from "moment";
 export default {
-  components: { FormComponent },
+  components: { ManagementFormComponent },
   data: () => ({
-      isMounted: false,
+    isMounted: false,
     statusStyles: [
       "color : #4FBF58;", //proces verd
       "color : #FDFD96;", //solicitat groc
@@ -100,19 +108,24 @@ export default {
     expItem: {
       call: [],
       msg: "",
+      status: 0,
+      statusId:0,
     },
     expedientesList: [],
     expedientesStatus: [],
     callLists: [],
     formatDate: "",
-    collapsed:"",
-    addItem:{},
-    addExp:{}
+    collapsed: "",
+    addItem: {},
+    addExp: {},
   }),
   methods: {
-    expAction(call, e) {
-      this.expItem.call = call;
-      this.expItem.msg = e;
+    expAction(call, e, s, id) {
+      let me = this;
+      me.expItem.call = call;
+      me.expItem.msg = e;
+      me.expItem.status = s;
+      me.expItem.statusId = id;
       this.start();
       return this.expItem;
     },
@@ -136,7 +149,6 @@ export default {
         me.expedientesStatus = response.data;
       });
     },
-
     selectCallCard() {
       let me = this;
       axios
@@ -167,23 +179,21 @@ export default {
           .format("DD MMM YYYY")
           .toUpperCase()
           .replace(".", "");
-        console.log(formatTime);
         me.expedientesList[i] = Object.assign({}, me.expedientesList[i], {
           formatTime: formatTime,
         });
       }
     },
-    start(){
-            let me = this;
-            me.$root.$emit('CallManagementComponent');
-        },
+    start() {
+      let me = this;
+      me.$root.$emit("CallManagementComponent");
+    },
   },
   created() {
     this.selectExpedientes();
     this.statusExp();
   },
   mounted() {
-    console.log("Component mounted.");
     this.isMounted = true;
   },
 };

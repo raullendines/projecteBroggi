@@ -10,6 +10,11 @@ class Expedients extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'data_ultima_modificacio',
+        'estats_expedients_id'
+    ];
+
     public $table = 'expedients';
     public $primaryKey = 'id'; //Por defecto es id
     public $incrementing = true; //Por defecto es true

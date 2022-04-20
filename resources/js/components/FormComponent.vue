@@ -797,30 +797,7 @@ export default {
       notaComunaInput: '',
       codiTrucada: '',
       },
-      trucadaExpedients: {
-          id:"",
-          codi_trucada:"",
-          data_hora:"",
-          temps_trucada:"",
-          dades_personals_id:"",
-          telefon:"",
-          procedencia_trucada:"",
-          origen_trucada:"",
-          nom_trucada:"",
-          municipis_id_trucada:"",
-          adreca_trucada:"",
-          fora_catalunya:"",
-          provincies_id:"",
-          municipis_id:"",
-          tipus_localitzacions_id:"",
-          descripcio_localitzacio:"",
-          detall_localitzacio:"",
-          altres_ref_localitzacio:"",
-          incidents_id:"",
-          nota_comuna:"",
-          expedients_id:"",
-          usuaris_id:""
-          }
+
     };
   },
   computed: {
@@ -930,7 +907,6 @@ export default {
     }
   },
   props:{
-      expMsg:[],
       numTelefon: String,
       useridm: Number,
       codigoTrucada: Number
@@ -943,10 +919,6 @@ export default {
     this.$root.$on("CallCardComponent", () => {
       // your code goes here
       this.start();
-    });
-    this.$root.$on("CallManagementComponent", () => {
-      this.start();
-      this.trucada = this.expMsg.call;
     });
     this.trucada.phoneInput = this.numTelefon;
     console.log("Component mounted.");
