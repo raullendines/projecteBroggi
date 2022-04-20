@@ -1,7 +1,7 @@
 <template>
 <div>
 <div class="row mt-3 align-center"> <h5> <b> Numero de trucades per tipus d'accident</b></h5>  </div>
-<div v-if="chartData.labels.length > 0" class="row">
+<div v-if="this.chartData.datasets[0].data.length > 0" class="row">
   <Bar
     :chart-options="chartOptions"
     :chart-data="chartData"
@@ -77,7 +77,7 @@ export default {
           {
             label: 'Numero de trucades',
             backgroundColor: '#00AFC8',
-            data: [1, 3, 4, 5, 1, 5, 4, 2, 1, 3]
+            data: []
           }
         ]
       },
@@ -88,23 +88,30 @@ export default {
     }
   },
   methods: {
-   /*  selectLamadas() {
+   selectLamadas() {
+     console.log("ha entrado");
       let me = this;
-        axios.get('/callCards2/').then((response) => {
+        axios.get('/contador/').then((response) => {
             me.llamada = response.data;
-            console.log(me.llamada);
+            this.selectEachLlamada();
         })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => (this.loading = false));
-    }, */
+    }, 
+    selectEachLlamada(){
+      for (const call of this.llamada) {
+        this.chartData.labels.push(call.descripcio);
+        this.chartData.datasets[0].data.push(call.Contador);
+        console.log(this.chartData.labels);
+        console.log(this.chartData.datasets[0].data );
+      }
+    },
     selectIncidentsTypes() {
       let me = this;
         axios.get('/incidents_types/1').then((response) => {
             me.chartData.labels = response.data;
-           /*  console.log(me.chartData.labels);
-            this.bucle(); */
         })
         .catch((err) => {
             console.log(err);
@@ -137,7 +144,7 @@ export default {
   },
   created(){
     /* this.selectLamadas(); */
-    this.selectIncidentsTypes();
+    this.selectLamadas();
     /* this.selectIncidents(); */
   }
 }

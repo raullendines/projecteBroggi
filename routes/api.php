@@ -37,6 +37,7 @@ Route::apiResource('perfils', PerfilsController::class);
 Route::apiResource('agencies', AgenciesController::class);
 Route::apiResource('call_cards', CartesTrucadesHasAgenciesController::class);
 Route::apiResource('callCards2', CartesTrucadesController::class);
+    Route::get('contador', [CartesTrucadesController::class, 'contador']);
 Route::apiResource('dades', DadesPersonalsController::class);
 Route::apiResource('agencies_status', EstatsAgenciesController::class);
 Route::apiResource('expedients_status', EstatsExpedientsController::class);
