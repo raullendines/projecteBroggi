@@ -364,7 +364,6 @@ export default {
           data_ultima_modificacio: "",
           estats_expedients_id:""
       },
-      expedientesList:[],
     };
   },
   props: {
@@ -458,19 +457,6 @@ export default {
                 console.log(error.response.data);
             });
     },
-    getExpedients(val) {
-        let me = this;
-        axios
-        .get("/expedients/" + val)
-        .then((response) => {
-          me.expedientesList = response.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => (this.loading = false));
-
-    },
     moment: function () {
             moment.locale('es');
             this.currentdate = moment(new Date()).format('YYYY-MM-DD h:mm:ss');
@@ -486,7 +472,6 @@ export default {
       me.selectProvincies();
       me.selectMunicipis();
       me.selectIncidents();
-      me.getExpedients(me.expMsg.statusId);
           });
   },
 };
