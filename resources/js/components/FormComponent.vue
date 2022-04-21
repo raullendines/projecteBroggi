@@ -919,7 +919,6 @@ export default {
     }
   },
   props:{
-      expMsg:[],
       numTelefon: String,
       useridm: Number,
       codigoTrucada: Number
@@ -932,10 +931,6 @@ export default {
     this.$root.$on("CallCardComponent", () => {
       // your code goes here
       this.start();
-    });
-    this.$root.$on("CallManagementComponent", () => {
-      this.start();
-      this.trucada = this.expMsg.call;
     });
     this.trucada.phoneInput = this.numTelefon;
     console.log("Component mounted.");

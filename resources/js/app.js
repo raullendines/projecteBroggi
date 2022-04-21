@@ -62,6 +62,10 @@ Vue.component(
     "landingpage-component",
     require("./components/LandingPageComponent.vue").default
 );
+Vue.component(
+    "managementForm-component",
+    require("./components/ManagementFormComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
