@@ -141,8 +141,9 @@
                   v-model="trucada.selectMunicipi"
                   class="form-select"
                   aria-label="selectMunicipi"
-                  @change="selectAgencies()"
+
                 >
+                <!-- @change="selectAgencies()" -->
                   <option selected value="">Selecciona una opció</option>
                   <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" >{{ municipi.nom }}</option>
                 </select>
@@ -829,7 +830,7 @@ export default {
     selectAgencies(){
         let me = this;
         let comarca = this.trucada.selectComarca;
-        axios.get('/agencies_comarca/'. comarca).then((response) => {
+        axios.get('/agencies_comarca/' + comarca).then((response) => {
               me.agencies = response.data;
               console.log(me.agencies);
           })
@@ -872,6 +873,7 @@ export default {
               console.log(err);
           })
           .finally(() => (this.loading = false));
+          this.selectAgencies();
     },
     selectTipusIncident() {
         let me = this;

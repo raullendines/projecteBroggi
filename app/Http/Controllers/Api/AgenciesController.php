@@ -39,8 +39,8 @@ class AgenciesController extends Controller
      */
     public function show(Agencies $agency)
     {
-        $agencies = Agencies::pluck('carrer');
-        return new AgenciesResource($agencies);
+        $agency = Agencies::pluck('carrer');
+        return new AgenciesResource($agency);
     }
 
     /**
