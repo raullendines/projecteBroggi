@@ -212,7 +212,8 @@ class CartesTrucadesController extends Controller
     public function agencies($comarca)
     {
         $contador = DB::table("agencies")
-            ->join("municipis", "municipis.id", "=", "agencies.municipis_id")
+            ->select("agencies.*", "municipis.nom as municipi_nom", "municipis.comarques_id")
+            ->leftJoin("municipis", "municipis.id", "=", "agencies.municipis_id")
             ->where('comarques_id', '=', $comarca)
             ->get();
 
