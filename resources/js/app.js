@@ -66,6 +66,10 @@ Vue.component(
     "managementForm-component",
     require("./components/ManagementFormComponent.vue").default
 );
+Vue.component(
+    "video-component",
+    require("./components/VideoComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
