@@ -90,7 +90,7 @@
                   placeholder="Escriu aquí"
                 />
                 <div id="procedenciaInput" class="form-text">
-                  * Des d'on es realitza la trucada.
+                  * Des d'on es realitza la trucada
                 </div>
               </div>
               <div class="col">
