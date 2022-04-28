@@ -208,4 +208,16 @@ class CartesTrucadesController extends Controller
 
         return $contador->toJson(JSON_PRETTY_PRINT);
     }
+
+    public function comarques()
+    {
+        $comarca = DB::table("cartes_trucades")
+            ->join("municipis", "municipis.id", "=", "cartes_trucades.municipis_id")
+            ->join("comarques", "comarques.id", "=", "municipis.comarques_id")
+            ->select("comarques.nom", DB::raw("count(*) as contador"))
+            ->groupBy("comarques.nom")
+            ->get();
+
+        return $comarca->toJson(JSON_PRETTY_PRINT);
+    }
 }

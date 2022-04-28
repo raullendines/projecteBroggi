@@ -59,6 +59,14 @@ Vue.component(
     require("./components/GraphComponent.vue").default
 );
 Vue.component(
+    "pie-component",
+    require("./components/GraphPieComponent.vue").default
+);
+Vue.component(
+    "linear-component",
+    require("./components/GraphLinearComponent.vue").default
+);
+Vue.component(
     "landingpage-component",
     require("./components/LandingPageComponent.vue").default
 );
