@@ -189,9 +189,6 @@ export default {
   created() {
     this.question = false;
     this.restartVideo = false;
-  },
-  mounted() {
-    console.log("Component mounted.");
-  },
+  }
 };
 </script>

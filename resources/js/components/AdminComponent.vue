@@ -257,7 +257,7 @@ export default {
         .get("/usuaris")
         .then((response) => {
           me.usuaris = response.data;
-          console.log(response.data);
+
           this.changeValue();
         })
         .catch((err) => {
@@ -273,7 +273,7 @@ export default {
         .post("/usuaris", me.usuari)
         .then((response) => {
           me.selectUsuaris();
-          console.log(response.data);
+
           me.close();
         })
         .catch((err) => {
@@ -281,7 +281,7 @@ export default {
         })
         .finally(() => (this.loading = false));
       } else {
-          console.log("not valid")
+          console.err("Not valid")
       }
 
     },
@@ -292,7 +292,6 @@ export default {
                 axios
         .put("/usuaris/" + me.usuari.id, me.usuari)
         .then((response) => {
-          console.log(response.data);
           me.selectUsuaris();
           me.close();
         })
@@ -301,7 +300,7 @@ export default {
         })
         .finally(() => (this.loading = false));
       } else {
-          console.log("input not valid");
+          console.err("Not valid")
       }
     },
     selectPerfils() {
@@ -309,7 +308,6 @@ export default {
       axios
         .get("/perfils")
         .then((response) => {
-          console.log(response);
           me.profiles = response.data;
         })
         .catch((err) => {

@@ -67,6 +67,10 @@ Vue.component(
     require("./components/LandingPageComponent.vue").default
 );
 Vue.component(
+    "error-component",
+    require("./components/ErrorComponent.vue").default
+);
+Vue.component(
     "managementForm-component",
     require("./components/ManagementFormComponent.vue").default
 );

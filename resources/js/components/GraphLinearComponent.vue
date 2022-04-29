@@ -36,11 +36,9 @@ export default {
   },
   methods: {
     selectLamadasComarca() {
-     console.log("ha entrado");
       let me = this;
         axios.get('/comarca/').then((response) => {
             me.llamada = response.data;
-            console.log(me.llamada);
             this.selectEachLlamadaComarca();
 
         })

@@ -162,10 +162,10 @@ class CartesTrucadesController extends Controller
      * @param  \App\Models\CartesTrucades  $cartesTrucades
      * @return \Illuminate\Http\Response
      */
-    public function show(CartesTrucades $callCards2)
+    public function show(CartesTrucades $call_card)
     {
-        $callCards2 = CartesTrucades::find($callCards2);
-        return new CartesTrucadesResource($callCards2);
+        $call_card = CartesTrucades::find($call_card);
+        return new CartesTrucadesResource($call_card);
     }
 
     /**
@@ -175,19 +175,19 @@ class CartesTrucadesController extends Controller
      * @param  \App\Models\CartesTrucades  $cartesTrucades
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CartesTrucades $callCards2)
+    public function update(Request $request, CartesTrucades $call_card)
     {
         $id = $request->input('id');
 
         $find = CartesTrucades::find($id);
 
         if ($find) {
-            $callCards2->nom_trucada = $request->input('nom_trucada');
-            $callCards2->nota_comuna = $request->input('nota_comuna');
-            $callCards2->telefon = $request->input('telefon');
+            $call_card->nom_trucada = $request->input('nom_trucada');
+            $call_card->nota_comuna = $request->input('nota_comuna');
+            $call_card->telefon = $request->input('telefon');
             try {
-                $callCards2->save();
-                $response = (new CartesTrucadesResource($callCards2))
+                $call_card->save();
+                $response = (new CartesTrucadesResource($call_card))
                     ->response()
                     ->setStatusCode(201);
             } catch (QueryException $ex) {

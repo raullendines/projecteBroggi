@@ -118,11 +118,11 @@ export default {
       atencioCiutadanaMarker: {},
       agencies: [],
       mapa: {},
-      pepe: {
+      marcador: {
         id: "",
         marker: ""
       },
-      listPepe: [],
+      listMarcador: [],
       incident: "Plaça Urquinaona 10, Barcelona",
     };
   },
@@ -216,8 +216,7 @@ export default {
           }
         })
         .catch((err) => {
-          /*           console.log(err);
-           */
+           console.log(err);
         })
         .finally(() => (this.loading = false));
     },
@@ -266,18 +265,16 @@ export default {
             .setPopup(popup)
             .addTo(me.mapa);
             
-            console.log(this.pepe);
-            this.pepe.id = agencia.id;
-            this.pepe.marker = this.marker;
+            this.marcador.id = agencia.id;
+            this.marcador.marker = this.marker;
 
-            this.listPepe.push(this.pepe);
-              console.log(this.listPepe);
+            this.listMarcador.push(this.marcador);
+
 
         });
     },
 
     checkedPoliciaLocal(agencia){
-      console.log(this.policiaLocal.checked);
       if (this.policiaLocal.checked == true) {
         this.createMapPoliciaLocal(agencia);
       }
@@ -288,12 +285,10 @@ export default {
 
     removeMapPoliciaLocal(agencia) {
       for (const agencia of this.agencies) {
-        for (const pep of this.listPepe) {
-          if (agencia.id == pep.id){
-            console.log("Marcador");
-            console.log(pep.marker);
-            pep.marker.remove();
-            pep.marker.remove();
+        for (const mark of this.listMarcador) {
+          if (agencia.id == mark.id){
+            mark.marker.remove();
+            marl.marker.remove();
 
           }
         }
@@ -671,7 +666,6 @@ export default {
     createPopUp() {},
 
     createMap(feature) {
-      console.log("Map");
       const map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",

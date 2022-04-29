@@ -832,7 +832,6 @@ export default {
         let comarca = this.trucada.selectComarca;
         axios.get('/agencies_comarca/' + comarca).then((response) => {
               me.agencies = response.data;
-              console.log(me.agencies);
           })
           .catch((err) => {
               console.log(err);
@@ -843,7 +842,6 @@ export default {
         let me = this;
           axios.get('/provincies/').then((response) => {
               me.provincies = response.data;
-              console.log(me.provincies);
           })
           .catch((err) => {
               console.log(err);
@@ -855,7 +853,6 @@ export default {
         let provincia = this.trucada.selectProvincia;
           axios.get('/comarques/' + provincia).then((response) => {
               me.comarques = response.data;
-              console.log(me.comarques);
           })
           .catch((err) => {
               console.log(err);
@@ -867,7 +864,6 @@ export default {
         let comarca = this.trucada.selectComarca;
           axios.get('/municipis/' + comarca).then((response) => {
               me.municipis = response.data;
-              console.log(me.municipis);
           })
           .catch((err) => {
               console.log(err);
@@ -879,7 +875,6 @@ export default {
         let me = this;
           axios.get('/incidents_types/').then((response) => {
               me.tipusIncidents = response.data;
-              console.log(me.tipusIncidents);
           })
           .catch((err) => {
               console.log(err);
@@ -891,7 +886,6 @@ export default {
         let tipusIncident = this.trucada.tipusIncident;
           axios.get('/incidents/' + tipusIncident).then((response) => {
               me.incidents = response.data;
-              console.log(me.incidents);
           })
           .catch((err) => {
               console.log(err);
@@ -909,7 +903,7 @@ export default {
     insertForm(){
         let me = this;
         axios
-            .post('/callCards2', me.trucada)
+            .post('/call_card', me.trucada)
             .then(function(response){
                 console.log(response);
                 stop(1);
@@ -935,7 +929,6 @@ export default {
       this.start();
     });
     this.trucada.phoneInput = this.numTelefon;
-    console.log("Component mounted.");
   }
 };
 </script>

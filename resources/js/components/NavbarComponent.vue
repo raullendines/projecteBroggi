@@ -261,12 +261,12 @@ export default {
         },
         {
           name: "Mapa",
-          url: "/projecteBroggi/public/map",
+          url: "/projecteBroggi/public/mapa",
           icon: "fas fa-map-marker-alt",
         },
         {
           name: "Gràfic",
-          url: "/projecteBroggi/public/graph",
+          url: "/projecteBroggi/public/grafic",
           icon: "fas fa-chart-line",
         },
         {
@@ -333,7 +333,6 @@ export default {
     this.selectProfiles();
   },
   mounted() {
-    console.log("Component mounted.");
   },
 };
 </script>

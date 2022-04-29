@@ -96,7 +96,6 @@ export default {
         axios
         .post('/codi_trucada')
             .then(function(response){
-                console.log("EL RESPONSE DEL CODI DE TRUCADA ---> ");
                 me.codiTrucada = response.data.id;
             }).catch(function(error){
                 console.log(error.response);
@@ -120,7 +119,6 @@ export default {
         },
   },
   mounted() {
-    console.log("Component mounted.");
     this.userid = parseInt(this.$attrs['userid']);
     this.isMounted = true;
   },

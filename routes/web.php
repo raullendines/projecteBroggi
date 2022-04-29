@@ -15,9 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/database', function () { return view('database.database'); });
-
 Route::get('/error', function () { return view('error.error'); })->name('error');
 
 Route::get('/login', [UsuarisController::class, 'showLogin'])->name('login');
@@ -25,6 +22,10 @@ Route::get('/logout', [UsuarisController::class, 'logout'])->name('logout');
 Route::get('/put_login', [UsuarisController::class, 'login']);
 Route::get('/expedients', function () {
     return view('callManagement.callManagement');
+});
+
+Route::middleware(['cors'])->group(function () {
+    Route::post('/hogehoge', 'Controller@hogehoge');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -47,11 +48,11 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['role: 3'])->group(function () {
-        Route::get('/map', function () {
+        Route::get('/mapa', function () {
             return view('map.map');
         });
 
-        Route::get('/graph', function () {
+        Route::get('/grafic', function () {
             return view('graph.graph');
         });
 

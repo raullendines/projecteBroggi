@@ -38,11 +38,9 @@ export default {
   },
   methods: {
    selectLamadasContador() {
-     console.log("ha entrado");
       let me = this;
         axios.get('/contador/').then((response) => {
             me.llamada = response.data;
-            console.log(me.llamada);
             this.selectEachLlamadaContador();
 
 })

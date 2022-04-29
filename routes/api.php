@@ -35,8 +35,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('perfils', PerfilsController::class);
 Route::apiResource('agencies', AgenciesController::class);
-Route::apiResource('call_cards', CartesTrucadesHasAgenciesController::class);
-Route::apiResource('callCards2', CartesTrucadesController::class);
+Route::apiResource('call_cards_agencies', CartesTrucadesHasAgenciesController::class);
+Route::apiResource('call_card', CartesTrucadesController::class);
     Route::get('contador', [CartesTrucadesController::class, 'contador']);
     Route::get('comarca', [CartesTrucadesController::class, 'comarques']);
 Route::apiResource('dades', DadesPersonalsController::class);

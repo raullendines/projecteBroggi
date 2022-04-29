@@ -434,7 +434,7 @@ export default {
     updateExpedient() {
         let me = this;
         axios
-            .put('/callCards2/' + me.trucada.id, me.trucada)
+            .put('/call_card/' + me.trucada.id, me.trucada)
             .then(function(response){
                 console.log(response);
             }).catch(function(error){
@@ -465,7 +465,6 @@ export default {
   },
   created() {},
   mounted() {
-    console.log("Component mounted.");
     this.$root.$on("CallManagementComponent", () => {
       let me = this;
       me.trucada = me.expMsg.call;

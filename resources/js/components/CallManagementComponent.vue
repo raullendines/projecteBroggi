@@ -152,7 +152,7 @@ export default {
     selectCallCard() {
       let me = this;
       axios
-        .get("/callCards2")
+        .get("/call_card")
         .then((response) => {
           me.callLists = response.data;
         })
