@@ -3,20 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 
+use App\Clases\Utilitat;
+
 use App\Models\Agencies;
-use Illuminate\Http\Request;
-use App\Models\CartesTrucades;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\ContadorResource;
-use App\Http\Resources\CartesTrucadesResource;
+
+
+use App\Models\Expedients;
+
 
 // use App\Clases\Utilitat;
-use App\Clases\Utilitat;
-use App\Models\Expedients;
-use App\Models\DadesPersonals;
-use Illuminate\Database\QueryException;
 use App\Models\CodiTrucada;
+use Illuminate\Http\Request;
+use App\Models\CartesTrucades;
+use App\Models\DadesPersonals;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
+use App\Http\Resources\ContadorResource;
+use App\Http\Resources\CartesTrucadesResource;
 
 
 class CartesTrucadesController extends Controller
@@ -230,5 +234,17 @@ class CartesTrucadesController extends Controller
             ->get();
 
         return $contador->toJson(JSON_PRETTY_PRINT);
+    }
+
+    public function comarques()
+    {
+        $comarca = DB::table("cartes_trucades")
+            ->join("municipis", "municipis.id", "=", "cartes_trucades.municipis_id")
+            ->join("comarques", "comarques.id", "=", "municipis.comarques_id")
+            ->select("comarques.nom", DB::raw("count(*) as contador"))
+            ->groupBy("comarques.nom")
+            ->get();
+
+        return $comarca->toJson(JSON_PRETTY_PRINT);
     }
 }

@@ -32,10 +32,11 @@
         <a href="{{ url('/ayuda') }}" id="rotateColider" class="ayuda"><img class="interrogant" width="100px" src="{{ asset('images/interrogant.png') }}" alt=""><img class="out fondoInterrogant" id="rotate" width="100px" src="{{ asset('images/fonsInterrogant.png') }}" alt=""></a>
     </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 <script src="{{ asset('js/detectDark.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/rotate.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
 </html>

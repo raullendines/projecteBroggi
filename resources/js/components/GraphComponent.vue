@@ -1,113 +1,36 @@
 <template>
-<div>
-<div class="row mt-3 align-center"> <h5> <b> Numero de trucades per tipus d'accident</b></h5>  </div>
-<div v-if="this.chartData.datasets[0].data.length > 0" class="row">
-  <Bar
-    :chart-options="chartOptions"
-    :chart-data="chartData"
-    :chart-id="chartId"
-    :dataset-id-key="datasetIdKey"
-    :plugins="plugins"
-    :css-classes="cssClasses"
-    :styles="styles"
-    :width="width"
-    :height="height"
-  />
-</div>
-</div>
+  <div class="px-5 m-auto mt-5">
+    <div class="row">
+      <div class="col-5 offset-md-1">
+        <linear-component></linear-component>
+      </div>
+      <div class="col-5">
+        <div class="card mt-4 opacity-75">
+          <div class="card-header"> <b>Grafic de número de trucades per comarca</b> </div>
+          <div class="card-body">
+            <p class="card-text">
+              Gràfic que dona a coneixer la densitat d'incidents que hi ha per comarca basant-se en el numero de trucades rebudes en cada territori català.
+            </p>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-5 offset-md-1">
+        <div class="card mt-4 opacity-75">
+          <div class="card-header">Grafic de número de trucades per tipus d'incident</div>
+          <div class="card-body">
+            <p class="card-text">
+              Aquest grafic mostra el numero de trucades que es reben per tipus d'incident causat dins del nostre territori. <br>
+              Aquest gràfic serveix per donar a coneixer quins tipus d'incidents son els que mes patim i aixi poder concienciar als ciutadans.
+            </p>
+          </div>
+        </div>
+    </div>
+      <div class="col-5">
+        <pie-component></pie-component>
+      </div>
+    </div>
+  </div>
+
+  </div>
 </template>
-
-<script>
-import { Bar } from 'vue-chartjs/legacy'
-
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-} from 'chart.js'
-
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
-
-export default {
-  name: 'BarChart',
-  components: {
-    Bar
-  },
-  props: {
-    chartId: {
-      type: String,
-      default: 'bar-chart'
-    },
-    datasetIdKey: {
-      type: String,
-      default: 'label'
-    },
-    width: {
-      type: Number,
-      default: 400
-    },
-    height: {
-      type: Number,
-      default: 400
-    },
-    cssClasses: {
-      default: '',
-      type: String
-    },
-    styles: {
-      type: Object,
-      default: () => {}
-    },
-    plugins: {
-      type: Array,
-      default: () => []
-    }
-  },
-  data() {
-    return {
-      llamada: [],
-      incidentes: [],
-      chartData: {
-        labels: [],
-        datasets: [
-          {
-            label: 'Numero de trucades',
-            backgroundColor: '#00AFC8',
-            data: []
-          }
-        ]
-      },
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    }
-  },
-  methods: {
-   selectLamadas() {
-      let me = this;
-        axios.get('/contador/').then((response) => {
-            me.llamada = response.data;
-            this.selectEachLlamada();
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-        .finally(() => (this.loading = false));
-    }, 
-    selectEachLlamada(){
-      for (const call of this.llamada) {
-        this.chartData.labels.push(call.descripcio);
-        this.chartData.datasets[0].data.push(call.Contador);
-      }
-    },
-  },
-  created(){
-    this.selectLamadas();
-  }
-}
-</script>

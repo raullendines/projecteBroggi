@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-3" style="display: flex; flex-wrap: wrap">
     <div id="map" class="map-size col-10"></div>
-    <div class="col search-box p-2">
+    <!-- <div class="col search-box p-2">
       <h3><b>Agencies</b></h3>
       <br />
       <h5>Policia</h5>
@@ -99,7 +99,7 @@
         @change="selectAllAgencies()"
       />
       <label for="selectAll"> Tots</label><br />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -108,7 +108,7 @@ export default {
   data() {
     return {
       selected_agency: [],
-      policiaLocalMarker: {},
+      marker: {},
       policiaMunicipalMarker: {},
       guardiaUrbanaMarker: {},
       mossosEsquadraMarker: {},
@@ -118,6 +118,11 @@ export default {
       atencioCiutadanaMarker: {},
       agencies: [],
       mapa: {},
+      pepe: {
+        id: "",
+        marker: ""
+      },
+      listPepe: [],
       incident: "Plaça Urquinaona 10, Barcelona",
     };
   },
@@ -157,80 +162,57 @@ export default {
           const el = document.createElement("div");
           el.id = "marker";
 
-          this.policiaLocalMarker = new mapboxgl.Marker({ color: "#BA0001" })
+          this.marker = new mapboxgl.Marker({ color: "#BA0001" })
             .setLngLat(feature.center)
             .setPopup(popup)
             .addTo(me.mapa);
         });
     },
+
     selectAllAgencies() {
       let me = this;
-
-      const checkboxGU = document.querySelector("#guardiaUrbana");
-      const checkboxPL = document.querySelector("#policiaLocal");
-      const checkboxME = document.querySelector("#mossosEsquadra");
-      const checkboxPM = document.querySelector("#policiaMunicipal");
-      const checkboxBV = document.querySelector("#bombersVoluntaris");
-      const checkboxB = document.querySelector("#bombers");
-      const checkboxT = document.querySelector("#transit");
-      const checkboxAC = document.querySelector("#atencioCiutadana");
-      const checkboxAll = document.querySelector("#selectAll");
-
+      
       axios
         .get("/agencies/")
         .then((response) => {
           me.agencies = response.data;
+        
+          
           for (const agencia of this.agencies) {
             if (
-              agencia.nom.includes("Policia Local") &&
-              this.selected_agency.includes("policiaLocal")
+              agencia.nom.includes("Policia Local") 
             ) {
               this.createMapPoliciaLocal(agencia);
-            } else if (
-              agencia.nom.includes("Parc de Bombers Voluntaris") &&
-              this.selected_agency.includes("bombersVoluntaris")
+            } 
+            else  if (
+              agencia.nom.includes("Parc de Bombers Voluntaris")
             ) {
               this.createMapBombersVoluntaris(agencia);
             } else if (
-              agencia.nom.includes("Parc de Bombers") &&
-              this.selected_agency.includes("bombers")
+              agencia.nom.includes("Parc de Bombers")
             ) {
               this.createMapBombers(agencia);
             } else if (
-              agencia.nom.includes("Àrea Regional de Trànsit") &&
-              this.selected_agency.includes("transit")
+              agencia.nom.includes("Àrea Regional de Trànsit") 
             ) {
               this.createMapTransit(agencia);
             } else if (
-              agencia.nom.includes("Mossos d'Esquadra") &&
-              this.selected_agency.includes("mossosEsquadra")
+              agencia.nom.includes("Mossos d'Esquadra")
             ) {
               this.createMapMossos(agencia);
             } else if (
-              agencia.nom.includes("Guàrdia Urbana") &&
-              this.selected_agency.includes("guardiaUrbana")
+              agencia.nom.includes("Guàrdia Urbana") 
             ) {
               this.createMapGuardiaUrbana(agencia);
             } else if (
-              agencia.nom.includes("Oficina d'Atenció Ciutadana") &&
-              this.selected_agency.includes("atencioCiutadana")
+              agencia.nom.includes("Oficina d'Atenció Ciutadana") 
             ) {
               this.createMapAtencioCiutadana(agencia);
             } else if (
-              agencia.nom.includes("Policia Municipal") &&
-              this.selected_agency.includes("policiaMunicipal")
+              agencia.nom.includes("Policia Municipal") 
             ) {
               this.createMapPoliciaMunicipal(agencia);
-            } else if ((checkboxAll.checked = true)) {
-              /*  this.createMapPoliciaLocal(agencia);
-              this.createMapBombersVoluntaris(agencia);
-              this.createMapBombers(agencia);
-              this.createMapTransit(agencia);
-              this.createMapMossos(agencia);
-              this.createMapGuardiaUrbana(agencia);
-              this.createMapAtencioCiutadana(agencia);
-              this.createMapPoliciaMunicipal(agencia); */
-            }
+            } 
           }
         })
         .catch((err) => {
@@ -279,15 +261,43 @@ export default {
           el.id = "marker";
 
           // Create a marker and add it to the map.
-          this.policiaLocalMarker = new mapboxgl.Marker({ color: "#575455" })
+          this.marker = new mapboxgl.Marker({ color: "#575455" })
             .setLngLat(feature.center)
             .setPopup(popup)
             .addTo(me.mapa);
+            
+            console.log(this.pepe);
+            this.pepe.id = agencia.id;
+            this.pepe.marker = this.marker;
+
+            this.listPepe.push(this.pepe);
+              console.log(this.listPepe);
+
         });
     },
 
+    checkedPoliciaLocal(agencia){
+      console.log(this.policiaLocal.checked);
+      if (this.policiaLocal.checked == true) {
+        this.createMapPoliciaLocal(agencia);
+      }
+      else{
+        this.removeMapPoliciaLocal(agencia);
+      }
+    },
+
     removeMapPoliciaLocal(agencia) {
-      this.policiaLocalMarker.remove();
+      for (const agencia of this.agencies) {
+        for (const pep of this.listPepe) {
+          if (agencia.id == pep.id){
+            console.log("Marcador");
+            console.log(pep.marker);
+            pep.marker.remove();
+            pep.marker.remove();
+
+          }
+        }
+      }
     },
 
     createMapPoliciaMunicipal(agencia) {
@@ -661,6 +671,7 @@ export default {
     createPopUp() {},
 
     createMap(feature) {
+      console.log("Map");
       const map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
