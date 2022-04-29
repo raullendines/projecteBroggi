@@ -51,6 +51,7 @@
                   v-model="trucada.nomIntelocutor"
                   aria-describedby="nomIntelocutor"
                   placeholder="Escriu aquí"
+                  required
                 />
                 <div id="nomIntelocutor" class="form-text">
                   * Nom de l'interlocutor
@@ -58,14 +59,14 @@
               </div>
               <div class="col">
                 <label for="adreca" class="form-label"
-                  >Adreça</label
+                  ><b class="vermell">*</b>Adreça</label
                 >
                 <input
                   type="text"
                   class="form-control"
                   name="adreca"
                   id="adreca"
-                  v-model="trucada.adreca_trucada"
+                  v-model="trucada.adreca"
                   aria-describedby="adreca"
                   placeholder="Escriu aquí"
                 />
@@ -619,7 +620,7 @@
             <div class="row mb-4">
               <div class="col">
                 <label class="form-label" for="notaComunaInput"
-                  >Nota comuna</label
+                  ><b class="vermell">*</b>Nota comuna</label
                 >
                 <textarea
                   class="form-control"
@@ -673,7 +674,7 @@
               </div>
             </div>
             <input type="hidden" name="tempsTrucada" id="tempsTrucada" v-model="trucada.tempsTrucada">
-            <input type="hidden" name="usuariId" id="usuariId" v-model="trucada.usuaris_id">
+            <input type="hidden" name="usuaris_id" id="usuaris_id" v-model="trucada.usuaris_id">
             <input type="hidden" name="codiTrucada" id="codiTrucada" v-model="this.codigoTrucada">
           </form>
         </div>
@@ -690,7 +691,7 @@
             >
               Penjar
             </button>
-            <button type="button" @click="insertForm()" class="btn btn-secondary" data-bs-dismiss="modal">
+            <button type="button" @click="insertForm()" class="btn btn-secondary" data-bs-dismiss="modal" :disabled="!trucada.phoneInput && !trucada.procedenciaInput && !trucada.notaComunaInput && !trucada.nomIntelocutor && !trucada.adreca">
               Guardar i penjar
             </button>
           </div>
@@ -743,7 +744,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#penjarModal" data-bs-dismiss="modal" aria-label="Close">Guardar i penjar</button>
+        <button type="button" class="btn btn-primary" data-bs-target="#penjarModal" data-bs-dismiss="modal" aria-label="Close">Guardar i penjar</button>
       </div>
     </div>
   </div>
@@ -772,7 +773,7 @@ export default {
       procedenciaInput: '',
       localitzacio: "",
       phoneInput: '',
-      adreca_trucada: '',
+      adreca: '',
       antecedents: '',
       tempsTrucada: 0,
       nomIntelocutor: '',
@@ -823,6 +824,7 @@ export default {
       if (e === 0) {
           this.$emit('status', 'Declined');
       } else {
+          debugger
           this.$emit('status', 'Accepted');
       }
       this.currentDateTime();
@@ -906,18 +908,18 @@ export default {
             .post('/call_card', me.trucada)
             .then(function(response){
                 console.log(response);
-                stop(1);
+                me.stop(1);
             }).catch(function(error){
                 console.log(error.response.status);
                 console.log(error.response.data);
-                stop(1);
+                me.stop(1);
             });
     }
   },
   props:{
       numTelefon: String,
       useridm: Number,
-      codigoTrucada: Number
+      codigoTrucada: Number,
   },
   created() {
     this.selectProvincies();

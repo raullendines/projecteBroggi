@@ -110,6 +110,7 @@ export default {
             me.telefono = call.tel;
         },
         getStatus(status) {
+            console.log(status);
             this.clickedItem.status = this.clickedItem.status.replace(this.clickedItem.status, status);
         },
         moment: function () {

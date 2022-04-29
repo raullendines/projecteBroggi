@@ -130,11 +130,7 @@ class CartesTrucadesController extends Controller
             //-------------------MES COMUNES--------------------
             $cartaTrucada->incidents_id = $request->input('incident');
             $cartaTrucada->nota_comuna = $request->input('notaComunaInput');
-
-
-
-
-            $cartaTrucada->usuaris_id = $request->input("usuariId");
+            $cartaTrucada->usuaris_id = $request->input("usuaris_id");
             //---------------------------------------
 
             $cartaTrucada->save();
