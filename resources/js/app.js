@@ -27,10 +27,6 @@ Vue.use(Vuetify);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component(
-    "example-component",
-    require("./components/ExampleComponent.vue").default
-);
-Vue.component(
     "navbar-component",
     require("./components/NavbarComponent.vue").default
 );
@@ -65,6 +61,10 @@ Vue.component(
 Vue.component(
     "managementForm-component",
     require("./components/ManagementFormComponent.vue").default
+);
+Vue.component(
+    "video-component",
+    require("./components/VideoComponent.vue").default
 );
 
 /**

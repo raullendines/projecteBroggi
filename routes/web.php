@@ -34,6 +34,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/trucades', function () {
             return view('callCard.callCard');
         });
+
+        Route::get('/ayuda', function () {
+            return view('videoCard.video');
+        });
     });
 
     Route::middleware(['role: 2,3'])->group(function () {
