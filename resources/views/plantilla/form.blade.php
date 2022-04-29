@@ -17,8 +17,8 @@
 </head>
 
 <body>
-    <div id="app">
-        <div class="container-fluid mt-5 loginVert">
+    <div id="app" style="height: 100vh" class="d-flex align-items-center" >
+        <div class="container-fluid loginVert">
             @yield('contents')
         </div>
     </div>
