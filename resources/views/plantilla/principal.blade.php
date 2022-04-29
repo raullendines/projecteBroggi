@@ -32,6 +32,8 @@
         <a href="" id="rotateColider" class="ayuda"><img class="interrogant" width="100px" src="{{ asset('images/interrogant.png') }}" alt=""><img class="out fondoInterrogant" id="rotate" width="100px" src="{{ asset('images/fonsInterrogant.png') }}" alt=""></a>
     </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 <script src="{{ asset('js/detectDark.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
