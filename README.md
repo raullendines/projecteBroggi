@@ -1,3 +1,29 @@
+This project is created with:
+
+- VueJs 2x
+- Laravel 8
+- Vuetify 2x
+- Bootstrap 5
+- Html 5
+- Css 3
+- PHP
+
+After cloning or downloading the project please make sure to have this installed:
+
+- node Js
+- Vue Js
+- Laravel
+- Composer
+
+After cloning or downloading the project please make sure to follow this steps:
+
+- npm i
+- Composer update
+- Composer install
+- cp .env.example .env
+- php artisan key:generate
+- npm run dev or npm run watch
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
