@@ -1,6 +1,38 @@
 <template>
 <div>
-<div class="row mt-3 align-center"> <h5> <b> Numero de trucades per tipus d'accident</b></h5>  </div>
+<div class="row mt-3 align-center"> <h5> <b> Numero de trucades per tipus d'accident
+    sdfds<br>
+    dsf<br><br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    </b></h5>  </div>
 <div v-if="this.chartData.datasets[0].data.length > 0" class="row">
   <Bar
     :chart-options="chartOptions"
@@ -98,7 +130,7 @@ export default {
             console.log(err);
         })
         .finally(() => (this.loading = false));
-    }, 
+    },
     selectEachLlamada(){
       for (const call of this.llamada) {
         this.chartData.labels.push(call.descripcio);
