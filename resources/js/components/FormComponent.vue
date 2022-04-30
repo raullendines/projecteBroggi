@@ -824,7 +824,6 @@ export default {
       if (e === 0) {
           this.$emit('status', 'Declined');
       } else {
-          debugger
           this.$emit('status', 'Accepted');
       }
       this.currentDateTime();
