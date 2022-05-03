@@ -155,7 +155,7 @@ export default {
           
           this.createMap(feature);
 
-          var description = "<p><b>" + this.incident + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
+          var description = "<p><b>" + this.incident + "</b></p>" + "<button type='button' class='btn btn-outline-secondary'>Afegir</button>";
 
           const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(description);
 
@@ -251,7 +251,7 @@ export default {
             "<p><b>" +
             agencia.nom +
             "</b></p>" +
-            "<button type='button' class='btn btn-outline-secondary'>Primary</button>";
+            "<button type='button' class='btn btn-outline-secondary'>Afegir</button>";
 
           const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(description);
 

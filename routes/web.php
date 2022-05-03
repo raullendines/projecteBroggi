@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/error', function () { return view('error.error'); })->name('error');
+Route::get('/database', function () { return view('database.database'); })->name('database');
 
 Route::get('/login', [UsuarisController::class, 'showLogin'])->name('login');
 Route::get('/logout', [UsuarisController::class, 'logout'])->name('logout');
