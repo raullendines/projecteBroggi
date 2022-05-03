@@ -104,6 +104,7 @@ export default {
       let myVideo = this.getIdVideo();
       if (myVideo.currentTime <= value && myVideo.currentTime >= value - 1) {
         if (
+          value === 28 ||
           value === 39 ||
           value === 50 ||
           value === 95 ||
@@ -113,6 +114,7 @@ export default {
           myVideo.currentTime = 0;
           myVideo.pause();
           clearInterval(this.intervalTime);
+          this.restartVideo = false;
         } else if (value === 103) {
           //fixed this
           myVideo.currentTime = 73;
@@ -135,13 +137,13 @@ export default {
       if (value === 0) {
         if (myVideo.currentTime <= 19 && myVideo.currentTime >= 18) {
           myVideo.currentTime += 4;
-          this.getTimeVideo(29);
-        } else if (myVideo.currentTime <= 28 && myVideo.currentTime >= 27) {
+          this.getTimeVideo(28);
+        } /* else if (myVideo.currentTime <= 28 && myVideo.currentTime >= 27) {
           myVideo.currentTime = 0;
           myVideo.pause();
           this.question = false;
           clearInterval(this.intervalTime);
-        } else if (myVideo.currentTime <= 30 && myVideo.currentTime >= 29) {
+        } */ else if (myVideo.currentTime <= 30 && myVideo.currentTime >= 29) {
           myVideo.currentTime += 10;
           this.getTimeVideo(42);
         } else if (myVideo.currentTime <= 42 && myVideo.currentTime >= 41) {
@@ -151,7 +153,7 @@ export default {
           myVideo.currentTime += 42;
           this.getTimeVideo(103);
         } else if (myVideo.currentTime <= 64 && myVideo.currentTime >= 63) {
-          myVideo.currentTime += 25;
+          myVideo.currentTime += 26; //no es associada
           this.getTimeVideo(95);
         } else if (myVideo.currentTime <= 75 && myVideo.currentTime >= 74) {
           myVideo.currentTime += 9;
