@@ -37,7 +37,7 @@
         @click="restartVid()"
         class="m-2"
         style="color: #00b0c8"
-        v-else
+        v-if="question === false && restartVideo === true"
       >
         <i class="fas fa-redo"></i>
         Restart
@@ -96,7 +96,7 @@ export default {
       myVideo.currentTime += value;
     },
     restart() {
-      let myVideo = getIdVideo();
+      let myVideo = this.getIdVideo();
       myVideo.currentTime = 0;
     },
     stopVideo(value) {
