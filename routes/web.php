@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\PerfilsController;
-use App\Http\Controllers\UsuarisController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\UsuarisController;
+use App\Http\Controllers\Api\PerfilsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,25 @@ Route::get('/logout', [UsuarisController::class, 'logout'])->name('logout');
 Route::get('/put_login', [UsuarisController::class, 'login']);
 Route::get('/expedients', function () {
     return view('callManagement.callManagement');
+});
+
+Route::get('/clearcache', function () { 
+    $notice = 'CONFIG';
+
+    $exitCode = Artisan::call('config:clear');
+    $exitCode = Artisan::call('config:clear');
+
+    $notice = '/ APPLICATION';
+
+    $exitCode = Artisan::call('cache:clear');
+
+    $notice = '/ VIEW';
+
+    $exitCode = Artisan::call('view:clear');
+
+    $notice = 'cleared';
+
+    return $notice;
 });
 
 Route::middleware(['cors'])->group(function () {
